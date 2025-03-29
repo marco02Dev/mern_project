@@ -10,8 +10,8 @@ const products_routes_1 = __importDefault(require("./routes/products.routes"));
 const users_routes_1 = __importDefault(require("./routes/users.routes"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use(products_routes_1.default);
-app.use(users_routes_1.default);
+app.use("/api", products_routes_1.default);
+app.use("/api", users_routes_1.default);
 app.listen(env_1.port, () => {
     (0, connect_to_database_1.connectToDatabase)();
     console.log(`Server is listen on ${env_1.port}`);

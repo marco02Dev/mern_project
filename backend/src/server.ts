@@ -7,8 +7,9 @@ import usersRouter from './routes/users.routes';
 
 const app: Express = express();
 app.use(express.json());
-app.use(productsRouter);
-app.use(usersRouter);
+
+app.use("/api", productsRouter);
+app.use("/api", usersRouter);
 
 app.listen(port, (): void => {
     connectToDatabase();

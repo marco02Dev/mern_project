@@ -1,0 +1,1 @@
+export const isNumber = (data: any): boolean => typeof data === "number";
