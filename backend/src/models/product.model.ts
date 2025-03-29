@@ -1,10 +1,10 @@
 import mongoose, {Document, Schema, Model } from "mongoose";
 
-interface ProductSchema extends Document {
+export interface ProductSchema extends Document {
     name: string,
     price: number,
     featuredImageUrl: string,
-    tags: string[]
+    tags?: string[]
 }
 
 const productSchema: Schema<ProductSchema> = new mongoose.Schema({
