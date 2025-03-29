@@ -8,6 +8,25 @@ import { sendSuccessMessage, SendSuccessMessageData } from "../utils/send-succes
 
 const productsRouter: Router = Router();
 
+productsRouter.get("/products", async (request: Request, response: Response): Promise<any> => {
+    try {
+        const products: ProductSchema[] = await Product.find({});
+        const sendSuccessMessageData: SendSuccessMessageData = {
+            response: response,
+            statusCode: 200,
+            data: products
+        }
+        sendSuccessMessage(sendSuccessMessageData)
+    } catch {
+        const sendErrorMessageData: SendErrorMessageData = {
+            response: response,
+            statusCode: 404,
+            resource: 'Products'
+        }
+        sendErrorMessage(sendErrorMessageData);
+    }
+})
+
 productsRouter.post('/products', async (request: Request, response: Response): Promise<any> => {
     const product: ProductSchema = request.body;
 
@@ -16,7 +35,6 @@ productsRouter.post('/products', async (request: Request, response: Response): P
         const isMissingData: boolean = !name || !price || !featuredImageUrl;
 
         if(isMissingData || !isString(name) || !isNumber(price) || !isString(featuredImageUrl)) {
-            console.log("missing something");
             const sendErrorMessageData: SendErrorMessageData = {response: response, statusCode: 400};
             return sendErrorMessage(sendErrorMessageData);
         } else {
@@ -39,5 +57,31 @@ productsRouter.post('/products', async (request: Request, response: Response): P
         return sendErrorMessage(sendErrorMessageData);
     }
 }); 
+
+productsRouter.delete("/products/:id", async (request: Request<{id: string}>, response: Response): Promise<any> => {
+    const {id}: {id: string} = request.params;
+    
+    try {
+        await Product.findByIdAndDelete(id);
+        const sendSuccessMessageData: SendSuccessMessageData = {
+            response: response,
+            statusCode: 200,
+            resource: "Product",
+            deleteResource: true
+        }
+        sendSuccessMessage(sendSuccessMessageData)
+    } catch(erorr) {
+        const sendErrorMessageData: SendErrorMessageData = {
+            response: response,
+            statusCode: 404,
+            resource: 'Product'
+        }
+        sendErrorMessage(sendErrorMessageData);
+    }
+});
+
+productsRouter.put("/products/:id", async (request: Request<{id: string}>, response: Response): Promise<any> => {
+    const {id}: {id: string} = request.params;
+});
 
 export default productsRouter;
