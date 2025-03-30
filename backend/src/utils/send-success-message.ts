@@ -6,13 +6,15 @@ export type SendSuccessMessageData = {
     statusCode: number,
     data?: ProductSchema | ProductSchema[],
     resource?: string,
-    deleteResource?: boolean
+    deleteResource?: boolean,
+    updateResource?: boolean
 }
 
-export const sendSuccessMessage = ({response, statusCode, resource, data, deleteResource}: SendSuccessMessageData): Response => {
+export const sendSuccessMessage = ({response, statusCode, resource, data, deleteResource, updateResource}: SendSuccessMessageData): Response => {
 
     let message: string;
     const resourceType: string = resource ? resource : "Resource";
+    const actionType: string = deleteResource ? "deleted" : "updated";
 
     switch(statusCode) {
         case(201):
@@ -20,7 +22,7 @@ export const sendSuccessMessage = ({response, statusCode, resource, data, delete
         break;
 
         case(200):
-            message = deleteResource ? `${resourceType} successfully deleted` : 'Request successfully processed.';
+            message = deleteResource || updateResource ? `${resourceType} successfully ${actionType}` : 'Request successfully processed.';
         break;
 
         default:
