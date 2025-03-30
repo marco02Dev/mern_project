@@ -1,10 +1,10 @@
 import { Response } from "express";
-import { ProductSchema } from "../models/product.model";
+import { ModelsAllowed } from "../types/models-allowed";
 
 export type SendSuccessMessageData = {
     response: Response,
     statusCode: number,
-    data?: ProductSchema | ProductSchema[],
+    data?: ModelsAllowed | ModelsAllowed[],
     resource?: string,
     deleteResource?: boolean,
     updateResource?: boolean
