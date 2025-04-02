@@ -7,10 +7,13 @@ import { StyledSpace } from "../styled/styled-space";
 import Image from '../../src/assets/signin-section.webp'
 
 const TextWrapper = styled.div`
-    wiidth: 60%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 `;
 
-const ImageWrapper = styled.image`
+const ImageWrapper = styled.div`
     width: 40%;
     img {
         width: 100%;
@@ -20,7 +23,7 @@ const ImageWrapper = styled.image`
 `;
 
 export const SignInSection = (): ReactElement => {
-    return <StyledSection secondaryColor row>
+    return <StyledSection secondaryColor row alignCenter>
         <TextWrapper>
             <StyledSpace large vertical />
             <StyledText tag="p" content="Learn. Grow. Succeed." />
@@ -29,7 +32,11 @@ export const SignInSection = (): ReactElement => {
             <StyledSpace medium vertical />
             <StyledText tag="p" content="Join our community of learners and elevate your skills with our expertly crafted courses. Sign up today!" />
             <StyledSpace medium vertical />
-            <StyledButton content={'Sign in'} to="/signin" />
+
+            <div>
+                <StyledButton content={'Sign in'} to="/signin" />
+            </div>
+
         </TextWrapper>
 
         <ImageWrapper>

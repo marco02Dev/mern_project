@@ -1,5 +1,5 @@
 import { StyledMainWrapper } from './styled/styled-main-wrapper';
-import { NavBar } from './components/nav-bar';
+import { Header } from './components/header';
 import { Routes, Route } from 'react-router-dom'; // Importazione di React Router
 import { HomePage } from './pages/home-page';
 import { Courses } from './pages/courses';
@@ -10,7 +10,7 @@ import { Footer } from './components/footer';
 
 function App() {
   return <StyledMainWrapper>
-    <NavBar />
+    <Header />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/courses" element={<Courses />} />
