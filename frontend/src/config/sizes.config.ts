@@ -1,6 +1,7 @@
 type SizeValue = string;
 
-type ParagraphSizes = {
+type SizeCategory = {
+    verySmall: SizeValue;
     small: SizeValue;
     medium: SizeValue;
     large: SizeValue;
@@ -13,34 +14,49 @@ type FontSizes = {
     h4: SizeValue;
     h5: SizeValue;
     h6: SizeValue;
-    p: ParagraphSizes;
     span: SizeValue;
+    paragraph: SizeCategory;
 };
 
-type Spaces = {
-    small: SizeValue,
-    medium: SizeValue,
-    large: SizeValue
-}
+type Sizes = {
+    fontSizes: FontSizes;
+    spaces: SizeCategory;
+    widths: SizeCategory;
+    heights: SizeCategory;
+};
 
-export const sizes: { fontSizes: FontSizes, spaces: Spaces } = {
+export let sizes: Sizes = {
     fontSizes: {
-        h1: "10vh", 
-        h2: "8vh",
-        h3: "6vh", 
-        h4: "5vh",
-        h5: "4vh",
-        h6: "3vh", 
-        p: {
-            small: "2vh",  
-            medium: "2.5vh",   
-            large: "3vh" 
-        },
-        span: "2.5vh"
+        h1: "clamp(10vh, 10vh + 1vw, 100vw)", 
+        h2: "clamp(8vh, 8vh + 1vw, 100vw)",
+        h3: "clamp(6vh, 6vh + 1vw, 100vw)", 
+        h4: "clamp(5vh, 5vh + 1vw, 100vw)",
+        h5: "clamp(4vh, 4vh + 1vw, 100vw)",
+        h6: "clamp(3vh, 3vh + 1vw, 100vw)", 
+        span: "clamp(2.5vh, 2.5vh + 1vw, 100vw)",
+        paragraph: {
+            verySmall: "clamp(1vh, 1vh + 0.5vw, 100vw)",
+            small: "clamp(2vh, 2vh + 0.5vw, 100vw)",  
+            medium: "clamp(2.5vh, 2.5vh + 0.5vw, 100vw)",   
+            large: "clamp(3vh, 3vh + 0.5vw, 100vw)" 
+        }
     },
     spaces: {
-        small: "1vh",
-        medium: "2vh",
-        large: "4vh"
+        verySmall: "clamp(0.1vh, 0.1vh + 0.1vw, 100vw)",
+        small: "clamp(1vh, 1vh + 0.5vw, 100vw)",
+        medium: "clamp(5vh, 5vh + 0.5vw, 100vw)",
+        large: "clamp(6.5vh, 6.5vh + 1vw, 100vw)"
+    },
+    widths: {
+        verySmall: "clamp(1.5vh, 1.5vh + 0.5vw, 100vw)",
+        small: "clamp(3vh, 3vh + 0.5vw, 100vw)",
+        medium: "clamp(4vh, 4vh + 0.5vw, 100vw)",
+        large: "clamp(6vh, 6vh + 1vw, 100vw)"
+    },
+    heights: {
+        verySmall: "clamp(0.2vh, 0.2vh + 0.2vw, 100vw)",
+        small: "clamp(2vh, 2vh + 0.5vw, 100vw)",
+        medium: "clamp(4vh, 4vh + 0.5vw, 100vw)",
+        large: "clamp(8vh, 8vh + 1vw, 100vw)"
     }
 };

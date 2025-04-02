@@ -20,9 +20,10 @@ type StyledSpaceProps = {
     small?: boolean;
     medium?: boolean;
     large?: boolean;
+    verySmall?: boolean;
 };
 
-export const StyledSpace = ({ horizontal, vertical, small, medium, large }: StyledSpaceProps): ReactElement => {
+export const StyledSpace = ({ horizontal, vertical, small, medium, large, verySmall }: StyledSpaceProps): ReactElement => {
     let size: string;
 
     if (small) {
@@ -31,6 +32,8 @@ export const StyledSpace = ({ horizontal, vertical, small, medium, large }: Styl
         size = sizes.spaces.medium;
     } else if (large) {
         size = sizes.spaces.large;
+    } else if(verySmall) {
+        size = sizes.spaces.verySmall;
     } else {
         size = sizes.spaces.small;
     }

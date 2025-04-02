@@ -10,22 +10,27 @@ type TextProps = {
     as?: keyof JSX.IntrinsicElements;
     $color: string;
     $fontSize: string;
-    $fontWeight?: string
+    $fontWeight?: string;
+    $minWidth?: string
 }
 
 const Text = styled.span<TextProps>`
     color: ${({ $color }) => $color};
     font-size: ${({ $fontSize }) => $fontSize};
-    font-weight: ${({ $fontWeight}) => $fontWeight ? $fontWeight : "400"}
+    font-weight: ${({ $fontWeight}) => $fontWeight ? $fontWeight : "400"};
+    min-width: ${({$minWidth}) => $minWidth ? $minWidth : "40vh"};
+    max-width: 100vh;
 `;
 
 type StyledTextProps = {
     tag: AllowedTextTags;
     content: string;
-    fontWeight?: string
+    fontWeight?: string;
     size?: string;
     smallParagraph?: boolean;
     largeParagraph?: boolean;
+    verySmallParagraph?: boolean;
+    minWidth?: string;
 };
 
 export const StyledText = ({
@@ -33,14 +38,16 @@ export const StyledText = ({
     tag = defaultTextTag,
     smallParagraph,
     largeParagraph,
+    verySmallParagraph,
     size,
-    fontWeight
+    fontWeight,
+    minWidth
 }: StyledTextProps): ReactElement => {
     const ThemeModeContextValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const { mode } = ThemeModeContextValue;
     const color = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
 
-    let fontSize: string = sizes.fontSizes.p?.medium;
+    let fontSize: string = sizes.fontSizes.paragraph?.medium;
 
     const determineFontSize = ({tag, size}: {tag: string, size?: string}): void => {
 
@@ -48,15 +55,17 @@ export const StyledText = ({
 
         if (value === "p") {
             if (smallParagraph) {
-                fontSize = sizes.fontSizes.p?.small ?? sizes.fontSizes.p?.medium;
+                fontSize = sizes.fontSizes.paragraph?.small ?? sizes.fontSizes.paragraph?.medium;
             } else if (largeParagraph) {
-                fontSize = sizes.fontSizes.p?.large ?? sizes.fontSizes.p?.medium;
+                fontSize = sizes.fontSizes.paragraph?.large ?? sizes.fontSizes.paragraph?.medium;
+            } else if(verySmallParagraph) { 
+                fontSize = sizes.fontSizes.paragraph?.verySmall ?? sizes.fontSizes.paragraph?.medium
             } else {
-                fontSize = sizes.fontSizes.p?.medium;
+                fontSize = sizes.fontSizes.paragraph?.medium;
             }
         } else {
             const tagFontSize = sizes.fontSizes[value as keyof typeof sizes.fontSizes];
-            fontSize = typeof tagFontSize === "string" ? tagFontSize : sizes.fontSizes.p.medium;
+            fontSize = typeof tagFontSize === "string" ? tagFontSize : sizes.fontSizes.paragraph.medium;
         }
     }
 
@@ -64,7 +73,7 @@ export const StyledText = ({
 
 
     return (
-        <Text as={tag} $color={color} $fontSize={fontSize} $fontWeight={fontWeight}>
+        <Text as={tag} $color={color} $fontSize={fontSize} $fontWeight={fontWeight} $minWidth={minWidth}>
             {content}
         </Text>
     );

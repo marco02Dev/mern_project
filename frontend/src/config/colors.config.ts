@@ -15,10 +15,10 @@ export const colors: Colors = {
     },
     light: {
         backgroundColor: 'white',
-        backgroundColorSecondary: '#121826',
-        buttonBackgroundColor: '#003EF8',
+        backgroundColorSecondary: '#E0E0E0',
+        buttonBackgroundColor: '#8d99ae',
         textColor: 'black',
         sideTextColor: 'gray',
-        hoverColor: '#003EF8'
+        hoverColor: '#8d99ae'
     }
 }

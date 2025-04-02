@@ -1,1 +1,1 @@
-export const defaultMode: string = "dark";
+export const defaultMode: string = "light";

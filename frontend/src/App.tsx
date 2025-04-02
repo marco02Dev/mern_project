@@ -1,23 +1,12 @@
-import { StyledMainWrapper } from './styled/styled-main-wrapper';
-import { Header } from './components/header';
-import { Routes, Route } from 'react-router-dom'; // Importazione di React Router
-import { HomePage } from './pages/home-page';
-import { Courses } from './pages/courses';
-import { LogIn } from './pages/log-in';
-import { Contact } from './pages/contact';
-import { About } from './pages/about';
-import { Footer } from './components/footer';
+import { StyledMainWrapper } from './styles/styled-main-wrapper';
+import { Header } from './components/template-parts/header';
+import { Footer } from './components/template-parts/footer';
+import { Router } from './config/router';
 
 function App() {
   return <StyledMainWrapper>
     <Header />
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/courses" element={<Courses />} />
-      <Route path='/about' element={<About />} />
-      <Route path='/contact' element={<Contact />} />
-      <Route path='/login' element={<LogIn />} />
-    </Routes>
+    <Router />
     <Footer />
   </StyledMainWrapper>
 }
