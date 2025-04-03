@@ -11,7 +11,7 @@ export const Router = (): ReactElement => {
     return <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:category" element={<Categories />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<LogIn />} />

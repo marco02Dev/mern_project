@@ -4,6 +4,7 @@ import { getAllDocumentsByModel } from "../database/get-all-documents-by-model";
 import { createNewDocumentByModel } from "../database/create-new-document-by-model";
 import { deleteDocumentByModel } from "../database/delete-document-by-model";
 import { updateDocumentByModel } from "../database/update-document-by-model";
+import { getDocumentsByCategory } from "../database/get-documents-by-category";
 import { Request } from "express";
 
 export const getAllProducts: Controller = async (req, res) => {
@@ -12,6 +13,15 @@ export const getAllProducts: Controller = async (req, res) => {
         request: req as Request<{}, {}, ProductSchema>,
         response: res,
         resourceName: "Products"
+    });
+}
+
+export const getProductsByCategory: Controller = async (req, res) => {
+    getDocumentsByCategory<ProductSchema>({
+        Model: Product,
+        request: req as Request<{category: string}, {}, ProductSchema>,
+        response: res,
+        resourceName: "Product"
     });
 }
 

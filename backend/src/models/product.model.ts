@@ -4,6 +4,7 @@ export interface ProductSchema extends Document {
     name: string,
     price: number,
     featuredImageUrl: string,
+    category: string,
     tags?: string[]
 }
 
@@ -17,6 +18,10 @@ const productSchema: Schema<ProductSchema> = new mongoose.Schema({
         required: true
     },
     featuredImageUrl: {
+        type: String,
+        required: true
+    },
+    category: {
         type: String,
         required: true
     },
