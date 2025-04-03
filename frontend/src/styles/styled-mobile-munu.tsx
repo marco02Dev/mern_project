@@ -1,9 +1,10 @@
-import { ReactElement, useContext, useCallback, useEffect } from "react";
+import { ReactElement, useCallback, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { sizes } from "../config/sizes.config";
 import { colors } from "../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../contexts/theme-mode.context";
-import { MobileMenuContext, MobileMenuContextProps } from "../contexts/mobile-menu-context";
+import { useDispatch } from "react-redux"; 
+import { toggleMenu, closeMenu } from "../store/menu.slice"; 
 import { useMediaQuery, UseMediaQuery } from "../hooks/useMediaQuery";
 
 const Wrapper = styled.div`
@@ -20,25 +21,25 @@ const Line = styled.div<{$smallSize: string, $mediumSize: string, $color: string
 `;
 
 export const StyledMobileMenu = (): ReactElement => {
+    const dispatch = useDispatch();
+
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const { setisOpened }: MobileMenuContextProps = useContext(MobileMenuContext);
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+
     const color = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
 
-    const toggleMenu = useCallback(() => {
-        if (setisOpened) {
-            setisOpened(prevIsOpened => !prevIsOpened);
-        }
-    }, [setisOpened]);
+    const toggleMenuHandler = useCallback(() => {
+        dispatch(toggleMenu()); 
+    }, [dispatch]);
 
     useEffect(() => {
         if (!isMobile || !isTablet) {
-            setisOpened && setisOpened(false);
+            dispatch(closeMenu()); 
         }
-    }, [isMobile, setisOpened]);
+    }, [isMobile, isTablet]);
 
     return (
-        <Wrapper onClick={toggleMenu}>
+        <Wrapper onClick={toggleMenuHandler}>
             <Line $smallSize={sizes.heights.small} $mediumSize={sizes.widths.small} $color={color} />
             <Line $smallSize={sizes.heights.small} $mediumSize={sizes.widths.small} $color={color} />
             <Line $lastLine $smallSize={sizes.heights.small} $mediumSize={sizes.widths.small} $color={color} />
