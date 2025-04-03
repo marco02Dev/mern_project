@@ -126,9 +126,9 @@ export const Header = (): ReactElement => {
                 </DesktopNavInnerWrapper>
 
                 <DesktopNavInnerWrapper $width={'20%'} $flexEnd>
-                    <SwitchThemeMode />
-                    <StyledSpace horizontal small />
                     <StyledButton content={'Login'} to={'/login'} headerElement />
+                    <StyledSpace horizontal small />
+                    <SwitchThemeMode />
                 </DesktopNavInnerWrapper>
             </ Nav>
 

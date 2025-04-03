@@ -7,6 +7,7 @@ import { sizes } from "../config/sizes.config";
 
 type SectionProps = {
     as?: keyof JSX.IntrinsicElements,
+    $semanticTag?: string
     $backgroundColor: string,
     $column?: boolean,
     $row?: boolean,
@@ -24,6 +25,7 @@ type SectionProps = {
 }
 
 const Section = styled.section<SectionProps>`
+  z-index: ${({$semanticTag}) => $semanticTag? "1000" : "unset"};
   display: ${({$block}) => $block ? "block" : 'flex'};
   justify-content: ${({$justifyCenter}) => $justifyCenter ? 'center' : 'start'};
   align-items: ${({ $alignCenter }) => ($alignCenter ? 'center' : 'start')};
@@ -119,6 +121,7 @@ export const StyledSection: React.FC<StyledSectionProps> = ({
     $hiddenFirstRender={hiddenFirstRender}
     $isMobileOrTablet={isMobile || isTablet}
     $smallSpace={sizes.spaces.small}
+    $semanticTag={semanticTag}
     > {children} 
   </Section>;
 };

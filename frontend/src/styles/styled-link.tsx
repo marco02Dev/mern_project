@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from "react";
 import { StyledText } from "./styled-text";
 import { Link } from "react-router-dom";
-import styled, {css} from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 import { colors } from "../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../contexts/theme-mode.context";
 import { AllowedTextTags } from "../config/styled-text.config";
@@ -18,12 +18,32 @@ type LinkWrapperProps = {
     $borderColor?: string;
 }
 
+const lineMoveOut = keyframes`
+  0% {
+    transform: translateX(0);
+  };
+  100% {
+    transform: translateX(100%);
+  };
+`;
+
+const LineMoveBackIn = keyframes`
+  0% {
+    transform: translateX(-100%);
+  };
+  100% {
+    transform: translateX(0%);
+  };
+`;
+
 const LinkWrapper = styled(Link)<LinkWrapperProps>`
     color: ${({$color}) => $color};
     background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
     display: inline-block;
     cursor: pointer;
     text-decoration: none;
+    overflow-x: hidden;
+    scrollbar-width: none;
     ${({$padding, $border}) => {
             if($border) {
                 if($padding === "default" ) {
@@ -44,7 +64,7 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
         }
     }};
     border-color: ${({$border, $borderColor}) => $borderColor && $border ? $borderColor : "unset"};
-    border-width: ${({$border}) => $border ? 'clamp(0.1vh, 0.1vh + 0.2vw, 100vw)' : 'unset'};
+    border-width: ${({$border}) => $border ? sizes.heights.verySmall : 'unset'};
     border-style: ${({$border}) => $border ? 'solid' : 'unset'};
     position: relative;
     z-index: 1;
@@ -52,6 +72,7 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
     span {
         color: inherit;
         position: relative;
+        overflow: hidden;
 
         ${({$button, $afterHeight, $color}) => !$button &&  css` 
             &::after {
@@ -71,14 +92,12 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
 
             ${({$button, $hoverColor}) => !$button && css`
                 &::after {
+                    animation: ${lineMoveOut} 0.2s ease-in-out, ${LineMoveBackIn} 0.2s ease-in-out 0.2s;
                     background-color: ${$hoverColor};
                 }
             `};
         }
     };
-
-
-
 `;
 
 type StyledLinkProps = {

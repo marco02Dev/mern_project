@@ -19,7 +19,7 @@ const Text = styled.span<TextProps>`
     font-size: ${({ $fontSize }) => $fontSize};
     font-weight: ${({ $fontWeight}) => $fontWeight ? $fontWeight : "400"};
     min-width: ${({$minWidth}) => $minWidth ? $minWidth : "40vh"};
-    max-width: 100vh;
+    max-width: 150vh;
 `;
 
 type StyledTextProps = {

@@ -23,8 +23,8 @@ const ButtonShadow = styled.div<{$color: string}>`
     height: 98%;
     bottom: 0;
     z-index: 0;
-    bottom: clamp(-0.6vh, -0.6vh + -0.1vw, 100vw);
-    right: clamp(-0.6vh, -0.6vh + -0.1vw, 100vw);
+    bottom: clamp(-0.3vh, -0.3vh + -0.1vw, 100vw);
+    right: clamp(-0.3vh, -0.3vh + -0.1vw, 100vw);
 `;
 
 export const StyledButton = ({content, to, headerElement }: StyledButtonProps): ReactElement => {

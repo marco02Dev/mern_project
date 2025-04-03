@@ -1,12 +1,15 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { sizes } from "../config/sizes.config";
 import { colors } from "../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../contexts/theme-mode.context";
+import { MobileMenuContext, MobileMenuContextProps } from "../contexts/mobile-menu-context";
+import { useMediaQuery, UseMediaQuery } from "../hooks/useMediaQuery";
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 `;
 
 const Line = styled.div<{$smallSize: string, $mediumSize: string, $color: string, $lastLine?: boolean}>`
@@ -18,13 +21,27 @@ const Line = styled.div<{$smallSize: string, $mediumSize: string, $color: string
 
 export const StyledMobileMenu = (): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const { setisOpened }: MobileMenuContextProps = useContext(MobileMenuContext);
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const color = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
 
+    const toggleMenu = useCallback(() => {
+        if (setisOpened) {
+            setisOpened(prevIsOpened => !prevIsOpened);
+        }
+    }, [setisOpened]);
+
+    useEffect(() => {
+        if (!isMobile || !isTablet) {
+            setisOpened && setisOpened(false);
+        }
+    }, [isMobile, setisOpened]);
+
     return (
-        <Wrapper>
-            <Line $smallSize={sizes.heights.verySmall} $mediumSize={sizes.widths.small} $color={color} />
-            <Line $smallSize={sizes.heights.verySmall} $mediumSize={sizes.widths.small} $color={color} />
-            <Line $lastLine $smallSize={sizes.heights.verySmall} $mediumSize={sizes.widths.small} $color={color} />
+        <Wrapper onClick={toggleMenu}>
+            <Line $smallSize={sizes.heights.small} $mediumSize={sizes.widths.small} $color={color} />
+            <Line $smallSize={sizes.heights.small} $mediumSize={sizes.widths.small} $color={color} />
+            <Line $lastLine $smallSize={sizes.heights.small} $mediumSize={sizes.widths.small} $color={color} />
         </Wrapper>
     );
 };
