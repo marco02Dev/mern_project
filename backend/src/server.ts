@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/api", productsRouter);
 app.use("/api", usersRouter);
 
-app.listen(port, (): void => {
+app.listen(port, '0.0.0.0', (): void => {
     connectToDatabase();
     console.log(`Server is listen on ${port}`);
 });
