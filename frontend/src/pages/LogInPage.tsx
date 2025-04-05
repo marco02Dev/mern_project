@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { StyledText } from "../styles/StyledText";
+import { StyledText } from "../components/themed/StyledText";
 
 export const LogIn = (): ReactElement => {
     return <div>

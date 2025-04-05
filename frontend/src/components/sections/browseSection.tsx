@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledSpace } from "../themed/StyledSpace";
-import { StyledText } from "../../styles/StyledText";
+import { StyledText } from "../themed/StyledText";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { CategoryBox } from "../boxes/CategoryBox";

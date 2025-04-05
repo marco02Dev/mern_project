@@ -1,6 +1,7 @@
 import { css, RuleSet, keyframes } from "styled-components";
+import Keyframes from "styled-components/dist/models/Keyframes";
 
-export const LineMoveBackIn = keyframes`
+export const LineMoveBackIn: Keyframes = keyframes`
   0% {
     transform: translateX(-100%);
   };
@@ -9,7 +10,7 @@ export const LineMoveBackIn = keyframes`
   };
 `;
 
-export const lineMoveOut = keyframes`
+export const lineMoveOut: Keyframes = keyframes`
   0% {
     transform: translateX(0);
   };

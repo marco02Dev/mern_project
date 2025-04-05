@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import styled, { keyframes, css, RuleSet } from "styled-components";
+import styled, { css, RuleSet } from "styled-components";
 import { NavLinks } from "../ui/NavLinks";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
@@ -12,25 +12,7 @@ import { sizes } from "../../config/sizes.config";
 import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useLocation } from 'react-router-dom';
-import Keyframes from "styled-components/dist/models/Keyframes";
-
-const translateUp: Keyframes = keyframes`
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-`;
-
-const translateDown: Keyframes= keyframes`
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-`;
+import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/reveal-hide-header.animation";
 
 const Nav = styled.nav`
     width: 100%;
@@ -79,13 +61,9 @@ export const Header = (): ReactElement => {
         `;
     } else {
         if (scrollY > latestScrollY) {
-            animation = css`
-                animation: ${translateUp} 0.5s ease-in-out forwards;
-            `;
+            animation = HideHeaderAnimation;
         } else {
-            animation = css`
-                animation: ${translateDown} 0.5s ease-in-out forwards;
-            `;
+            animation = RevealHeaderAnimation;
         }
     }
 

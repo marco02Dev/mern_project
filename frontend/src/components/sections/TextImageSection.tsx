@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { StyledSection } from "../themed/StyledSection";
-import { StyledText } from "../../styles/StyledText";
+import { StyledText } from "../themed/StyledText";
 import { StyledButton } from "../themed/StyledButton";
 import styled from "styled-components";
 import { StyledSpace } from "../themed/StyledSpace";

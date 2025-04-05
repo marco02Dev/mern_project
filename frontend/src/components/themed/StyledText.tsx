@@ -1,10 +1,10 @@
 import { ReactElement, useContext, JSX } from "react";
 import styled from "styled-components";
-import { ThemeModeContext, ThemeModeContextProps } from "../contexts/ThemeModeProvider";
-import { AllowedTextTags } from "../config/styled-text.config";
-import { defaultTextTag } from "../config/styled-text.config";
-import { colors } from "../config/colors.config";
-import { sizes } from "../config/sizes.config";
+import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
+import { AllowedTextTags } from "../../config/styled-text.config";
+import { defaultTextTag } from "../../config/styled-text.config";
+import { colors } from "../../config/colors.config";
+import { sizes } from "../../config/sizes.config";
 
 type TextProps = {
     as?: keyof JSX.IntrinsicElements;

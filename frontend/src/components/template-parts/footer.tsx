@@ -1,5 +1,5 @@
 import { ReactElement, useContext } from "react";
-import { StyledText } from "../../styles/StyledText";
+import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";

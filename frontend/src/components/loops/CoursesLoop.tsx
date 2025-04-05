@@ -1,5 +1,5 @@
 import { ReactElement, useContext } from "react";
-import { StyledText } from "../../styles/StyledText";
+import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { Course } from "../../types/course.types";
 import { CourseBox } from "../boxes/CourseBox";

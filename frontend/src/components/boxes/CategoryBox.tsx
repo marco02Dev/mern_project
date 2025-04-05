@@ -2,7 +2,7 @@ import { ReactElement, useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
-import { StyledText } from "../../styles/StyledText";
+import { StyledText } from "../themed/StyledText";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
 import { sizes } from "../../config/sizes.config";

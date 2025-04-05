@@ -1,5 +1,5 @@
 import { ReactElement, useContext } from "react";
-import { StyledText } from "../../styles/StyledText";
+import { StyledText } from "./StyledText";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { colors } from "../../config/colors.config";

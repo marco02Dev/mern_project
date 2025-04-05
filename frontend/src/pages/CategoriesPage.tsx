@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { useParams } from "react-router-dom";
-import { StyledText } from "../styles/StyledText";
+import { StyledText } from "../components/themed/StyledText";
 import { coursesEndpoint } from "../config/endpoints.config";
 import { useFetchGet } from "../hooks/useFetchGet";
 import { Course } from "../types/course.types";
