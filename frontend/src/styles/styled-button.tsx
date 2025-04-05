@@ -11,9 +11,9 @@ type StyledButtonProps = {
     headerElement?: boolean
 }
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.div<{$headerElement?: boolean}>`
     position: relative;
-    display: inline-block;
+    display: ${({$headerElement}) => $headerElement ? "flex" : "inline-block"};
 `;
 
 const ButtonShadow = styled.div<{$color: string}>`
@@ -34,7 +34,7 @@ export const StyledButton = ({content, to, headerElement }: StyledButtonProps): 
     const color: string = mode === 'dark' ? colors.light.textColor : colors.dark.textColor;
     const shadowColor =  mode === 'dark' ? colors.dark.textColor : colors.light.textColor
 
-    return <ButtonWrapper>
+    return <ButtonWrapper $headerElement={headerElement}>
         <StyledLink 
             content={content}
             to={to}

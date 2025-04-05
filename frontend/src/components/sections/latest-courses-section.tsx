@@ -4,6 +4,7 @@ import { StyledSpace } from "../../styles/styled-space";
 import { StyledText } from "../../styles/styled-text";
 import { sizes } from "../../config/sizes.config";
 import styled from "styled-components";
+import { CoursesLoop } from "../loops/courses-loop";
 
 const TitleWrapper = styled.div`
     display: flex;
@@ -19,6 +20,8 @@ export const LatestCoursesSection = (): ReactElement => {
         <TitleWrapper>
             <StyledText tag="h2" content={'Latest courses'} />
         </TitleWrapper>
+
+        <CoursesLoop limit={4} latest />
 
     </StyledSection>
 }

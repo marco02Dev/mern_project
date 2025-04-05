@@ -109,7 +109,7 @@ export const Header = (): ReactElement => {
         secondaryColor={isCourses}
         >
 
-        <StyledSpace vertical small />
+        <StyledSpace vertical verySmall />
 
         { isMobile || isTablet ? 
             <Nav>
@@ -143,7 +143,7 @@ export const Header = (): ReactElement => {
 
         }
 
-        <StyledSpace vertical small/>
+        <StyledSpace vertical verySmall/>
 
     </StyledSection>
 }
