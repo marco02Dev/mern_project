@@ -1,10 +1,10 @@
-import { sendSuccessMessage } from "../utils/send-success-message";
-import { sendErrorMessage } from "../utils/send-error-massage";
-import { ModelsAllowed } from "../types/models-allowed";
+import { sendSuccessMessage } from "../utils/send-success-message.util";
+import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { ModelsAllowed } from "../types/models-allowed.type";
 import { Request, Response } from "express";
 import { Model } from "mongoose";
-import { isProductDataInvalid } from "../utils/is-product-data-invalid";
-import { isUserDataInvalid } from "../utils/is-user-data-invalid";
+import { isProductDataInvalid } from "../utils/is-product-data-invalid.util";
+import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 
 type CreateNewDocumentByModelData<T extends object> = {
     Model: Model<T>, 

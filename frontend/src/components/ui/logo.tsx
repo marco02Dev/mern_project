@@ -1,7 +1,7 @@
-import { StyledLink } from "../../styles/styled-link";
+import { StyledLink } from "../themed/StyledLink";
 import { ReactElement } from "react";
-import { logoHover } from "../../animations/logo-hover";
-import { FadeInWrapper } from "../animated/fade-in-wrapper";
+import { logoHover } from "../../animations/logo-hover.animation";
+import { FadeInWrapper } from "../animated/FadeInWrapper";
 
 export const Logo = (): ReactElement => {
 

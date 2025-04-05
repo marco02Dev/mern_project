@@ -1,7 +1,7 @@
-import { Controller, UsersParams } from "../types/controller";
-import { isUserDataInvalid } from "../utils/is-user-data-invalid";
-import { sendErrorMessage } from "../utils/send-error-massage";
-import { sendSuccessMessage } from "../utils/send-success-message";
+import { Controller, UsersParams } from "../types/controller.type";
+import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
+import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { sendSuccessMessage } from "../utils/send-success-message.util";
 import User, { UsersSchema } from "../models/users.model";
 import { getAllDocumentsByModel } from "../database/get-all-documents-by-model";
 import { createNewDocumentByModel } from "../database/create-new-document-by-model";

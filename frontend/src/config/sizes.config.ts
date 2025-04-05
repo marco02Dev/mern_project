@@ -28,7 +28,7 @@ type Sizes = {
 
 export let sizes: Sizes = {
     fontSizes: {
-        h1: "clamp(7vh, 2vh + 3vw, 100vw)", 
+        h1: "clamp(7vh, 2vh + 5vw, 100vw)", 
         h2: "clamp(5vh, 1.8vh + 3vw, 100vw)",
         h3: "clamp(4vh, 1.5vh + 2vw, 100vw)", 
         h4: "clamp(3vh, 1.2vh + 2vw, 100vw)",
@@ -73,7 +73,7 @@ export let sizes: Sizes = {
         verySmall: "clamp(0.1vh, 0.1vh + 0.1vw, 100vw)",
         small: "clamp(0.2vh, 0.2vh + 0.1vw, 100vw)",
         medium: "clamp(4vh, 4vh + 0.5vw, 100vw)",
-        large: "clamp(8vh, 8vh + 1vw, 100vw)"
+        large: "clamp(50vh, 50vh + 10vw, 100vw)"
     }
 };
 

@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { Request, Response } from "express";
-import { sendSuccessMessage } from "../utils/send-success-message";
-import { sendErrorMessage } from "../utils/send-error-massage";
+import { sendSuccessMessage } from "../utils/send-success-message.util";
+import { sendErrorMessage } from "../utils/send-error-massage.util";
 
 type GetDocumentsByCategory<T> = {
     Model: Model<T>; 

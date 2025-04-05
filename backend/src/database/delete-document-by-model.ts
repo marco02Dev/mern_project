@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { sendErrorMessage } from "../utils/send-error-massage";
-import { sendSuccessMessage } from "../utils/send-success-message";
+import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { sendSuccessMessage } from "../utils/send-success-message.util";
 import { Model } from "mongoose";
 
 type DeleteDocumentByModelData<T> = {

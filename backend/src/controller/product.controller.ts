@@ -1,4 +1,4 @@
-import { Controller, ProductParams } from "../types/controller";
+import { Controller, ProductParams } from "../types/controller.type";
 import Product, {ProductSchema} from "../models/product.model";
 import { getAllDocumentsByModel } from "../database/get-all-documents-by-model";
 import { createNewDocumentByModel } from "../database/create-new-document-by-model";

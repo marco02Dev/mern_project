@@ -1,19 +1,20 @@
 import { ReactElement, useEffect, useState } from "react";
 import styled, { keyframes, css, RuleSet } from "styled-components";
-import { NavLinks } from "../ui/nav-links";
-import { StyledButton } from "../../styles/styled-button";
-import { StyledSpace } from "../../styles/styled-space";
-import { StyledSection } from "../../styles/styled-section";
+import { NavLinks } from "../ui/NavLinks";
+import { StyledButton } from "../themed/StyledButton";
+import { StyledSpace } from "../themed/StyledSpace";
+import { StyledSection } from "../themed/StyledSection";
 import { UseScrollY, useScrollY } from "../../hooks/useScrollY";
 import {useMediaQuery, UseMediaQuery} from "../../hooks/useMediaQuery";
-import { StyledMobileMenu } from "../../styles/styled-mobile-munu";
-import { Logo } from "../ui/logo";
+import { StyledMobileMenu } from "../themed/StyledMobileMenu";
+import { Logo } from "../ui/Logo";
 import { sizes } from "../../config/sizes.config";
-import { SwitchThemeMode } from "../ui/switch-theme-mode";
-import { FadeInWrapper } from "../animated/fade-in-wrapper";
+import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
+import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useLocation } from 'react-router-dom';
+import Keyframes from "styled-components/dist/models/Keyframes";
 
-const translateUp = keyframes`
+const translateUp: Keyframes = keyframes`
     0% {
         transform: translateY(0);
     }
@@ -22,7 +23,7 @@ const translateUp = keyframes`
     }
 `;
 
-const translateDown = keyframes`
+const translateDown: Keyframes= keyframes`
     0% {
         transform: translateY(-100%);
     }
@@ -118,7 +119,7 @@ export const Header = (): ReactElement => {
                 </MobileNavInnerWrapper>
 
                 <MobileNavInnerWrapper $justifyEnd> 
-                    <SwitchThemeMode />
+                    <SwitchThemeModeButton />
                     <StyledSpace horizontal small />
                     <StyledMobileMenu /> 
                 </MobileNavInnerWrapper>
@@ -137,7 +138,7 @@ export const Header = (): ReactElement => {
                         <StyledButton content={'Login'} to={'/login'} headerElement />
                     </FadeInWrapper>
                     <StyledSpace horizontal small />
-                    <SwitchThemeMode />
+                    <SwitchThemeModeButton />
                 </DesktopNavInnerWrapper>
             </ Nav>
 

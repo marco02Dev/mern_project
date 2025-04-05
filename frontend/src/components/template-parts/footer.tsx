@@ -1,8 +1,8 @@
 import { ReactElement, useContext } from "react";
-import { StyledText } from "../../styles/styled-text";
-import { StyledSpace } from "../../styles/styled-space";
+import { StyledText } from "../../styles/StyledText";
+import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/theme-mode.context";
+import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 
 const FooterWrapper = styled.footer<{$backgroundColor: string}>`

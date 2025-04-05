@@ -1,7 +1,7 @@
-import { Header } from './components/template-parts/header';
-import { Footer } from './components/template-parts/footer';
-import { Router } from './config/router';
-import { MobileMenu } from './components/template-parts/mobile-menu';
+import { Header } from './components/template-parts/Header';
+import { Footer } from './components/template-parts/Footer';
+import { Router } from './Router';
+import { MobileMenu } from './components/template-parts/MobileMenu';
 
 function App() {
   return <>
