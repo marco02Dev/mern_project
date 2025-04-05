@@ -11,15 +11,17 @@ type TextProps = {
     $color: string;
     $fontSize: string;
     $fontWeight?: string;
-    $minWidth?: string
+    $minWidth?: string;
+    $lineHeight: string;
 }
 
 const Text = styled.span<TextProps>`
     color: ${({ $color }) => $color};
     font-size: ${({ $fontSize }) => $fontSize};
-    font-weight: ${({ $fontWeight}) => $fontWeight ? $fontWeight : "400"};
-    min-width: ${({$minWidth}) => $minWidth ? $minWidth : "40vh"};
-    max-width: 150vh;
+    font-weight: ${({ $fontWeight }) => $fontWeight ?? "400"};
+    line-height: ${({ $lineHeight }) => $lineHeight};
+    min-width: ${({ $minWidth }) => $minWidth ?? "clamp(35vh, 35vh - 1vw, 100vw)"};
+    max-width: clamp(90vh, 90vh + 2vw, 100vw);
 `;
 
 type StyledTextProps = {
@@ -31,6 +33,8 @@ type StyledTextProps = {
     largeParagraph?: boolean;
     verySmallParagraph?: boolean;
     minWidth?: string;
+    lineHeight?: string;
+    color?: string;
 };
 
 export const StyledText = ({
@@ -41,39 +45,55 @@ export const StyledText = ({
     verySmallParagraph,
     size,
     fontWeight,
-    minWidth
+    minWidth,
+    lineHeight,
+    color
 }: StyledTextProps): ReactElement => {
     const ThemeModeContextValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const { mode } = ThemeModeContextValue;
-    const color = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
 
-    let fontSize: string = sizes.fontSizes.paragraph?.medium;
+    let colorMode = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
+    if (color) colorMode = color;
 
-    const determineFontSize = ({tag, size}: {tag: string, size?: string}): void => {
+    let fontSize: any = sizes.fontSizes.paragraph.medium;
+    let autoLineHeight: any = sizes.lineHeights.paragraph.medium;
 
-        const value: string = size ? size : tag;
+    const determineFontSizeAndLineHeight = ({ tag, size }: { tag: string, size?: string }): void => {
+        const value: string = size ?? tag;
 
         if (value === "p") {
             if (smallParagraph) {
-                fontSize = sizes.fontSizes.paragraph?.small ?? sizes.fontSizes.paragraph?.medium;
+                fontSize = sizes.fontSizes.paragraph.small ?? fontSize;
+                autoLineHeight = sizes.lineHeights.paragraph.small ?? autoLineHeight;
             } else if (largeParagraph) {
-                fontSize = sizes.fontSizes.paragraph?.large ?? sizes.fontSizes.paragraph?.medium;
-            } else if(verySmallParagraph) { 
-                fontSize = sizes.fontSizes.paragraph?.verySmall ?? sizes.fontSizes.paragraph?.medium
+                fontSize = sizes.fontSizes.paragraph.large ?? fontSize;
+                autoLineHeight = sizes.lineHeights.paragraph.large ?? autoLineHeight;
+            } else if (verySmallParagraph) {
+                fontSize = sizes.fontSizes.paragraph.verySmall ?? fontSize;
+                autoLineHeight = sizes.lineHeights.paragraph.verySmall ?? autoLineHeight;
             } else {
-                fontSize = sizes.fontSizes.paragraph?.medium;
+                fontSize = sizes.fontSizes.paragraph.medium;
+                autoLineHeight = sizes.lineHeights.paragraph.medium;
             }
         } else {
-            const tagFontSize = sizes.fontSizes[value as keyof typeof sizes.fontSizes];
-            fontSize = typeof tagFontSize === "string" ? tagFontSize : sizes.fontSizes.paragraph.medium;
+            fontSize = sizes.fontSizes[value as keyof typeof sizes.fontSizes] ?? fontSize;
+            autoLineHeight = sizes.lineHeights[value as keyof typeof sizes.lineHeights] ?? autoLineHeight;
         }
-    }
+    };
 
-    determineFontSize({tag: tag, size: size});
+    determineFontSizeAndLineHeight({ tag, size });
 
+    const resolvedLineHeight = lineHeight ?? autoLineHeight;
 
     return (
-        <Text as={tag} $color={color} $fontSize={fontSize} $fontWeight={fontWeight} $minWidth={minWidth}>
+        <Text
+            as={tag}
+            $color={colorMode}
+            $fontSize={fontSize}
+            $fontWeight={fontWeight}
+            $minWidth={minWidth}
+            $lineHeight={resolvedLineHeight}
+        >
             {content}
         </Text>
     );

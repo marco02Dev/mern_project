@@ -8,7 +8,7 @@ export const colors: Colors = {
     dark: {
         backgroundColor: 'black',
         backgroundColorSecondary: '#121826',
-        buttonBackgroundColor: '#FFC107',
+        buttonBackgroundColor: '#f4a261',
         textColor: 'white',
         sideTextColor: 'gray',
         hoverColor: '#FFC107'
@@ -19,6 +19,6 @@ export const colors: Colors = {
         buttonBackgroundColor: '#8d99ae',
         textColor: 'black',
         sideTextColor: 'gray',
-        hoverColor: '#8d99ae'
+        hoverColor: '#003EF8'
     }
 }

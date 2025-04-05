@@ -1,11 +1,13 @@
 import { ReactElement, useContext } from "react";
 import { StyledText } from "./styled-text";
 import { Link } from "react-router-dom";
-import styled, {css, keyframes} from "styled-components";
+import styled, {css } from "styled-components";
 import { colors } from "../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../contexts/theme-mode.context";
 import { AllowedTextTags } from "../config/styled-text.config";
 import { sizes } from "../config/sizes.config";
+import { buttonHoverAnimation } from "../animations/button-hover";
+import { linkHoverAnimation } from "../animations/link-hover";
 
 type LinkWrapperProps = {
     $color: string,
@@ -16,25 +18,11 @@ type LinkWrapperProps = {
     $afterHeight: string; 
     $border?: boolean;
     $borderColor?: string;
+    $content: string;
+    $size: string;
+    $logo?: boolean;
+    $absolute?: boolean;
 }
-
-const lineMoveOut = keyframes`
-  0% {
-    transform: translateX(0);
-  };
-  100% {
-    transform: translateX(100%);
-  };
-`;
-
-const LineMoveBackIn = keyframes`
-  0% {
-    transform: translateX(-100%);
-  };
-  100% {
-    transform: translateX(0%);
-  };
-`;
 
 const LinkWrapper = styled(Link)<LinkWrapperProps>`
     color: ${({$color}) => $color};
@@ -44,6 +32,17 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
     text-decoration: none;
     overflow-x: hidden;
     scrollbar-width: none;
+    position: ${({$absolute}) => $absolute ? "absolute" : "relative"};
+    ${({$absolute}) => $absolute ? css`
+        bottom: 0;
+        left: 0;
+        top: 0;
+    ` : ""}
+    
+
+    ${({ $backgroundColor, $content}) => $backgroundColor && $content ? buttonHoverAnimation : ""};
+
+
     ${({$padding, $border}) => {
             if($border) {
                 if($padding === "default" ) {
@@ -66,13 +65,11 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
     border-color: ${({$border, $borderColor}) => $borderColor && $border ? $borderColor : "unset"};
     border-width: ${({$border}) => $border ? sizes.heights.verySmall : 'unset'};
     border-style: ${({$border}) => $border ? 'solid' : 'unset'};
-    position: relative;
     z-index: 1;
 
     span {
         color: inherit;
-        position: relative;
-        overflow: hidden;
+        overflow-x: hidden;
 
         ${({$button, $afterHeight, $color}) => !$button &&  css` 
             &::after {
@@ -87,16 +84,7 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
             };
         `};
 
-        &:hover {
-            color: ${({$hoverColor}) => $hoverColor};
-
-            ${({$button, $hoverColor}) => !$button && css`
-                &::after {
-                    animation: ${lineMoveOut} 0.2s ease-in-out, ${LineMoveBackIn} 0.2s ease-in-out 0.2s;
-                    background-color: ${$hoverColor};
-                }
-            `};
-        }
+        ${({$button, $logo}) => !$button && !$logo ? linkHoverAnimation : ""};
     };
 `;
 
@@ -110,21 +98,27 @@ type StyledLinkProps = {
     color?: string,
     padding?: string,
     button?: boolean,
-    border?: boolean
+    border?: boolean,
+    logo?: boolean,
+    absolute?: boolean
 }
 
-export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border}: StyledLinkProps): ReactElement => {
+export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute}: StyledLinkProps): ReactElement => {
 
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const {mode} = ThemeModeValue;
 
     const defaultTag: AllowedTextTags = tag ? tag : "span";
+
     let colorMode: string = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
+    const hoverColor: string = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+    let islogoHover: string = logo && absolute ? hoverColor : "";
+    const borderColor: string = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
+
     if(color) {
         colorMode = color;
     }
-    const hoverColor: string = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
-    const borderColor: string = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
+
 
     return <LinkWrapper 
             $color={colorMode} 
@@ -136,6 +130,10 @@ export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor,
             $afterHeight={sizes.heights.verySmall}
             $border={border}
             $borderColor={borderColor}
+            $content={content}
+            $size={size ? size : sizes.fontSizes.paragraph.medium}
+            $logo={logo}
+            $absolute={absolute}
         >
         <StyledText 
             tag={defaultTag}
@@ -143,7 +141,8 @@ export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor,
             size={size}
             fontWeight={fontWeight}
             smallParagraph
-            
+            color={islogoHover}   
+            lineHeight={sizes.lineHeights.h5}
         />
     </LinkWrapper>    
 }

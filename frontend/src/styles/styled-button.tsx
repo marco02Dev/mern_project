@@ -19,8 +19,8 @@ const ButtonWrapper = styled.div`
 const ButtonShadow = styled.div<{$color: string}>`
     position: absolute;
     background-color: ${({$color}) => $color};
-    width: 98%;
-    height: 98%;
+    width: 99%;
+    height: 99%;
     bottom: 0;
     z-index: 0;
     bottom: clamp(-0.3vh, -0.3vh + -0.1vw, 100vw);

@@ -1,24 +1,27 @@
 import { createGlobalStyle } from 'styled-components';
+import { mainFont } from '../config/font.config';
 
 export const FontStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
-
     body {
-        font-family: 'Source Serif 4', serif;
+        font-family: ${mainFont}, serif;
         font-weight: 400;
-    }
 
-    h1, h2, h3, h4, h5, h6, p, span, a, li, div {
-        font-family: 'Source Serif 4', serif;
-        font-weight: normal;
-        letter-spacing: 0.1vh;
-    }
+        h1, h2, h3, h4, h5, h6, p, span, a, li, div {
+            font-family: ${mainFont}, serif;
+            font-weight: normal;
+            letter-spacing: clamp(-0.1vh, -0.1vh + 0.1vw, 100vw);
+        }
 
-    h2, a {
-        font-weight: 700;
-    }
+        h1, h2 {
+            font-weight: 600 !important;
+        }
 
-    p {
-        font-weight: 500; 
+        a, span {
+            font-weight: 500 !important;
+        }
+
+        p {
+            font-weight: 400 !important; 
+        }
     }
 `;

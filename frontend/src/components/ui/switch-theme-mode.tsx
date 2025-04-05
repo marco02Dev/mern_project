@@ -4,6 +4,8 @@ import sun from "../../images/svg/sun.svg";
 import moon from "../../images/svg/moon.svg";
 import styled, { createGlobalStyle } from "styled-components";
 import { sizes } from "../../config/sizes.config";
+import { useInView } from "../../hooks/useViewIn";
+import { fadeIn } from "../../animations/fade-in";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -26,6 +28,8 @@ const Button = styled.button<{$imageSize: string}>`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    opacity: 0;
+    ${() => fadeIn}
     img {
         width: ${(({$imageSize}) => $imageSize)};
         height: ${(({$imageSize}) => $imageSize)};
@@ -34,6 +38,7 @@ const Button = styled.button<{$imageSize: string}>`
 
 export const SwitchThemeMode = (): ReactElement => {
     const { mode, setMode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const [ref, isInView] = useInView()
 
     const toggleTheme = () => {
         if(setMode) {
@@ -52,7 +57,7 @@ export const SwitchThemeMode = (): ReactElement => {
     return (
         <>
             <GlobalStyle />
-            <Button onClick={toggleTheme} $imageSize={sizes.widths.small}>
+            <Button ref={ref} className={isInView ? "in-view" : ""} onClick={toggleTheme} $imageSize={sizes.widths.small}>
                 <img width={20} height={20} src={mode === "light" ? sun : moon} alt="theme-icon" className="w-6 h-6" />
             </Button>
         </>

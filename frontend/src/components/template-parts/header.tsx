@@ -10,6 +10,8 @@ import { StyledMobileMenu } from "../../styles/styled-mobile-munu";
 import { Logo } from "../ui/logo";
 import { sizes } from "../../config/sizes.config";
 import { SwitchThemeMode } from "../ui/switch-theme-mode";
+import { FadeInWrapper } from "../animated/fade-in-wrapper";
+import { useLocation } from 'react-router-dom';
 
 const translateUp = keyframes`
     0% {
@@ -63,6 +65,8 @@ export const Header = (): ReactElement => {
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
+    const {pathname} = useLocation();
+    const isCourses: boolean = pathname === "/courses";
 
     let animation: RuleSet = css`
         animation: unset;
@@ -102,6 +106,7 @@ export const Header = (): ReactElement => {
         block
         row
         hiddenFirstRender={headerHidden}
+        secondaryColor={isCourses}
         >
 
         <StyledSpace vertical small />
@@ -113,6 +118,8 @@ export const Header = (): ReactElement => {
                 </MobileNavInnerWrapper>
 
                 <MobileNavInnerWrapper $justifyEnd> 
+                    <SwitchThemeMode />
+                    <StyledSpace horizontal small />
                     <StyledMobileMenu /> 
                 </MobileNavInnerWrapper>
             </ Nav> : <Nav>
@@ -122,11 +129,13 @@ export const Header = (): ReactElement => {
                 </DesktopNavInnerWrapper>
 
                 <DesktopNavInnerWrapper $width={'60%'} $middleWrapper>
-                    <NavLinks />
+                    <NavLinks row />
                 </DesktopNavInnerWrapper>
 
                 <DesktopNavInnerWrapper $width={'20%'} $flexEnd>
-                    <StyledButton content={'Login'} to={'/login'} headerElement />
+                    <FadeInWrapper>
+                        <StyledButton content={'Login'} to={'/login'} headerElement />
+                    </FadeInWrapper>
                     <StyledSpace horizontal small />
                     <SwitchThemeMode />
                 </DesktopNavInnerWrapper>

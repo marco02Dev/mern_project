@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { NavLinks } from "../ui/nav-links";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";  // Importa RootState
+import { RootState } from "../../store";
 import { ReactElement, useContext } from "react";
-import { colors } from "../../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/theme-mode.context";
 
 type MobileMenuWrapperProps = {
@@ -21,7 +20,7 @@ const MobileMenuWrapper = styled.section<MobileMenuWrapperProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
@@ -29,8 +28,7 @@ export const MobileMenu = (): ReactElement => {
   const isOpened = useSelector(({menu}: RootState) => menu.isOpened);
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
-  const backgroundColor: string =
-    mode === "dark" ? colors.dark.BackgroundColor : colors.light.BackgroundColor;
+  const backgroundColor: string = mode === "dark" ? "black" : "white";
 
   return (
     <>

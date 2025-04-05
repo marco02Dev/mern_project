@@ -4,7 +4,7 @@ import { StyledSpace } from "../../styles/styled-space";
 import { StyledText } from "../../styles/styled-text";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
-import { CategoryBox } from "../ui/category-box";
+import { CategoryBox } from "../boxes/category.box";
 
 const TitleWrapper = styled.div`
     display: flex;
@@ -43,8 +43,5 @@ export const BrowseCategoriesSection = (): ReactElement => {
                 <CategoryBox title="SEO" description="Master the basics of back end" to='/courses/seo'/>
                 <CategoryBox marginLeft={"4%"} title="Web Design" description="Master the basics of design" to='/courses/design'/>
             </CategoriesWrapper>
-
-
-    
     </StyledSection>
 }

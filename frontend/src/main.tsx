@@ -11,6 +11,7 @@ import { store } from './store';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    
     <ResetCss />
     <FontStyles />
     <GlobalStyles />

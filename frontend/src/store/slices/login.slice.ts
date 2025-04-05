@@ -1,0 +1,34 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../../types/user";
+
+interface AuthState {
+    isLoggedIn: boolean;
+    user?: User
+}
+
+const initialState: AuthState = {
+    isLoggedIn: false,
+    user: undefined,
+};
+
+export const authSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+        setLoggedIn: (
+            state,
+            action: PayloadAction<{ name: string; surname: string; email: string, password: string }>
+        ) => {
+            state.isLoggedIn = true;
+            state.user = action.payload;
+        },
+        setLoggedOut: (state) => {
+            state.isLoggedIn = false;
+            state.user = undefined;
+        },
+    },
+});
+
+export const { setLoggedIn, setLoggedOut } = authSlice.actions;
+
+export default authSlice.reducer;

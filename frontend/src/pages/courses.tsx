@@ -1,35 +1,20 @@
 import { ReactElement } from "react";
-import { StyledText } from "../styles/styled-text";
-import { useFetchGet } from "../hooks/useFetchGet";
-import { coursesEndpoint } from "../config/endpoints.config";
-import { Course } from "../types/course";
+import { CoursesLoop } from "../components/loops/courses-loop";
+import { TextImageSection } from "../components/sections/text-image-section";
+import TextImageSectionImage from "./../images/webp/signin-section.webp"
 
 export const Courses = (): ReactElement => {
-    const { objectData, loading, error } = useFetchGet<Course[]>(coursesEndpoint);
-    const courses = objectData?.data;
 
-    if (loading) {
-      return <StyledText content="Loading..." tag="h2" />;
-    }
+    return <>
+      <TextImageSection
+          eyebrowText="Unlock Your Potential"
+          title="Explore Our Exclusive Courses"
+          description="Browse through a wide range of expertly crafted courses designed to help you grow and succeed. Whether you're looking to upgrade your skills or learn something new, we have something for everyone!"
+          imageSrc={TextImageSectionImage}
+          imageAlt="Minimalist desk setup with monitor and coding posters"
+          imageLeft
+      />
 
-    if (error) {
-      return <StyledText content="Error" tag="h2" />;
-    }
-
-    if (!courses) {
-        return <StyledText content="No courses available" tag="h3" />;
-    }
-
-    return (
-      <div>
-        <h1>Fetched Courses</h1>
-        <ul>
-          {courses.map((course: Course) => (
-            <li key={course._id}>
-              {course.name} - {course.price}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
+      <CoursesLoop />
+    </>
 };
