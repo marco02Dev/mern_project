@@ -1,8 +1,16 @@
+type ColorName = 
+  | 'backgroundColor' 
+  | 'backgroundColorSecondary' 
+  | 'buttonBackgroundColor' 
+  | 'textColor' 
+  | 'sideTextColor' 
+  | 'hoverColor';
+
 type Colors = {
-    [key: string]: {
-        [key: string]: string
-    }
-}
+  [key in 'dark' | 'light']: {
+    [key in ColorName]: string;
+  };
+};
 
 export const colors: Colors = {
     dark: {
