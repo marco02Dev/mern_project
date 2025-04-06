@@ -18,7 +18,6 @@ type BoxProps = {
 
 const Box = styled.div<BoxProps>`
     background-color: ${({ $backgroundColor }) => $backgroundColor};
-
     margin-left: ${({ $marginLeft}) => $marginLeft};
     display: flex;
     flex-direction: row;

@@ -3,6 +3,7 @@ import { StyledLink } from "./StyledLink";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import styled from "styled-components";
+import { styledButtonHoverAnimation } from "../../animations/styled-button.animation";
 
 type StyledButtonProps = {
     content: string,
@@ -13,17 +14,18 @@ type StyledButtonProps = {
 const ButtonWrapper = styled.div<{$headerElement?: boolean}>`
     position: relative;
     display: ${({$headerElement}) => $headerElement ? "flex" : "inline-block"};
+    ${() => styledButtonHoverAnimation}
 `;
 
 const ButtonShadow = styled.div<{$color: string}>`
     position: absolute;
     background-color: ${({$color}) => $color};
-    width: 99%;
-    height: 99%;
+    width: 100%;
+    height: 100%;
     bottom: 0;
     z-index: 0;
-    bottom: clamp(-0.3vh, -0.3vh + -0.1vw, 100vw);
-    right: clamp(-0.3vh, -0.3vh + -0.1vw, 100vw);
+    bottom: -6%;
+    right: -3%;
 `;
 
 export const StyledButton = ({content, to, headerElement }: StyledButtonProps): ReactElement => {

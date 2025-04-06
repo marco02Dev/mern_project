@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { CoursesLoop } from "../components/loops/CoursesLoop";
 import { TextImageSection } from "../components/sections/TextImageSection";
+import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
 export const Courses = (): ReactElement => {
@@ -15,8 +15,12 @@ export const Courses = (): ReactElement => {
         imageSrc={`${imagesEndpoint}/pages/courses/text-image-section.webp`}
         imageAlt="Minimalist desk setup with monitor and coding posters"
         imageLeft
+        secondaryColor
     />
 
-    <CoursesLoop />
+    <LargeProductsPreviewSection 
+      title="Master everything"
+      all 
+    />
   </>
 };

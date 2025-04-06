@@ -4,7 +4,7 @@ import { HomePage } from "./pages/HomePage";
 import { Courses } from "./pages/CoursesPage";
 import { Categories } from "./pages/CategoriesPage";
 import { About } from "./pages/AboutPage";
-import { LogIn } from "./pages/LogInPage";
+import { LogInPage } from "./pages/LogInPage";
 
 export const Router = (): ReactElement => {
     return <Routes>
@@ -12,6 +12,6 @@ export const Router = (): ReactElement => {
         <Route path="/courses" element={<Courses />} />
         <Route path="/categories/:category" element={<Categories />} />
         <Route path='/about' element={<About />} />
-        <Route path='/login' element={<LogIn />} />
+        <Route path='/login' element={<LogInPage />} />
     </Routes>
 }

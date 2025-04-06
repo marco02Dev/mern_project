@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { StyledText } from "../components/themed/StyledText";
 
-export const LogIn = (): ReactElement => {
+export const LogInPage = (): ReactElement => {
     return <div>
         <StyledText 
             content={'Log in'} 

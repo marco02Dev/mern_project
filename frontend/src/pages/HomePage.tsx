@@ -1,8 +1,7 @@
 import { ReactElement } from "react";
 import { TextImageSection } from "../components/sections/TextImageSection";
-import { TwoProductPreviewSection } from "../components/sections/TwoProductPreviewSection";
+import { SmallProductsPreviewSection } from "../components/sections/SmallProductPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
-import { BrowseSection } from "../components/sections/browseSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
 export const HomePage = (): ReactElement => {
@@ -21,8 +20,9 @@ export const HomePage = (): ReactElement => {
             secondaryColor
         />
 
-        <TwoProductPreviewSection
+        <SmallProductsPreviewSection
             title="Latest courses"
+            all
             latest
         />
         
@@ -34,7 +34,6 @@ export const HomePage = (): ReactElement => {
             secondaryColor
         />
 
-        <BrowseSection />
     </>
 
 }

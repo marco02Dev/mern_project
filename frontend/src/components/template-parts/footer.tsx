@@ -16,7 +16,7 @@ const FooterWrapper = styled.footer<{$backgroundColor: string}>`
 export const Footer = (): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext);
-    const backgroundColor: string = mode === 'dark' ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
+    const backgroundColor: string = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
     const year: string = String(new Date().getFullYear());
 
     return <FooterWrapper $backgroundColor={backgroundColor}>

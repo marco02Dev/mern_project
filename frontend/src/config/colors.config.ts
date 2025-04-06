@@ -16,7 +16,7 @@ export const colors: Colors = {
     dark: {
         backgroundColor: 'black',
         backgroundColorSecondary: '#121826',
-        buttonBackgroundColor: '#f4a261',
+        buttonBackgroundColor: 'gray',
         textColor: 'white',
         sideTextColor: 'gray',
         hoverColor: '#FFC107'

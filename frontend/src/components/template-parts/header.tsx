@@ -13,6 +13,7 @@ import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useLocation } from 'react-router-dom';
 import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
+import useLocationChange from "../../hooks/useLocationChange";
 
 const Nav = styled.nav`
     width: 100%;
@@ -44,6 +45,7 @@ const DesktopNavInnerWrapper = styled.div<{$width: string, $middleWrapper?: bool
 `;
 
 export const Header = (): ReactElement => {
+    const isLocationChanged: boolean = useLocationChange();
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
@@ -59,13 +61,12 @@ export const Header = (): ReactElement => {
             animation: unset;
         `;
     } else {
-        if (scrollY > latestScrollY) {
+        if (scrollY > latestScrollY || isLocationChanged) {
             animation = HideHeaderAnimation;
         } else {
             animation = RevealHeaderAnimation;
         }
     }
-
 
     useEffect(() => {
         setTimeout(() => {
@@ -84,7 +85,6 @@ export const Header = (): ReactElement => {
         block
         row
         hiddenFirstRender={headerHidden}
-        secondaryColor={isCourses}
         >
 
         <StyledSpace vertical verySmall />

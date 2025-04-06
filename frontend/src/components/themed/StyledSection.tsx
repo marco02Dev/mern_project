@@ -21,11 +21,12 @@ type SectionProps = {
     $justifyCenter?: boolean,
     $hiddenFirstRender?: boolean,
     $isMobileOrTablet?: boolean,
-    $smallSpace: string
+    $smallSpace: string;
+    $overflowVisible?: boolean
 }
 
 const Section = styled.section<SectionProps>`
-  overflow: hidden;
+  overflow: ${({$overflowVisible}) => $overflowVisible ? "visible" : "hidden"};
   z-index: ${({$semanticTag}) => $semanticTag? "1000" : "unset"};
   display: ${({$block}) => $block ? "block" : 'flex'};
   justify-content: ${({$justifyCenter}) => $justifyCenter ? 'center' : 'start'};
@@ -33,7 +34,14 @@ const Section = styled.section<SectionProps>`
   flex-direction: ${({ $row }) => ($row ? 'row' : 'column')};
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   width: 100%;
-  height: ${({ $height }) => ($height ? $height : '100vh')};
+  height: ${({ $height, $overflowVisible }) => {
+    if(!$overflowVisible) {
+      return $height ? $height : '100vh';
+    } else if($overflowVisible)  {
+      return "auto";
+    }
+
+  }};
   position: ${({ $fixed }) => ($fixed ? 'fixed' : 'unset')};
   padding-left: ${({ $paddingLeft, $isMobileOrTablet, $smallSpace}) => {
     if($paddingLeft && !$isMobileOrTablet) {
@@ -80,6 +88,7 @@ interface StyledSectionProps {
     paddingRight?: string,
     justifyCenter?: boolean,
     hiddenFirstRender?: boolean,
+    overflowVisible?: boolean
 }
 
 export const StyledSection: React.FC<StyledSectionProps> = ({ 
@@ -96,7 +105,8 @@ export const StyledSection: React.FC<StyledSectionProps> = ({
       paddingLeft,
       paddingRight,
       justifyCenter,
-      hiddenFirstRender
+      hiddenFirstRender,
+      overflowVisible
 
    }) => {
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
@@ -123,6 +133,7 @@ export const StyledSection: React.FC<StyledSectionProps> = ({
     $isMobileOrTablet={isMobile || isTablet}
     $smallSpace={sizes.spaces.small}
     $semanticTag={semanticTag}
+    $overflowVisible={overflowVisible}
     > {children} 
   </Section>;
 };

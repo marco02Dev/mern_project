@@ -47,10 +47,15 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
             if($border) {
                 if($padding === "default" ) {
                 return css`
-                    padding-left: clamp(2.5vh, 1.5vh + 0.8vw, 4vh);
-                    padding-right: clamp(2.5vh, 1.5vh + 0.8vw, 4vh);
-                    padding-top: clamp(3vh, 2.5vh + 1vw, 5vh);
-                    padding-bottom: clamp(3vh, 2.5vh + 1vw, 5vh);
+                    width: auto;
+                    display: flex;
+                    span {
+                        font-size: 100%;
+                        padding-left: clamp(4vh, 1vh + 3vw, 4vh);
+                        padding-right: clamp(4vh, 1vh + 3vw, 4vh);
+                        padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
+                        padding-bottom: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
+                    }
                 `;
             } else {
                 return css`
