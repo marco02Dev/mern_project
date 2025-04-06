@@ -6,8 +6,8 @@ import { colors } from "../../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { AllowedTextTags } from "../../config/styled-text.config";
 import { sizes } from "../../config/sizes.config";
-import { buttonHoverAnimation } from "../../animations/button-hover.animation";
-import { linkHoverAnimation } from "../../animations/link-hover.animation";
+import { buttonHoverAnimation } from "../../animations/styled-button.animation";
+import { linkHoverAnimation } from "../../animations/styled-link.animation";
 
 type LinkWrapperProps = {
     $color: string,

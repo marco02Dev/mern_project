@@ -1,15 +1,16 @@
 import styled, { RuleSet, css } from "styled-components";
-import { fadeIn } from "../../animations/fade-in.animation";
+import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
 import { ReactElement } from "react";
 import { useInView } from "../../hooks/useViewIn";
+import useLocationChange from "../../hooks/useLocationChange";
 
-const Wrapper = styled.div<{$absolute?: string, $addiniotalAnimation?: RuleSet, $width?: string, $height?: string, $flex?: boolean}>`
+const Wrapper = styled.div<{$absolute?: string, $addiniotalAnimation?: RuleSet, $width?: string, $height?: string, $flex?: boolean, $delayed?: string}>`
     opacity: 0;
     position: ${({$absolute}) => $absolute ? "absolute" : "relative"};
     ${({$width}) => $width && 'width: 100%;'}
     ${({$height}) => $height && 'height: 100%;'}
     ${({$addiniotalAnimation}) => $addiniotalAnimation}
-    ${() => fadeIn}
+    ${() => fadeInWrapperAnimation}
 
     ${({$flex}) => $flex && css`
         display: flex;
@@ -28,8 +29,10 @@ type FadeInWrapperProps = {
 }
 
 export const FadeInWrapper = ({children, absolute, additionalAnimation, width, height, flex}: FadeInWrapperProps): ReactElement => {
-
+    const hasLocationChanged: boolean = useLocationChange(); 
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
+    
+    let delayed = hasLocationChanged ? "1000ms" : "unset";
 
     return <Wrapper 
             $addiniotalAnimation={additionalAnimation}
@@ -39,6 +42,7 @@ export const FadeInWrapper = ({children, absolute, additionalAnimation, width, h
             $height={height}
             className={isInView ? 'in-view' : ''}
             $flex={flex}
+            $delayed={delayed}
         >
         {children}
     </Wrapper>

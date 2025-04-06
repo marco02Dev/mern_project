@@ -12,7 +12,7 @@ import { sizes } from "../../config/sizes.config";
 import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useLocation } from 'react-router-dom';
-import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/reveal-hide-header.animation";
+import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
 
 const Nav = styled.nav`
     width: 100%;
@@ -44,7 +44,6 @@ const DesktopNavInnerWrapper = styled.div<{$width: string, $middleWrapper?: bool
 `;
 
 export const Header = (): ReactElement => {
-
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
@@ -71,7 +70,7 @@ export const Header = (): ReactElement => {
     useEffect(() => {
         setTimeout(() => {
             setHeaderHidden(false)
-        }, 500)
+        }, 2000)
 
     }, []);
 

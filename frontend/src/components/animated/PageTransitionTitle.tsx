@@ -1,29 +1,36 @@
-import { ReactElement, useContext } from "react";
+import { ReactNode, useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { useLocation, Location } from "react-router-dom";
-import { TextRevealWrapper } from "./TextRevealWrapper";
 import { StyledText } from "../themed/StyledText";
 import { colors } from "../../config/colors.config";
+import useLocationChange from "../../hooks/useLocationChange";
+import { SlideUpDownPageTransitionTitleAnimation } from "../../animations/page-transition-title.animation";
+import { sizes } from "../../config/sizes.config";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%) !important;
-    width: 100% !important;
-    background-color: unset !important;
-    animation: unset !important;
-    ${() => revealHiddenElements};
-    background-color: unset;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    ${() => revealHiddenElements}
 `;
 
-type PageTransitionProps = {
-    hasLocationChanged: boolean
-}
+const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
+    text-align: center;
+    padding: ${() => sizes.spaces.small};
+    overflow: hidden;
+    h2 {
+        transform: translateY(100%);
+        ${({$hasLocationChanged}) => $hasLocationChanged ?  SlideUpDownPageTransitionTitleAnimation : "translateY(0%)"};
+    }
+`;
 
-export const PageTransitionTitle = ({hasLocationChanged}: PageTransitionProps): ReactElement => {
+export const PageTransitionTitle = (): ReactNode => {
+    const hasLocationChanged: boolean = useLocationChange();
+    const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
@@ -33,13 +40,32 @@ export const PageTransitionTitle = ({hasLocationChanged}: PageTransitionProps): 
     const title: string = pathName.replace('/', "");
     let titleCapitalized: string = title.charAt(0).toUpperCase() + title.slice(1);
 
+    useEffect(() => {
+        if (pathName === "/") {
+            setTimeout(() => {
+                setIsFirstRender(false);
+            }, 1500)
+
+        }
+    }, [pathName]);
+
     if(!titleCapitalized) {
-        titleCapitalized = "Home";
+        if(isFirstRender) {
+            titleCapitalized = "Welcome";
+        } else if(!isFirstRender){
+            titleCapitalized = "Welcome back";
+        }
     }
 
-    return <TitleWrapper $hasLocationChanged={hasLocationChanged}>
-        <TextRevealWrapper>
-            <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} />
-        </TextRevealWrapper>
-    </TitleWrapper>
-}
+    if(!hasLocationChanged) {
+        return null;
+    } else {
+        return (
+            <TitleWrapper $hasLocationChanged={hasLocationChanged}>
+                <RevealWrapper $hasLocationChanged={hasLocationChanged}>
+                    <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} />
+                </RevealWrapper>
+            </TitleWrapper>
+        );
+    }
+};

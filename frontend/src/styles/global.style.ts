@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
         height: 100%;
         #root {
             position: relative;
+            height: 100vh;
         }
     }
 `;

@@ -25,17 +25,17 @@ export const revealHiddenElements: RuleSet<{$hasLocationChanged: boolean}> = css
 `;
 
 export const revealLinesAnimation: RuleSet = css`
-    animation: ${revealLines} 500ms ease-in-out forwards;
+    animation: ${revealLines} 600ms ease-in-out forwards;
 `;
 
 export const revealLinesAnimationDelayedFirst: RuleSet = css`
-    animation: ${revealLines} 500ms ease-in-out 100ms forwards;
+    animation: ${revealLines} 600ms ease-in-out 100ms forwards;
 `;
 
 export const revealLinesAnimationDelayedSecond: RuleSet = css`
-    animation: ${revealLines} 500ms ease-in-out 200ms forwards;
+    animation: ${revealLines} 600ms ease-in-out 200ms forwards;
 `;
 
 export const moveWholeContainerOutAnimation: RuleSet = css`
-    animation: ${moveWholeContainerOut} 400ms ease-in-out 800ms forwards;
+    animation: ${moveWholeContainerOut} 500ms ease-in-out 900ms forwards;
 `;

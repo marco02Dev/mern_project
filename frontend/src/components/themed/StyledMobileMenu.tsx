@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu, closeMenu } from "../../store/slices/menu.slice";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { RootState } from "../../store";
-import { removeMiddleLines, rotateLineDown, rotateLineUp, restoreRotatedLine } from "../../animations/menu-in-arrow.animation";
-import { restoreMiddleLines } from "../../animations/menu-in-arrow.animation";
+import { removeMiddleLines, rotateLineDown, rotateLineUp, restoreRotatedLine } from "../../animations/styled-mobile-menu.animation";
+import { restoreMiddleLines } from "../../animations/styled-mobile-menu.animation";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 
 const Wrapper = styled.div<{$isOpened: boolean}>`

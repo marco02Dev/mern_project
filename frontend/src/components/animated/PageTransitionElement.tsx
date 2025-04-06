@@ -1,10 +1,11 @@
-import { ReactElement, useContext } from "react";
+import { ReactNode, useContext } from "react";
 import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import { moveWholeContainerOutAnimation } from "../../animations/page-transition-element.animation";
 import { revealLinesAnimation, revealLinesAnimationDelayedFirst, revealLinesAnimationDelayedSecond } from "../../animations/page-transition-element.animation";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
+import useLocationChange from "../../hooks/useLocationChange";
 
 type WrapperProps = {
     $hasLocationChanged: boolean,
@@ -18,6 +19,7 @@ const Wrapper = styled.div<WrapperProps>`
     top: 0;
     display: flex;
     justify-content: center;
+    position: fixed;
 
     ${() => revealHiddenElements};
     ${({$hasLocationChanged}) => $hasLocationChanged && moveWholeContainerOutAnimation};
@@ -38,22 +40,24 @@ const Wrapper = styled.div<WrapperProps>`
     };
 `;
 
-type PageTransitionElementProps = {
-    hasLocationChanged: boolean
-}
-
-export const PageTransitionElement = ({hasLocationChanged}: PageTransitionElementProps): ReactElement => {
-
+export const PageTransitionElement = (): ReactNode => {
+    const hasLocationChanged: boolean = useLocationChange();
     
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const wrapperColor = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
 
-    return <Wrapper $color={wrapperColor} $hasLocationChanged={hasLocationChanged}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </Wrapper>
+    if(!hasLocationChanged) {
+        return null;
+    } else {
+        return <Wrapper $color={wrapperColor} $hasLocationChanged={hasLocationChanged}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </Wrapper>
+    }
+
+
 }
