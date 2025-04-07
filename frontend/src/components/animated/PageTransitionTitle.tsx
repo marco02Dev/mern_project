@@ -8,6 +8,8 @@ import { colors } from "../../config/colors.config";
 import useLocationChange from "../../hooks/useLocationChange";
 import { SlideUpDownPageTransitionTitleAnimation } from "../../animations/page-transition-title.animation";
 import { sizes } from "../../config/sizes.config";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;
@@ -15,6 +17,7 @@ const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    position: fixed;
     ${() => revealHiddenElements}
 `;
 
@@ -29,6 +32,8 @@ const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
 `;
 
 export const PageTransitionTitle = (): ReactNode => {
+    const is404 = useSelector((state: RootState) => state.routeStatus.is404);
+
     const hasLocationChanged: boolean = useLocationChange();
     const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
@@ -57,7 +62,7 @@ export const PageTransitionTitle = (): ReactNode => {
         }
     }
 
-    if(!hasLocationChanged) {
+    if(!hasLocationChanged || is404) {
         return null;
     } else {
         return (

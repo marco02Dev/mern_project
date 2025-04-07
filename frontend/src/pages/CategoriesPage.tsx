@@ -1,13 +1,13 @@
 import { ReactElement } from "react";
 import { useParams } from "react-router-dom";
 import { StyledText } from "../components/themed/StyledText";
-import { coursesEndpoint } from "../config/endpoints.config";
+import { endpoints } from "../config/endpoints.config";
 import { useFetchGet } from "../hooks/useFetchGet";
 import { Course } from "../types/course.types";
 
-export const Categories = ({}): ReactElement => {
+export const CategoriesPage = (): ReactElement => {
     const { category } = useParams(); 
-    const endpointWithCategory = `${coursesEndpoint}/${category}`;
+    const endpointWithCategory = `${endpoints.coursesEndpoint}/${category}`;
 
     const { objectData, loading, error } = useFetchGet<Course[]>(endpointWithCategory);
     const courses = objectData?.data;

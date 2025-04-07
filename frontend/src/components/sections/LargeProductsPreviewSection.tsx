@@ -9,11 +9,13 @@ import { StyledSpace } from "../themed/StyledSpace";
 type LargeProductsPreviewSectionProps = {
     title: string,
     category?: string,
-    all?: boolean
+    all?: boolean,
+    limit: number
 }
 
 export const LargeProductsPreviewSection = ({
-    title
+    title,
+    limit
 }: LargeProductsPreviewSectionProps): ReactElement => {
     return <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
         <StyledSpace medium vertical/>
@@ -22,8 +24,9 @@ export const LargeProductsPreviewSection = ({
             <StyledText tag="h2" content={title} size="h1" />
         </TextRevealWrapper>
 
-        <StyledSpace medium vertical/>
-        <CoursesLoop />
+        <StyledSpace medium vertical height={"10vh"}/>
+
+        <CoursesLoop limit={limit} />
     </ StyledSection>
 
 }

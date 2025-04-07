@@ -11,7 +11,7 @@ const Wrapper = styled.div<WrapperProps>`
     background-color: ${({$backgroundColor}) => $backgroundColor};
 `;
 
-export const StyledMainWrapper = ({children}: {children: ReactElement[]}): ReactElement => {
+export const StyledWrapper = ({children}: {children: ReactElement[]}): ReactElement => {
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const {mode} = ThemeModeValue;
     const backgroundColor = mode === "dark" ? colors.dark.backgroundColor : colors.light.backgroundColor;

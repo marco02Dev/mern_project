@@ -8,5 +8,6 @@ export const GlobalStyles = createGlobalStyle`
             position: relative;
             height: 100vh;
         }
+        
     }
 `;

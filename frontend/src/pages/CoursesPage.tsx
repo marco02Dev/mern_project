@@ -3,7 +3,7 @@ import { TextImageSection } from "../components/sections/TextImageSection";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
-export const Courses = (): ReactElement => {
+export const CoursesPage = (): ReactElement => {
 
   const { imagesEndpoint }: Endpoints = endpoints;
 
@@ -20,7 +20,8 @@ export const Courses = (): ReactElement => {
 
     <LargeProductsPreviewSection 
       title="Master everything"
-      all 
+      all
+      limit={4}
     />
   </>
 };

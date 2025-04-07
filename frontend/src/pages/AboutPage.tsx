@@ -2,7 +2,7 @@ import { ReactElement } from "react"
 import { TextImageSection } from "../components/sections/TextImageSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
-export const About = (): ReactElement => {
+export const AboutPage = (): ReactElement => {
 
     const { imagesEndpoint }: Endpoints = endpoints;
 

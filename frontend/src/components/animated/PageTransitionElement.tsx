@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
@@ -15,11 +15,10 @@ type WrapperProps = {
 const Wrapper = styled.div<WrapperProps>`
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     display: flex;
     justify-content: center;
-    position: fixed;
 
     ${() => revealHiddenElements};
     ${({$hasLocationChanged}) => $hasLocationChanged && moveWholeContainerOutAnimation};
@@ -45,6 +44,18 @@ export const PageTransitionElement = (): ReactNode => {
     
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const wrapperColor = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
+
+    useEffect(() => {
+        if (hasLocationChanged) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [hasLocationChanged]);
 
     if(!hasLocationChanged) {
         return null;

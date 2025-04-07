@@ -1,11 +1,20 @@
 import { ReactElement } from "react";
-import { StyledText } from "../components/themed/StyledText";
+import { endpoints } from "../config/endpoints.config";
+import { FormSection } from "../components/sections/FormSection";
 
 export const LogInPage = (): ReactElement => {
-    return <div>
-        <StyledText 
-            content={'Log in'} 
-            tag={'h1'}
+    return <>
+            <FormSection 
+            title={"Log in"} 
+            fields={[
+                "name",
+                "email",
+                "password"
+            ]}
+            imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
+            alternativeLinkDescription="Don’t have an account?"
+            alternativeLink="/signup"
+            alternativeTextLink="Sign up"
         />
-    </div>
+    </>
 }

@@ -3,9 +3,9 @@ import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
 import { sendSuccessMessage } from "../utils/send-success-message.util";
 import User, { UsersSchema } from "../models/users.model";
-import { getAllDocumentsByModel } from "../database/get-all-documents-by-model";
-import { createNewDocumentByModel } from "../database/create-new-document-by-model";
-import { deleteDocumentByModel } from "../database/delete-document-by-model";
+import { getAllDocumentsByModel } from "../queries/get-all-documents-by-model";
+import { createNewDocumentByModel } from "../queries/create-new-document-by-model";
+import { deleteDocumentByModel } from "../queries/delete-document-by-model";
 import { Request } from "express";
 
 export const getAllUsers: Controller = async (req, res) => {

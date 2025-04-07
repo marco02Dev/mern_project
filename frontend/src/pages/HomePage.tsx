@@ -3,6 +3,7 @@ import { TextImageSection } from "../components/sections/TextImageSection";
 import { SmallProductsPreviewSection } from "../components/sections/SmallProductPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
+import { FormSection } from "../components/sections/FormSection";
 
 export const HomePage = (): ReactElement => {
 
@@ -23,6 +24,7 @@ export const HomePage = (): ReactElement => {
         <SmallProductsPreviewSection
             title="Latest courses"
             all
+            twoBoxes
             latest
         />
         
@@ -32,6 +34,22 @@ export const HomePage = (): ReactElement => {
             buttonLabel="See all courses"
             buttonLink="/courses"
             secondaryColor
+        />
+
+        <SmallProductsPreviewSection
+            title="Master Front end"
+            all
+            threeBoxes
+        />
+
+        <FormSection 
+            title={"Contact us"} 
+            fields={[
+                "name",
+                "email"
+            ]}
+            textArea={"message"}
+            imgSrc={`${imagesEndpoint}/pages/contact/form-section.webp`}
         />
 
     </>

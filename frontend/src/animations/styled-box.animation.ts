@@ -26,7 +26,7 @@ const removealBorder: Keyframes = keyframes`
 `;
 
 
-export const courseBoxHoverAnimation: RuleSet = css`
+export const styledBoxHoverAnimation: RuleSet = css`
     &:hover {
         div {
             animation: ${removeBorder} ${animationDuration} ease-in-out forwards;

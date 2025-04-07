@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { Express } from 'express';
 import { port } from './config/env';
-import { connectToDatabase } from './database/connect-to-database';
+import { connectToDatabase } from './config/connect-to-database';
 import productsRouter from './routes/products.route';
 import usersRouter from './routes/users.route';
 import path from "path";

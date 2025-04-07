@@ -1,5 +1,5 @@
 import mongoose, { Mongoose } from "mongoose";
-import { databaseUri } from "../config/env";
+import { databaseUri } from "./env";
 
 export const connectToDatabase = async (): Promise<Mongoose | undefined> => {
     try {

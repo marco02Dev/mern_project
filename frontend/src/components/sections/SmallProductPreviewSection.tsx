@@ -45,7 +45,7 @@ export const SmallProductsPreviewSection = ({title, latest, twoBoxes, threeBoxes
 
         <StyledSpace small vertical />
 
-        <CoursesLoop limit={limit} latest={latest} />
+        <CoursesLoop limit={limit} latest={latest} twoBoxes={twoBoxes} threeBoxes={threeBoxes}/>
 
     </StyledSection>
 }

@@ -30,6 +30,12 @@ export const NavLinks = ({row}: {row?: boolean}): ReactElement => {
                 <StyledLink content="About" to="/about" fontWeight="700" size={row ? "p" : "h3"} />
             </FadeInWrapper>
 
+            <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
+
+            <FadeInWrapper>
+                <StyledLink content="Contact" to="/contact" fontWeight="700" size={row ? "p" : "h3"} />
+            </FadeInWrapper>
+
         </NavLinksWrapper>
     );
 };

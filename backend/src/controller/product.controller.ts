@@ -1,10 +1,10 @@
 import { Controller, ProductParams } from "../types/controller.type";
 import Product, {ProductSchema} from "../models/product.model";
-import { getAllDocumentsByModel } from "../database/get-all-documents-by-model";
-import { createNewDocumentByModel } from "../database/create-new-document-by-model";
-import { deleteDocumentByModel } from "../database/delete-document-by-model";
-import { updateDocumentByModel } from "../database/update-document-by-model";
-import { getDocumentsByCategory } from "../database/get-documents-by-category";
+import { getAllDocumentsByModel } from "../queries/get-all-documents-by-model";
+import { createNewDocumentByModel } from "../queries/create-new-document-by-model";
+import { deleteDocumentByModel } from "../queries/delete-document-by-model";
+import { updateDocumentByModel } from "../queries/update-document-by-model";
+import { getDocumentsByCategory } from "../queries/get-documents-by-category";
 import { Request } from "express";
 
 export const getAllProducts: Controller = async (req, res) => {

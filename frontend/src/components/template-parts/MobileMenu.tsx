@@ -7,10 +7,12 @@ import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeMod
 import useLocationChange from "../../hooks/useLocationChange";
 import { closeMenu } from "../../store/slices/menu.slice";
 import { Dispatch } from "@reduxjs/toolkit";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
 type MobileMenuWrapperProps = {
   $isOpened: boolean;
   $backgroundColor: string;
+  $isMobileDevices: boolean;
 };
 
 const MobileMenuWrapper = styled.section<MobileMenuWrapperProps>`
@@ -25,10 +27,14 @@ const MobileMenuWrapper = styled.section<MobileMenuWrapperProps>`
   align-items: center;
   flex-direction: column;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
+  span {
+    ${({$isMobileDevices}) => $isMobileDevices && "line-height: clamp(3vh, 4vh + 2vw, 100vw) !important"};
+  }
 `;
 
 export const MobileMenu = (): ReactNode => {
   const hasLocationChanged: boolean = useLocationChange();
+  const { isTablet, isMobile }: UseMediaQuery = useMediaQuery();
   const isOpened = useSelector(({menu}: RootState) => menu.isOpened);
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
   const dispatch: Dispatch = useDispatch();
@@ -41,7 +47,7 @@ export const MobileMenu = (): ReactNode => {
 
   return (
     <>
-      <MobileMenuWrapper $isOpened={isOpened} $backgroundColor={backgroundColor}>
+      <MobileMenuWrapper $isMobileDevices={isMobile || isTablet} $isOpened={isOpened} $backgroundColor={backgroundColor}>
         <NavLinks />
       </MobileMenuWrapper>
     </>

@@ -11,7 +11,6 @@ import { Logo } from "../ui/Logo";
 import { sizes } from "../../config/sizes.config";
 import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { useLocation } from 'react-router-dom';
 import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
 import useLocationChange from "../../hooks/useLocationChange";
 
@@ -49,8 +48,6 @@ export const Header = (): ReactElement => {
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
-    const {pathname} = useLocation();
-    const isCourses: boolean = pathname === "/courses";
 
     let animation: RuleSet = css`
         animation: unset;

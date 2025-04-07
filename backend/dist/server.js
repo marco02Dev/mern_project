@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const env_1 = require("./config/env");
-const connect_to_database_1 = require("./database/connect-to-database");
+const connect_to_database_1 = require("./config/connect-to-database");
 const products_route_1 = __importDefault(require("./routes/products.route"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
 const path_1 = __importDefault(require("path"));
