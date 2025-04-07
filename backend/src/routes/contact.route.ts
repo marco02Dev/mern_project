@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { sendEmail } from "../controller/contact.controller";
-import { productsEndpointName } from "../config/env";
+import { contactEndpointName } from "../config/env";
 
 const contactRouter: Router = Router();
-const defaultEndpoint: string = `/${productsEndpointName}`;
+const defaultEndpoint: string = `/${contactEndpointName}`;
 
 contactRouter.post(defaultEndpoint, sendEmail);
 

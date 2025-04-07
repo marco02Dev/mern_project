@@ -10,12 +10,14 @@ const connect_to_database_1 = require("./config/connect-to-database");
 const products_route_1 = __importDefault(require("./routes/products.route"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
 const path_1 = __importDefault(require("path"));
+const contact_route_1 = __importDefault(require("./routes/contact.route"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use('/images', express_1.default.static(path_1.default.join(__dirname, '../public/images')));
 app.use("/api", products_route_1.default);
 app.use("/api", users_route_1.default);
+app.use("/api", contact_route_1.default);
 app.listen(env_1.port, '0.0.0.0', () => {
     (0, connect_to_database_1.connectToDatabase)();
     console.log(`Server is listen on ${env_1.port}`);
