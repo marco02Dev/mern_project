@@ -10,7 +10,7 @@ export const AboutPage = (): ReactElement => {
         <TextImageSection
             eyebrowText="Innovate. Build. Achieve."
             title="Welcome to My Portfolio"
-            description="This is a portfolio website built using modern web technologies. It leverages the MERN stack, including React.js, TypeScript, Styled Components, Redux, Node.js, and Express.js, to create dynamic and responsive user experiences. Explore my work and get inspired!"
+            description="This is a portfolio website built using the MERN stack: MongoDB, Express.js, React.js, and Node.js."
             imageSrc={`${imagesEndpoint}/pages/about/text-image-section.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor

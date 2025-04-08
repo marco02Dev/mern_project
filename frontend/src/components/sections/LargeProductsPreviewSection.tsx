@@ -5,6 +5,7 @@ import { StyledText } from "../themed/StyledText";
 import { sizes } from "../../config/sizes.config";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledSpace } from "../themed/StyledSpace";
+import { StyledButton } from "../themed/StyledButton";
 
 type LargeProductsPreviewSectionProps = {
     title: string,
@@ -27,6 +28,8 @@ export const LargeProductsPreviewSection = ({
         <StyledSpace medium vertical height={"10vh"}/>
 
         <CoursesLoop limit={limit} />
+
+        <StyledButton content="discover more" to="none" />
     </ StyledSection>
 
 }

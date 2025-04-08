@@ -22,7 +22,7 @@ const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $i
     justify-content: center;
     flex-direction: column;
     padding-left: ${({$paddingLeft}) => $paddingLeft ? sizes.spaces.small : "unset"};
-    padding-right: ${({$paddingLeft}) => $paddingLeft ? sizes.spaces.small : "unset"};
+    padding-right: ${({$paddingLeft, $imageLeft}) => $paddingLeft || !$imageLeft ? sizes.spaces.small : "unset"};
     ${({$imageLeft, $paddingLeft, $isMobileDevices}) => {
         if(!$isMobileDevices) {
             return $imageLeft && $paddingLeft && "text-align: center"
@@ -79,7 +79,7 @@ export const TextImageSection = ({
                 </ImageWrapper>
             )}
 
-            <TextWrapper $isMobileDevices={isMobile || isTablet} $imageLeft $paddingLeft={imageLeft}>
+            <TextWrapper $isMobileDevices={isMobile || isTablet} $imageLeft={imageLeft} $paddingLeft={imageLeft}>
                 <StyledSpace large vertical />
 
                 {eyebrowText && (

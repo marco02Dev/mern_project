@@ -5,7 +5,7 @@ import { FormSection } from "../components/sections/FormSection";
 export const LogInPage = (): ReactElement => {
     return <>
             <FormSection 
-            title={"Log in"} 
+            title={"Welcome back!"} 
             fields={[
                 "name",
                 "email",

@@ -23,7 +23,6 @@ const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
 
 const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
     text-align: center;
-    padding: ${() => sizes.spaces.small};
     overflow: hidden;
     h2 {
         transform: translateY(100%);

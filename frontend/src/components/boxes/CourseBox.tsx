@@ -10,7 +10,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const InnerWrapper = styled.div`
     width: 100%;
-    height: 100%;
+    height: 40vh;
     display: flex;
     flex-direction: column;
 

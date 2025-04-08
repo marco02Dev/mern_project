@@ -42,15 +42,7 @@ export const HomePage = (): ReactElement => {
             threeBoxes
         />
 
-        <FormSection 
-            title={"Contact us"} 
-            fields={[
-                "name",
-                "email"
-            ]}
-            textArea={"message"}
-            imgSrc={`${imagesEndpoint}/pages/contact/form-section.webp`}
-        />
+
 
     </>
 
