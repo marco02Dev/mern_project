@@ -24,9 +24,10 @@ const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
 type CoursesLoop = {
   limit?: number,
   latest?: boolean,
+  category?: string
 }
 
-export const CoursesLoop: FC<CoursesLoop> = ({limit, latest }: CoursesLoop): ReactElement => {
+export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
@@ -34,8 +35,11 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest }: CoursesLoop): Rea
   const endpoint: string = determineEndpoint({
     defaultEndpoint: coursesEndpoint,
     limit: limit,
-    latest: latest
+    latest: latest,
+    category: category
   });
+
+  console.log(endpoint)
 
   const { objectData, loading, error } = useFetchGet<Course[]>(endpoint);
   const courses = objectData?.data;

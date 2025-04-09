@@ -8,7 +8,7 @@ const endpointWithId: string = `/${productsEndpointName}/:id`;
 const endpointWithCategory: string = `/${productsEndpointName}/:category`;
 
 productsRouter.get(defaultEndpoint, getAllProducts);
-productsRouter.get(endpointWithCategory, getProductsByCategory)
+productsRouter.get(endpointWithCategory, getProductsByCategory);
 productsRouter.post(defaultEndpoint, createProduct); 
 productsRouter.delete(endpointWithId, deleteProduct);
 productsRouter.put(endpointWithId, updateProduct);

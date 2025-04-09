@@ -7,11 +7,17 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { LogInPage } from "./pages/LogInPage";
 import { SignUpPage } from "./pages/SignInPage";
 import { ContactPage } from "./pages/ContactPage";
+import { Productpage } from "./pages/ProductPage";
 
 export const Router = (): ReactElement => {
     return <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/courses/:category" element={<CoursesPage />} />
+        <Route path="/courses/:category/:product" element={<Productpage />} />
+
+
         <Route path='/about' element={<AboutPage />} />
         <Route path='/contact' element={<ContactPage />} />
         <Route path='/login' element={<LogInPage />} />

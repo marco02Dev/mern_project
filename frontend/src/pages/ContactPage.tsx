@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import { FormSection } from "../components/sections/FormSection";
 import { TextImageSection } from "../components/sections/TextImageSection";
+import { TextSection } from "../components/sections/TextSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
 export const ContactPage = (): ReactElement => {
@@ -25,6 +26,13 @@ export const ContactPage = (): ReactElement => {
             ]}
             textArea={"message"}
             imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
+        />
+
+        <TextSection
+            title="Master Your Skills Today!"
+            description="Explore high-quality courses crafted to boost your skills and confidence. Whether you're starting fresh or leveling up, log in now to begin your learning journey with us!"
+            buttonLabel="Log In Now"
+            buttonLink="/login"
         />
     </>
 }

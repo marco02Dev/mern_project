@@ -1,5 +1,6 @@
 import { ReactElement } from "react"
 import { TextImageSection } from "../components/sections/TextImageSection";
+import { TextSection } from "../components/sections/TextSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
 export const AboutPage = (): ReactElement => {
@@ -14,6 +15,24 @@ export const AboutPage = (): ReactElement => {
             imageSrc={`${imagesEndpoint}/pages/about/text-image-section.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
+        />
+
+        <TextImageSection
+            title="Discover the Project"
+            description="Learn more about our mission, values, and the team behind the platform. We are committed to empowering individuals through accessible, high-quality education."
+            buttonLabel="Our Mission"
+            buttonLink="/about"
+            imageSrc={`${imagesEndpoint}/pages/homepage/text-image-section.webp`}
+            imageAlt="Minimalist desk setup with monitor and coding posters"
+            borderedImage
+            imageLeft
+        />
+
+        <TextSection
+            title="Master Your Skills Today!"
+            description="Explore high-quality courses crafted to boost your skills and confidence. Whether you're starting fresh or leveling up, log in or sign up now to begin your learning journey with us!"
+            buttonLabel="See all courses"
+            buttonLink="/courses"
         />
     </>
 }

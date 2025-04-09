@@ -17,7 +17,8 @@ type LargeProductsPreviewSectionProps = {
 
 export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> = ({
     title,
-    limit
+    limit,
+    category
 }: LargeProductsPreviewSectionProps): ReactElement => {
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const [products, setProducts] = useState<number>(limit);
@@ -31,7 +32,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
 
         <StyledSpace medium vertical />
 
-        <CoursesLoop limit={products} threeBoxes />
+        <CoursesLoop limit={products} category={category}/>
         
         <StyledSpace large vertical />
 

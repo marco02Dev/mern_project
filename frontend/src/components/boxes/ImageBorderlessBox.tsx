@@ -14,7 +14,7 @@ const Wrapper = styled.div<{$imageLeft?: boolean}>`
 
 type ImageBorderLessBox = {
     imageLeft?: boolean,
-    imageSrc: string,
+    imageSrc?: string,
     imageAlt?: string
 }
 

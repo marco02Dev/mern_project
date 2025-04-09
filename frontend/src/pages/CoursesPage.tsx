@@ -4,10 +4,12 @@ import { LargeProductsPreviewSection } from "../components/sections/LargeProduct
 import { endpoints, Endpoints } from "../config/endpoints.config";
 import { TextSection } from "../components/sections/TextSection";
 import { UseMediaQuery, useMediaQuery } from "../hooks/useMediaQuery";
+import { useParams } from "react-router-dom";
 
 export const CoursesPage = (): ReactElement => {
   const { isMobile }: UseMediaQuery = useMediaQuery();
   const { imagesEndpoint }: Endpoints = endpoints;
+  const { category } = useParams<{category: string}>();
 
   return <>
     <TextImageSection
@@ -22,6 +24,7 @@ export const CoursesPage = (): ReactElement => {
     <LargeProductsPreviewSection 
       title="Master everything"
       limit={isMobile ? 4 : 6}
+      category={category}
     />
 
     <TextSection

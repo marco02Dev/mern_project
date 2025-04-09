@@ -10,6 +10,7 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { FC } from "react";
 import { ImageBorderlessBox } from "../boxes/ImageBorderlessBox";
+import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 
 const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $isMobileDevices: boolean}>`
     width: ${({$imageLeft, $paddingLeft, $isMobileDevices}) => {
@@ -25,13 +26,7 @@ const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $i
     flex-direction: column;
     padding-left: ${({$paddingLeft}) => $paddingLeft ? sizes.spaces.small : "unset"};
     padding-right: ${({$paddingLeft, $imageLeft}) => $paddingLeft || !$imageLeft ? sizes.spaces.small : "unset"};
-    ${({$imageLeft, $paddingLeft, $isMobileDevices}) => {
-        if(!$isMobileDevices) {
-            return $imageLeft && $paddingLeft && "text-align: center"
-        } else {
-            return null
-        }
-    }};
+
 `; 
 
 type TextImageSectionProps = {
@@ -44,6 +39,7 @@ type TextImageSectionProps = {
     imageAlt?: string;
     secondaryColor?: boolean;
     imageLeft?: boolean;
+    borderedImage?: boolean
 };
 
 export const TextImageSection: FC<TextImageSectionProps> = ({
@@ -55,7 +51,8 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
     imageSrc,
     imageAlt,
     secondaryColor,
-    imageLeft
+    imageLeft,
+    borderedImage
 }: TextImageSectionProps): ReactElement => {
 
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
@@ -66,6 +63,7 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
             {!isMobile && !isTablet && imageSrc && imageLeft && (
                 <ImageBorderlessBox imageLeft={imageLeft} imageSrc={imageSrc} imageAlt={imageAlt} />
             )}
+
 
             <TextWrapper $isMobileDevices={isMobile || isTablet} $imageLeft={imageLeft} $paddingLeft={imageLeft}>
                 <StyledSpace large vertical />
@@ -100,8 +98,12 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
 
             </TextWrapper>
 
-            {!isMobile && !isTablet && imageSrc && !imageLeft && (
+            {!isMobile && !isTablet && imageSrc && !imageLeft && !borderedImage && (
                 <ImageBorderlessBox imageLeft={imageLeft} imageSrc={imageSrc} imageAlt={imageAlt} />
+            )}
+
+            {!isMobile && !isTablet && imageSrc && !imageLeft && borderedImage && (
+                <ImageBorderedBox imgSrc={imageSrc} />
             )}
 
         </StyledSection>

@@ -25,7 +25,7 @@ const Wrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
 `;
 
 type ImageBorderdBoxProps = {
-    imgSrc: string
+    imgSrc?: string
 }
 
 export const ImageBorderedBox: FC<ImageBorderdBoxProps> = ({imgSrc}: ImageBorderdBoxProps): ReactElement => {

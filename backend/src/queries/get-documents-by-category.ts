@@ -5,7 +5,7 @@ import { sendErrorMessage } from "../utils/send-error-massage.util";
 
 type GetDocumentsByCategory<T> = {
     Model: Model<T>; 
-    request: Request<{ category: string }, {}, T>; 
+    request: Request<{ category: string }, {limit: string}, T>; 
     response: Response;
     resourceName: string;
 };
@@ -18,10 +18,18 @@ export const getDocumentsByCategory = async <T>({
 }: GetDocumentsByCategory<T>) => {
     const params = request.params;
     const { category }: { category: string } = params;
+    const queryParams: any = request.query;
+    const { limit }: {limit: string} = queryParams;
 
     try {
         if (category) {
-            const documents: any = await Model.find({ category });
+            let documents: any;
+            
+            if(limit) {
+                documents = await Model.find({ category }).limit(Number(limit));
+            } else {
+                documents = await Model.find({ category });
+            }
 
             if (documents.length > 0) {
                 sendSuccessMessage({
