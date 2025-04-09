@@ -9,7 +9,8 @@ type StyledButtonProps = {
     content: string,
     to?: string,
     headerElement?: boolean,
-    action?: Function
+    action?: Function,
+    courseId?: string
 }
 
 const ButtonWrapper = styled.div<{$headerElement?: boolean}>`
@@ -29,7 +30,7 @@ const ButtonShadow = styled.div<{$color: string}>`
     right: -3%;
 `;
 
-export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action }: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action}: StyledButtonProps): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;

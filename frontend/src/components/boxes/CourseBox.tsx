@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useRef } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledButton } from "../themed/StyledButton";
@@ -7,6 +7,7 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledBox } from "../themed/StyledBox";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { Link } from "react-router-dom";
 
 const InnerWrapper = styled.div`
     width: 100%;
@@ -66,8 +67,7 @@ export type CourseBoxProps = {
     imageUrl: string;
     link: string;
     courseId: string;
-    twoBoxes?: boolean;
-    threeBoxes?: boolean
+    category: string;
 };
 
 export const CourseBox = ({
@@ -75,18 +75,26 @@ export const CourseBox = ({
     price,
     imageUrl,
     link,
-    courseId
+    courseId,
+    category
 }: CourseBoxProps): ReactElement => {
+    console.log(imageUrl)
+    const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
+
+    const handleButtonClick = () => {
+      if (hiddenLinkRef.current) {
+        hiddenLinkRef.current.click();
+      }
+    };
 
     const { isMobile, isTablet } = useMediaQuery();
-
     const desktopSize: string = '32%';
     const tabletSize: string = '48%';
     const mobileSize: string = '98%';
 
 
     return (
-        <StyledBox width={isMobile || isTablet ? isMobile ? mobileSize : tabletSize : desktopSize} key={courseId}>
+        <StyledBox width={isMobile || isTablet ? isMobile ? mobileSize : tabletSize : desktopSize} >
             <InnerWrapper>
                 <div className="image-wrapper">
                     <FadeInWrapper>
@@ -112,8 +120,9 @@ export const CourseBox = ({
 
                     <StyledSpace small vertical height="5%" />
 
-                    <FadeInWrapper >
-                        <StyledButton headerElement content={"Discover"} to={link} />
+                    <FadeInWrapper>
+                        <StyledButton headerElement content={"Discover"} action={handleButtonClick} />
+                        <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper>
                 </div>
             </InnerWrapper>

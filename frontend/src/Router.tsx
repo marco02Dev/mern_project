@@ -5,7 +5,7 @@ import { CoursesPage } from "./pages/CoursesPage";
 import { AboutPage } from "./pages/AboutPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { LogInPage } from "./pages/LogInPage";
-import { SignUpPage } from "./pages/SignInPage";
+import { SignUpPage } from "./pages/SignUpPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Productpage } from "./pages/ProductPage";
 

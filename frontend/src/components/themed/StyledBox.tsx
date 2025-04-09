@@ -59,7 +59,7 @@ const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
 `;
 
 type StyledBoxProps = {
-    children: ReactElement,
+    children: ReactElement[] | ReactElement,
     width: string,
     backgorundColor?: string,
     headerButton?: boolean,

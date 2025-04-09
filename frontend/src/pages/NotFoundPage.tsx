@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { StyledSection } from "../components/themed/StyledSection";
-import { TextImageSection } from "../components/sections/TextImageSection";
+import { HeroSection } from "../components/sections/HeroSection";
 import { endpoints } from "../config/endpoints.config";
 import { useEffect } from "react";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -19,7 +19,7 @@ export const NotFoundPage = (): ReactElement => {
 
 
     return <StyledSection secondaryColor>
-        <TextImageSection
+        <HeroSection
             eyebrowText="Oops!"
             title="Page Not Found"
             description="The page you're looking for doesn't exist or has been moved. Return to the homepage and try again."

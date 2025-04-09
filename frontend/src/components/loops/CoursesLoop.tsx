@@ -39,8 +39,6 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category }: Courses
     category: category
   });
 
-  console.log(endpoint)
-
   const { objectData, loading, error } = useFetchGet<Course[]>(endpoint);
   const courses = objectData?.data;
   const backgroundColor: string = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
@@ -68,8 +66,9 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category }: Courses
           courseId={course._id}
           title={course.name}
           price={`${String(course.price)}$`}
-          link={`courses/${course.category}/${course.name}`}
-          imageUrl={`${imagesEndpoint}/products/${course.category}/${course.featuredImageUrl}`}
+          link={`${course.category}/${course.name}`}
+          category={course.category}
+          imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
         />
 
         {/* Mobile */}

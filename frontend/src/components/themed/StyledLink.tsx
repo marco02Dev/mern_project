@@ -9,8 +9,9 @@ import { AllowedTextTags } from "../../config/styled-text.config";
 import { sizes } from "../../config/sizes.config";
 import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
+import { LinkProps } from "react-router-dom";
 
-type LinkWrapperProps = {
+interface LinkWrapperProps extends LinkProps {
     $color: string,
     $hoverColor: string,
     $backgroundColor?: string,
@@ -25,7 +26,7 @@ type LinkWrapperProps = {
     $absolute?: boolean;
 }
 
-const LinkWrapper = styled(Link)<LinkWrapperProps>`
+export const LinkWrapper = styled(Link)<LinkWrapperProps>`
     color: ${({$color}) => $color};
     background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
     display: inline-block;
@@ -110,7 +111,7 @@ type StyledLinkProps = {
     border?: boolean,
     logo?: boolean,
     absolute?: boolean,
-    action?: boolean
+    action?: boolean,
 }
 
 export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute, action}: StyledLinkProps): ReactElement => {
@@ -133,7 +134,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
         return <LinkWrapper 
         $color={colorMode} 
         $hoverColor={hoverColor} 
-        as={"a"}
+        as={"div"}
         $backgroundColor={backgroundColor}
         $padding={padding}
         $button={button}

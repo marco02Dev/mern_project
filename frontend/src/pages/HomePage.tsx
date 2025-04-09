@@ -1,15 +1,16 @@
-import { ReactElement } from "react";
-import { TextImageSection } from "../components/sections/TextImageSection";
+import { ReactElement, FC } from "react";
+import { HeroSection } from "../components/sections/HeroSection";
 import { SmallProductsPreviewSection } from "../components/sections/SmallProductPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
+import { BrowseSection } from "../components/sections/browseSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
-export const HomePage = (): ReactElement => {
+export const HomePage: FC = (): ReactElement => {
 
     const { imagesEndpoint }: Endpoints = endpoints;
 
     return <>
-        <TextImageSection
+        <HeroSection
             eyebrowText="Learn. Grow. Succeed."
             title="Your Future Starts Here"
             description="Join our community of learners and elevate your skills with our expertly crafted courses. Sign up today!"
@@ -26,13 +27,18 @@ export const HomePage = (): ReactElement => {
             threeBoxes
             latest
         />
-        
+
+        <BrowseSection 
+            title="Browse all categories"
+            categories
+            secondaryColor
+        />
+
         <TextSection
             title="Master Your Skills Today!"
             description="Explore high-quality courses crafted to boost your skills and confidence. Whether you're starting fresh or leveling up, log in or sign up now to begin your learning journey with us!"
             buttonLabel="See all courses"
             buttonLink="/courses"
-            secondaryColor
         />
     </>
 

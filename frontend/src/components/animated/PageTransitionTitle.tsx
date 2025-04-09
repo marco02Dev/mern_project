@@ -43,7 +43,13 @@ export const PageTransitionTitle: FC = (): ReactNode => {
 
     const location: Location = useLocation(); 
     const pathName: string = location.pathname;
-    const title: string = pathName.replace('/', "");
+    let title: string = pathName.replace('/', "");
+    const innerPathName: number = title.indexOf("/")
+
+    if(innerPathName !== -1) {
+        title = title.slice(0, innerPathName)
+    }
+
     let titleCapitalized: string = title.charAt(0).toUpperCase() + title.slice(1);
 
     useEffect(() => {

@@ -1,5 +1,5 @@
 import { ReactElement } from "react"
-import { TextImageSection } from "../components/sections/TextImageSection";
+import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
@@ -8,7 +8,7 @@ export const AboutPage = (): ReactElement => {
     const { imagesEndpoint }: Endpoints = endpoints;
 
     return <>
-        <TextImageSection
+        <HeroSection
             eyebrowText="Innovate. Build. Achieve."
             title="Welcome to My Portfolio"
             description="This is a portfolio website built using the MERN stack: MongoDB, Express.js, React.js, and Node.js."
@@ -17,7 +17,7 @@ export const AboutPage = (): ReactElement => {
             secondaryColor
         />
 
-        <TextImageSection
+        <HeroSection
             title="Discover the Project"
             description="Learn more about our mission, values, and the team behind the platform. We are committed to empowering individuals through accessible, high-quality education."
             buttonLabel="Our Mission"
