@@ -74,25 +74,18 @@ export const CourseBox = ({
     price,
     imageUrl,
     link,
-    courseId,
-    twoBoxes,
-    threeBoxes
+    courseId
 }: CourseBoxProps): ReactElement => {
 
     const { isMobile, isTablet } = useMediaQuery();
 
-    let boxSize: string;
+    const desktopSize: string = '32%';
+    const tabletSize: string = '48%';
+    const mobileSize: string = '98%';
 
-    if(twoBoxes) {
-        boxSize = "48%";
-    } else if(threeBoxes) {
-        boxSize = "32%";        
-    } else {
-        boxSize = "48%";
-    }
 
     return (
-        <StyledBox width={isMobile || isTablet ? "98%" : boxSize} key={courseId}>
+        <StyledBox width={isMobile || isTablet ? isMobile ? mobileSize : tabletSize : desktopSize} key={courseId}>
             <InnerWrapper>
                 <div className="image-wrapper">
                     <FadeInWrapper>

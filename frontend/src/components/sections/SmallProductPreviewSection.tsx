@@ -24,20 +24,18 @@ export type TwoProductPreviewSectionProps = {
     threeBoxes?: boolean
 }
 
-export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({title, latest, twoBoxes, threeBoxes}: TwoProductPreviewSectionProps): ReactElement => {
+export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({title, latest}: TwoProductPreviewSectionProps): ReactElement => {
 
-    const { isMobile, isTablet } = useMediaQuery()
+    const { isMobile, isTablet } = useMediaQuery();
 
-    let limit: number;
-    if(twoBoxes) {
-        limit = 2
-    } else if(threeBoxes) {
-        limit = 3
-    } else {
-        limit = 2
+    let limit: number = 3;
+    if(isTablet) {
+        limit = 2;
+    } else if(isMobile) {
+        limit = 1;
     }
 
-    return <StyledSection height={isMobile || isTablet ? "100vh" : "100vh"} paddingLeft={sizes.spaces.medium}  paddingRight={sizes.spaces.medium}>
+    return <StyledSection justifyCenter height={isMobile || isTablet ? "100vh" : "100vh"} paddingLeft={sizes.spaces.medium}  paddingRight={sizes.spaces.medium}>
         <StyledSpace medium vertical />
 
         <TitleWrapper>
@@ -48,7 +46,7 @@ export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({
 
         <StyledSpace medium vertical />
 
-        <CoursesLoop limit={limit} latest={latest} twoBoxes={twoBoxes} threeBoxes={threeBoxes}/>
+        <CoursesLoop limit={limit} latest={latest} />
 
     </StyledSection>
 }

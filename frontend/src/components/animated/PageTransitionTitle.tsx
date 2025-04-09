@@ -70,14 +70,14 @@ export const PageTransitionTitle: FC = (): ReactNode => {
             <TitleWrapper $hasLocationChanged={hasLocationChanged}>
                 <RevealWrapper $hasLocationChanged={hasLocationChanged}>
                     {pathName === "/" ? !isMobile ?
-                    <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} />
+                    <StyledText lineHeight="20vh" tag="h2" size="h2" content={titleCapitalized} color={color} />
                     : titleCapitalized === "Welcome" ? <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} /> : <>
-                        <StyledText tag="h2" size="h1" content={"Welcome"} color={color} />  
+                        <StyledText tag="h2" size="h2" content={"Welcome"} color={color} />  
                         <br /> 
-                        <StyledText tag="h2" size="h1" content={"back"} color={color} />   
+                        <StyledText tag="h2" size="h2" content={"back"} color={color} />   
                     </>
                     
-                    : <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} />}
+                    : <StyledText tag="h2" size="h2" content={titleCapitalized} color={color} />}
                 </RevealWrapper>
             </TitleWrapper>
         );

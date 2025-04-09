@@ -9,6 +9,7 @@ import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { FC } from "react";
+import { ImageBorderlessBox } from "../boxes/ImageBorderlessBox";
 
 const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $isMobileDevices: boolean}>`
     width: ${({$imageLeft, $paddingLeft, $isMobileDevices}) => {
@@ -32,16 +33,6 @@ const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $i
         }
     }};
 `; 
-
-const ImageWrapper = styled.div<{$imageLeft?: boolean}>`
-    width: ${({$imageLeft}) => $imageLeft ? '55%' : "45%"};
-    height: 100%;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-`;
 
 type TextImageSectionProps = {
     eyebrowText?: string;
@@ -73,11 +64,7 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
         <StyledSection justifyCenter secondaryColor={secondaryColor} row={!isMobile && !isTablet} alignCenter={!isMobile && !isTablet} paddingLeft={imageLeft ? "unset" : sizes.spaces.medium}>
 
             {!isMobile && !isTablet && imageSrc && imageLeft && (
-                <ImageWrapper $imageLeft={imageLeft}>
-                    <FadeInWrapper width="100%" height="100%">
-                        <img src={imageSrc} alt={imageAlt || "Image"} />
-                    </FadeInWrapper>
-                </ImageWrapper>
+                <ImageBorderlessBox imageLeft={imageLeft} imageSrc={imageSrc} imageAlt={imageAlt} />
             )}
 
             <TextWrapper $isMobileDevices={isMobile || isTablet} $imageLeft={imageLeft} $paddingLeft={imageLeft}>
@@ -114,11 +101,7 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
             </TextWrapper>
 
             {!isMobile && !isTablet && imageSrc && !imageLeft && (
-                <ImageWrapper>
-                    <FadeInWrapper width="100%" height="100%">
-                        <img src={imageSrc} alt={imageAlt || "Image"} />
-                    </FadeInWrapper>
-                </ImageWrapper>
+                <ImageBorderlessBox imageLeft={imageLeft} imageSrc={imageSrc} imageAlt={imageAlt} />
             )}
 
         </StyledSection>

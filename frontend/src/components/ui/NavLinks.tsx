@@ -13,7 +13,7 @@ const NavLinksWrapper = styled.div<{$row?: boolean}>`
 
 export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactElement => {
 
-    const { isMobile }: UseMediaQuery = useMediaQuery()
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery()
 
     return (
         <NavLinksWrapper $row={row}>
@@ -39,7 +39,7 @@ export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactEleme
                 <StyledLink content="Contact" to="/contact" fontWeight="700" size={row ? "p" : "h3"} />
             </FadeInWrapper>
 
-            { isMobile && <>
+            { isMobile || isTablet && <>
                 <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
 
                 <FadeInWrapper>
