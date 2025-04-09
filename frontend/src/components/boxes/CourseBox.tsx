@@ -48,6 +48,7 @@ const InnerWrapper = styled.div`
         }
         .small-text {
             height: 10%;
+            width: 100%;
             div {
                 height: 100%;
                 h6 {
