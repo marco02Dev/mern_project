@@ -1,4 +1,5 @@
-import { Fragment, ReactElement, useContext } from "react";
+import { Fragment, ReactElement, SetStateAction, useContext } from "react";
+import { FC, Dispatch } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { Course } from "../../types/course.types";
@@ -12,6 +13,7 @@ import { colors } from "../../config/colors.config";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
 
+
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
   height: auto;
@@ -24,10 +26,10 @@ type CoursesLoop = {
   limit?: number,
   latest?: boolean,
   twoBoxes?: boolean,
-  threeBoxes?: boolean
+  threeBoxes?: boolean,
 }
 
-export const CoursesLoop = ({limit, latest, twoBoxes, threeBoxes}: CoursesLoop): ReactElement => {
+export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, twoBoxes, threeBoxes }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const isMobileDevices = isMobile || isTablet;
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
@@ -57,11 +59,8 @@ export const CoursesLoop = ({limit, latest, twoBoxes, threeBoxes}: CoursesLoop):
 
   return <CoursesWrapper $backgroundColor={backgroundColor}>
     {courses.map((course: Course, index: number): ReactElement => {
-
-      const lastIndex: number = courses.length - 1;
-      const isLastCourse: boolean = index === lastIndex;
-      const isEven: boolean = (index + 1) % 2 === 0;
-
+      const istheThirdOne: boolean = (index + 1) % 3 === 0;
+      
       return <Fragment key={index}>
         <CourseBox 
           courseId={course._id}
@@ -72,10 +71,11 @@ export const CoursesLoop = ({limit, latest, twoBoxes, threeBoxes}: CoursesLoop):
           twoBoxes={twoBoxes}
           threeBoxes={threeBoxes}
         />
-
-        {threeBoxes && <StyledSpace backgroundColor vertical medium width={isMobileDevices ? "100%" : "2%"} height={isMobileDevices? "2%" : "100%"} />}
-        {!isEven && !threeBoxes && <StyledSpace backgroundColor vertical medium width={isMobileDevices ? "100%" : "3%"} height={isMobileDevices? "2%" : "100%"} />}
-        {isEven && !isLastCourse && !threeBoxes && <StyledSpace backgroundColor vertical medium width={"100%"} height={sizes.spaces.large} />}
+                
+        {!isMobileDevices && !istheThirdOne && <StyledSpace horizontal height="100%" width="1.7%" />}
+        {istheThirdOne && !isMobileDevices && <StyledSpace horizontal height="50px" width="100%" /> }
+        {isMobileDevices && <StyledSpace small vertical height={sizes.spaces.medium} width="100%"/>}
+        
       </Fragment >
     })}
   </CoursesWrapper>

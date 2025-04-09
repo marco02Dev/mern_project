@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, FC } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -6,6 +6,7 @@ import { sizes } from "../../config/sizes.config";
 import styled from "styled-components";
 import { CoursesLoop } from "../loops/CoursesLoop";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 
 const TitleWrapper = styled.div`
     display: flex;
@@ -23,7 +24,7 @@ export type TwoProductPreviewSectionProps = {
     threeBoxes?: boolean
 }
 
-export const SmallProductsPreviewSection = ({title, latest, twoBoxes, threeBoxes}: TwoProductPreviewSectionProps): ReactElement => {
+export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({title, latest, twoBoxes, threeBoxes}: TwoProductPreviewSectionProps): ReactElement => {
 
     const { isMobile, isTablet } = useMediaQuery()
 
@@ -40,10 +41,12 @@ export const SmallProductsPreviewSection = ({title, latest, twoBoxes, threeBoxes
         <StyledSpace medium vertical />
 
         <TitleWrapper>
-            <StyledText tag="h2" content={title} />
+            <TextRevealWrapper>
+                <StyledText tag="h2" content={title} />
+            </TextRevealWrapper>
         </TitleWrapper>
 
-        <StyledSpace small vertical />
+        <StyledSpace medium vertical />
 
         <CoursesLoop limit={limit} latest={latest} twoBoxes={twoBoxes} threeBoxes={threeBoxes}/>
 

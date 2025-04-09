@@ -26,7 +26,8 @@ type SectionProps = {
 }
 
 const Section = styled.section<SectionProps>`
-  overflow: ${({$overflowVisible}) => $overflowVisible ? "visible" : "hidden"};
+  overflow-y: ${({$overflowVisible}) => $overflowVisible ? "visible" : "hidden"};
+  overflow-x: hidden;
   z-index: ${({$semanticTag}) => $semanticTag? "1000" : "unset"};
   display: ${({$block}) => $block ? "block" : 'flex'};
   justify-content: ${({$justifyCenter}) => $justifyCenter ? 'center' : 'start'};

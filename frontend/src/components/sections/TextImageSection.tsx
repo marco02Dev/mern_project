@@ -8,6 +8,7 @@ import { sizes } from "../../config/sizes.config";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { FC } from "react";
 
 const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $isMobileDevices: boolean}>`
     width: ${({$imageLeft, $paddingLeft, $isMobileDevices}) => {
@@ -54,7 +55,7 @@ type TextImageSectionProps = {
     imageLeft?: boolean;
 };
 
-export const TextImageSection = ({
+export const TextImageSection: FC<TextImageSectionProps> = ({
     eyebrowText,
     title,
     description,

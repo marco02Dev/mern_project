@@ -13,7 +13,7 @@ export const useMediaQuery = () => {
 
   useEffect(() => {
     const mediaQueryMobile = window.matchMedia("(max-width: 767px)");
-    const mediaQueryTablet = window.matchMedia("(min-width: 768px) and (max-width: 820px)");
+    const mediaQueryTablet = window.matchMedia("(min-width: 768px) and (max-width: 1100px)");
 
     const handleChange = () => {
       setDevice({

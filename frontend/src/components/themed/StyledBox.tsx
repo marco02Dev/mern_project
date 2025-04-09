@@ -1,17 +1,27 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, FC } from "react";
 import styled, { RuleSet } from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { colors } from "../../config/colors.config";
 import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
 import { styledBoxHoverAnimation } from "../../animations/styled-box.animation";
+import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
+import { useInView } from "../../hooks/useViewIn";
 
-const Wrapper = styled.div<{$isMobileDevices: boolean, $width: string, $button?: boolean, $headerButton?: boolean}>`
+const Wrapper = styled.div<{
+        $isMobileDevices: boolean, 
+        $width: string, 
+        $button?: boolean, 
+        $headerButton?: boolean,
+        $isInView: boolean,
+        $delayed: string
+    }>`
     position: relative;
     width: ${({$width, $headerButton}) => $headerButton ? "auto" : $width};
     display: ${({$button}) => $button ? "flex" : "flex"};
     box-sizing: border-box;
     ${({$headerButton}) => !$headerButton && styledBoxHoverAnimation}
+    ${() => fadeInWrapperAnimation}
 `;
 
 const BodyWrapper = styled.li<{
@@ -33,6 +43,7 @@ const BodyWrapper = styled.li<{
     ${({$animation}) => $animation && $animation}
     z-index: 1;
     position: relative;
+
 `;
 
 const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
@@ -44,6 +55,7 @@ const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
     z-index: 0;
     bottom: ${({$button}) => $button ? "-2%" : "-2%"};
     right: ${({$button}) => $button ? "-2%" : "-2%"};
+
 `;
 
 type StyledBoxProps = {
@@ -55,21 +67,21 @@ type StyledBoxProps = {
     button?: boolean
 }
 
-export const StyledBox = ({
+export const StyledBox: FC<StyledBoxProps> = ({
     children, 
     width, 
     headerButton, 
     animation,
     button
 }: StyledBoxProps): ReactElement => {
-
+    const [ref, isInView] = useInView({ threshold: 0.5 }); 
     const { isMobile, isTablet } = useMediaQuery();
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext)
     const color = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
 
-    return <Wrapper $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
-        <BodyWrapper as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={color}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>
+    return <Wrapper $delayed="1000ms" $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
+        <BodyWrapper  as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={color}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>
             {children}
         </BodyWrapper>
 

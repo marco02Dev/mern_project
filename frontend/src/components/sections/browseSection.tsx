@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { FC } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -22,7 +23,9 @@ const CategoriesWrapper = styled.div`
     }
 `;
 
-export const BrowseSection = (): ReactElement => {
+// For catgeories section for future implementation
+
+export const BrowseSection: FC = (): ReactElement => {
     return <StyledSection paddingLeft={sizes.spaces.medium}  paddingRight={sizes.spaces.medium}>
             <StyledSpace medium vertical />
     

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLinks } from "../ui/NavLinks";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { ReactNode, useContext, useEffect } from "react";
+import { FC, ReactNode, useContext, useEffect } from "react";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import useLocationChange from "../../hooks/useLocationChange";
 import { closeMenu } from "../../store/slices/menu.slice";
@@ -32,7 +32,7 @@ const MobileMenuWrapper = styled.section<MobileMenuWrapperProps>`
   }
 `;
 
-export const MobileMenu = (): ReactNode => {
+export const MobileMenu: FC = (): ReactNode => {
   const hasLocationChanged: boolean = useLocationChange();
   const { isTablet, isMobile }: UseMediaQuery = useMediaQuery();
   const isOpened = useSelector(({menu}: RootState) => menu.isOpened);

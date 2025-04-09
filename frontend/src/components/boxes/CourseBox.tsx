@@ -10,7 +10,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const InnerWrapper = styled.div`
     width: 100%;
-    height: 40vh;
+    height: clamp(30vh, 30vh + 20vw, 100vw);
     display: flex;
     flex-direction: column;
 
@@ -34,13 +34,28 @@ const InnerWrapper = styled.div`
     }
 
     .text-wrapper {
-        padding-left: 10%;
-        padding-right: 10%;
+        padding-left: 5%;
+        padding-right: 5%;
         width: 80%;
         height: 45%;
+        align-items: start;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        text-align: start;
         div:last-child {
             display: inline-block;
         }
+        .small-text {
+            height: 10%;
+            div {
+                height: 100%;
+                h6 {
+                    height: 100% !important;
+                }
+            }
+        }
+
     }
 `;
 
@@ -88,9 +103,12 @@ export const CourseBox = ({
                 <div className="text-wrapper">
                     <StyledSpace small vertical height="10%" />
 
-                    <TextRevealWrapper>
-                        <StyledText tag="h6" content={price} />
-                    </TextRevealWrapper>
+                    <div className="small-text">
+                        <TextRevealWrapper>
+                            <StyledText tag="h6" content={price} />
+                        </TextRevealWrapper>
+                    </div>
+
 
                     <StyledSpace small vertical height="5%" />
 
@@ -101,7 +119,7 @@ export const CourseBox = ({
                     <StyledSpace small vertical height="5%" />
 
                     <FadeInWrapper >
-                        <StyledButton content={"Discover"} to={link} />
+                        <StyledButton headerElement content={"Discover"} to={link} />
                     </FadeInWrapper>
                 </div>
             </InnerWrapper>

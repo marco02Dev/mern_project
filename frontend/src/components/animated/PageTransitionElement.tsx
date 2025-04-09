@@ -6,6 +6,7 @@ import { moveWholeContainerOutAnimation } from "../../animations/page-transition
 import { revealLinesAnimation, revealLinesAnimationDelayedFirst, revealLinesAnimationDelayedSecond } from "../../animations/page-transition-element.animation";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import useLocationChange from "../../hooks/useLocationChange";
+import { FC } from "react";
 
 type WrapperProps = {
     $hasLocationChanged: boolean,
@@ -39,7 +40,7 @@ const Wrapper = styled.div<WrapperProps>`
     };
 `;
 
-export const PageTransitionElement = (): ReactNode => {
+export const PageTransitionElement: FC = (): ReactNode => {
     const hasLocationChanged: boolean = useLocationChange();
     
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);

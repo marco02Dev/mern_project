@@ -3,7 +3,6 @@ import { TextImageSection } from "../components/sections/TextImageSection";
 import { SmallProductsPreviewSection } from "../components/sections/SmallProductPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
-import { FormSection } from "../components/sections/FormSection";
 
 export const HomePage = (): ReactElement => {
 
@@ -24,7 +23,7 @@ export const HomePage = (): ReactElement => {
         <SmallProductsPreviewSection
             title="Latest courses"
             all
-            twoBoxes
+            threeBoxes
             latest
         />
         
@@ -35,15 +34,6 @@ export const HomePage = (): ReactElement => {
             buttonLink="/courses"
             secondaryColor
         />
-
-        <SmallProductsPreviewSection
-            title="Master Front end"
-            all
-            threeBoxes
-        />
-
-
-
     </>
 
 }

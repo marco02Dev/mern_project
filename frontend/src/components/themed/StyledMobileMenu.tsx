@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useContext } from "react";
+import { ReactElement, useCallback, useEffect, useContext, FC } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../config/colors.config";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
@@ -47,7 +47,7 @@ const Line = styled.div<{$smallSize: string, $mediumSize: string, $color: string
 `;
 
 
-export const StyledMobileMenu = (): ReactElement => {
+export const StyledMobileMenu: FC = (): ReactElement => {
     const isOpened = useSelector(({menu}: RootState) => menu.isOpened);
     const dispatch = useDispatch();
 

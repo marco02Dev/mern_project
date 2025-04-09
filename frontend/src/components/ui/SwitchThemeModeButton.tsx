@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect } from "react";
+import { ReactElement, useContext, useEffect, FC } from "react";
 import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
 import sun from "../../images/svg/sun.svg";
 import moon from "../../images/svg/moon.svg";

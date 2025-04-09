@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, FC } from "react";
 import { StyledLink } from "./StyledLink";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
@@ -7,8 +7,9 @@ import { styledButtonHoverAnimation } from "../../animations/styled-button.anima
 
 type StyledButtonProps = {
     content: string,
-    to: string,
-    headerElement?: boolean
+    to?: string,
+    headerElement?: boolean,
+    action?: Function
 }
 
 const ButtonWrapper = styled.div<{$headerElement?: boolean}>`
@@ -28,14 +29,19 @@ const ButtonShadow = styled.div<{$color: string}>`
     right: -3%;
 `;
 
-export const StyledButton = ({content, to, headerElement }: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action }: StyledButtonProps): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
     const color: string = mode === 'dark' ? colors.light.textColor : colors.dark.textColor;
-    const shadowColor =  mode === 'dark' ? colors.dark.textColor : colors.light.textColor
+    const shadowColor =  mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
 
-    return <ButtonWrapper $headerElement={headerElement}>
+    const handleClick = () => {
+        if (action) action();
+    };
+
+
+    return <ButtonWrapper $headerElement={headerElement} onClick={handleClick} >
         <StyledLink 
             content={content}
             to={to}
@@ -46,6 +52,7 @@ export const StyledButton = ({content, to, headerElement }: StyledButtonProps): 
             button
             size={"100%"}
             border
+            action
         />
 
         {!headerElement && <ButtonShadow $color={shadowColor} />}

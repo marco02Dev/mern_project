@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Fragment, ReactElement } from "react";
+import { ReactElement, FC } from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -7,8 +7,8 @@ import { StyledButton } from "../themed/StyledButton";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { StyledTextArea } from "../themed/StyledTextArea";
-import { StyledTextInput } from "../themed/StyledTextInput";
+import { FieldSetPersonalInfoBox } from "../boxes/FieldsetPersonalInfoBox";
+import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
 
 
 const FormWrapper = styled.div<{
@@ -27,22 +27,6 @@ const FormWrapper = styled.div<{
     align-items: start;
     form {
         width: 100%;
-        fieldset:first-child {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            div {
-            &:nth-child(odd) {
-                padding-right: ${({$isMobile}) => $isMobile ? "0%" : "4%"};
-            };
-            };
-        };
-
-        .textarea-box {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-        }
     };
 `;
 
@@ -52,7 +36,7 @@ type FormProps = {
     textArea?: string;
 };
 
-export const Form = ({
+export const Form: FC<FormProps> = ({
     title,
     fields,
     textArea
@@ -69,24 +53,11 @@ export const Form = ({
 
         <StyledSpace medium vertical />
         <form >
-            <fieldset>
-                {fields.map((field, index): ReactElement => {
-                    const isEven = (index + 1) % 2 === 0;
-
-                    return <Fragment key={index}>
-                        <StyledTextInput name={field} />
-
-                        {!isEven && isMobile && <StyledSpace verySmall vertical medium width="100%"/> }
-                        {isEven && !textArea && <StyledSpace verySmall vertical medium width="100%"/> }
-                    </Fragment >
-                })}
-            </fieldset>
+            <FieldSetPersonalInfoBox textArea={textArea} fields={fields}/>
 
             <StyledSpace small vertical/>
 
-            {textArea ? <fieldset className="textarea-box">
-                    <StyledTextArea name={textArea} />
-                </ fieldset> 
+            {textArea ? <FieldSetAdditionalInfoBox textArea={textArea} />
             : null}
             
             <FadeInWrapper>

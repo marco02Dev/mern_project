@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { FC, ReactElement, useContext } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ const FooterWrapper = styled.footer<{$backgroundColor: string}>`
     flex-direction: column;
 `;
 
-export const Footer = (): ReactElement => {
+export const Footer: FC = (): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext);
     const backgroundColor: string = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;

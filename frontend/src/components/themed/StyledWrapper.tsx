@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, FC } from "react";
 import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
@@ -11,7 +11,7 @@ const Wrapper = styled.div<WrapperProps>`
     background-color: ${({$backgroundColor}) => $backgroundColor};
 `;
 
-export const StyledWrapper = ({children}: {children: ReactElement[]}): ReactElement => {
+export const StyledWrapper: FC<{children: ReactElement[]}> = ({children}: {children: ReactElement[]}): ReactElement => {
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const {mode} = ThemeModeValue;
     const backgroundColor = mode === "dark" ? colors.dark.backgroundColor : colors.light.backgroundColor;

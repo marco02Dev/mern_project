@@ -14,7 +14,9 @@ export const useInView = (options: UseInViewOptions = {}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting && !isInView) {
+          setIsInView(true);
+        }
       },
       options
     );
@@ -29,10 +31,10 @@ export const useInView = (options: UseInViewOptions = {}) => {
         observer.unobserve(currentElement);
       }
     };
-  }, [ref, options]);
+  }, [ref, options, isInView]);
 
   return [ref, isInView] as const;
-}
+};
 
 // threshold:
 // threshold: 0 — Triggered as soon as even a small part of the element is visible.

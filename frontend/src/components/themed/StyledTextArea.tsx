@@ -1,5 +1,5 @@
 import styled, { RuleSet, css } from "styled-components";
-import { ReactElement, useContext, useState, useRef, useEffect } from "react";
+import { ReactElement, useContext, useState, useRef, useEffect, FC } from "react";
 import { StyledText } from "./StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledSpace } from "./StyledSpace";
@@ -39,7 +39,7 @@ type StyledTextAreaProps = {
     name: string
 }
 
-export const StyledTextArea = ({ name }: StyledTextAreaProps): ReactElement => {
+export const StyledTextArea: FC<StyledTextAreaProps> = ({ name }: StyledTextAreaProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     let textAreaCapitalized: string = capitalizeFirstLetter(name);

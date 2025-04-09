@@ -5,6 +5,7 @@ import { AllowedTextTags } from "../../config/styled-text.config";
 import { defaultTextTag } from "../../config/styled-text.config";
 import { colors } from "../../config/colors.config";
 import { sizes } from "../../config/sizes.config";
+import { FC } from "react";
 
 type TextProps = {
     as?: keyof JSX.IntrinsicElements;
@@ -36,7 +37,7 @@ type StyledTextProps = {
     color?: string;
 };
 
-export const StyledText = ({
+export const StyledText: FC<StyledTextProps> = ({
     content,
     tag = defaultTextTag,
     smallParagraph,

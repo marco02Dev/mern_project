@@ -1,8 +1,9 @@
 import { StyledLink } from "../themed/StyledLink";
 import { StyledSpace } from "../themed/StyledSpace";
-import { ReactElement } from "react";
+import { ReactElement, FC } from "react";
 import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const NavLinksWrapper = styled.div<{$row?: boolean}>`
     display: flex;
@@ -10,7 +11,9 @@ const NavLinksWrapper = styled.div<{$row?: boolean}>`
     align-items: center;
 `;
 
-export const NavLinks = ({row}: {row?: boolean}): ReactElement => {
+export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactElement => {
+
+    const { isMobile }: UseMediaQuery = useMediaQuery()
 
     return (
         <NavLinksWrapper $row={row}>
@@ -35,6 +38,16 @@ export const NavLinks = ({row}: {row?: boolean}): ReactElement => {
             <FadeInWrapper>
                 <StyledLink content="Contact" to="/contact" fontWeight="700" size={row ? "p" : "h3"} />
             </FadeInWrapper>
+
+            { isMobile && <>
+                <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
+
+                <FadeInWrapper>
+                    <StyledLink content="Login" to="/login" fontWeight="700" size={row ? "p" : "h3"} />
+                </FadeInWrapper>
+            </>}
+
+
 
         </NavLinksWrapper>
     );

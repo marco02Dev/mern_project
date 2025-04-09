@@ -1,4 +1,5 @@
 import { ReactElement, useContext } from "react";
+import { FC } from "react";
 import { StyledText } from "./StyledText";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
@@ -61,8 +62,8 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
                 return css`
                     padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
                     padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
-                    padding-top: clamp(1vh, 0.5vh + 0.1vw, 100vw);
-                    padding-bottom: clamp(0.5vh, 0.5vh + 0.1vw, 100vw);
+                    padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
+                    padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
                     span {
                         font-size: 100%;
                     }
@@ -98,7 +99,7 @@ const LinkWrapper = styled(Link)<LinkWrapperProps>`
 
 type StyledLinkProps = {
     content: string,
-    to: string,
+    to?: string,
     tag?: AllowedTextTags,
     size?: string,
     fontWeight?: string,
@@ -108,10 +109,11 @@ type StyledLinkProps = {
     button?: boolean,
     border?: boolean,
     logo?: boolean,
-    absolute?: boolean
+    absolute?: boolean,
+    action?: boolean
 }
 
-export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute}: StyledLinkProps): ReactElement => {
+export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute, action}: StyledLinkProps): ReactElement => {
 
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const {mode} = ThemeModeValue;
@@ -127,23 +129,23 @@ export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor,
         colorMode = color;
     }
 
-
-    return <LinkWrapper 
-            $color={colorMode} 
-            $hoverColor={hoverColor} 
-            to={to} 
-            $backgroundColor={backgroundColor}
-            $padding={padding}
-            $button={button}
-            $afterHeight={sizes.heights.verySmall}
-            $border={border}
-            $borderColor={borderColor}
-            $content={content}
-            $size={size ? size : sizes.fontSizes.paragraph.medium}
-            $logo={logo}
-            $absolute={absolute}
+    if(action && !to) {
+        return <LinkWrapper 
+        $color={colorMode} 
+        $hoverColor={hoverColor} 
+        as={"a"}
+        $backgroundColor={backgroundColor}
+        $padding={padding}
+        $button={button}
+        $afterHeight={sizes.heights.verySmall}
+        $border={border}
+        $borderColor={borderColor}
+        $content={content}
+        $size={size ? size : sizes.fontSizes.paragraph.medium}
+        $logo={logo}
+        $absolute={absolute}
         >
-        <StyledText 
+            <StyledText 
             tag={defaultTag}
             content={content}
             size={size}
@@ -151,6 +153,33 @@ export const StyledLink = ({content, to, tag, size, fontWeight, backgroundColor,
             smallParagraph
             color={islogoHover}   
             lineHeight={sizes.lineHeights.h5}
-        />
-    </LinkWrapper>    
+            />
+        </LinkWrapper>   
+        } else {
+        return <LinkWrapper 
+        $color={colorMode} 
+        $hoverColor={hoverColor} 
+        to={to as string} 
+        $backgroundColor={backgroundColor}
+        $padding={padding}
+        $button={button}
+        $afterHeight={sizes.heights.verySmall}
+        $border={border}
+        $borderColor={borderColor}
+        $content={content}
+        $size={size ? size : sizes.fontSizes.paragraph.medium}
+        $logo={logo}
+        $absolute={absolute}
+        >
+            <StyledText 
+                tag={defaultTag}
+                content={content}
+                size={size}
+                fontWeight={fontWeight}
+                smallParagraph
+                color={islogoHover}   
+                lineHeight={sizes.lineHeights.h5}
+            />
+        </LinkWrapper>   
+    }
 }

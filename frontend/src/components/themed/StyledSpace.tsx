@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, FC } from "react";
 import { sizes } from "../../config/sizes.config";
 import styled from "styled-components";
 import { colors } from "../../config/colors.config";
@@ -47,7 +47,7 @@ type StyledSpaceProps = {
     height?: string
 };
 
-export const StyledSpace = ({ horizontal, vertical, small, medium, large, verySmall, width, backgroundColor, height }: StyledSpaceProps): ReactElement => {
+export const StyledSpace: FC<StyledSpaceProps> = ({ horizontal, vertical, small, medium, large, verySmall, width, backgroundColor, height }: StyledSpaceProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
 

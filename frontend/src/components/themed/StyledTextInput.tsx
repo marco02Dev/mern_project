@@ -19,11 +19,12 @@ const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: st
 `;
 
 
-const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string}>`
+const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRight?: string}>`
     width: 100%;
     display: flex;
     flex-direction: column;
     width: ${({$isMobile}) => $isMobile ? "100%" : "48%"};
+    padding-right: ${({$paddingRight}) => $paddingRight};
     label {
         width: 100%;
         div {
@@ -31,7 +32,7 @@ const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string}>`
         }
     }
     input {
-        width: "100%";
+        width: 100%;
         background-color: unset;
         font-size: ${() => sizes.fontSizes.h5};
         ${() => InputBorderStyles}
@@ -39,16 +40,17 @@ const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string}>`
 `;
 
 export type StyledTextInputProps = {
-    name: string
+    name: string,
+    paddingRight?: string
 }
 
-export const StyledTextInput: FC<StyledTextInputProps> = ({name}: StyledTextInputProps): ReactElement => {
+export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight}: StyledTextInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
-    return <Wrapper $isMobile={isMobile} $borderColor={borderColor}>
+    return <Wrapper $isMobile={isMobile} $borderColor={borderColor} $paddingRight={paddingRight}>
         <label htmlFor={name}>
             <TextRevealWrapper>
                 <StyledText tag="h3" size="h5" content={capitalizeTitle} />

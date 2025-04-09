@@ -8,6 +8,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import { sizes } from "../../config/sizes.config";
 import tickBlack from "../../images/svg/tick-black.svg";
 import tickWhite from "../../images/svg/tick-black.svg";
+import { FC } from "react";
 
 type BoxProps = {
     $backgroundColor: string,
@@ -44,7 +45,7 @@ type CategoryBoxProps = {
     marginLeft?: string
 }
 
-export const CategoryBox = ({title, description, to, marginLeft}: CategoryBoxProps): ReactElement => {
+export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to, marginLeft}: CategoryBoxProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
     const backgroundColor = mode === 'dark' ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;

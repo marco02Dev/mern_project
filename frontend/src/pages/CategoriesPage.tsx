@@ -5,6 +5,8 @@ import { endpoints } from "../config/endpoints.config";
 import { useFetchGet } from "../hooks/useFetchGet";
 import { Course } from "../types/course.types";
 
+// Category Page for future releases
+
 export const CategoriesPage = (): ReactElement => {
     const { category } = useParams(); 
     const endpointWithCategory = `${endpoints.coursesEndpoint}/${category}`;

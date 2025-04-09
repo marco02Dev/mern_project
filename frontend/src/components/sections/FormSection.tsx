@@ -1,41 +1,21 @@
-import { ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledLink } from "../themed/StyledLink";
 import { Form } from "../ui/Form";
+import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 
-const MainWrapper = styled.div`
+const MainWrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
-    flex-direction: row;
+    flex-direction: ${({$isTablet}) => $isTablet ? "column" : "row"};
     width: 100%;
     height: 100vh;
     align-items: center;
     justify-content: center;
-`;
-
-const ImageWrapper = styled.div<{$isMobile: boolean}>`
-    width: ${({$isMobile}) => $isMobile ? '100%' : '50%'};
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    div {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-            width: 100%;
-            height: 85%;
-            object-fit: cover;
-        }
-    }
-
 `;
 
 const AlternativeLinkWrapper = styled.div`
@@ -52,18 +32,13 @@ type FormSectionProps = {
     alternativeTextLink?: string
 }
 
-export const FormSection = ({title, fields, imgSrc, textArea, alternativeLink, alternativeTextLink, alternativeLinkDescription}: FormSectionProps): ReactElement => {
-    const { isMobile } = useMediaQuery();
+export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, alternativeLink, alternativeTextLink, alternativeLinkDescription}: FormSectionProps): ReactElement => {
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
 
-    return <StyledSection secondaryColor  paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
+    return <StyledSection paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
 
-        <MainWrapper>
-            {!isMobile && <ImageWrapper $isMobile={isMobile}>
-                <StyledSpace large vertical />
-                <FadeInWrapper>
-                    <img src={imgSrc} alt="" />
-                </FadeInWrapper>
-            </ImageWrapper> }
+        <MainWrapper $isTablet={isTablet}>
+            {!isMobile && <ImageBorderedBox imgSrc={imgSrc} /> }
 
             {isMobile && <StyledSpace large vertical />}
 

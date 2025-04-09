@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, FC } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
@@ -15,7 +15,7 @@ type TextSectionProps = {
   secondaryColor?: boolean;
 };
 
-export const TextSection = ({
+export const TextSection: FC<TextSectionProps> = ({
   title,
   description,
   buttonLabel,

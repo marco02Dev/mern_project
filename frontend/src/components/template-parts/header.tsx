@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 import styled, { css, RuleSet } from "styled-components";
 import { NavLinks } from "../ui/NavLinks";
 import { StyledButton } from "../themed/StyledButton";
@@ -43,7 +43,7 @@ const DesktopNavInnerWrapper = styled.div<{$width: string, $middleWrapper?: bool
     }};
 `;
 
-export const Header = (): ReactElement => {
+export const Header: FC = (): ReactElement => {
     const isLocationChanged: boolean = useLocationChange();
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();

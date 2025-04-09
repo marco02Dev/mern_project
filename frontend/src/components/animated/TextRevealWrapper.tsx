@@ -3,6 +3,7 @@ import { TextReaveal } from "../../animations/text-reveal-wrapper.animation";
 import { ReactElement } from "react";
 import { useInView } from "../../hooks/useViewIn";
 import useLocationChange from "../../hooks/useLocationChange";
+import { FC } from "react";
 
 const Wrapper = styled.div<{$revealText: boolean, $absolute?: string, $addiniotalAnimation?: RuleSet, $width?: string, $height?: string, $left: boolean, $right?: boolean, $delayed: string, $textCenter?: boolean}>`
     overflow-y: hidden;
@@ -25,7 +26,7 @@ type TextRevealWrapperProps = {
     textCenter?: boolean;
 }
 
-export const TextRevealWrapper = ({children, absolute, additionalAnimation, width, height, left, textCenter }: TextRevealWrapperProps): ReactElement => {
+export const TextRevealWrapper: FC<TextRevealWrapperProps> = ({children, absolute, additionalAnimation, width, height, left, textCenter }: TextRevealWrapperProps): ReactElement => {
 
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     const hasLocationChanged: boolean = useLocationChange();
