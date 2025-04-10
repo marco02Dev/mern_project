@@ -7,6 +7,7 @@ import { sizes } from "../../config/sizes.config";
 import styled from "styled-components";
 import { StyledText } from "../themed/StyledText";
 import { ShortParagraphsLoop } from "../loops/ShortParagraphsLoop";
+import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 
 const MainWrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -54,7 +55,11 @@ export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColo
 
                 <TextWrapper $isTablet={isTablet} $isMobile={isMobile}>
                     {isTablet && <StyledSpace small medium />}
-                    <StyledText content={title} tag="h2" />
+
+                    <TextRevealWrapper left>
+                        <StyledText content={title} tag="h2" />
+                    </TextRevealWrapper>
+
                     <StyledSpace medium vertical />
 
                     <PragraphsSectionWrapper $isTablet={isTablet}>

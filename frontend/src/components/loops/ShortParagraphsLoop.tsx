@@ -1,7 +1,8 @@
 import { FC, ReactElement, Fragment } from "react";
-import { ContentSection } from "../sections/textImageSection";
+import { ContentSection } from "../sections/TextImageSection";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
+import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 
 type ShortParagraphsLoopProps = {
     contentSections: ContentSection[]
@@ -17,9 +18,15 @@ export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({contentSectio
 
                 return <Fragment key={index}>
                     <div>
-                        <StyledText tag="h3" content={title}/>
+                        <TextRevealWrapper left>
+                            <StyledText tag="h3" content={title}/>
+                        </TextRevealWrapper>
+
                         <StyledSpace verySmall vertical />
-                        <StyledText tag="p" content={content}/>
+
+                        <TextRevealWrapper>
+                            <StyledText tag="p" content={content}/>
+                        </TextRevealWrapper>
                         <StyledSpace medium vertical />
                     </div>
                 </ Fragment>
