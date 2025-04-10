@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC } from "react";
+import { ReactElement, FC, useRef } from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -9,6 +9,12 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { FieldSetPersonalInfoBox } from "../boxes/FieldsetPersonalInfoBox";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
+import { login } from "../../services/login.service";
+import { sendEmail } from "../../services/contact.service";
+import { signUp } from "../../services/singup.service";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { AllowedServices, Service } from "../../types/service.type";
 
 
 const FormWrapper = styled.div<{
@@ -28,21 +34,44 @@ const FormWrapper = styled.div<{
     form {
         width: 100%;
     };
+    .is-hidden {
+        display: none;
+    }
 `;
 
 type FormProps = {
     title: string;
     fields: string[];
     textArea?: string;
+    service: AllowedServices;
 };
 
 export const Form: FC<FormProps> = ({
     title,
     fields,
-    textArea
+    textArea,
+    service
 }: FormProps ): ReactElement => {
 
+    let submitEvent: Service;
+    if(service === "login")  {
+        submitEvent = login;
+    } else if(service === "send-email") {
+        submitEvent = sendEmail;
+    } else if(service === "sign-up") {
+        submitEvent = signUp;
+    }
+ 
+    const dispatch: Dispatch = useDispatch()
     const { isMobile } = useMediaQuery();
+
+    const hiddenLinkRef = useRef<HTMLButtonElement | null>(null);
+
+    const handleButtonClick = () => {
+        if (hiddenLinkRef.current) {
+        hiddenLinkRef.current.click();
+        }
+    };
 
     return <FormWrapper $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
         <StyledSpace medium vertical />
@@ -52,7 +81,7 @@ export const Form: FC<FormProps> = ({
         </TextRevealWrapper>
 
         <StyledSpace medium vertical />
-        <form >
+        <form onSubmit={(event) => login(event, dispatch)}>
             <FieldSetPersonalInfoBox textArea={textArea} fields={fields}/>
 
             <StyledSpace small vertical/>
@@ -62,7 +91,8 @@ export const Form: FC<FormProps> = ({
             
             <FadeInWrapper>
                 <StyledSpace medium vertical/>
-                <StyledButton content="Send it" to="none" />
+                <StyledButton content="Send it" action={handleButtonClick} />
+                <button className="is-hidden" ref={hiddenLinkRef} type="submit"></button>
             </FadeInWrapper>
         </form>
 

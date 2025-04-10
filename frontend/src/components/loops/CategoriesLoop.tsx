@@ -26,7 +26,7 @@ export const CategoriesLoop: FC = (): ReactElement => {
                 />
 
                 {isOdd && <StyledSpace vertical height={"20vh"} width={"3.4%"}/>}
-                {isEven && <StyledSpace horizontal height={sizes.spaces.medium} width={"100%"}/>}
+                {isEven && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
             </ Fragment>
         })}    
     </ Wrapper>

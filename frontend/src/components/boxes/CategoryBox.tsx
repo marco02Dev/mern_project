@@ -8,13 +8,31 @@ import { StyledBox } from "../themed/StyledBox";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import whiteTick from"../../images/svg/tick-white.svg";
 import blackTick from"../../images/svg/tick-black.svg";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
 const Wrapper = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    div {
-        width: 50%;
-    }
+    justify-content: center;
+    align-items: center;
+`;
+
+const ImageWrapper = styled.div`
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-right: 5%;
+`;
+
+const TextWrapper = styled.div`
+    width: 75%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 `;
 
 type CategoryBoxProps = {
@@ -26,23 +44,22 @@ type CategoryBoxProps = {
 
 export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to}: CategoryBoxProps): ReactElement => {
 
+    const { isMobile }: UseMediaQuery = useMediaQuery();
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
     return <StyledBox width="48%" height="30vh">
         <Wrapper>
-            <div>
-                <img width={"50px"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
-            </div>
+            {!isMobile && <ImageWrapper>
+                <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
+            </ImageWrapper> }
 
-            <div>
-                <StyledSpace medium vertical/>
-                <StyledText tag="h3" content={title} size="h6" />
+            <TextWrapper>
+                <StyledText tag="h3" content={title} />
                 <StyledSpace small vertical />
-                <StyledText tag="p" content={description} smallParagraph />
+                <StyledText tag="p" size="h5"  content={description} smallParagraph />
                 <StyledSpace small vertical/>
-                <StyledButton content="Discover now" to={to} headerElement/>
-                <StyledSpace medium vertical/>
-            </div>
+                <StyledButton content="Discover" to={to} headerElement/>
+            </TextWrapper>
         </Wrapper>
     </StyledBox>;
 };

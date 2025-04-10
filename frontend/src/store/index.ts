@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import menuReducer from "./slices/menu.slice";
 import routeStatusReducer from "./slices/route-status.slice";
+import loginReducer from "../store/slices/login.slice";
 
 export const store = configureStore({
   reducer: {
     menu: menuReducer,
-    routeStatus: routeStatusReducer
+    routeStatus: routeStatusReducer,
+    login: loginReducer
   },
 });
 

@@ -89,6 +89,6 @@ export const StyledBox: FC<StyledBoxProps> = ({
             {children}
         </BodyWrapper>
 
-        {!headerButton && <WrapperShadow $button={button} $color="black" />}
+        {!headerButton && <WrapperShadow $button={button} $color={borderColor} />}
     </Wrapper>
 }

@@ -38,7 +38,7 @@ export const CoursesPage = (): ReactElement => {
         eyebrowText={eyebrow}
         title={title}
         description={description}
-        imageSrc={`${imagesEndpoint}/pages/courses/text-image-section.webp`}
+        imageSrc={`${imagesEndpoint}/pages/courses/hero-section.webp`}
         imageAlt="Minimalist desk setup with monitor and coding posters"
         secondaryColor
       />

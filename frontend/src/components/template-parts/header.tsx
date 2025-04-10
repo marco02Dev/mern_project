@@ -13,6 +13,8 @@ import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
 import useLocationChange from "../../hooks/useLocationChange";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Nav = styled.nav`
     width: 100%;
@@ -48,6 +50,8 @@ export const Header: FC = (): ReactElement => {
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
+
+    const { isLoggedIn }: { isLoggedIn: boolean } = useSelector((state: RootState) => state.login)
 
     let animation: RuleSet = css`
         animation: unset;
@@ -109,7 +113,7 @@ export const Header: FC = (): ReactElement => {
 
                 <DesktopNavInnerWrapper $width={'20%'} $flexEnd>
                     <FadeInWrapper>
-                        <StyledButton content={'Login'} to={'/login'} headerElement />
+                        <StyledButton content={isLoggedIn ? "Account" : "Login"} to={isLoggedIn ? '/account' : "/login"} headerElement />
                     </FadeInWrapper>
                     <StyledSpace horizontal small />
                     <SwitchThemeModeButton />

@@ -4,7 +4,7 @@ import { SmallProductsPreviewSection } from "../components/sections/SmallProduct
 import { TextSection } from "../components/sections/TextSection";
 import { BrowseSection } from "../components/sections/browseSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
-import { TextImageSection } from "../components/sections/textImageSection";
+import { TextImageSection } from "../components/sections/TextImageSection";
 
 export const HomePage: FC = (): ReactElement => {
 
@@ -17,7 +17,7 @@ export const HomePage: FC = (): ReactElement => {
             description="Join our community of learners and elevate your skills with our expertly crafted courses. Sign up today!"
             buttonLabel="Sign in"
             buttonLink="/signin"
-            imageSrc={`${imagesEndpoint}/pages/homepage/text-image-section.webp`}
+            imageSrc={`${imagesEndpoint}/pages/homepage/hero-section.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
         />
@@ -36,21 +36,21 @@ export const HomePage: FC = (): ReactElement => {
             contentSections={[
                 {
                     title: "Minimalist Design",
-                    content: "Experience a clean, clutter-free layout that makes navigation effortless."
+                    content: "Experience a clean, clutter-free layout."
                 },
                 {
                     title: "Tailored Solutions",
-                    content: "We adapt to your specific needs, offering custom experiences that truly fit."
+                    content: "We adapt to your specific needs,"
                 },
                 {
                     title: "Reliable Support",
-                    content: "Count on our team to be there when you need us most — fast, friendly, and efficient."
+                    content: "Count on our team to be there when you need us most"
                 }
             ]}
         />
 
         <BrowseSection 
-            title="Browse all categories"
+            title="Learn all"
             categories
         />
 

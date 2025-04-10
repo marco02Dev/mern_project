@@ -8,20 +8,22 @@ import { LogInPage } from "./pages/LogInPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Productpage } from "./pages/ProductPage";
+import { AccountPage } from "./pages/AccountPage";
 
 export const Router = (): ReactElement => {
     return <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/contact' element={<ContactPage />} />
 
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:category" element={<CoursesPage />} />
         <Route path="/courses/:category/:product" element={<Productpage />} />
 
-
-        <Route path='/about' element={<AboutPage />} />
-        <Route path='/contact' element={<ContactPage />} />
+        <Route path='/account' element={<AccountPage />} />
         <Route path='/login' element={<LogInPage />} />
         <Route path='/signup' element={<SignUpPage />} />
+
         <Route path="*" element={<NotFoundPage />} />
     </Routes>
 }

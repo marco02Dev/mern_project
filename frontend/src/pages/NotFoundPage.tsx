@@ -23,7 +23,7 @@ export const NotFoundPage = (): ReactElement => {
             eyebrowText="Oops!"
             title="Page Not Found"
             description="The page you're looking for doesn't exist or has been moved. Return to the homepage and try again."
-            imageSrc={`${endpoints.imagesEndpoint}/pages/404/not-found.webp`}
+            imageSrc={`${endpoints.imagesEndpoint}/pages/homepage/hero-section.webp`}
             imageAlt="Illustration of a page not found"
             secondaryColor
             buttonLabel="Go to home page"

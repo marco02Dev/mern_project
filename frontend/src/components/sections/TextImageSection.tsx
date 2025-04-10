@@ -17,8 +17,18 @@ const MainWrapper = styled.div<{$isTablet: boolean}>`
     justify-content: center;
 `;
 
-const TextWrapper = styled.div<{$isMobile: boolean}>`
-    width: ${({$isMobile}) => $isMobile ? "100%" : "50%"};
+const TextWrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
+    width: ${({$isMobile, $isTablet}) => $isMobile || $isTablet ? "100%" : "50%"};
+    padding-left: ${({$isMobile}) => $isMobile ? "0%" : sizes.spaces.small};
+`;
+
+const PragraphsSectionWrapper = styled.div<{$isTablet: boolean}>`
+    display: flex;
+    flex-direction: ${({$isTablet}) => $isTablet ? "row" : "column"};
+    flex-wrap: wrap;
+    div {
+        width: ${({$isTablet}) => $isTablet ? "50%" : "column"};
+    }
 `;
 
 export type ContentSection = {
@@ -28,7 +38,7 @@ export type ContentSection = {
 
 type TextImageSectionProps = {
     img: string,
-    secondaryColor: boolean,
+    secondaryColor?: boolean,
     title: string
     contentSections: ContentSection[]
 }
@@ -40,11 +50,16 @@ export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColo
         <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
             <MainWrapper $isTablet={isTablet}>
                 {!isMobile && <ImageBorderedBox imgSrc={img} />}
-                {isMobile && <StyledSpace large vertical />}
+                {isMobile && <StyledSpace large medium />}
 
-                <TextWrapper $isMobile={isMobile}>
+                <TextWrapper $isTablet={isTablet} $isMobile={isMobile}>
+                    {isTablet && <StyledSpace small medium />}
                     <StyledText content={title} tag="h2" />
-                    <ShortParagraphsLoop contentSections={contentSections} />
+                    <StyledSpace medium vertical />
+
+                    <PragraphsSectionWrapper $isTablet={isTablet}>
+                        <ShortParagraphsLoop contentSections={contentSections} />
+                    </PragraphsSectionWrapper>
                 </TextWrapper>
             </MainWrapper>
             <StyledSpace small vertical />

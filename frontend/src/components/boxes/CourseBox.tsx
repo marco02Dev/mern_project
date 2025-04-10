@@ -78,7 +78,6 @@ export const CourseBox = ({
     courseId,
     category
 }: CourseBoxProps): ReactElement => {
-    console.log(imageUrl)
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
 
     const handleButtonClick = () => {

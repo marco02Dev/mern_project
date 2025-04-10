@@ -13,13 +13,14 @@ export const ContactPage = (): ReactElement => {
             eyebrowText="Get in Touch"
             title="We're Here to Help"
             description="Have questions, feedback, or just want to say hello? Our team is ready to assist you. Reach out through our contact form, email, or social channels — we’d love to hear from you!"
-            imageSrc={`${imagesEndpoint}/pages/courses/text-image-section.webp`}
+            imageSrc={`${imagesEndpoint}/pages/contact/hero-image.webp`}
             imageAlt="Person typing on a laptop with a contact form on screen"
             secondaryColor
         />
 
         <FormSection 
             title={"Contact us"} 
+            service="send-email"
             fields={[
                 "name",
                 "email"

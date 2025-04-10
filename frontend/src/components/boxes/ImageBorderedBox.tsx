@@ -1,12 +1,11 @@
 import { ReactElement, FC } from "react";
-import { StyledSpace } from "../themed/StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import styled from "styled-components";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
 const Wrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
     width: ${({$isMobile, $isTablet}) => $isMobile || $isTablet ? '100%' : '50%'};
-    height: 100%;
+    height: ${({$isTablet}) => $isTablet ? '50%' : '100%'};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,8 +32,7 @@ export const ImageBorderedBox: FC<ImageBorderdBoxProps> = ({imgSrc}: ImageBorder
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
 
     return <Wrapper $isTablet={isTablet} $isMobile={isMobile}>
-        <StyledSpace large vertical />
-        <FadeInWrapper>
+        <FadeInWrapper width="50%">
             <img src={imgSrc} alt="" />
         </FadeInWrapper>
     </Wrapper>

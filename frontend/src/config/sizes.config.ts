@@ -47,7 +47,7 @@ export let sizes: Sizes = {
         h2: "clamp(6vh, 2.1vh + 3.2vw, 100vw)",
         h3: "clamp(4.8vh, 1.8vh + 2.4vw, 100vw)",
         h4: "clamp(3.6vh, 1.4vh + 2.4vw, 100vw)",
-        h5: "clamp(2.4vh, 1.2vh + 1.2vw, 100vw)",
+        h5: "clamp(1vh, 1vh + 1.9vw, 100vw)",
         h6: "clamp(1.2vh, 1vh + 1.2vw, 100vw)",
         span: "clamp(1.1vh, 0.8vh + 1.2vw, 100vw)",
         paragraph: {

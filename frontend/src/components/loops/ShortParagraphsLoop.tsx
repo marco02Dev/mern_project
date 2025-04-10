@@ -8,6 +8,7 @@ type ShortParagraphsLoopProps = {
 }
 
 export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({contentSections}: ShortParagraphsLoopProps): ReactElement => {
+    
     return <>
         {
             contentSections.map((element: ContentSection, index): ReactElement => {
@@ -15,9 +16,12 @@ export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({contentSectio
                 const { title, content }: ContentSection = element;
 
                 return <Fragment key={index}>
-                    <StyledText tag="h3" content={title}/>
-                    <StyledSpace small vertical />
-                    <StyledText tag="p" content={content}/>
+                    <div>
+                        <StyledText tag="h3" content={title}/>
+                        <StyledSpace verySmall vertical />
+                        <StyledText tag="p" content={content}/>
+                        <StyledSpace medium vertical />
+                    </div>
                 </ Fragment>
             })
         }

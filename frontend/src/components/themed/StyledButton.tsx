@@ -10,13 +10,16 @@ type StyledButtonProps = {
     to?: string,
     headerElement?: boolean,
     action?: Function,
-    courseId?: string
+    courseId?: string,
+    type?: string
 }
 
 const ButtonWrapper = styled.div<{$headerElement?: boolean}>`
     position: relative;
+    padding: 0;
+    border: 0;
     display: ${({$headerElement}) => $headerElement ? "flex" : "inline-block"};
-    ${() => styledButtonHoverAnimation}
+    ${({$headerElement}) => !$headerElement && styledButtonHoverAnimation}
 `;
 
 const ButtonShadow = styled.div<{$color: string}>`
@@ -30,7 +33,7 @@ const ButtonShadow = styled.div<{$color: string}>`
     right: -3%;
 `;
 
-export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action}: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action, type}: StyledButtonProps): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
@@ -41,8 +44,16 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement,
         if (action) action();
     };
 
+    let as: string;
 
-    return <ButtonWrapper $headerElement={headerElement} onClick={handleClick} >
+    if(type === "submit") {
+        as = "button";
+    } else {
+        as = "div";
+    }
+
+
+    return <ButtonWrapper as={as} type={type} $headerElement={headerElement} onClick={handleClick} >
         <StyledLink 
             content={content}
             to={to}
@@ -54,6 +65,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement,
             size={"100%"}
             border
             action
+            
         />
 
         {!headerElement && <ButtonShadow $color={shadowColor} />}

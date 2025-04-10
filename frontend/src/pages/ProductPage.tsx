@@ -33,7 +33,6 @@ export const Productpage: FC = (): ReactElement => {
 
         <TextImageSection 
             img={`${imagesEndpoint}/pages/homepage/text-image-section.webp`} 
-            secondaryColor
             title={"What will you learn?"}
             contentSections={[
                 {
@@ -56,6 +55,7 @@ export const Productpage: FC = (): ReactElement => {
             description="Explore high-quality courses crafted to boost your skills and confidence. Whether you're starting fresh or leveling up, log in or sign up now to begin your learning journey with us!"
             buttonLabel="See all courses"
             buttonLink="/courses"
+            secondaryColor
         />
     
     </>
