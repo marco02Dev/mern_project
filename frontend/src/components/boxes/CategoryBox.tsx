@@ -12,6 +12,9 @@ import blackTick from"../../images/svg/tick-black.svg";
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
+    div {
+        width: 50%;
+    }
 `;
 
 type CategoryBoxProps = {
@@ -25,7 +28,7 @@ export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to}: Cate
 
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
-    return <StyledBox width="48%">
+    return <StyledBox width="48%" height="30vh">
         <Wrapper>
             <div>
                 <img width={"50px"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />

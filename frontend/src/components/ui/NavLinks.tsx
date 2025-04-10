@@ -39,16 +39,13 @@ export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactEleme
                 <StyledLink content="Contact" to="/contact" fontWeight="700" size={row ? "p" : "h3"} />
             </FadeInWrapper>
 
-            { isMobile || isTablet && <>
+            { isMobile || isTablet ? <>
                 <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
 
                 <FadeInWrapper>
                     <StyledLink content="Login" to="/login" fontWeight="700" size={row ? "p" : "h3"} />
                 </FadeInWrapper>
-            </>}
-
-
-
+            </> : null}
         </NavLinksWrapper>
     );
 };

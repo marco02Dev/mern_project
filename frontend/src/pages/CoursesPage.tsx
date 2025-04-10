@@ -44,7 +44,6 @@ export const CoursesPage = (): ReactElement => {
       />
 
       <LargeProductsPreviewSection
-        title={`Master ${category ? category : "everything"}!`}
         limit={isMobile ? 4 : 6}
         category={category}
       />

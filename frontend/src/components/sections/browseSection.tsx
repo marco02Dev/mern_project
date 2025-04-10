@@ -6,6 +6,7 @@ import { StyledText } from "../themed/StyledText";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { CategoriesLoop } from "../loops/CategoriesLoop";
+import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 
 const TitleWrapper = styled.div`
     display: flex;
@@ -23,20 +24,21 @@ type BrowseSectionProps = {
 export const BrowseSection: FC<BrowseSectionProps> = ({categories, title, secondaryColor}: BrowseSectionProps): ReactNode => {
 
     if(categories) {
-        return <StyledSection secondaryColor={secondaryColor} paddingLeft={sizes.spaces.medium}  paddingRight={sizes.spaces.medium}>
-        <StyledSpace medium vertical />
+        return <StyledSection justifyCenter secondaryColor={secondaryColor} paddingLeft={sizes.spaces.medium}  paddingRight={sizes.spaces.medium}>
 
-        <TitleWrapper>
-            <StyledText tag="h2" content={title} />
-        </TitleWrapper>
+            <TitleWrapper>
+                <TextRevealWrapper>
+                    <StyledText tag="h2" content={title} />
+                </TextRevealWrapper>
+            </TitleWrapper>
 
-        <StyledSpace medium vertical />
+            <StyledSpace medium vertical />
 
-        {categories && 
-            <CategoriesLoop />
-        } 
+            {categories && 
+                <CategoriesLoop />
+            } 
 
-        {/* //to handle future sections with similar layout */}
+            {/* //to handle future sections with similar layout */}
 
         </StyledSection>
     }

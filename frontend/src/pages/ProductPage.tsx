@@ -2,6 +2,7 @@ import { FC, ReactElement } from "react";
 import { useLocation, Location } from "react-router-dom";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
+import { TextImageSection } from "../components/sections/textImageSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
 type ProductData = {
@@ -30,6 +31,25 @@ export const Productpage: FC = (): ReactElement => {
             secondaryColor
         />
 
+        <TextImageSection 
+            img={`${imagesEndpoint}/pages/homepage/text-image-section.webp`} 
+            secondaryColor
+            title={"What will you learn?"}
+            contentSections={[
+                {
+                    title: "Minimalist Design",
+                    content: "Experience a clean, clutter-free layout that makes navigation effortless."
+                },
+                {
+                    title: "Tailored Solutions",
+                    content: "We adapt to your specific needs, offering custom experiences that truly fit."
+                },
+                {
+                    title: "Reliable Support",
+                    content: "Count on our team to be there when you need us most — fast, friendly, and efficient."
+                }
+            ]}
+        />
 
         <TextSection
             title="Master Your Skills Today!"

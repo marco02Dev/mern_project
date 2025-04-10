@@ -14,10 +14,12 @@ const Wrapper = styled.div<{
         $button?: boolean, 
         $headerButton?: boolean,
         $isInView: boolean,
-        $delayed: string
+        $delayed: string,
+        $height?: string
     }>`
     position: relative;
     width: ${({$width, $headerButton}) => $headerButton ? "auto" : $width};
+    height: ${({$height}) => $height ? $height : "auto"};
     display: ${({$button}) => $button ? "flex" : "flex"};
     box-sizing: border-box;
     ${({$headerButton}) => !$headerButton && styledBoxHoverAnimation}
@@ -64,7 +66,8 @@ type StyledBoxProps = {
     backgorundColor?: string,
     headerButton?: boolean,
     animation?: RuleSet,
-    button?: boolean
+    button?: boolean,
+    height?: string
 }
 
 export const StyledBox: FC<StyledBoxProps> = ({
@@ -72,7 +75,8 @@ export const StyledBox: FC<StyledBoxProps> = ({
     width, 
     headerButton, 
     animation,
-    button
+    button,
+    height
 }: StyledBoxProps): ReactElement => {
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     const { isMobile, isTablet } = useMediaQuery();
@@ -80,7 +84,7 @@ export const StyledBox: FC<StyledBoxProps> = ({
     const color = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
 
-    return <Wrapper $delayed="1000ms" $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
+    return <Wrapper $height={height} $delayed="1000ms" $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
         <BodyWrapper  as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={color}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>
             {children}
         </BodyWrapper>
