@@ -4,7 +4,7 @@ import { ModelsAllowed } from "../types/models-allowed.type";
 export type SendSuccessMessageData = {
     response: Response,
     statusCode: number,
-    data?: ModelsAllowed | ModelsAllowed[],
+    data?: ModelsAllowed | ModelsAllowed[] | { _id: string }
     resource?: string,
     deleteResource?: boolean,
     updateResource?: boolean

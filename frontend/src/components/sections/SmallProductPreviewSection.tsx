@@ -1,4 +1,4 @@
-import { ReactElement, FC } from "react";
+import { ReactElement, FC, useEffect, useState } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -7,6 +7,10 @@ import styled from "styled-components";
 import { CoursesLoop } from "../loops/CoursesLoop";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { User } from "../../types/user.types";
+import { getUserPurchasedProducts } from "../../services/get-user-purchased-products.service";
 
 const TitleWrapper = styled.div`
     display: flex;
@@ -17,16 +21,38 @@ const TitleWrapper = styled.div`
 
 export type TwoProductPreviewSectionProps = {
     title: string,
-    all: boolean,
     latest?: boolean,
     category?: string,
-    twoBoxes?: boolean,
-    threeBoxes?: boolean
+    userProductsPurchased?: boolean
 }
 
-export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({title, latest}: TwoProductPreviewSectionProps): ReactElement => {
+export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({title, latest, userProductsPurchased}: TwoProductPreviewSectionProps): ReactElement => {
 
     const { isMobile, isTablet } = useMediaQuery();
+    const login = useSelector((state: RootState) => state.login);
+    const { isLoggedIn }: { isLoggedIn: boolean } = login;
+    const _id: string = (login?.user as User)?._id ?? "";
+  
+    const [productsPurchased, setProductsPurchased] = useState<string[] | null>(null);
+  
+    useEffect(() => {
+      const fetchProducts = async () => {
+        if (isLoggedIn && _id && userProductsPurchased) {
+          try {
+            const products = await getUserPurchasedProducts({ _id });
+            setProductsPurchased(products);
+          } catch (error) {
+            console.error("Errore nel recupero prodotti:", error);
+            setProductsPurchased(null);
+          }
+        }
+      };
+  
+      fetchProducts();
+    }, [isLoggedIn, _id]);
+  
+    useEffect(() => {
+    }, [productsPurchased]);
 
     let limit: number = 3;
     if(isTablet) {
@@ -46,7 +72,7 @@ export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({
 
         <StyledSpace medium vertical />
 
-        <CoursesLoop limit={limit} latest={latest} />
+        <CoursesLoop purchasedProducts={productsPurchased} limit={limit} latest={latest} />
 
     </StyledSection>
 }

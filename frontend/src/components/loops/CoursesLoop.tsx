@@ -4,7 +4,7 @@ import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { Course } from "../../types/course.types";
 import { CourseBox } from "../boxes/CourseBox";
-import { determineUseFetchGetEndpoint } from "../../utils/determine-endpoint.util";
+import { determineUseFetchGetEndpoint } from "../../utils/determine-use-fetch-get-endpoint.util";
 import { endpoints, Endpoints } from "../../config/endpoints.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
@@ -24,19 +24,21 @@ const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
 type CoursesLoop = {
   limit?: number,
   latest?: boolean,
-  category?: string
+  category?: string,
+  purchasedProducts?: string[] | null
 }
 
-export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category }: CoursesLoop): ReactElement => {
+export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-
+  console.log(`Products: ${purchasedProducts}`)
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
     limit: limit,
     latest: latest,
-    category: category
+    category: category,
+    productsId: purchasedProducts && purchasedProducts
   });
 
   const { objectData, loading, error } = useFetchGet<Course[]>(endpoint);

@@ -26,7 +26,7 @@ const usersSchema: Schema<UsersSchema> = new mongoose.Schema({
         required: true
     },
     purchasedProducts: {
-        type: [Array],
+        type: [String],
         required: false
     }
 }, {

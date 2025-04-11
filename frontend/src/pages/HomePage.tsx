@@ -14,9 +14,8 @@ export const HomePage: FC = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);
     const { isLoggedIn }: { isLoggedIn: boolean } = login;
     
-    const name = (login?.user as User)?.name ?? "";
+    const name: string = (login?.user as User)?.name ?? "";
     const { imagesEndpoint }: Endpoints = endpoints;
-
 
     return <>
         <HeroSection
@@ -40,9 +39,8 @@ export const HomePage: FC = (): ReactElement => {
 
         <SmallProductsPreviewSection
             title={isLoggedIn ? "Your courses" : "Latest Courses"}
-            all
-            threeBoxes
-            latest
+            userProductsPurchased={isLoggedIn}
+            latest={!isLoggedIn}
         />
 
         <TextImageSection 

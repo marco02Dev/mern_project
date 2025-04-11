@@ -36,6 +36,10 @@ export const login: Service = async (event, dispatch): Promise<void> => {
             if(!response.ok) {
                 throw new Error("Error");
             } else {
+                const json: any = await response.json();
+                const _id: string = json.data._id;
+                user._id = _id;
+
                 if(dispatch as Dispatch && dispatch !== undefined) {
                     dispatch(setLoggedIn(user));
                 }

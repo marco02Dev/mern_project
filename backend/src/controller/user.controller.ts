@@ -6,6 +6,7 @@ import User, { UsersSchema } from "../models/users.model";
 import { getAllDocumentsByModel } from "../queries/get-all-documents-by-model";
 import { createNewDocumentByModel } from "../queries/create-new-document-by-model";
 import { deleteDocumentByModel } from "../queries/delete-document-by-model";
+import { getDocumentById } from "../queries/get-document-by-id";
 import { Request } from "express";
 
 export const getAllUsers: Controller = async (req, res) => {
@@ -15,6 +16,15 @@ export const getAllUsers: Controller = async (req, res) => {
         response: res,
         resourceName: "Users"
     });
+}
+
+export const getUserById: Controller = async (req, res) => {
+    getDocumentById<UsersSchema>({
+        Model: User,
+        request: req as Request<{id: string}>,
+        response: res,
+        resourceName: "User"
+    })
 }
 
 export const createUser: Controller<{}, {}, UsersSchema> = async (req, res) => {
@@ -47,7 +57,7 @@ export const logUserIntoAccount: Controller<UsersParams, {}, UsersSchema> = asyn
             const user = await User.findOne({ name, surname, email, password });
             if(user) {
                 console.log(`User ${name} ${surname} logged in`);
-                sendSuccessMessage({response: res, statusCode: 200});
+                sendSuccessMessage({response: res, statusCode: 200, data:{_id: user._id as string}});
                 return;
             }
         } catch(error) {

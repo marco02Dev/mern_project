@@ -18,55 +18,39 @@ export const getAllDocumentsByModel = async <T extends object>({
     resourceName
 }: GetAllDocumentsData<T>): Promise<void> => {
     const isBodyFilled: boolean = Object.keys(request.body).length > 0;
-    const { limit, latest }: any = request.query;
+    const queryParams: any = request.query;
+    const { limit, latest, productsId }: { limit: string, latest: string, productsId: [string] } = queryParams;
     const LimitNumber: number = parseInt(limit);
-    let isLatestOnes: boolean;
+
+    const filterConditions: any = {};
+
+    if (productsId && productsId.length > 0) {
+        filterConditions._id = { $in: productsId };
+    }
+
+    const options: any = {};
+
+    if (LimitNumber) {
+        options.limit = LimitNumber;
+    }
 
     if (latest === "true") {
-        isLatestOnes = true;
-    } else {
-        isLatestOnes = false;
+        options.sort = { createdAt: -1 };
     }
 
     if (isBodyFilled) {
         sendErrorMessage({ response, statusCode: 400 });
     } else {
         try {
-            if (LimitNumber && !isLatestOnes) {
-                const documents: ModelsAllowed[] | unknown = await Model.find({}).limit(LimitNumber);
+            const documents: ModelsAllowed[] | unknown = await Model.find(filterConditions, null, options);
 
-                if (documents) {
-                    sendSuccessMessage({ response, statusCode: 200, data: documents as ModelsAllowed | ModelsAllowed[] });
-                } else {
-                    sendErrorMessage({ response, statusCode: 404, resource: resourceName });
-                }
-
-            } else if (isLatestOnes) {
-
-                if(LimitNumber) {
-                    const documents: ModelsAllowed[] | unknown = await Model.find({}).sort({createdAt: -1}).limit(LimitNumber);
-                    if(documents) {
-                        sendSuccessMessage({ response, statusCode: 200, data: documents as ModelsAllowed[]});
-                    } else {
-                        sendErrorMessage({ response, statusCode: 404, resource: resourceName }); 
-                    }
-
-                } else {
-                    const documents: ModelsAllowed[] | unknown = await Model.find({}).sort({createdAt: -1});
-                    if(documents) {
-                        sendSuccessMessage({ response, statusCode: 200, data: documents as ModelsAllowed[]});
-                    } else {
-                        sendErrorMessage({ response, statusCode: 404, resource: resourceName });   
-                    }
-                }
-
+            if (documents) {
+                sendSuccessMessage({ response, statusCode: 200, data: documents as ModelsAllowed[] });
             } else {
-                const documents: ModelsAllowed[] = await Model.find({});
-                sendSuccessMessage({ response, statusCode: 200, data: documents });
+                sendErrorMessage({ response, statusCode: 404, resource: resourceName });
             }
         } catch {
             sendErrorMessage({ response, statusCode: 404, resource: resourceName });
         }
     }
 };
-
