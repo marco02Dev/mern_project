@@ -4,6 +4,8 @@ import { ReactElement, FC } from "react";
 import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const NavLinksWrapper = styled.div<{$row?: boolean}>`
     display: flex;
@@ -13,7 +15,9 @@ const NavLinksWrapper = styled.div<{$row?: boolean}>`
 
 export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactElement => {
 
-    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery()
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const login = useSelector((state: RootState) => state.login);
+    const { isLoggedIn }: { isLoggedIn: boolean} = login;
 
     return (
         <NavLinksWrapper $row={row}>
@@ -43,7 +47,7 @@ export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactEleme
                 <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
 
                 <FadeInWrapper>
-                    <StyledLink content="Login" to="/login" fontWeight="700" size={row ? "p" : "h3"} />
+                    <StyledLink content={isLoggedIn ? "Account" : "login"} to={isLoggedIn ? "/account" : "/login"} fontWeight="700" size={row ? "p" : "h3"} />
                 </FadeInWrapper>
             </> : null}
         </NavLinksWrapper>

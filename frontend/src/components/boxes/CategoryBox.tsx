@@ -47,7 +47,7 @@ export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to}: Cate
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
-    return <StyledBox width="48%" height="30vh">
+    return <StyledBox width="48%" height="50%">
         <Wrapper>
             {!isMobile && <ImageWrapper>
                 <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />

@@ -4,7 +4,8 @@ export interface UsersSchema extends Document {
     name: string,
     surname: string,
     email: string,
-    password: string
+    password: string,
+    purchasedProducts: string[]
 }
 
 const usersSchema: Schema<UsersSchema> = new mongoose.Schema({
@@ -23,6 +24,10 @@ const usersSchema: Schema<UsersSchema> = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    purchasedProducts: {
+        type: [Array],
+        required: false
     }
 }, {
     timestamps: true

@@ -1,4 +1,4 @@
-type DetermineEndpoint = {
+type DetermineUseFetchGetEndpoint = {
   defaultEndpoint: string,
   limit?: number,
   latest?: boolean,
@@ -6,7 +6,7 @@ type DetermineEndpoint = {
   _id?: string
 }
 
-export const determineEndpoint = ({defaultEndpoint, limit, latest, category, _id}: DetermineEndpoint): string => {
+export const determineUseFetchGetEndpoint = ({defaultEndpoint, limit, latest, category, _id}: DetermineUseFetchGetEndpoint): string => {
   const isLatest: string = latest ? "true" : "false";
   const endpoint: string = limit && !category 
   ? `${defaultEndpoint}?limit=${limit}&latest=${isLatest}` : 

@@ -24,8 +24,8 @@ export const SignUpPage = (): ReactElement => {
             fields={[
                 "name",
                 "surname",
-                "password",
-                "confirm password"
+                "email",
+                "password"
             ]}
             imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
             alternativeLinkDescription="Already have an account?"

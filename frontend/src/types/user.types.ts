@@ -2,5 +2,6 @@ export type User = {
     name: string,
     surname: string,
     email: string,
-    password: string
+    password: string,
+    purchasedProducts: string[]
 }

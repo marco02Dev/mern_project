@@ -5,25 +5,41 @@ import { TextSection } from "../components/sections/TextSection";
 import { BrowseSection } from "../components/sections/browseSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 import { TextImageSection } from "../components/sections/TextImageSection";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { User } from "../types/user.types";
+import { capitalizeFirstLetter } from "../utils/capitalize-first-letter.util";
 
 export const HomePage: FC = (): ReactElement => {
-
+    const login = useSelector((state: RootState) => state.login);
+    const { isLoggedIn }: { isLoggedIn: boolean } = login;
+    
+    const name = (login?.user as User)?.name ?? "";
     const { imagesEndpoint }: Endpoints = endpoints;
+
 
     return <>
         <HeroSection
             eyebrowText="Learn. Grow. Succeed."
-            title="Your Future Starts Here"
-            description="Join our community of learners and elevate your skills with our expertly crafted courses. Sign up today!"
-            buttonLabel="Sign in"
-            buttonLink="/signin"
+            title={
+                isLoggedIn && name
+                    ? `Welcome back ${capitalizeFirstLetter(name)}`
+                    : "Your Future Starts Here"
+            }
+            description={
+                isLoggedIn
+                    ? "Continue your learning journey and explore new opportunities tailored just for you."
+                    : "Join our community of learners and elevate your skills with our expertly crafted courses. Sign up today!"
+            }
+            buttonLabel={isLoggedIn ? "Go to account" : "Login"}
+            buttonLink={isLoggedIn ? "/account" : "/login"}
             imageSrc={`${imagesEndpoint}/pages/homepage/hero-section.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
         />
 
         <SmallProductsPreviewSection
-            title="Latest courses"
+            title={isLoggedIn ? "Your courses" : "Latest Courses"}
             all
             threeBoxes
             latest

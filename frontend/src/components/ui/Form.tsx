@@ -81,7 +81,7 @@ export const Form: FC<FormProps> = ({
         </TextRevealWrapper>
 
         <StyledSpace medium vertical />
-        <form onSubmit={(event) => login(event, dispatch)}>
+        <form onSubmit={(event) => submitEvent(event, dispatch)}>
             <FieldSetPersonalInfoBox textArea={textArea} fields={fields}/>
 
             <StyledSpace small vertical/>

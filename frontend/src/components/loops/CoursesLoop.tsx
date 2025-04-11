@@ -4,7 +4,7 @@ import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { Course } from "../../types/course.types";
 import { CourseBox } from "../boxes/CourseBox";
-import { determineEndpoint } from "../../utils/determine-endpoint.util";
+import { determineUseFetchGetEndpoint } from "../../utils/determine-endpoint.util";
 import { endpoints, Endpoints } from "../../config/endpoints.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
@@ -32,7 +32,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category }: Courses
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
-  const endpoint: string = determineEndpoint({
+  const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
     limit: limit,
     latest: latest,
