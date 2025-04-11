@@ -1,6 +1,3 @@
-
-
-
 export type Endpoints ={
     usersEndpoint: string,
     coursesEndpoint: string,
@@ -8,7 +5,7 @@ export type Endpoints ={
 }
 
 export const endpoints: Endpoints = {
-    usersEndpoint: 'http://192.168.1.193:8000/api/account',
-    coursesEndpoint: 'http://192.168.1.193:8000/api/courses',
-    imagesEndpoint: 'http://192.168.1.193:8000/images'
+    usersEndpoint: import.meta.env.VITE_USERS_ENDPOINT,
+    coursesEndpoint: import.meta.env.VITE_PRODUCTS_ENDPOINT,
+    imagesEndpoint: import.meta.env.VITE_IMAGES_ENDPOINT
 }
