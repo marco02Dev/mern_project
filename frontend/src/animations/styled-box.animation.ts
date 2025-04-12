@@ -5,23 +5,19 @@ const animationDuration: string = "0.3s";
 
 const removeBorder: Keyframes = keyframes`
     0% {
-        bottom: -2%;
-        right: -2%;
+        border-width: 1.5vh;
     };
     100% {
-        bottom: 0;
-        right: 0;
+        border-width: 0vh;
     }
 `;
 
 const removealBorder: Keyframes = keyframes`
     0% {
-        bottom: 0%;
-        right: 0%;
+        border-width: 0vh;
     };
     100% {
-        bottom: -2%;
-        right: -2%;
+        border-width: 1.5vh;
     }
 `;
 

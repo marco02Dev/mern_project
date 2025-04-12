@@ -53,11 +53,12 @@ const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
     background-color: ${({$color}) => $color};
     width: ${({$button}) => $button ? "100%" : "100%"};
     height: 100%;
-    bottom: 0;
+    top: 0;
+    left: 0;
     z-index: 0;
-    bottom: ${({$button}) => $button ? "-2%" : "-2%"};
-    right: ${({$button}) => $button ? "-2%" : "-2%"};
-
+    border-bottom: 1.5vh solid black;
+    border-right: 1.5vh solid black;
+    clip-path: inset(1.5vh 0% 0% 1.5vh);
 `;
 
 type StyledBoxProps = {

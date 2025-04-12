@@ -27,10 +27,13 @@ const ButtonShadow = styled.div<{$color: string}>`
     background-color: ${({$color}) => $color};
     width: 100%;
     height: 100%;
-    bottom: 0;
+    top: 0;
+    left: 0;
     z-index: 0;
-    bottom: -6%;
-    right: -3%;
+    border-bottom: 0.6vh solid black;
+    border-right: 0.6vh solid black;
+    clip-path: inset(0.6vh 0% 0% 0.6vh);
+
 `;
 
 export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action, type}: StyledButtonProps): ReactElement => {

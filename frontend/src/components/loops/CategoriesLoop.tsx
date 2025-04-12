@@ -4,16 +4,21 @@ import { CategoryBox } from "../boxes/CategoryBox";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
+const Wrapper = styled.div<{$isMobile: boolean}>`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const CategoriesLoop: FC = (): ReactElement => {
-    return <Wrapper>
+
+    const { isMobile }: UseMediaQuery = useMediaQuery();
+
+    return <Wrapper $isMobile={isMobile}>
         {categories.map((cat, index): ReactElement => {
             const isEven: boolean = (index + 1) % 2 === 0;
             const isOdd: boolean = (index + 1) % 2 !== 0;
@@ -25,8 +30,10 @@ export const CategoriesLoop: FC = (): ReactElement => {
                     to={`/courses/${cat}`}
                 />
 
-                {isOdd && <StyledSpace vertical height={"20vh"} width={"3.4%"}/>}
-                {isEven && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
+                {isOdd && !isMobile && <StyledSpace vertical height={"20vh"} width={"3.4%"}/>}
+                {isEven && !isMobile && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
+
+                {isMobile && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
             </ Fragment>
         })}    
     </ Wrapper>

@@ -16,8 +16,6 @@ const InnerWrapper = styled.div`
     flex-direction: column;
 
     .image-wrapper {
-        padding-left: 5%;
-        padding-right: 5%;
         width: 100%;
         height: 55%;
         box-sizing: content-box;
@@ -35,8 +33,6 @@ const InnerWrapper = styled.div`
     }
 
     .text-wrapper {
-        padding-left: 5%;
-        padding-right: 5%;
         width: 80%;
         height: 45%;
         align-items: start;

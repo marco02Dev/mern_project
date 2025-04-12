@@ -15,7 +15,6 @@ export const LogInPage = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);
     const isLoginPage: boolean = useSelector((state: RootState) => state.routeStatus.isLoginPage)
     const { isLoggedIn }: { isLoggedIn: boolean } = login;
-    console.log(isLoginPage);
 
     useEffect(() => {
         dispatch(setIsLoginPage(true));

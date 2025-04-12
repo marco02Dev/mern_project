@@ -32,7 +32,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-  console.log(`Products: ${purchasedProducts}`)
+
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
     limit: limit,

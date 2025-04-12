@@ -1,7 +1,7 @@
 import { Service } from "../types/service.type";
 import { Endpoints, endpoints } from "../config/endpoints.config";
 
-export const signUpService: Service = async (event, dispatch): Promise<void> => {
+export const signUpService: Service = async (event): Promise<void> => {
     event.preventDefault();
     const { usersEndpoint }: Endpoints = endpoints
     
@@ -11,8 +11,7 @@ export const signUpService: Service = async (event, dispatch): Promise<void> => 
     const name = formData.get('name') as string;
     const surname = formData.get('surname') as string;
     const password = formData.get('password') as string;
-    const confirmPassword = formData.get('confirm-password') as string;
-    console.log(name)
+    const email = formData.get('email') as string;
 
     try {
         const response = await fetch(`${usersEndpoint}/signup`, {
@@ -23,8 +22,8 @@ export const signUpService: Service = async (event, dispatch): Promise<void> => 
             body: JSON.stringify({
                 name: name,
                 surname: surname,
-                password: password,
-                confirmPassword: confirmPassword
+                email: email,
+                password: password
             })
         });
 

@@ -16,11 +16,9 @@ export const getUserPurchasedProducts = async ({_id}: GetuserInfoData): Promise<
         } else {
             const json = await response.json();
             const data: User = json.data[0];
-            console.log(data);
 
             if(data) {
                 const purchasedProducts = data.purchasedProducts as string[];
-                console.log(purchasedProducts)
                 return purchasedProducts         
             } else {
                 return null

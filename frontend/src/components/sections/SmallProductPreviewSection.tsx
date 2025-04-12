@@ -42,7 +42,6 @@ export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({
             const products = await getUserPurchasedProducts({ _id });
             setProductsPurchased(products);
           } catch (error) {
-            console.error("Errore nel recupero prodotti:", error);
             setProductsPurchased(null);
           }
         }
@@ -58,7 +57,7 @@ export const SmallProductsPreviewSection: FC<TwoProductPreviewSectionProps> = ({
     if(isTablet) {
         limit = 2;
     } else if(isMobile) {
-        limit = 1;
+        limit = 2;
     }
 
     return <StyledSection justifyCenter height={isMobile || isTablet ? "100vh" : "100vh"} paddingLeft={sizes.spaces.medium}  paddingRight={sizes.spaces.medium}>

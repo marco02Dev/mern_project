@@ -24,6 +24,5 @@ export const determineUseFetchGetEndpoint = ({defaultEndpoint, limit, latest, ca
   _id && !productsId ? `${defaultEndpoint}/${category}/${_id}` : 
   productsId && productsIdQuery !== null ? `${defaultEndpoint}/?${productsIdQuery?.join("&")}` : defaultEndpoint;
 
-  console.log(endpoint)
   return endpoint;
 }

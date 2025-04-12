@@ -12,11 +12,9 @@ import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 100%;
+    height: clamp(30vh, 30vh + 20vw, 100vw);
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
 `;
 
 const ImageWrapper = styled.div`
@@ -47,17 +45,19 @@ export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to}: Cate
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
-    return <StyledBox width="48%" height="50%">
+    return <StyledBox width={isMobile ? "100%" : "48%"} height={isMobile ? "18vh" : "30vh"}>
         <Wrapper>
-            {!isMobile && <ImageWrapper>
+            <ImageWrapper>
                 <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
-            </ImageWrapper> }
+            </ImageWrapper> 
 
             <TextWrapper>
                 <StyledText tag="h3" content={title} />
                 <StyledSpace small vertical />
-                <StyledText tag="p" size="h5"  content={description} smallParagraph />
-                <StyledSpace small vertical/>
+                {!isMobile && <>
+                    <StyledText tag="p" size="h5"  content={description} smallParagraph />
+                    <StyledSpace small vertical/>
+                </>}
                 <StyledButton content="Discover" to={to} headerElement/>
             </TextWrapper>
         </Wrapper>

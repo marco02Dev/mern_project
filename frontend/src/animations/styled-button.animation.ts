@@ -29,23 +29,19 @@ export const buttonHoverAnimation: RuleSet<{$hoverColor: string, $content: strin
 
 const removeBorder: Keyframes = keyframes`
     0% {
-        bottom: -6%;
-        right: -3%;
+        border-width: 0.6vh;
     };
     100% {
-        bottom: 0;
-        right: 0;
+        border-width: 0vh;
     }
 `;
 
 const removealBorder: Keyframes = keyframes`
     0% {
-        bottom: 0%;
-        right: 0%;
+        border-width: 0vh;
     };
     100% {
-        bottom: -6%;
-        right: -3%;
+        border-width: 0.6vh;
     }
 `;
 
