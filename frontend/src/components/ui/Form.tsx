@@ -9,9 +9,9 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { FieldSetPersonalInfoBox } from "../boxes/FieldsetPersonalInfoBox";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
-import { login } from "../../services/login.service";
+import { loginService } from "../../services/login.service";
 import { sendEmail } from "../../services/contact.service";
-import { signUp } from "../../services/singup.service";
+import { signUpService } from "../../services/singup.service";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices, Service } from "../../types/service.type";
@@ -57,11 +57,11 @@ export const Form: FC<FormProps> = ({
     let navigateFunction: NavigateFunction | undefined;
 
     if(service === "login")  {
-        submitEvent = login;
+        submitEvent = loginService;
     } else if(service === "send-email") {
         submitEvent = sendEmail;
     } else if(service === "sign-up") {
-        submitEvent = signUp;
+        submitEvent = signUpService;
     }
 
     if(service === "login" || service === "sign-up") {

@@ -1,7 +1,7 @@
 import { Service } from "../types/service.type";
 import { Endpoints, endpoints } from "../config/endpoints.config";
 
-export const signUp: Service = async (event, dispatch): Promise<void> => {
+export const signUpService: Service = async (event, dispatch): Promise<void> => {
     event.preventDefault();
     const { usersEndpoint }: Endpoints = endpoints
     

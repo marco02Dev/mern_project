@@ -5,7 +5,7 @@ import { Service } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 
-export const login: Service = async (event, dispatch, navigateFunction): Promise<void> => {
+export const loginService: Service = async (event, dispatch, navigateFunction): Promise<void> => {
     event.preventDefault();
     const form: HTMLFormElement = event.currentTarget;
     const formData: FormData = new FormData(form);

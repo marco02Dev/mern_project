@@ -22,7 +22,7 @@ export const AccountPage: FC = (): ReactElement => {
                 eyebrowText="Learn. Grow. Succeed."
                 title={`Welcome back ${capitalizeFirstLetter(name)}`}
                 description="Access your enrolled courses and continue your learning journey today!"
-                buttonLabel="Go to My Courses"
+                buttonLabel="Logout"
                 buttonLink="/my-courses"
                 imageSrc={`${endpoints.imagesEndpoint}/pages/homepage/hero-section.webp`}
                 imageAlt="Minimalist desk setup with monitor and coding posters"

@@ -8,6 +8,7 @@ import { createNewDocumentByModel } from "../queries/create-new-document-by-mode
 import { deleteDocumentByModel } from "../queries/delete-document-by-model";
 import { getDocumentById } from "../queries/get-document-by-id";
 import { Request } from "express";
+import bcrypt from 'bcrypt';
 
 export const getAllUsers: Controller = async (req, res) => {
     getAllDocumentsByModel<UsersSchema>({
