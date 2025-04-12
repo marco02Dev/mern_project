@@ -15,7 +15,7 @@ import { signUp } from "../../services/singup.service";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices, Service } from "../../types/service.type";
-
+import { useNavigate, NavigateFunction } from "react-router-dom";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,
@@ -54,12 +54,18 @@ export const Form: FC<FormProps> = ({
 }: FormProps ): ReactElement => {
 
     let submitEvent: Service;
+    let navigateFunction: NavigateFunction | undefined;
+
     if(service === "login")  {
         submitEvent = login;
     } else if(service === "send-email") {
         submitEvent = sendEmail;
     } else if(service === "sign-up") {
         submitEvent = signUp;
+    }
+
+    if(service === "login" || service === "sign-up") {
+        navigateFunction = useNavigate();
     }
  
     const dispatch: Dispatch = useDispatch()
@@ -81,7 +87,7 @@ export const Form: FC<FormProps> = ({
         </TextRevealWrapper>
 
         <StyledSpace medium vertical />
-        <form onSubmit={(event) => submitEvent(event, dispatch)}>
+        <form onSubmit={(event) => submitEvent(event, dispatch, navigateFunction)}>
             <FieldSetPersonalInfoBox textArea={textArea} fields={fields}/>
 
             <StyledSpace small vertical/>

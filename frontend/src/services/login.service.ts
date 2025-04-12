@@ -3,13 +3,13 @@ import { setLoggedIn } from "../store/slices/login.slice";
 import { User } from "../types/user.types";
 import { Service } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
-import { isUserDataInvalid } from "../utils/is-user-data-invalid.util"; // <-- qui import
+import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 
-export const login: Service = async (event, dispatch): Promise<void> => {
+export const login: Service = async (event, dispatch, navigateFunction): Promise<void> => {
     event.preventDefault();
     const form: HTMLFormElement = event.currentTarget;
     const formData: FormData = new FormData(form);
-    const loginEndpoint: string = `${endpoints.usersEndpoint}/login`
+    const loginEndpoint: string = `${endpoints.usersEndpoint}/login`;
 
     const name = formData.get('name');
     const surname = formData.get("surname");
@@ -46,8 +46,9 @@ export const login: Service = async (event, dispatch): Promise<void> => {
                 const _id: string = json.data._id;
                 user._id = _id;
 
-                if(dispatch as Dispatch && dispatch !== undefined) {
+                if(dispatch as Dispatch && dispatch !== undefined && navigateFunction) {
                     dispatch(setLoggedIn(user));
+                    navigateFunction('/account')
                 }
             }
         } catch {

@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { FC } from "react";
+import { LoginState } from "../../store/slices/login.slice";
+import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;
@@ -68,6 +70,13 @@ export const PageTransitionTitle: FC = (): ReactNode => {
             titleCapitalized = "Welcome back";
         }
     }
+
+    const { isLoggedIn, user }: LoginState = useSelector((state: RootState) => state.login);
+
+    if(isLoggedIn && pathName === '/account' && user) {
+        titleCapitalized = `Welcome back ${capitalizeFirstLetter(user?.name)}`
+    }
+
 
     if(!hasLocationChanged || is404) {
         return null;

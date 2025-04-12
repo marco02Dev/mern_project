@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../types/user.types";
 
-interface AuthState {
+export interface LoginState {
     isLoggedIn: boolean;
     user?: User
 }
 
-const initialState: AuthState = {
+const initialState: LoginState = {
     isLoggedIn: false,
     user: undefined,
 };

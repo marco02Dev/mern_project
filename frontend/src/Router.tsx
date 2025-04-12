@@ -9,8 +9,15 @@ import { SignUpPage } from "./pages/SignUpPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Productpage } from "./pages/ProductPage";
 import { AccountPage } from "./pages/AccountPage";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
+import { Navigate } from "react-router-dom";
+
 
 export const Router = (): ReactElement => {
+
+    const isLoggedIn: boolean = useSelector((state: RootState) => state.login.isLoggedIn);
+
     return <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/about' element={<AboutPage />} />
@@ -21,7 +28,8 @@ export const Router = (): ReactElement => {
         <Route path="/courses/:category/:product" element={<Productpage />} />
 
         <Route path='/account' element={<AccountPage />} />
-        <Route path='/login' element={<LogInPage />} />
+
+        <Route path='/login' element={isLoggedIn ? <Navigate to="/account" /> : <LogInPage />} />
         <Route path='/signup' element={<SignUpPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
