@@ -1,0 +1,1 @@
+export const isString = (data: any): boolean => typeof data === "string";

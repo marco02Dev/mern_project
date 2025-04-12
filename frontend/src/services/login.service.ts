@@ -3,6 +3,7 @@ import { setLoggedIn } from "../store/slices/login.slice";
 import { User } from "../types/user.types";
 import { Service } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
+import { isUserDataInvalid } from "../utils/is-user-data-invalid.util"; // <-- qui import
 
 export const login: Service = async (event, dispatch): Promise<void> => {
     event.preventDefault();
@@ -15,13 +16,18 @@ export const login: Service = async (event, dispatch): Promise<void> => {
     const email = formData.get('email');
     const password = formData.get("password");
 
-    if(name && surname && email && password ) {
+    if(name && surname && email && password) {
 
         const user: User = {
             name: name as string,
             surname: surname as string,
             email: email as string,
             password: password as string
+        };
+
+        if (isUserDataInvalid(user)) {
+            alert("I dati inseriti non sono validi.");
+            return; 
         }
 
         try {
@@ -34,7 +40,7 @@ export const login: Service = async (event, dispatch): Promise<void> => {
             });
             
             if(!response.ok) {
-                throw new Error("Error");
+                throw new Error("Errore nel login.");
             } else {
                 const json: any = await response.json();
                 const _id: string = json.data._id;
@@ -45,8 +51,10 @@ export const login: Service = async (event, dispatch): Promise<void> => {
                 }
             }
         } catch {
-            throw new Error("Error"); 
+            throw new Error("Errore durante la richiesta di login."); 
         }
 
+    } else {
+        alert("Compila tutti i campi.");
     }
-}
+};

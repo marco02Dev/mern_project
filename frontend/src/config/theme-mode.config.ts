@@ -1,1 +1,1 @@
-export const defaultMode: string = "light";
+export const defaultMode: string = import.meta.env.VITE_DEFAULT_THEME_MODE || "light";
