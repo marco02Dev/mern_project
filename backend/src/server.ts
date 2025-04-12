@@ -7,8 +7,11 @@ import productsRouter from './routes/products.route';
 import usersRouter from './routes/users.route';
 import path from "path";
 import contactRouter from './routes/contact.route';
+import passport from 'passport';
+import { initializePassport } from './config/passport.config';
 
 const app: Express = express();
+initializePassport(passport);
 
 app.use(cors())
 app.use(express.json());
