@@ -13,7 +13,6 @@ import { capitalizeFirstLetter } from "../utils/capitalize-first-letter.util";
 export const HomePage: FC = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);
     const { isLoggedIn }: { isLoggedIn: boolean } = login;
-    const isLoginPage: boolean = useSelector((state: RootState) => state.routeStatus.isLoginPage)
     const name: string = (login?.user as User)?.name ?? "";
     const { imagesEndpoint }: Endpoints = endpoints;
 
@@ -54,11 +53,11 @@ export const HomePage: FC = (): ReactElement => {
                 },
                 {
                     title: "Tailored Solutions",
-                    content: "We adapt to your specific needs,"
+                    content: "We adapt to your specific needs."
                 },
                 {
                     title: "Reliable Support",
-                    content: "Count on our team to be there when you need us most"
+                    content: "Count on our team to be there when you need us most."
                 }
             ]}
         />

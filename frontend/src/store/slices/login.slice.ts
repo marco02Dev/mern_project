@@ -12,7 +12,7 @@ const initialState: LoginState = {
 };
 
 export const loginSlice = createSlice({
-    name: "auth",
+    name: "login",
     initialState,
     reducers: {
         setLoggedIn: (

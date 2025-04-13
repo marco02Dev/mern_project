@@ -5,24 +5,28 @@ import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledButton } from "../themed/StyledButton";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { usePurchasedProducts } from "../../hooks/usePurchasedProducts";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
     all?: boolean,
-    limit: number
+    limit: number,
+    userProductsPurchased?: boolean;
 }
 
 export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> = ({
     limit,
-    category
+    category,
+    userProductsPurchased
 }: LargeProductsPreviewSectionProps): ReactElement => {
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const [products, setProducts] = useState<number>(limit);
+    const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
 
     return <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
         <StyledSpace large vertical/>
 
-        <CoursesLoop limit={products} category={category}/>
+        <CoursesLoop purchasedProducts={productsPurchased} limit={products} category={category}/>
         
         <StyledSpace small vertical />
         <StyledSpace small vertical />

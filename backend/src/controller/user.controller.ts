@@ -63,7 +63,7 @@ export const logUserIntoAccount: Controller<UsersParams, {}, UsersSchema> = asyn
                 if(isPasswordMatching) {
                     console.log(`User ${name} ${surname} logged in`);
                     console.log(isPasswordMatching)
-                    sendSuccessMessage({response: res, statusCode: 200, data:{_id: user._id as string}});
+                    sendSuccessMessage({response: res, statusCode: 200, data:{_id: userFound._id as string}});
                 } else {
                     console.log("Password is not matching");
                     sendErrorMessage({response: res, statusCode: 400})

@@ -1,11 +1,11 @@
-import { Service } from "../types/service.type";
+import { FormService } from "../types/service.type";
 import { Endpoints, endpoints } from "../config/endpoints.config";
 
-export const signUpService: Service = async (event): Promise<void> => {
-    event.preventDefault();
+export const signUpService: FormService = async (event): Promise<void> => {
+    event?.preventDefault();
     const { usersEndpoint }: Endpoints = endpoints
     
-    const form = event.currentTarget;
+    const form = event?.currentTarget;
     const formData = new FormData(form);
 
     const name = formData.get('name') as string;

@@ -109,14 +109,13 @@ export const CourseBox = ({
                         </TextRevealWrapper>
                     </div>
 
-
                     <StyledSpace small vertical height="5%" />
 
                     <TextRevealWrapper left>
                         <StyledText tag="h5" size="p" largeParagraph  content={title} />
                     </TextRevealWrapper>
 
-                    <StyledSpace small vertical height="5%" />
+                    <StyledSpace verySmall vertical height="5%" />
 
                     <FadeInWrapper>
                         <StyledButton unsetShadow content={"Discover"} action={handleButtonClick} />

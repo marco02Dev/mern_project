@@ -56,9 +56,9 @@ const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
     top: 0;
     left: 0;
     z-index: 0;
-    border-bottom: 1.5vh solid black;
-    border-right: 1.5vh solid black;
-    clip-path: inset(1.5vh 0% 0% 1.5vh);
+    border-bottom: ${() => sizes.spaces.small} solid black;
+    border-right: ${() => sizes.spaces.small} solid black;
+    clip-path: ${() => `inset(${sizes.spaces.small} 0% 0% ${sizes.spaces.small})`} ;
 `;
 
 type StyledBoxProps = {

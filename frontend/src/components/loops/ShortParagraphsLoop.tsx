@@ -19,13 +19,11 @@ export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({contentSectio
                 return <Fragment key={index}>
                     <div>
                         <TextRevealWrapper left>
-                            <StyledText tag="h3" content={title}/>
+                            <StyledText tag="h3" size="h4" content={title}/>
                         </TextRevealWrapper>
 
-                        <StyledSpace verySmall vertical />
-
                         <TextRevealWrapper>
-                            <StyledText tag="p" content={content}/>
+                            <StyledText tag="p" smallParagraph content={content}/>
                         </TextRevealWrapper>
                         <StyledSpace medium vertical />
                     </div>

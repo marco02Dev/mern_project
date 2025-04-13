@@ -20,7 +20,7 @@ export const TextReaveal: RuleSet<{$revealText: boolean, $delayed: string}> = cs
         transform: ${({$left}) => $left ? "translateX(-100%)" : "translateY(100%)"};
         ${({$revealText, $left, $delayed}) => $revealText && css`
             transform: translateY(0) translateX(0);
-            transition: transform ${$left ? "1.5s" : "1s"} ease-in-out ${$delayed};
+            transition: transform ${$left ? "1s" : "1s"} ease-in-out ${$delayed};
         `};
     }
 `;
