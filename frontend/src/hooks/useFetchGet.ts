@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
 type DataWrapper<T> = {
   data: T; 
@@ -10,17 +10,15 @@ type UseFetchResult<T> = {
   error: string | null;
 };
 
-export const useFetchGet = <T>(endpoint: string, category?: string): UseFetchResult<T> => {
+export const useFetchGet = <T>(endpoint: string, setProductsNumber?: Dispatch<SetStateAction<number | undefined>>): UseFetchResult<T> => {
   const [objectData, setObjectData] = useState<DataWrapper<T> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchEndpoint: string = category ? `${endpoint}/${category}` : endpoint;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(fetchEndpoint);
+        const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -35,6 +33,13 @@ export const useFetchGet = <T>(endpoint: string, category?: string): UseFetchRes
 
     fetchData();
   }, [endpoint]);
+
+  // Effetto separato per aggiornare il numero di prodotti se è un array
+  useEffect(() => {
+    if (objectData && Array.isArray(objectData.data) && setProductsNumber) {
+      setProductsNumber(objectData.data.length);
+    }
+  }, [objectData, setProductsNumber]);
 
   return { objectData, loading, error };
 };

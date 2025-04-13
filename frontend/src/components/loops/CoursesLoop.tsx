@@ -1,4 +1,4 @@
-import { Fragment, ReactElement, useContext } from "react";
+import { Dispatch, Fragment, ReactElement, SetStateAction, useContext, useEffect } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
@@ -25,24 +25,25 @@ type CoursesLoop = {
   limit?: number,
   latest?: boolean,
   category?: string,
-  purchasedProducts?: string[] | null
+  purchasedProducts?: string[] | null,
+  setProductsNumber: Dispatch<SetStateAction<number | undefined>>
 }
 
-export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts }: CoursesLoop): ReactElement => {
+export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts, setProductsNumber }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
-    limit: limit,
     latest: latest,
     category: category,
     productsId: purchasedProducts && purchasedProducts
   });
 
-  const { objectData, loading, error } = useFetchGet<Course[]>(endpoint);
+  const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber);
   const courses = objectData?.data;
+  const limitedCourses: Course[] | undefined = courses?.slice(0, limit);
   const backgroundColor: string = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
 
   if (loading) {
@@ -57,8 +58,10 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
       return <StyledText content="No courses available" tag="h3" />;
   }
 
+
+
   return <CoursesWrapper $backgroundColor={backgroundColor}>
-    {courses.map((course: Course, index: number): ReactElement => {
+    {limitedCourses?.map((course: Course, index: number): ReactElement => {
       const istheThirdOne: boolean = (index + 1) % 3 === 0;
       const isEven: boolean = (index + 1) % 2 === 0;
       const isOdd: boolean = (index + 1) % 2 !== 0;
