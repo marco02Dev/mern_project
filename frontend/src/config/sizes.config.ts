@@ -39,7 +39,7 @@ export let sizes: Sizes = {
             verySmall: "clamp(1vh, 0.2vh + 1vw, 100vw)",
             small: "clamp(2.4vh, 0.5vh + 1vw, 100vw)",  
             medium: "clamp(2.8vh, 0.8vh + 1vw, 100vw)",   
-            large: "clamp(4vh, 1vh + 2vw, 100vw)" 
+            large: "clamp(2vh, 1vh + 1.5vw, 100vw)" 
         }
     },
     lineHeights: {
@@ -54,7 +54,7 @@ export let sizes: Sizes = {
             verySmall: "clamp(1.2vh, 0.3vh + 1.2vw, 100vw)",
             small: "clamp(2.8vh, 0.6vh + 1.2vw, 100vw)",
             medium: "clamp(3.2vh, 1vh + 1.2vw, 100vw)",
-            large: "clamp(4.8vh, 1.2vh + 1.2vw, 100vw)"
+            large: "clamp(2.6vh, 1vh + 1.8vw, 100vw)"
         },
     },
     spaces: {

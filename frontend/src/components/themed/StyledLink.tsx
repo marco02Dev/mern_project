@@ -65,6 +65,7 @@ export const LinkWrapper = styled(Link)<LinkWrapperProps>`
                     padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
                     padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
                     padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
+                    border: clamp(0.1vh, 0.1vh + 0.1vw, 100vh) solid black !important;
                     span {
                         font-size: 100%;
                     }

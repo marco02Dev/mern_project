@@ -58,7 +58,7 @@ export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to}: Cate
                     <StyledText tag="p" size="h5"  content={description} smallParagraph />
                     <StyledSpace small vertical/>
                 </>}
-                <StyledButton content="Discover" to={to} headerElement/>
+                <StyledButton content="Discover" to={to} unsetShadow/>
             </TextWrapper>
         </Wrapper>
     </StyledBox>;

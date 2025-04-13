@@ -22,11 +22,13 @@ const InnerWrapper = styled.div`
         div {
             width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: center;
             img {
                 object-fit: cover;
                 padding-top: 5%;
                 padding-bottom: 5%;
-                width: 90%;
+                width: 94%;
                 height: 90%;
             }
         }
@@ -40,6 +42,8 @@ const InnerWrapper = styled.div`
         display: flex;
         flex-direction: column;
         text-align: start;
+        padding-left: 10%;
+        padding-right: 10%;
         div:last-child {
             display: inline-block;
         }
@@ -98,7 +102,6 @@ export const CourseBox = ({
                 </div>
 
                 <div className="text-wrapper">
-                    <StyledSpace small vertical height="10%" />
 
                     <div className="small-text">
                         <TextRevealWrapper>
@@ -110,13 +113,13 @@ export const CourseBox = ({
                     <StyledSpace small vertical height="5%" />
 
                     <TextRevealWrapper left>
-                        <StyledText tag="h5" content={title} />
+                        <StyledText tag="h5" size="p" largeParagraph  content={title} />
                     </TextRevealWrapper>
 
                     <StyledSpace small vertical height="5%" />
 
                     <FadeInWrapper>
-                        <StyledButton headerElement content={"Discover"} action={handleButtonClick} />
+                        <StyledButton unsetShadow content={"Discover"} action={handleButtonClick} />
                         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper>
                 </div>

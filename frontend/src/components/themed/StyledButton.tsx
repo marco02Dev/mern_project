@@ -8,18 +8,17 @@ import { styledButtonHoverAnimation } from "../../animations/styled-button.anima
 type StyledButtonProps = {
     content: string,
     to?: string,
-    headerElement?: boolean,
+    unsetShadow?: boolean,
     action?: Function,
     courseId?: string,
     type?: string
 }
 
-const ButtonWrapper = styled.div<{$headerElement?: boolean}>`
+const ButtonWrapper = styled.div<{$unsetShadow?: boolean}>`
     position: relative;
     padding: 0;
-    border: 0;
-    display: ${({$headerElement}) => $headerElement ? "flex" : "inline-block"};
-    ${({$headerElement}) => !$headerElement && styledButtonHoverAnimation}
+    display: ${({$unsetShadow}) => $unsetShadow? "flex" : "inline-block"};
+    ${({$unsetShadow}) => !$unsetShadow && styledButtonHoverAnimation}
 `;
 
 const ButtonShadow = styled.div<{$color: string}>`
@@ -36,7 +35,7 @@ const ButtonShadow = styled.div<{$color: string}>`
 
 `;
 
-export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement, action, type}: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action, type}: StyledButtonProps): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
@@ -56,13 +55,13 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement,
     }
 
 
-    return <ButtonWrapper as={as} type={type} $headerElement={headerElement} onClick={handleClick} >
+    return <ButtonWrapper as={as} type={type} $unsetShadow={unsetShadow} onClick={handleClick} >
         <StyledLink 
             content={content}
             to={to}
             backgroundColor={backGroundColor}
             color={color}
-            padding={headerElement ? 'headerElement' : "default"}
+            padding={unsetShadow? 'unsetShadowElement' : "default"}
             fontWeight={'700'}
             button
             size={"100%"}
@@ -71,7 +70,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, headerElement,
             
         />
 
-        {!headerElement && <ButtonShadow $color={shadowColor} />}
+        {!unsetShadow && <ButtonShadow $color={shadowColor} />}
 
     </ButtonWrapper>
 }

@@ -113,7 +113,7 @@ export const Header: FC = (): ReactElement => {
 
                 <DesktopNavInnerWrapper $width={'20%'} $flexEnd>
                     <FadeInWrapper>
-                        <StyledButton content={isLoggedIn ? "Account" : "Login"} to={isLoggedIn ? '/account' : "/login"} headerElement />
+                        <StyledButton content={isLoggedIn ? "Account" : "Login"} to={isLoggedIn ? '/account' : "/login"} unsetShadow/>
                     </FadeInWrapper>
                     <StyledSpace horizontal small />
                     <SwitchThemeModeButton />
