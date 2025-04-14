@@ -31,6 +31,8 @@ export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textAr
     return <StyledSection paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
 
         <MainWrapper $isTablet={isTablet}>
+            {isTablet && <StyledSpace large vertical />}
+
             {!isMobile && <ImageBorderedBox imgSrc={imgSrc} /> }
 
             {isMobile && <StyledSpace large vertical />}

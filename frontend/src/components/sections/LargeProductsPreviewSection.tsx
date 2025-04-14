@@ -34,7 +34,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
         <StyledSpace small vertical />
         <StyledSpace small vertical />
 
-        {productsNumber && products <= productsNumber && <StyledButton content="Load more" action={(): void => setProducts(isMobile ? products + 4 : products + 3)} /> }
+        {productsNumber && products <= productsNumber && <StyledButton unsetShadow content="Load more" action={(): void => setProducts(isMobile ? products + 4 : products + 3)} /> }
 
 
         <StyledSpace large vertical/>

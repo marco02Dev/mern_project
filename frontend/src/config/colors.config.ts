@@ -4,7 +4,8 @@ type ColorName =
   | 'buttonBackgroundColor' 
   | 'textColor' 
   | 'sideTextColor' 
-  | 'hoverColor';
+  | 'hoverColor'
+  | 'errorMessage';
 
 type Colors = {
   [key in 'dark' | 'light']: {
@@ -19,7 +20,8 @@ export const colors: Colors = {
         buttonBackgroundColor: 'gray',
         textColor: 'white',
         sideTextColor: 'gray',
-        hoverColor: '#FFC107'
+        hoverColor: '#FFC107',
+        errorMessage: "#D93025"
     },
     light: {
         backgroundColor: 'white',
@@ -27,6 +29,7 @@ export const colors: Colors = {
         buttonBackgroundColor: '#8d99ae',
         textColor: 'black',
         sideTextColor: 'gray',
-        hoverColor: '#003EF8'
+        hoverColor: '#003EF8',
+        errorMessage: "#D93025"
     }
 }

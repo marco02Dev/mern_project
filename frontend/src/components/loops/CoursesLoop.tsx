@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, ReactElement, SetStateAction, useContext, useEffect } from "react";
+import { Dispatch, Fragment, ReactElement, SetStateAction, useContext } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";

@@ -34,7 +34,6 @@ export const useFetchGet = <T>(endpoint: string, setProductsNumber?: Dispatch<Se
     fetchData();
   }, [endpoint]);
 
-  // Effetto separato per aggiornare il numero di prodotti se è un array
   useEffect(() => {
     if (objectData && Array.isArray(objectData.data) && setProductsNumber) {
       setProductsNumber(objectData.data.length);

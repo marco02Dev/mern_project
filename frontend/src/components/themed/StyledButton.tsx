@@ -18,7 +18,7 @@ const ButtonWrapper = styled.div<{$unsetShadow?: boolean}>`
     position: relative;
     padding: 0;
     display: ${({$unsetShadow}) => $unsetShadow? "flex" : "inline-block"};
-    ${({$unsetShadow}) => !$unsetShadow && styledButtonHoverAnimation}
+    ${({$unsetShadow}) => !$unsetShadow && styledButtonHoverAnimation};
 `;
 
 const ButtonShadow = styled.div<{$color: string}>`
@@ -32,7 +32,6 @@ const ButtonShadow = styled.div<{$color: string}>`
     border-bottom: 0.6vh solid black;
     border-right: 0.6vh solid black;
     clip-path: inset(0.6vh 0% 0% 0.6vh);
-
 `;
 
 export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action, type}: StyledButtonProps): ReactElement => {
@@ -55,7 +54,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
     }
 
 
-    return <ButtonWrapper as={as} type={type} $unsetShadow={unsetShadow} onClick={handleClick} >
+    return <ButtonWrapper $unsetShadow={unsetShadow} onClick={handleClick} >
         <StyledLink 
             content={content}
             to={to}

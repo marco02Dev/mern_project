@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useRef } from "react";
+import { ReactElement, FC, useRef, useState } from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -14,16 +14,18 @@ import { sendEmail } from "../../services/contact.service";
 import { signUpService } from "../../services/singup.service";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { AllowedServices, Service } from "../../types/service.type";
+import { AllowedServices, FormService, Service } from "../../types/service.type";
 import { useNavigate, NavigateFunction } from "react-router-dom";
+import { colors } from "../../config/colors.config";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,
+    $isTablet: boolean
     $paddingLeft: string,
     $paddingRight: string,
 
 }>`
-    width: ${({$isMobile}) => $isMobile ? "100%" : "50%"};
+    width: ${({$isMobile, $isTablet}) => $isMobile || $isTablet? "100%" : "50%"};
     height: 100%;
     padding-left: ${({$paddingLeft, $isMobile}) => $paddingLeft && !$isMobile ? $paddingLeft : "unset"};
     padding-right: ${({$paddingRight, $isMobile}) => $paddingRight && !$isMobile ? $paddingRight : "unset"};
@@ -53,8 +55,9 @@ export const Form: FC<FormProps> = ({
     service
 }: FormProps ): ReactElement => {
 
-    let submitEvent: Service;
+    let submitEvent: Service | FormService;
     let navigateFunction: NavigateFunction | undefined;
+    const [errorMessage, setErrorMessage] = useState<string | undefined>();
 
     if(service === "login")  {
         submitEvent = loginService;
@@ -69,7 +72,7 @@ export const Form: FC<FormProps> = ({
     }
  
     const dispatch: Dispatch = useDispatch()
-    const { isMobile } = useMediaQuery();
+    const { isMobile, isTablet } = useMediaQuery();
 
     const hiddenLinkRef = useRef<HTMLButtonElement | null>(null);
 
@@ -79,7 +82,7 @@ export const Form: FC<FormProps> = ({
         }
     };
 
-    return <FormWrapper $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
+    return <FormWrapper $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
         <StyledSpace medium vertical />
 
         <TextRevealWrapper left >
@@ -87,19 +90,23 @@ export const Form: FC<FormProps> = ({
         </TextRevealWrapper>
 
         <StyledSpace medium vertical />
-        <form onSubmit={(event) => submitEvent(event, dispatch, navigateFunction)}>
+        <form onSubmit={(event) => submitEvent(event, dispatch, navigateFunction, setErrorMessage)}>
             <FieldSetPersonalInfoBox textArea={textArea} fields={fields}/>
 
-            <StyledSpace small vertical/>
+            {textArea && <StyledSpace small vertical/>}
 
             {textArea ? <FieldSetAdditionalInfoBox textArea={textArea} />
             : null}
+
+            {textArea && <StyledSpace medium vertical/>}
             
             <FadeInWrapper>
-                <StyledSpace medium vertical/>
-                <StyledButton content="Send it" action={handleButtonClick} />
+                <StyledButton content="Send it" action={handleButtonClick} unsetShadow/>
                 <button className="is-hidden" ref={hiddenLinkRef} type="submit"></button>
             </FadeInWrapper>
+
+            {errorMessage && <StyledSpace medium vertical />}
+            {errorMessage && <StyledText color={colors.dark.errorMessage} tag="p" content={errorMessage} />}
         </form>
 
     </FormWrapper>

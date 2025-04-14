@@ -5,7 +5,7 @@ import { FormService } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 
-export const loginService: FormService = async (event, dispatch, navigateFunction): Promise<void> => {
+export const loginService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();
     if(event) {
         const form: HTMLFormElement = event?.currentTarget;
@@ -27,8 +27,8 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
             };
 
             if (isUserDataInvalid(user)) {
-                alert("I dati inseriti non sono validi.");
-                return; 
+                setErrorMessage && setErrorMessage("Some fields are invalid or missing");
+                throw new Error("Some fields are invalid or missing");
             }
 
             try {
@@ -41,7 +41,8 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                 });
                 
                 if(!response.ok) {
-                    throw new Error("Errore nel login.");
+                    setErrorMessage && setErrorMessage("Login failed. Please check your credentials and try again.");
+                    throw new Error("Login failed. Please check your credentials and try again.");
                 } else {
                     const json: any = await response.json();
                     const _id: string = json.data._id;
@@ -53,11 +54,13 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                     }
                 }
             } catch {
-                throw new Error("Errore durante la richiesta di login."); 
+                setErrorMessage && setErrorMessage("Login failed. Please check your credentials and try again.");
+                throw new Error("Login failed. Please check your credentials and try again.");
             }
 
         } else {
-            alert("Compila tutti i campi.");
+            setErrorMessage && setErrorMessage("Please fill in all the requested fields.");
+            throw new Error("Please fill in all the requested fields.");
         }
     }
 }
