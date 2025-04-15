@@ -1,4 +1,5 @@
 export type Endpoints ={
+    initSessionEndpoint: string
     usersEndpoint: string,
     coursesEndpoint: string,
     imagesEndpoint: string,
@@ -6,6 +7,7 @@ export type Endpoints ={
 }
 
 export const endpoints: Endpoints = {
+    initSessionEndpoint: import.meta.env.VITE_INIT_SESSION_ENDPOINT,
     usersEndpoint: import.meta.env.VITE_USERS_ENDPOINT,
     coursesEndpoint: import.meta.env.VITE_PRODUCTS_ENDPOINT,
     imagesEndpoint: import.meta.env.VITE_IMAGES_ENDPOINT,

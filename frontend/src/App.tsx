@@ -4,12 +4,37 @@ import { Router } from './Router';
 import { MobileMenu } from './components/template-parts/MobileMenu';
 import { PageTransitionElement } from './components/animated/PageTransitionElement';
 import { PageTransitionTitle } from './components/animated/PageTransitionTitle';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useLocationChange from './hooks/useLocationChange';
+import { endpoints } from './config/endpoints.config';
 
 function App() {
 
   const hasLocationChanged: boolean = useLocationChange();
+  const [nonce, setNonce] = useState();
+
+  useEffect(() => {
+    const initializeSession = async () => {
+      try {
+        const response = await fetch(endpoints.initSessionEndpoint, {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          throw new Error('Errore nell\'inizializzazione della sessione');
+        }
+
+        const data = await response.json();
+        setNonce(data.nonce)
+        console.log('Nonce ricevuto:', data.nonce);
+      } catch (error) {
+        console.error('Errore:', error);
+      }
+    };
+
+    initializeSession();
+  }, []);
 
   useEffect(() => {
     if (hasLocationChanged) {
@@ -17,6 +42,7 @@ function App() {
     }
   }, [hasLocationChanged]);
 
+  console.log(nonce)
 
   return <>
     <MobileMenu />

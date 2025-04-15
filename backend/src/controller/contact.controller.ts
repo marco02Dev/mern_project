@@ -5,7 +5,7 @@ import { validateEmail } from "../utils/validate-email.util";
 import { isString } from "../utils/is-string.util";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
 import { sendEmailService } from "../config/transporter.config";
-import { transporterData } from "../config/env";
+import { transporterData } from "../config/env.config";
 
 export const sendEmail: Controller = async (req: Request, res: Response) => {
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createProduct, getAllProducts, deleteProduct, updateProduct, getProductsByCategory, getProductsByCategoryAndName } from "../controller/product.controller";
-import { productsEndpointName } from "../config/env";
+import { productsEndpointName } from "../config/env.config";
 
 const productsRouter: Router = Router();
 const defaultEndpoint: string = `/${productsEndpointName}`;

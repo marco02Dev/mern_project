@@ -5,24 +5,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const env_1 = require("./config/env");
-const connect_to_database_1 = require("./config/connect-to-database");
+const express_session_1 = __importDefault(require("express-session"));
+const session_config_1 = require("./config/session.config");
+const env_config_1 = require("./config/env.config");
+const connect_to_database_config_1 = require("./config/connect-to-database.config");
 const products_route_1 = __importDefault(require("./routes/products.route"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
 const path_1 = __importDefault(require("path"));
 const contact_route_1 = __importDefault(require("./routes/contact.route"));
 const passport_1 = __importDefault(require("passport"));
+const reject_request_if_honey_pot_is_filled_middleware_1 = require("./middlewares/reject-request-if-honey-pot-is-filled.middleware");
 const passport_config_1 = require("./config/passport.config");
+const cors_options_config_1 = require("./config/cors-options.config");
+const crypto_1 = __importDefault(require("crypto"));
 const app = (0, express_1.default)();
+app.use((0, express_session_1.default)(session_config_1.sessionConfig));
 (0, passport_config_1.initializePassport)(passport_1.default);
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)(cors_options_config_1.corsOptions));
 app.use(express_1.default.json());
+app.use(reject_request_if_honey_pot_is_filled_middleware_1.rejectRequestIfHoneyPotIsFilled);
+app.use((req, res, next) => {
+    console.log("Session ID:", req.sessionID);
+    next();
+});
 app.use('/images', express_1.default.static(path_1.default.join(__dirname, '../public/images')));
 app.use("/api", products_route_1.default);
 app.use("/api", users_route_1.default);
 app.use("/api", contact_route_1.default);
-app.listen(env_1.port, '0.0.0.0', () => {
-    (0, connect_to_database_1.connectToDatabase)();
-    console.log(`Server is listen on ${env_1.port}`);
+app.get('/api/init-session', (req, res) => {
+    const nonce = crypto_1.default.randomBytes(16).toString('base64');
+    req.session.nonce = nonce; // Cast esplicito a 'any'
+    req.session.save((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Errore nel salvataggio della sessione' });
+        }
+        res.json({ nonce: req.session.nonce });
+    });
+});
+app.listen(env_config_1.port, '0.0.0.0', () => {
+    (0, connect_to_database_config_1.connectToDatabase)();
+    console.log(`Server is listen on ${env_config_1.port}`);
 });
 exports.default = app;

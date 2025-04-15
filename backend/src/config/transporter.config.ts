@@ -1,5 +1,5 @@
 import nodemailer, { SendMailOptions, Transporter } from "nodemailer";
-import { transporterData } from "./env";
+import { transporterData } from "./env.config";
 
 type SendEmailServiceData = {
     to: string,
