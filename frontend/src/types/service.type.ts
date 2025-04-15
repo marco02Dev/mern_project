@@ -11,6 +11,11 @@ export type FormService = (
     setErrorMessage?: DispatchReactState<SetStateAction<string | undefined>>
 ) => Promise<void>
 
+export type SendEmailService = (
+    event: FormEvent<HTMLFormElement>, 
+    setErrorMessage?: DispatchReactState<SetStateAction<string | undefined>>
+) => Promise<void>
+
 export type Service = (args: {
     dispatch?: Dispatch;
     navigate?: NavigateFunction;

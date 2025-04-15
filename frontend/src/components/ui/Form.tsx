@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useRef, useState } from "react";
+import { ReactElement, FC, useRef, useState, FormEvent } from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -14,8 +14,8 @@ import { sendEmail } from "../../services/contact.service";
 import { signUpService } from "../../services/singup.service";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { AllowedServices, FormService, Service } from "../../types/service.type";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { AllowedServices } from "../../types/service.type";
+import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
 
 const FormWrapper = styled.div<{
@@ -55,59 +55,54 @@ export const Form: FC<FormProps> = ({
     service
 }: FormProps ): ReactElement => {
 
-    let submitEvent: Service | FormService;
-    let navigateFunction: NavigateFunction | undefined;
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
-
-    if(service === "login")  {
-        submitEvent = loginService;
-    } else if(service === "send-email") {
-        submitEvent = sendEmail;
-    } else if(service === "sign-up") {
-        submitEvent = signUpService;
-    }
-
-    if(service === "login" || service === "sign-up") {
-        navigateFunction = useNavigate();
-    }
- 
-    const dispatch: Dispatch = useDispatch()
+    const dispatch: Dispatch = useDispatch();
+    const navigateFunction = useNavigate();
     const { isMobile, isTablet } = useMediaQuery();
-
     const hiddenLinkRef = useRef<HTMLButtonElement | null>(null);
 
-    const handleButtonClick = () => {
-        if (hiddenLinkRef.current) {
-        hiddenLinkRef.current.click();
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        if (service === "send-email") {
+            sendEmail(event, setErrorMessage);
+        } else if (service === "login") {
+            loginService(event, dispatch, navigateFunction, setErrorMessage);
+        } else if (service === "sign-up") {
+            signUpService(event, dispatch, navigateFunction, setErrorMessage);
         }
     };
 
-    return <FormWrapper $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
-        <StyledSpace medium vertical />
+    const handleButtonClick = () => {
+        hiddenLinkRef.current?.click();
+    };
 
-        <TextRevealWrapper left >
-            <StyledText tag="h2" content={title} lineHeight="h1"  />
-        </TextRevealWrapper>
+    return (
+        <FormWrapper $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
+            <StyledSpace medium vertical />
 
-        <StyledSpace medium vertical />
-        <form onSubmit={(event) => submitEvent(event, dispatch, navigateFunction, setErrorMessage)}>
-            <FieldSetPersonalInfoBox textArea={textArea} fields={fields}/>
+            <TextRevealWrapper left>
+                <StyledText tag="h2" content={title} lineHeight="h1" />
+            </TextRevealWrapper>
 
-            {textArea && <StyledSpace small vertical/>}
+            <StyledSpace medium vertical />
+            <form onSubmit={handleSubmit}>
+                <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
 
-            {textArea ? <FieldSetAdditionalInfoBox textArea={textArea} />
-            : null}
+                {textArea && <StyledSpace small vertical />}
+                {textArea && <FieldSetAdditionalInfoBox textArea={textArea} />}
+                {textArea && <StyledSpace medium vertical />}
 
-            {textArea && <StyledSpace medium vertical/>}
-            
-            <FadeInWrapper>
-                <StyledButton content="Send it" action={handleButtonClick} unsetShadow/>
-                <button className="is-hidden" ref={hiddenLinkRef} type="submit"></button>
-            </FadeInWrapper>
+                <FadeInWrapper>
+                    <StyledButton content="Send it" action={handleButtonClick} unsetShadow />
+                    <button className="is-hidden" ref={hiddenLinkRef} type="submit" />
+                </FadeInWrapper>
 
-            {errorMessage && <StyledSpace medium vertical />}
-            {errorMessage && <StyledText color={colors.dark.errorMessage} tag="p" content={errorMessage} />}
-        </form>
-
-    </FormWrapper>
-}
+                {errorMessage && <StyledSpace medium vertical />}
+                {errorMessage && (
+                    <StyledText color={colors.dark.errorMessage} tag="p" content={errorMessage} />
+                )}
+            </form>
+        </FormWrapper>
+    );
+};
