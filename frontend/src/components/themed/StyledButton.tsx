@@ -29,8 +29,8 @@ const ButtonShadow = styled.div<{$color: string}>`
     top: 0;
     left: 0;
     z-index: 0;
-    border-bottom: 0.6vh solid black;
-    border-right: 0.6vh solid black;
+    border-bottom: 0.6vh solid ${({$color}) => $color};
+    border-right: 0.6vh solid ${({$color}) => $color};
     clip-path: inset(0.6vh 0% 0% 0.6vh);
 `;
 
@@ -39,7 +39,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
     const color: string = mode === 'dark' ? colors.light.textColor : colors.dark.textColor;
-    const shadowColor =  mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
+    const shadowColor =  mode === 'dark' ? colors.dark.borderColor : colors.light.textColor;
 
     const handleClick = () => {
         if (action) action();

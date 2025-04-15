@@ -125,7 +125,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
     let colorMode: string = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
     const hoverColor: string = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
     let islogoHover: string = logo && absolute ? hoverColor : "";
-    const borderColor: string = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
+    const borderColor: string = mode === 'dark' ? colors.dark.borderColor : colors.light.textColor;
 
     if(color) {
         colorMode = color;

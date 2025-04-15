@@ -56,8 +56,8 @@ const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
     top: 0;
     left: 0;
     z-index: 0;
-    border-bottom: ${() => sizes.spaces.small} solid black;
-    border-right: ${() => sizes.spaces.small} solid black;
+    border-bottom: ${() => sizes.spaces.small} solid ${({$color}) => $color};
+    border-right: ${() => sizes.spaces.small} solid ${({$color}) => $color};
     clip-path: ${() => `inset(${sizes.spaces.small} 0% 0% ${sizes.spaces.small})`} ;
 `;
 
@@ -83,7 +83,7 @@ export const StyledBox: FC<StyledBoxProps> = ({
     const { isMobile, isTablet } = useMediaQuery();
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext)
     const color = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
-    const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
+    const borderColor = mode === "dark" ? colors.dark.borderColor : colors.light.textColor;
 
     return <Wrapper $height={height} $delayed="1000ms" $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
         <BodyWrapper  as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={color}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>

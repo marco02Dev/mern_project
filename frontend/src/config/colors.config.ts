@@ -5,7 +5,8 @@ type ColorName =
   | 'textColor' 
   | 'sideTextColor' 
   | 'hoverColor'
-  | 'errorMessage';
+  | 'errorMessage'
+  | 'borderColor';
 
 type Colors = {
   [key in 'dark' | 'light']: {
@@ -17,11 +18,12 @@ export const colors: Colors = {
     dark: {
         backgroundColor: 'black',
         backgroundColorSecondary: '#121826',
-        buttonBackgroundColor: 'gray',
+        buttonBackgroundColor: '#dfe6ee',
         textColor: 'white',
         sideTextColor: 'gray',
         hoverColor: '#FFC107',
-        errorMessage: "#D93025"
+        errorMessage: "#D93025",
+        borderColor: "#5c677d"
     },
     light: {
         backgroundColor: 'white',
@@ -30,6 +32,7 @@ export const colors: Colors = {
         textColor: 'black',
         sideTextColor: 'gray',
         hoverColor: '#003EF8',
-        errorMessage: "#D93025"
+        errorMessage: "#D93025",
+        borderColor: "#5c677d"
     }
 }
