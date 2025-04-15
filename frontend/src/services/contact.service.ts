@@ -2,13 +2,21 @@ import { SendEmailService } from "../types/service.type";
 import { isString } from "../utils/is-string.util";
 import isEmail from "validator/lib/isEmail";
 import { endpoints } from "../config/endpoints.config";
+import { ErrorMessages, errorMessages } from "../config/error-messages.config";
+import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
 
-export const sendEmail: SendEmailService = async (event, sendErrorMessage): Promise<void> => {
+export const sendEmail: SendEmailService = async (event, setErrorMessage): Promise<void> => {
     event.preventDefault();
+    const { badRequest, serverError }: ErrorMessages = errorMessages;
     
     const form: HTMLFormElement = event.currentTarget;
 
-    const formData = new FormData(form);
+    const formData: FormData = new FormData(form);
+
+    sendErrorWhenHoneyPotIsFilled({
+        formData: formData,
+        setErrorMessage: setErrorMessage
+    });
 
     const name: FormDataEntryValue | null = formData.get('name');
     const email: FormDataEntryValue | null = formData.get("email");
@@ -38,17 +46,17 @@ export const sendEmail: SendEmailService = async (event, sendErrorMessage): Prom
                     body: JSON.stringify(sendEmailData)
                 });
             } catch {
-                sendErrorMessage && sendErrorMessage("Something went wrong, please try again later");
-                throw new Error("Something went wrong, please try again later");
+                setErrorMessage && setErrorMessage(serverError);
+                throw new Error(serverError);
             }
 
 
         } else {
-            sendErrorMessage && sendErrorMessage("Some fields are invalid or missing"); 
-            throw new Error("Some fields are invalid or missing");
+            setErrorMessage && setErrorMessage(badRequest); 
+            throw new Error(badRequest);
         }
     } else {
-        sendErrorMessage && sendErrorMessage("Some fields are invalid or missing");
-        throw new Error("Some fields are invalid or missing");
+        setErrorMessage && setErrorMessage(badRequest);
+        throw new Error(badRequest);
     }
 }

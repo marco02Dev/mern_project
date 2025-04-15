@@ -4,6 +4,7 @@ import { User } from "../types/user.types";
 import { FormService } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
+import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
 
 export const loginService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();
@@ -17,6 +18,11 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
         const email = formData.get('email');
         const password = formData.get("password");
 
+        sendErrorWhenHoneyPotIsFilled({
+            formData: formData,
+            setErrorMessage: setErrorMessage
+        });
+        
         if(name && surname && email && password) {
 
             const user: User = {
