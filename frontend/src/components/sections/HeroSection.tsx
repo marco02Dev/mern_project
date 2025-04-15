@@ -11,6 +11,9 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { FC } from "react";
 import { ImageBorderlessBox } from "../boxes/ImageBorderlessBox";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
+import { useDispatch } from "react-redux";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const TextWrapper = styled.div<{$paddingLeft?: boolean, $imageLeft?: boolean, $isMobileDevices: boolean}>`
     width: ${({$imageLeft, $paddingLeft, $isMobileDevices}) => {
@@ -35,11 +38,12 @@ type HeroSectionProps = {
     description?: string;
     buttonLabel?: string;
     buttonLink?: string;
+    buttonAction?: Function;
     imageSrc?: string;
     imageAlt?: string;
     secondaryColor?: boolean;
     imageLeft?: boolean;
-    borderedImage?: boolean
+    borderedImage?: boolean;
 };
 
 export const HeroSection: FC<HeroSectionProps> = ({
@@ -52,10 +56,13 @@ export const HeroSection: FC<HeroSectionProps> = ({
     imageAlt,
     secondaryColor,
     imageLeft,
-    borderedImage
+    borderedImage,
+    buttonAction
 }: HeroSectionProps): ReactElement => {
 
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
+    const dispatch: Dispatch = useDispatch();
+    const navigate: NavigateFunction = useNavigate();
 
     return (
         <StyledSection justifyCenter secondaryColor={secondaryColor} row={!isMobile && !isTablet} alignCenter={!isMobile && !isTablet} paddingLeft={imageLeft ? "unset" : sizes.spaces.medium}>
@@ -96,6 +103,12 @@ export const HeroSection: FC<HeroSectionProps> = ({
                     </FadeInWrapper>
                 )}
 
+                {buttonLabel && buttonAction && (
+                    <FadeInWrapper>
+                        <StyledButton content={buttonLabel} action={() => buttonAction({dispatch, navigate})} />
+                    </FadeInWrapper>
+                )}
+
             </TextWrapper>
 
             {!isMobile && !isTablet && imageSrc && !imageLeft && !borderedImage && (
@@ -105,7 +118,6 @@ export const HeroSection: FC<HeroSectionProps> = ({
             {!isMobile && !isTablet && imageSrc && !imageLeft && borderedImage && (
                 <ImageBorderedBox imgSrc={imageSrc} />
             )}
-
         </StyledSection>
     );
 };

@@ -66,7 +66,6 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
             size={"100%"}
             border
             action
-            
         />
 
         {!unsetShadow && <ButtonShadow $color={shadowColor} />}

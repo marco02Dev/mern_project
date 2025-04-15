@@ -8,3 +8,10 @@ export const port: number = Number(env.PORT) || 8000;
 export const productsEndpointName: string = env.PRODUCTS_ENDPOINT_NAME || "products";
 export const usersEndpointName: string = env.USERS_ENDPOINT_NAME || 'users';
 export const contactEndpointName: string = env.CONTACT_ENDPOINT_NAME || "contact";
+
+
+export const transporterData: {service: string, user: string | undefined, password: string | undefined} = {
+    service: env.TRANSPORTER_SERVICE || "gmail",
+    user: env.TRANSPORTER_USER,
+    password: env.TRANSPORTER_PASSWORD
+}

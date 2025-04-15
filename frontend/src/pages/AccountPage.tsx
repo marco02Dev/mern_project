@@ -8,6 +8,7 @@ import { capitalizeFirstLetter } from "../utils/capitalize-first-letter.util";
 import { LogInPage } from "./LogInPage";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
+import { logOutService } from "../services/log-out.service";
 
 export const AccountPage: FC = (): ReactElement => {
 
@@ -23,7 +24,7 @@ export const AccountPage: FC = (): ReactElement => {
                 title={`Welcome back ${capitalizeFirstLetter(name)}`}
                 description="Access your enrolled courses and continue your learning journey today!"
                 buttonLabel="Logout"
-                buttonLink="/my-courses"
+                buttonAction={logOutService}
                 imageSrc={`${endpoints.imagesEndpoint}/pages/homepage/hero-section.webp`}
                 imageAlt="Minimalist desk setup with monitor and coding posters"
                 secondaryColor
