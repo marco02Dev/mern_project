@@ -17,32 +17,27 @@ const passport_1 = __importDefault(require("passport"));
 const reject_request_if_honey_pot_is_filled_middleware_1 = require("./middlewares/reject-request-if-honey-pot-is-filled.middleware");
 const passport_config_1 = require("./config/passport.config");
 const cors_options_config_1 = require("./config/cors-options.config");
-const crypto_1 = __importDefault(require("crypto"));
+const session_route_1 = __importDefault(require("./routes/session.route"));
+const https_1 = __importDefault(require("https"));
+const fs_1 = __importDefault(require("fs"));
+const privateKeyPath = path_1.default.join(__dirname, '..', 'ssl', 'dev-key.pem');
+const certificatePath = path_1.default.join(__dirname, '..', 'ssl', 'dev-cert.pem');
+// NON serve più il ca (auto-firmato da mkcert, già trusted)
+const privateKey = fs_1.default.readFileSync(privateKeyPath, 'utf8');
+const certificate = fs_1.default.readFileSync(certificatePath, 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 const app = (0, express_1.default)();
 app.use((0, express_session_1.default)(session_config_1.sessionConfig));
 (0, passport_config_1.initializePassport)(passport_1.default);
 app.use((0, cors_1.default)(cors_options_config_1.corsOptions));
 app.use(express_1.default.json());
 app.use(reject_request_if_honey_pot_is_filled_middleware_1.rejectRequestIfHoneyPotIsFilled);
-app.use((req, res, next) => {
-    console.log("Session ID:", req.sessionID);
-    next();
-});
 app.use('/images', express_1.default.static(path_1.default.join(__dirname, '../public/images')));
+app.use("/api", session_route_1.default);
 app.use("/api", products_route_1.default);
 app.use("/api", users_route_1.default);
 app.use("/api", contact_route_1.default);
-app.get('/api/init-session', (req, res) => {
-    const nonce = crypto_1.default.randomBytes(16).toString('base64');
-    req.session.nonce = nonce; // Cast esplicito a 'any'
-    req.session.save((err) => {
-        if (err) {
-            return res.status(500).json({ error: 'Errore nel salvataggio della sessione' });
-        }
-        res.json({ nonce: req.session.nonce });
-    });
-});
-app.listen(env_config_1.port, '0.0.0.0', () => {
+https_1.default.createServer(credentials, app).listen(env_config_1.port, '0.0.0.0', () => {
     (0, connect_to_database_config_1.connectToDatabase)();
     console.log(`Server is listen on ${env_config_1.port}`);
 });

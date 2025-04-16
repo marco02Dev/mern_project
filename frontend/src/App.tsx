@@ -4,36 +4,21 @@ import { Router } from './Router';
 import { MobileMenu } from './components/template-parts/MobileMenu';
 import { PageTransitionElement } from './components/animated/PageTransitionElement';
 import { PageTransitionTitle } from './components/animated/PageTransitionTitle';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useLocationChange from './hooks/useLocationChange';
-import { endpoints } from './config/endpoints.config';
+import { initializeSession } from './store/slices/nonce.slice';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 
 function App() {
 
   const hasLocationChanged: boolean = useLocationChange();
-  const [nonce, setNonce] = useState();
+  const dispatch = useAppDispatch();
+  const nonce = useAppSelector(state => state.nonce.value);
+  const loading = useAppSelector(state => state.nonce.loading);
+  const error = useAppSelector(state => state.nonce.error);
 
   useEffect(() => {
-    const initializeSession = async () => {
-      try {
-        const response = await fetch(endpoints.initSessionEndpoint, {
-          method: 'GET',
-          credentials: 'include',
-        });
-
-        if (!response.ok) {
-          throw new Error('Errore nell\'inizializzazione della sessione');
-        }
-
-        const data = await response.json();
-        setNonce(data.nonce)
-        console.log('Nonce ricevuto:', data.nonce);
-      } catch (error) {
-        console.error('Errore:', error);
-      }
-    };
-
-    initializeSession();
+    dispatch(initializeSession());
   }, []);
 
   useEffect(() => {
@@ -42,7 +27,9 @@ function App() {
     }
   }, [hasLocationChanged]);
 
-  console.log(nonce)
+  console.log('Nonce:', nonce, 'Loading:', loading, 'Error:', error);
+  console.log(document.cookie);
+
 
   return <>
     <MobileMenu />

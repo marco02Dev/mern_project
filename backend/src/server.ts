@@ -13,7 +13,22 @@ import passport from 'passport';
 import { rejectRequestIfHoneyPotIsFilled } from './middlewares/reject-request-if-honey-pot-is-filled.middleware';
 import { initializePassport } from './config/passport.config';
 import { corsOptions } from './config/cors-options.config';
-import crypto from 'crypto';
+import sessionRoute from './routes/session.route';
+
+import https from 'https';
+import fs from 'fs';
+
+
+const privateKeyPath = path.join(__dirname, '..', 'ssl', 'dev-key.pem');
+const certificatePath = path.join(__dirname, '..', 'ssl', 'dev-cert.pem');
+
+// NON serve più il ca (auto-firmato da mkcert, già trusted)
+const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+const certificate = fs.readFileSync(certificatePath, 'utf8');
+
+const credentials = { key: privateKey, cert: certificate };
+
+
 
 const app: Express = express();
 
@@ -25,29 +40,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(rejectRequestIfHoneyPotIsFilled);
 
-app.use((req, res, next) => {
-    console.log("Session ID:", req.sessionID);
-    next();
-  });
-
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
+app.use("/api", sessionRoute);
 app.use("/api", productsRouter);
 app.use("/api", usersRouter);
 app.use("/api", contactRouter);
 
-app.get('/api/init-session', (req: Request, res: Response) => {
-    const nonce = crypto.randomBytes(16).toString('base64');
-    (req.session as any).nonce = nonce; // Cast esplicito a 'any'
-    req.session.save((err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Errore nel salvataggio della sessione' });
-      }
-      res.json({ nonce: (req.session as any).nonce });
-    });
-  });
-
-app.listen(port, '0.0.0.0', (): void => {
+https.createServer(credentials, app).listen(port, '0.0.0.0', () => {
     connectToDatabase();
     console.log(`Server is listen on ${port}`);
 });

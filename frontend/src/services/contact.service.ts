@@ -6,6 +6,7 @@ import { ErrorMessages, errorMessages } from "../config/error-messages.config";
 import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
 
 export const sendEmail: SendEmailService = async (event, setErrorMessage): Promise<void> => {
+    
     event.preventDefault();
     const { badRequest, serverError }: ErrorMessages = errorMessages;
     
@@ -43,6 +44,7 @@ export const sendEmail: SendEmailService = async (event, setErrorMessage): Promi
                     headers: {
                         "Content-Type": 'application/json'
                     },
+                    credentials: 'include', 
                     body: JSON.stringify(sendEmailData)
                 });
             } catch {
