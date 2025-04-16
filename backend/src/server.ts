@@ -32,20 +32,17 @@ const credentials = { key: privateKey, cert: certificate };
 const app: Express = express();
 
 app.use(cookieParser());
+
 app.use(session(sessionConfig));
 
-app.use((req, res, next) => {
-    console.log('>> SID ricevuto:', req.cookies['connect.sid']);
-    console.log('>> session ID:', req.sessionID);
-    console.log('>> sessione esiste?', !!req.session);
-    console.log("user", (req.session as { userName?: string }).userName )
-    next();
-  });
-
 initializePassport(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
 app.use(rejectRequestIfHoneyPotIsFilled);
 
 app.use('/images', express.static(path.join(__dirname, '../public/images')));

@@ -1,7 +1,7 @@
 import { PassportStatic } from "passport";
 import { Strategy as LocalStrategy, IStrategyOptionsWithRequest, VerifyFunctionWithRequest } from 'passport-local';
 import bcrypt from 'bcrypt';
-import User from '../models/users.model'; // Assicurati che sia il modello Mongoose corretto
+import User from '../models/users.model';
 
 export const initializePassport = (passport: PassportStatic) => {
 
@@ -48,4 +48,17 @@ export const initializePassport = (passport: PassportStatic) => {
     };
 
     passport.use(new LocalStrategy(options, authenticateUser));
+
+    passport.serializeUser((user: any, done) => {
+        done(null, user._id); // salvi solo l'ID nella sessione
+    });
+    
+    passport.deserializeUser(async (id: string, done) => {
+        try {
+            const user = await User.findById(id);
+            done(null, user);
+        } catch (err) {
+            done(err);
+        }
+    });
 };

@@ -29,14 +29,9 @@ const credentials = { key: privateKey, cert: certificate };
 const app = (0, express_1.default)();
 app.use((0, cookie_parser_1.default)());
 app.use((0, express_session_1.default)(session_config_1.sessionConfig));
-app.use((req, res, next) => {
-    console.log('>> SID ricevuto:', req.cookies['connect.sid']);
-    console.log('>> session ID:', req.sessionID);
-    console.log('>> sessione esiste?', !!req.session);
-    console.log("user", req.session.userName);
-    next();
-});
 (0, passport_config_1.initializePassport)(passport_1.default);
+app.use(passport_1.default.initialize());
+app.use(passport_1.default.session());
 app.use((0, cors_1.default)(cors_options_config_1.corsOptions));
 app.use(express_1.default.json());
 app.use(reject_request_if_honey_pot_is_filled_middleware_1.rejectRequestIfHoneyPotIsFilled);
