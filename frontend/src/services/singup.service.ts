@@ -37,6 +37,7 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
                 headers: {
                     'Content-Type': "application/json"
                 },
+                credentials: 'include',
                 body: JSON.stringify(user)
             });
 

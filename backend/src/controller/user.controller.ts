@@ -62,7 +62,7 @@ export const logUserIntoAccount: Controller<UsersParams, {}, UsersSchema> = asyn
                 const isPasswordMatching: boolean = await bcrypt.compare(password, userFound.password);
                 if(isPasswordMatching) {
                     console.log(`User ${name} ${surname} logged in`);
-                    console.log(isPasswordMatching)
+                    (req.session as { userName?: string }).userName = name;
                     sendSuccessMessage({response: res, statusCode: 200, data:{_id: userFound._id as string}});
                 } else {
                     console.log("Password is not matching");

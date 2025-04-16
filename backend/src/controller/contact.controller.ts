@@ -10,7 +10,7 @@ import { transporterData } from "../config/env.config";
 export const sendEmail: Controller = async (req: Request, res: Response) => {
 
     const { cookies } = req;
-    console.log(cookies)
+    console.log(req.session)
 
     type EmailData = {
         name: string,
@@ -21,6 +21,7 @@ export const sendEmail: Controller = async (req: Request, res: Response) => {
     const { name, email, message }: EmailData = req.body;
     const nonce = (req.session as any).nonce;
     console.log(nonce)
+    console.log("Session ID updated:", req.sessionID);
 
     if(isString(name) && isString(message) && validateEmail(email)) {
 

@@ -1,5 +1,6 @@
-import { secret } from "./env.config";
+import { secret, databaseUri } from "./env.config";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 
 export const sessionConfig: session.SessionOptions = {
   secret: secret as string,
@@ -8,7 +9,11 @@ export const sessionConfig: session.SessionOptions = {
   cookie: {
       secure: true, 
       maxAge: 1000 * 60 * 15,
-      httpOnly: true,
-      sameSite: "none"
-  }
+      sameSite: "none",
+      httpOnly: false
+  },
+  store: MongoStore.create({
+    mongoUrl: databaseUri as string,
+    ttl: 60 * 15,
+  }),
 };

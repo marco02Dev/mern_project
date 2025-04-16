@@ -5,23 +5,26 @@ type GetuserInfoData = {
     _id: string,
 }
 
-export const getUserPurchasedProducts = async ({_id}: GetuserInfoData): Promise<string[] | null> => {
+export const getUserPurchasedProducts = async ({ _id }: GetuserInfoData): Promise<string[] | null> => {
     const { usersEndpoint }: Endpoints = endpoints;
    
     try {
-        const response = await fetch(`${usersEndpoint}/${_id}`);
+        const response = await fetch(`${usersEndpoint}/${_id}`, {
+            method: 'GET',
+            credentials: 'include'
+        });
 
-        if(!response.ok) {
+        if (!response.ok) {
             throw new Error("User not found");
         } else {
             const json = await response.json();
             const data: User = json.data[0];
 
-            if(data) {
+            if (data) {
                 const purchasedProducts = data.purchasedProducts as string[];
-                return purchasedProducts         
+                return purchasedProducts;
             } else {
-                return null
+                return null;
             }
         }
 

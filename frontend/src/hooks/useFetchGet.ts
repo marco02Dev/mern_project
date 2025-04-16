@@ -18,7 +18,12 @@ export const useFetchGet = <T>(endpoint: string, setProductsNumber?: Dispatch<Se
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(endpoint);
+        
+        const response = await fetch(endpoint, {
+          method: 'GET', 
+          credentials: 'include', 
+        });
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

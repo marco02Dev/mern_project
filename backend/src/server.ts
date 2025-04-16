@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import { sessionConfig } from './config/session.config';
-import { Express, Response, Request } from 'express';
+import { Express } from 'express';
 import { port } from './config/env.config';
 import { connectToDatabase } from './config/connect-to-database.config';
 import productsRouter from './routes/products.route';
@@ -14,6 +14,7 @@ import { rejectRequestIfHoneyPotIsFilled } from './middlewares/reject-request-if
 import { initializePassport } from './config/passport.config';
 import { corsOptions } from './config/cors-options.config';
 import sessionRoute from './routes/session.route';
+import cookieParser from 'cookie-parser';
 
 import https from 'https';
 import fs from 'fs';
@@ -22,17 +23,24 @@ import fs from 'fs';
 const privateKeyPath = path.join(__dirname, '..', 'ssl', 'dev-key.pem');
 const certificatePath = path.join(__dirname, '..', 'ssl', 'dev-cert.pem');
 
-// NON serve più il ca (auto-firmato da mkcert, già trusted)
 const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
 const certificate = fs.readFileSync(certificatePath, 'utf8');
-
 const credentials = { key: privateKey, cert: certificate };
 
 
 
 const app: Express = express();
 
+app.use(cookieParser());
 app.use(session(sessionConfig));
+
+app.use((req, res, next) => {
+    console.log('>> SID ricevuto:', req.cookies['connect.sid']);
+    console.log('>> session ID:', req.sessionID);
+    console.log('>> sessione esiste?', !!req.session);
+    console.log("user", (req.session as { userName?: string }).userName )
+    next();
+  });
 
 initializePassport(passport);
 
