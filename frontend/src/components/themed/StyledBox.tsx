@@ -56,8 +56,8 @@ const WrapperShadow = styled.div<{$color: string, $button?: boolean}>`
     top: 0;
     left: 0;
     z-index: 0;
-    border-bottom: ${() => sizes.spaces.small} solid ${({$color}) => $color};
-    border-right: ${() => sizes.spaces.small} solid ${({$color}) => $color};
+    border-bottom: clamp(1vh, 0.3vh + 0.5vw, 100vw) solid ${({$color}) => $color};
+    border-right: clamp(1vh, 0.3vh + 0.5vw, 100vw) solid ${({$color}) => $color};
     clip-path: ${() => `inset(${sizes.spaces.small} 0% 0% ${sizes.spaces.small})`} ;
 `;
 

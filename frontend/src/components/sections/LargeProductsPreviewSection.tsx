@@ -6,6 +6,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import { StyledButton } from "../themed/StyledButton";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 import { usePurchasedProducts } from "../../hooks/usePurchasedProducts";
+import { FadeInWrapper } from "../animated/FadeInWrapper";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -34,7 +35,9 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
         <StyledSpace small vertical />
         <StyledSpace small vertical />
 
-        {productsNumber && products <= productsNumber && <StyledButton unsetShadow content="Load more" action={(): void => setProducts(isMobile ? products + 4 : products + 3)} /> }
+        {productsNumber && products <= productsNumber && <FadeInWrapper>
+            <StyledButton unsetShadow content="Load more" action={(): void => setProducts(isMobile ? products + 4 : products + 3)} />
+        </FadeInWrapper> }
 
 
         <StyledSpace large vertical/>

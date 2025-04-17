@@ -13,10 +13,6 @@ const productSchema = new mongoose_1.default.Schema({
         type: Number,
         required: true
     },
-    featuredImageUrl: {
-        type: String,
-        required: true
-    },
     category: {
         type: String,
         required: true

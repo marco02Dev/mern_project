@@ -30,6 +30,7 @@ const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
     overflow: hidden;
     h2 {
         transform: translateY(100%);
+        padding: 1vh;
         ${({$hasLocationChanged}) => $hasLocationChanged ?  SlideUpDownPageTransitionTitleAnimation : "translateY(0%)"};
     }
 `;

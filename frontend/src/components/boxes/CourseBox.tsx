@@ -9,9 +9,9 @@ import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { Link } from "react-router-dom";
 
-const InnerWrapper = styled.div`
+const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
-    height: clamp(30vh, 30vh + 20vw, 100vw);
+    height: ${({$isMobile}) => $isMobile ? "clamp(30vh, 30vh + 10vw, 100vw)" : "clamp(30vh, 30vh + 20vw, 100vw)"};
     display: flex;
     flex-direction: column;
 
@@ -94,7 +94,7 @@ export const CourseBox = ({
 
     return (
         <StyledBox width={isMobile || isTablet ? isMobile ? mobileSize : tabletSize : desktopSize} >
-            <InnerWrapper>
+            <InnerWrapper $isMobile={isMobile}>
                 <div className="image-wrapper">
                     <FadeInWrapper>
                         <img src={imageUrl} alt={title} width={150} />
@@ -103,11 +103,11 @@ export const CourseBox = ({
 
                 <div className="text-wrapper">
 
-                    <div className="small-text">
+                    {!isMobile && <div className="small-text">
                         <TextRevealWrapper>
                             <StyledText tag="h6" content={price} />
                         </TextRevealWrapper>
-                    </div>
+                    </div>}
 
                     <StyledSpace small vertical height="5%" />
 
