@@ -26,7 +26,7 @@ type CoursesLoop = {
   latest?: boolean,
   category?: string,
   purchasedProducts?: string[] | null,
-  setProductsNumber: Dispatch<SetStateAction<number | undefined>>
+  setProductsNumber?: Dispatch<SetStateAction<number | undefined>>
 }
 
 export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts, setProductsNumber }: CoursesLoop): ReactElement => {

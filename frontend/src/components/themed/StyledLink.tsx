@@ -9,9 +9,7 @@ import { AllowedTextTags } from "../../config/styled-text.config";
 import { sizes } from "../../config/sizes.config";
 import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
-import { LinkProps } from "react-router-dom";
-
-interface LinkWrapperProps extends LinkProps {
+interface LinkWrapperProps {
     $color: string,
     $hoverColor: string,
     $backgroundColor?: string,
@@ -25,6 +23,79 @@ interface LinkWrapperProps extends LinkProps {
     $logo?: boolean;
     $absolute?: boolean;
 }
+
+export const DivWrapper = styled.div<LinkWrapperProps>`
+    color: ${({$color}) => $color};
+    background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    position: ${({$absolute}) => $absolute ? "absolute" : "relative"};
+    ${({$absolute}) => $absolute ? css`
+        bottom: 0;
+        left: 0;
+        top: 0;
+    ` : ""}
+    
+
+    ${({ $backgroundColor, $content}) => $backgroundColor && $content ? buttonHoverAnimation : ""};
+
+
+    ${({$padding, $border}) => {
+            if($border) {
+                if($padding === "default" ) {
+                return css`
+                    width: auto;
+                    display: flex;
+                    span {
+                        font-size: 100%;
+                        padding-left: clamp(4vh, 1vh + 3vw, 4vh);
+                        padding-right: clamp(4vh, 1vh + 3vw, 4vh);
+                        padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
+                        padding-bottom: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
+                    }
+                `;
+            } else {
+                return css`
+                    padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
+                    padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
+                    padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
+                    padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
+                    border: clamp(0.1vh, 0.1vh + 0.1vw, 100vh) solid black !important;
+                    span {
+                        font-size: 100%;
+                    }
+                `;
+            }
+        }
+    }};
+    border-color: ${({$border, $borderColor}) => $borderColor && $border ? $borderColor : "unset"};
+    border-width: ${({$border}) => $border ? sizes.heights.verySmall : 'unset'};
+    border-style: ${({$border}) => $border ? 'solid' : 'unset'};
+    z-index: 1;
+
+    span {
+        color: inherit;
+        overflow-x: hidden;
+
+        ${({$button, $afterHeight, $color}) => !$button &&  css` 
+            &::after {
+                content: '';
+                width: 100%;
+                height: ${$afterHeight};
+                background-color: ${$color};
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                margin-top: ${$afterHeight};
+            };
+        `};
+
+        ${({$button, $logo}) => !$button && !$logo ? linkHoverAnimation : ""};
+    };
+`;
 
 export const LinkWrapper = styled(Link)<LinkWrapperProps>`
     color: ${({$color}) => $color};
@@ -132,10 +203,10 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
     }
 
     if(action && !to) {
-        return <LinkWrapper 
+        return <DivWrapper 
         $color={colorMode} 
         $hoverColor={hoverColor} 
-        as={"div"}
+        as="div"
         $backgroundColor={backgroundColor}
         $padding={padding}
         $button={button}
@@ -156,7 +227,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
             color={islogoHover}   
             lineHeight={sizes.lineHeights.h5}
             />
-        </LinkWrapper>   
+        </DivWrapper>   
         } else {
         return <LinkWrapper 
         $color={colorMode} 

@@ -33,7 +33,7 @@ const Button = styled.button<{$imageSize: string}>`
     }
 `;
 
-export const SwitchThemeModeButton = (): ReactElement => {
+export const SwitchThemeModeButton: FC = (): ReactElement => {
     const { mode, setMode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
     const toggleTheme = () => {

@@ -34,7 +34,7 @@ const ButtonShadow = styled.div<{$color: string}>`
     clip-path: inset(0.6vh 0% 0% 0.6vh);
 `;
 
-export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action, type}: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action}: StyledButtonProps): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
@@ -44,15 +44,6 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
     const handleClick = () => {
         if (action) action();
     };
-
-    let as: string;
-
-    if(type === "submit") {
-        as = "button";
-    } else {
-        as = "div";
-    }
-
 
     return <ButtonWrapper $unsetShadow={unsetShadow} onClick={handleClick} >
         <StyledLink 

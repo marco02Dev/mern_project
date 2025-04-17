@@ -2,7 +2,7 @@ import { FC, ReactElement } from "react";
 import { useLocation, Location } from "react-router-dom";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
-import { TextImageSection } from "../components/sections/textImageSection";
+import { TextImageSection } from "../components/sections/TextImageSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
 
 type ProductData = {

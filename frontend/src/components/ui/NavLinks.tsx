@@ -13,7 +13,7 @@ const NavLinksWrapper = styled.div<{$row?: boolean}>`
     align-items: center;
 `;
 
-export const NavLinks: FC<{row: boolean}> = ({row}: {row?: boolean}): ReactElement => {
+export const NavLinks: FC<{row?: boolean}> = ({row}: {row?: boolean}): ReactElement => {
 
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const login = useSelector((state: RootState) => state.login);

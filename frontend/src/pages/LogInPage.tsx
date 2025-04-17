@@ -49,9 +49,6 @@ export const LogInPage = (): ReactElement => {
                 "password"
             ]}
             imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
-            alternativeLinkDescription="Don’t have an account?"
-            alternativeLink="/signup"
-            alternativeTextLink="Sign up"
             service="login"
         />
 
