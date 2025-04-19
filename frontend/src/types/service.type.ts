@@ -13,7 +13,8 @@ export type FormService = (
 
 export type SendEmailService = (
     event: FormEvent<HTMLFormElement>, 
-    setErrorMessage?: DispatchReactState<SetStateAction<string | undefined>>
+    setErrorMessage: DispatchReactState<SetStateAction<string | undefined>>,
+    setMessageSent: DispatchReactState<SetStateAction< boolean | undefined>>
 ) => Promise<void>
 
 export type Service = (args: {

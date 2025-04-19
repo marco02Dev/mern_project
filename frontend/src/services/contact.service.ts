@@ -5,7 +5,7 @@ import { endpoints } from "../config/endpoints.config";
 import { ErrorMessages, errorMessages } from "../config/error-messages.config";
 import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
 
-export const sendEmail: SendEmailService = async (event, setErrorMessage): Promise<void> => {
+export const sendEmail: SendEmailService = async (event, setErrorMessage, setMessageSent): Promise<void> => {
     
     event.preventDefault();
     const { badRequest, serverError }: ErrorMessages = errorMessages;
@@ -47,6 +47,8 @@ export const sendEmail: SendEmailService = async (event, setErrorMessage): Promi
                     credentials: 'include', 
                     body: JSON.stringify(sendEmailData)
                 });
+
+                setMessageSent(true);
             } catch {
                 setErrorMessage && setErrorMessage(serverError);
                 throw new Error(serverError);

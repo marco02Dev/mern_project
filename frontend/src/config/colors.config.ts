@@ -6,6 +6,7 @@ type ColorName =
   | 'sideTextColor' 
   | 'hoverColor'
   | 'errorMessage'
+  | "successMessage"
   | 'borderColor';
 
 type Colors = {
@@ -23,6 +24,7 @@ export const colors: Colors = {
         sideTextColor: 'gray',
         hoverColor: '#FFC107',
         errorMessage: "#D93025",
+        successMessage: "#28a745",
         borderColor: "#5c677d"
     },
     light: {
@@ -33,6 +35,7 @@ export const colors: Colors = {
         sideTextColor: 'gray',
         hoverColor: '#003EF8',
         errorMessage: "#D93025",
+        successMessage: "#28a745",
         borderColor: "#5c677d"
     }
 }

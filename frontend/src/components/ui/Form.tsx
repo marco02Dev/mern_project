@@ -56,6 +56,7 @@ export const Form: FC<FormProps> = ({
 }: FormProps ): ReactElement => {
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
+    const [messageSent, setMessageSent] = useState< boolean | undefined>();
     const dispatch: Dispatch = useDispatch();
     const navigateFunction = useNavigate();
     const { isMobile, isTablet } = useMediaQuery();
@@ -65,7 +66,7 @@ export const Form: FC<FormProps> = ({
         event.preventDefault();
 
         if (service === "send-email") {
-            sendEmail(event, setErrorMessage);
+            sendEmail(event, setErrorMessage, setMessageSent);
         } else if (service === "login") {
             loginService(event, dispatch, navigateFunction, setErrorMessage);
         } else if (service === "sign-up") {
@@ -79,32 +80,39 @@ export const Form: FC<FormProps> = ({
 
     return (
         <FormWrapper $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
+
             <StyledSpace medium vertical />
 
             <TextRevealWrapper left>
-                <StyledText tag="h2" content={title} lineHeight="h1" />
+                <StyledText tag="p" largeParagraph content={title} lineHeight="h1" />
             </TextRevealWrapper>
 
             <StyledSpace medium vertical />
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="website" style={{ display: 'none' }} autoComplete="off" />
-                
-                <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
 
-                {textArea && <StyledSpace small vertical />}
-                {textArea && <FieldSetAdditionalInfoBox textArea={textArea} />}
-                {textArea && <StyledSpace medium vertical />}
+            {!messageSent && <>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="website" style={{ display: 'none' }} autoComplete="off" />
+                    
+                    <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
 
-                <FadeInWrapper>
-                    <StyledButton content="Send it" action={handleButtonClick} unsetShadow />
-                    <button className="is-hidden" ref={hiddenLinkRef} type="submit" />
-                </FadeInWrapper>
+                    {textArea && <StyledSpace small vertical />}
+                    {textArea && <FieldSetAdditionalInfoBox textArea={textArea} />}
+                    {textArea && <StyledSpace medium vertical />}
 
-                {errorMessage && <StyledSpace medium vertical />}
-                {errorMessage && (
-                    <StyledText color={colors.dark.errorMessage} tag="p" content={errorMessage} />
-                )}
-            </form>
+                    <FadeInWrapper>
+                        <StyledButton content="Send it" action={handleButtonClick} unsetShadow />
+                        <button className="is-hidden" ref={hiddenLinkRef} type="submit" />
+                    </FadeInWrapper>
+
+                    {errorMessage && <StyledSpace medium vertical />}
+                    {errorMessage && (
+                        <StyledText color={colors.dark.errorMessage} tag="p" content={errorMessage} />
+                    )}
+                </form>
+            </>}
+
+            {messageSent && <StyledText color={colors.dark.successMessage} tag="h5" content="Message sent successfully. Thank you!" />}
+
         </FormWrapper>
     );
 };
