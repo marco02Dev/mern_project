@@ -4,5 +4,9 @@ export type Course = {
     price: number,
     featuredImageUrl: string,
     category: string,
+    details: {
+        title: string,
+        content: string
+    }[],
     tags?: string[]
 }

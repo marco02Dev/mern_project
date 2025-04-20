@@ -9,13 +9,18 @@ type ProductData = {
     title: string,
     price: string,
     courseId: string,
-    category: string
+    category: string,
+    details: {
+        title: string,
+        content: string
+    }[]
 }
 
 export const Productpage: FC = (): ReactElement => {
     const { imagesEndpoint }: Endpoints = endpoints
     const location: Location = useLocation();
-    const { title, price, courseId, category }: ProductData = location.state;
+    const { title, price, courseId, category, details }: ProductData = location.state;
+    console.log(details)
 
     const heroImage: string = `${imagesEndpoint}/products/${category}/${courseId}/hero-image.webp`;
 
@@ -31,24 +36,12 @@ export const Productpage: FC = (): ReactElement => {
             secondaryColor
         />
 
-        <TextImageSection 
+        { details.length > 0 && <TextImageSection 
             img={`${imagesEndpoint}/pages/homepage/text-image-section.webp`} 
             title={"What will you learn?"}
-            contentSections={[
-                {
-                    title: "Minimalist Design",
-                    content: "Experience a clean, clutter-free layout that makes navigation effortless."
-                },
-                {
-                    title: "Tailored Solutions",
-                    content: "We adapt to your specific needs, offering custom experiences that truly fit."
-                },
-                {
-                    title: "Reliable Support",
-                    content: "Count on our team to be there when you need us most — fast, friendly, and efficient."
-                }
-            ]}
-        />
+            contentSections={details}
+        /> }
+
 
         <TextSection
             title="Master Your Skills Today!"

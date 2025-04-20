@@ -68,6 +68,10 @@ export type CourseBoxProps = {
     link: string;
     courseId: string;
     category: string;
+    details: {
+        title: string,
+        content: string
+    }[]
 };
 
 export const CourseBox = ({
@@ -76,7 +80,8 @@ export const CourseBox = ({
     imageUrl,
     link,
     courseId,
-    category
+    category,
+    details
 }: CourseBoxProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -119,7 +124,7 @@ export const CourseBox = ({
 
                     <FadeInWrapper>
                         <StyledButton unsetShadow content={"Discover"} action={handleButtonClick} />
-                        <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category }} to={link} style={{ display: 'none' }}> </Link>
+                        <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper>
                 </div>
             </InnerWrapper>

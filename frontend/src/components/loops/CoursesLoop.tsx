@@ -74,6 +74,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
           link={`${course.category}/${course.name}`}
           category={course.category}
           imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
+          details={course.details}
         />
 
         {/* Mobile */}
