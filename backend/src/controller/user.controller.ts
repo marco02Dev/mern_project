@@ -68,6 +68,7 @@ export const logUserIntoAccount = (req: Request, res: Response, next: NextFuncti
                 name: user.name,
                 surname: user.surname,
                 email: user.email,
+                role: user.role
             }
         });
       });

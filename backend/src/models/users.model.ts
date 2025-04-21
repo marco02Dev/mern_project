@@ -5,7 +5,8 @@ export interface UsersSchema extends Document {
     surname: string,
     email: string,
     password: string,
-    purchasedProducts: string[]
+    purchasedProducts: string[],
+    role: 'customer' | 'admin'
 }
 
 const usersSchema: Schema<UsersSchema> = new mongoose.Schema({
@@ -28,6 +29,11 @@ const usersSchema: Schema<UsersSchema> = new mongoose.Schema({
     purchasedProducts: {
         type: [String],
         required: false
+    },
+    role: {
+        type: String,
+        enum: ['customer', 'admin'],
+        default: 'customer'
     }
 }, {
     timestamps: true

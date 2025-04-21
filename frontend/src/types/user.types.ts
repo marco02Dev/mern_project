@@ -4,5 +4,6 @@ export type User = {
     surname: string,
     email: string,
     password: string,
-    purchasedProducts?: string[]
+    purchasedProducts?: string[],
+    role?: string
 }
