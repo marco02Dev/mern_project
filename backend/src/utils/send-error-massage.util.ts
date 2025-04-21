@@ -23,6 +23,10 @@ export const sendErrorMessage = ({response, statusCode, resource}: SendErrorMess
             message = resource ? `${resource} not found` : 'Resource not found';
         break;
 
+        case(403): 
+            message = "You don't have permission to access this resource";
+        break;
+
         default: 
             message = 'error';
         break;

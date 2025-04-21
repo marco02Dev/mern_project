@@ -4,18 +4,19 @@ export const removeMiddleLines: RuleSet = css`
 
     @keyframes removeLineRight {
         0% {
-            opacity: 1;
+            position: relative;
             transform: translateX(0);
         }
         100% {
             opacity: 0;
+            position: relative;
             transform: translateX(100%);
         }
     }
 
     @keyframes removeLineLeft {
         0% {
-            opacity: 1;
+
             transform: translateX(0);
         }
         100% {
@@ -82,5 +83,4 @@ export const restoreRotatedLine: RuleSet = css`
     transform: rotate(0deg) translateX(0);
     transition: transform 0.3s ease-in-out;
     position: relative;
-
 `;
