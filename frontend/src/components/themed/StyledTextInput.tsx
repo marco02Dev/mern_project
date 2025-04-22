@@ -19,7 +19,7 @@ const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: st
 `;
 
 
-const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRight?: string}>`
+const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRight?: string, $color: string}>`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,7 @@ const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRi
         width: 100%;
         background-color: unset;
         font-size: ${() => sizes.fontSizes.h5};
+        color: ${({$color}) => $color};
         ${() => InputBorderStyles}
     };
 `;
@@ -46,11 +47,12 @@ export type StyledTextInputProps = {
 
 export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight}: StyledTextInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
-    return <Wrapper $isMobile={isMobile} $borderColor={borderColor} $paddingRight={paddingRight}>
+    return <Wrapper $isMobile={isMobile} $borderColor={borderColor} $paddingRight={paddingRight} $color={color}>
         <label htmlFor={name}>
             <TextRevealWrapper>
                 <StyledText tag="h3" size="h5" content={capitalizeTitle} />

@@ -24,7 +24,7 @@ interface LinkWrapperProps {
     $absolute?: boolean;
 }
 
-export const DivWrapper = styled.div<LinkWrapperProps>`
+const wrapperStyles = css<LinkWrapperProps>`
     color: ${({$color}) => $color};
     background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
     display: inline-block;
@@ -43,7 +43,7 @@ export const DivWrapper = styled.div<LinkWrapperProps>`
     ${({ $backgroundColor, $content}) => $backgroundColor && $content ? buttonHoverAnimation : ""};
 
 
-    ${({$padding, $border}) => {
+    ${({$padding, $border, $borderColor}) => {
             if($border) {
                 if($padding === "default" ) {
                 return css`
@@ -57,13 +57,15 @@ export const DivWrapper = styled.div<LinkWrapperProps>`
                         padding-bottom: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
                     }
                 `;
-            } else {
+            } else if($borderColor) {
                 return css`
                     padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
                     padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
                     padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
                     padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
-                    border: clamp(0.1vh, 0.1vh + 0.1vw, 100vh) solid black !important;
+
+                    ${() => `border: clamp(0.1vh, 0.1vh + 0.1vw, 100vh) solid ${$borderColor} !important;`}
+                    
                     span {
                         font-size: 100%;
                     }
@@ -94,80 +96,15 @@ export const DivWrapper = styled.div<LinkWrapperProps>`
         `};
 
         ${({$button, $logo}) => !$button && !$logo ? linkHoverAnimation : ""};
-    };
+    };    
+`;
+
+export const DivWrapper = styled.div<LinkWrapperProps>`
+    ${() => wrapperStyles}
 `;
 
 export const LinkWrapper = styled(Link)<LinkWrapperProps>`
-    color: ${({$color}) => $color};
-    background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    position: ${({$absolute}) => $absolute ? "absolute" : "relative"};
-    ${({$absolute}) => $absolute ? css`
-        bottom: 0;
-        left: 0;
-        top: 0;
-    ` : ""}
-    
-
-    ${({ $backgroundColor, $content}) => $backgroundColor && $content ? buttonHoverAnimation : ""};
-
-
-    ${({$padding, $border}) => {
-            if($border) {
-                if($padding === "default" ) {
-                return css`
-                    width: auto;
-                    display: flex;
-                    span {
-                        font-size: 100%;
-                        padding-left: clamp(4vh, 1vh + 3vw, 4vh);
-                        padding-right: clamp(4vh, 1vh + 3vw, 4vh);
-                        padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
-                        padding-bottom: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
-                    }
-                `;
-            } else {
-                return css`
-                    padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
-                    padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
-                    padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
-                    padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
-                    border: clamp(0.1vh, 0.1vh + 0.1vw, 100vh) solid black !important;
-                    span {
-                        font-size: 100%;
-                    }
-                `;
-            }
-        }
-    }};
-    border-color: ${({$border, $borderColor}) => $borderColor && $border ? $borderColor : "unset"};
-    border-width: ${({$border}) => $border ? sizes.heights.verySmall : 'unset'};
-    border-style: ${({$border}) => $border ? 'solid' : 'unset'};
-    z-index: 1;
-
-    span {
-        color: inherit;
-        overflow-x: hidden;
-
-        ${({$button, $afterHeight, $color}) => !$button &&  css` 
-            &::after {
-                content: '';
-                width: 100%;
-                height: ${$afterHeight};
-                background-color: ${$color};
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                margin-top: ${$afterHeight};
-            };
-        `};
-
-        ${({$button, $logo}) => !$button && !$logo ? linkHoverAnimation : ""};
-    };
+    ${() => wrapperStyles}
 `;
 
 type StyledLinkProps = {
