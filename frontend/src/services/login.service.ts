@@ -56,7 +56,6 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                     const role: string = json.data.role;
                     user._id = _id;
                     user.role = role;
-                    console.log(role);
 
                     if(dispatch as Dispatch && dispatch !== undefined && navigateFunction) {
                         dispatch(setLoggedIn(user));

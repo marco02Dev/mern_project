@@ -22,13 +22,14 @@ type FormSectionProps = {
     title: string,
     fields: string[],
     textArea?: string,
-    service: AllowedServices
+    service: AllowedServices,
+    secondaryColor?: boolean
 }
 
-export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, service}: FormSectionProps): ReactElement => {
+export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, service, secondaryColor}: FormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
 
-    return <StyledSection paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
+    return <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
 
         <MainWrapper $isTablet={isTablet}>
             {isTablet && <StyledSpace large vertical />}

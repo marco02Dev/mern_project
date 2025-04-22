@@ -12,6 +12,7 @@ import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
 import { loginService } from "../../services/login.service";
 import { sendEmail } from "../../services/contact.service";
 import { signUpService } from "../../services/singup.service";
+import { createCourseService } from "../../services/create-course.service";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
@@ -71,6 +72,8 @@ export const Form: FC<FormProps> = ({
             loginService(event, dispatch, navigateFunction, setErrorMessage);
         } else if (service === "sign-up") {
             signUpService(event, dispatch, navigateFunction, setErrorMessage);
+        } else if(service === "create-course") {
+            createCourseService(event, setErrorMessage, setMessageSent);
         }
     };
 

@@ -1,10 +1,10 @@
 export type Course = {
-    _id: string,
+    _id?: string,
     name: string,
     price: number,
-    featuredImageUrl: string,
+    featuredImageUrl?: string,
     category: string,
-    details: {
+    details?: {
         title: string,
         content: string
     }[],

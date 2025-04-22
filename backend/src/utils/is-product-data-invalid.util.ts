@@ -4,9 +4,9 @@ import { isString } from "./is-string.util";
 
 export const isProductDataInvalid = (product: ProductSchema): boolean => {
     if(product) {
-        const {name, price} = product;
-        const isMissingData: boolean = !name || !price;
-        const isInvalid = isMissingData || !isString(name) || !isNumber(price);
+        const {name, price, category} = product;
+        const isMissingData: boolean = !name || !price || !category;
+        const isInvalid = isMissingData || !isString(name) || !isNumber(price) || !isString(category);
         return isInvalid
     } else {
         return true;

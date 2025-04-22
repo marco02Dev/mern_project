@@ -3,10 +3,14 @@ import { FormSection } from "../components/sections/FormSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
 import { endpoints, Endpoints } from "../config/endpoints.config";
+import { RootState } from "../store";
+import { useSelector } from "react-redux";
 
 export const ContactPage = (): ReactElement => {
 
     const { imagesEndpoint }: Endpoints = endpoints;
+    const login = useSelector((state: RootState) => state.login);
+    const { isLoggedIn }: { isLoggedIn: boolean} = login;
 
     return <>
         <HeroSection
@@ -31,9 +35,13 @@ export const ContactPage = (): ReactElement => {
 
         <TextSection
             title="Master Your Skills Today!"
-            description="Explore high-quality courses crafted to boost your skills and confidence. Whether you're starting fresh or leveling up, log in now to begin your learning journey with us!"
-            buttonLabel="Log In Now"
-            buttonLink="/login"
+            description={
+                isLoggedIn
+                    ? "Explore your enrolled courses and visit your account page to continue learning!"
+                    : "Explore high-quality courses crafted to boost your skills and confidence. Whether you're starting fresh or leveling up, log in now to begin your learning journey with us!"
+            }
+            buttonLabel={isLoggedIn ? "Go to Your Account" : "Log In Now"}
+            buttonLink={isLoggedIn ? "/account" : "/login"}
             secondaryColor
         />
     </>

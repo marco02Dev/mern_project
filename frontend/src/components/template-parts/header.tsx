@@ -15,6 +15,7 @@ import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/hea
 import useLocationChange from "../../hooks/useLocationChange";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { User } from "../../types/user.types";
 
 const Nav = styled.nav`
     width: 100%;
@@ -51,7 +52,9 @@ export const Header: FC = (): ReactElement => {
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
 
-    const { isLoggedIn }: { isLoggedIn: boolean } = useSelector((state: RootState) => state.login)
+    const { isLoggedIn }: { isLoggedIn: boolean } = useSelector((state: RootState) => state.login);
+    const user: User | undefined = useSelector((state: RootState) => state.login.user);
+    const role: string | undefined = user?.role;
 
     let animation: RuleSet = css`
         animation: unset;
@@ -113,7 +116,11 @@ export const Header: FC = (): ReactElement => {
 
                 <DesktopNavInnerWrapper $width={'20%'} $flexEnd>
                     <FadeInWrapper>
-                        <StyledButton content={isLoggedIn ? "Account" : "Login"} to={isLoggedIn ? '/account' : "/login"} unsetShadow/>
+                        <StyledButton 
+                            content={isLoggedIn ? role === "customer" ? "Account" : "Admin" : "Login"} 
+                            to={isLoggedIn ? role === "customer" ? "/account" : "/admin" : "/login"} 
+                            unsetShadow
+                        />
                     </FadeInWrapper>
                     <StyledSpace horizontal small />
                     <SwitchThemeModeButton />
