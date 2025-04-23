@@ -85,19 +85,21 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             <StyledSpace large vertical/>
         </ StyledSection>  
 
-        { createProductForm && isAdmin && createProducts &&  <Form
-            title={"Create a new course"} 
-            service="create-course"
-            productImage
-            setCrateProductForm={setCrateProductForm}
-            setProductCreated={setProductCreated}
-            fields={[
-                "name",
-                "price",
-                "category",
-                "tags"
-            ]}
-        /> }
+        { createProductForm && isAdmin && createProducts &&  <StyledSection >
+            <Form
+                title={"Create a new course"} 
+                service="create-course"
+                productImage
+                setCrateProductForm={setCrateProductForm}
+                setProductCreated={setProductCreated}
+                fields={[
+                    "name",
+                    "price",
+                    "category",
+                    "tags"
+                ]}
+            /> 
+        </StyledSection> }
     </>
 
 }

@@ -65,21 +65,20 @@ export const updateProduct: Controller<ProductParams, {}, ProductSchema> = async
 }
 
 
-export const uploadImageController = async (request: Request, response: Response): Promise<void> => {
-    const { id } = request.params;
-    const { category } = request.body;
+export const uploadImageController = async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
+    const { id, category } = req.params;   
+    const files = req.files as Record<string, Express.Multer.File[]> | undefined;
   
-    if (!request.file && category && id) {
-        sendErrorMessage({
-            response: response,
-            statusCode: 400
-        })
-    } else {
-        sendSuccessMessage({
-          response: response,
-          statusCode: 200,
-        });
-    
-        return;
+    const noFiles =
+      !files ||
+      (Array.isArray(files) ? files.length === 0 : Object.values(files).every(arr => arr.length === 0));
+  
+    if (!id || !category || noFiles) {
+      sendErrorMessage({ response: res, statusCode: 400 });
     }
-};
+  
+    sendSuccessMessage({ response: res, statusCode: 200 });
+  };

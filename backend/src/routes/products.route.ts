@@ -2,9 +2,9 @@ import { response, Router } from "express";
 import { createProduct, getAllProducts, deleteProduct, updateProduct, getProductsByCategory, getProductsByCategoryAndName } from "../controller/product.controller";
 import { productsEndpointName } from "../config/env.config";
 import { checkAthorizedIp } from "../middlewares/authorize-ip";
-import { uploadProductImage } from "../middlewares/upload-product-image.middleware";
+import { uploadProductImages } from "../middlewares/upload-product-image.middleware";
 import { uploadImageController } from "../controller/product.controller";
-import { imageConversionMiddleware } from "../middlewares/upload-product-image.middleware";
+import { imagesConversionMiddleware } from "../middlewares/upload-product-image.middleware";
 
 const productsRouter: Router = Router();
 const defaultEndpoint: string = `/${productsEndpointName}`;
@@ -18,7 +18,7 @@ productsRouter.get(endpointWithCategory, getProductsByCategory);
 productsRouter.get(endpointWithCategoryAndName, getProductsByCategoryAndName);
 
 productsRouter.post(defaultEndpoint, checkAthorizedIp, createProduct);
-productsRouter.post(endpointPostImage, checkAthorizedIp, uploadProductImage, imageConversionMiddleware, uploadImageController); 
+productsRouter.post(endpointPostImage, checkAthorizedIp, uploadProductImages, imagesConversionMiddleware, uploadImageController); 
 productsRouter.delete(endpointWithId, checkAthorizedIp, deleteProduct);
 productsRouter.put(endpointWithId, checkAthorizedIp, updateProduct);
 

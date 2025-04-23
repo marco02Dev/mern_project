@@ -59,7 +59,7 @@ export const logUserIntoAccount = (req: Request, res: Response, next: NextFuncti
   
       req.logIn(user, (err) => {
         if (err) return next(err);
-        console.log("Sessione creata", req.sessionID);  
+        console.log("session id", req.sessionID);  
         return sendSuccessMessage({
             response: res,
             statusCode: 200,

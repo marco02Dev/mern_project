@@ -43,6 +43,11 @@ const FormWrapper = styled.div<{
     }
 `;
 
+const FileInputFieldset = styled.fieldset`
+    display: flex;
+    flex-direction: row;
+`;
+
 type FormProps = {
     title: string;
     fields: string[];
@@ -105,8 +110,14 @@ export const Form: FC<FormProps> = ({
                     
                     <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
 
-                    {productImage && <StyledTextInput name="product-image" isFile /> }
-                    {productImage && <StyledSpace medium vertical />}
+                    {productImage && <> 
+                        <FileInputFieldset> 
+                            <StyledTextInput name="product-image" isFile /> 
+                            <StyledSpace medium vertical />
+                            <StyledTextInput name="hero-image" isFile /> 
+                        </ FileInputFieldset> 
+                        <StyledSpace medium vertical />
+                    </>}
 
                     {textArea && <StyledSpace small vertical />}
                     {textArea && <FieldSetAdditionalInfoBox textArea={textArea} />}

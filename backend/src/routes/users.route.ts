@@ -15,7 +15,7 @@ const loginEndpoint: string = `${defaultEndpoint}/login`;
 const logOutEndpoint: string = `${defaultEndpoint}/logout`;
 
 usersRouter.get(defaultEndpoint, checkAthorizedIp, getAllUsers);
-usersRouter.get(endpointWithId, checkAthorizedIp, getUserById)
+usersRouter.get(endpointWithId, getUserById)
 usersRouter.post(signInEndpoint, createUser);
 usersRouter.post(loginEndpoint, logUserIntoAccount);
 usersRouter.delete(endpointWithId, deleteUser);

@@ -18,8 +18,45 @@ const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: st
     border-color: ${({$borderColor}) => $borderColor};
 `;
 
+type inputFileStylesProps = {
+    $fileButtonBackgroundColor: string, 
+    $color: string,
+    $hoverColor: string
+    $buttonColor: string,
+    $fileBorderButtonColor: string
+}
 
-const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRight?: string, $color: string}>`
+const inputFileStyles: RuleSet<inputFileStylesProps> = css<inputFileStylesProps>`
+
+    input[type="file"]::file-selector-button {
+        background-color: ${({$fileButtonBackgroundColor}) => $fileButtonBackgroundColor};
+        border: ${({$fileBorderButtonColor}) => $fileBorderButtonColor} solid 0.4vh;
+        font-size: ${() => sizes.fontSizes.paragraph};
+        color: ${({$buttonColor}) => $buttonColor};
+        cursor: pointer;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        padding-left: 2vh;
+        padding-right: 2vh;
+        margin-right: 2vh;
+    };
+
+    input[type="file"]::file-selector-button:hover {
+        background-color: ${({$hoverColor}) => $hoverColor};
+    }
+`;
+
+const Wrapper = styled.div<{
+        $isMobile: boolean, 
+        $borderColor: string, 
+        $paddingRight?: string, 
+        $color: string, 
+        $isFile?: boolean, 
+        $fileButtonBackgroundColor: string,
+        $fileBorderButtonColor: string,
+        $hoverColor: string,
+        $buttonColor: string
+    }>`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -38,6 +75,9 @@ const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRi
         color: ${({$color}) => $color};
         ${() => InputBorderStyles}
     };
+
+    ${({$isFile}) => $isFile && inputFileStyles}
+
 `;
 
 export type StyledTextInputProps = {
@@ -50,10 +90,23 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, i
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
+    const fileBorderButtonColor = mode === "dark" ? colors.dark.borderColor : colors.light.borderColor;
+    const fileButtonBackgroundColor = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
+    const buttonColor = mode === "dark" ? colors.dark.backgroundColor : colors.light.backgroundColor;
+    const hoverColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
-    return <Wrapper $isMobile={isMobile} $borderColor={borderColor} $paddingRight={paddingRight} $color={color}>
+    return <Wrapper 
+        $isMobile={isMobile} 
+        $borderColor={borderColor} 
+        $paddingRight={paddingRight} 
+        $color={color} $isFile={isFile} 
+        $fileButtonBackgroundColor={fileButtonBackgroundColor}
+        $hoverColor={hoverColor}
+        $buttonColor={buttonColor}
+        $fileBorderButtonColor={fileBorderButtonColor}
+        >
         <label htmlFor={name}>
             <TextRevealWrapper>
                 <StyledText tag="h3" size="h5" content={capitalizeTitle} />

@@ -50,51 +50,45 @@ const storage = multer.diskStorage({
 });
 
 
-export const uploadProductImage = multer({
+export const uploadProductImages = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 },
-}).single("product-image");
+}).fields([
+  { name: "product-image", maxCount: 1 },
+  { name: "hero-image",    maxCount: 1 },
+]);
 
 
-export const imageConversionMiddleware = (
+export const imagesConversionMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  const filesObj = req.files as Record<string, Express.Multer.File[]> | undefined;
+  if (!filesObj) return next();
 
-  if (!req.file) {
-    return next();
-  }
+  const files = Object.values(filesObj).flat();
+  if (files.length === 0) return next();
 
-  const file = req.file;                    
-  const filePath = file.path;
-  const convertedPath = path.join(
-    path.dirname(filePath),
-    `${path.parse(file.originalname).name}.webp`
-  );
+  Promise.all(
+    files.map(async (file) => {
+      const filePath = file.path;
+      const convertedPath = path.join(
+        path.dirname(filePath),
+        `${path.parse(file.originalname).name}.webp`
+      );
 
-  console.log("[UPLOAD] Converting file:", filePath);
-
-  sharp(filePath)
-    .webp({ quality: 80 })
-    .toFile(convertedPath, (err, info) => {
-      if (err) {
-        console.error("[UPLOAD] Error processing image:", err);
-        return sendErrorMessage({ response: res, statusCode: 500 });
-      }
-
-      console.log("[UPLOAD] Image converted:", info);
-
-      fs.unlink(filePath, unlinkErr => {
-        if (unlinkErr) {
-          console.error("[UPLOAD] Error deleting original file:", unlinkErr);
-        } else {
-          console.log("[UPLOAD] Original file deleted");
-        }
-      });
-
+      await sharp(filePath).webp({ quality: 80 }).toFile(convertedPath);
+      await fs.promises.unlink(filePath); 
       file.path = convertedPath;
-
+    })
+  )
+    .then(() => {
+      console.log("[UPLOAD] Tutte le immagini convertite");
       next();
+    })
+    .catch((err) => {
+      console.error("[UPLOAD] Errore durante la conversione", err);
+      sendErrorMessage({ response: res, statusCode: 500 });
     });
 };
