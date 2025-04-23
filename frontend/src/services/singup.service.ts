@@ -45,8 +45,6 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
                 throw new Error("Failed to create a new user");
             }
 
-            console.log("User created");
-
             const loginResponse = await fetch(`${usersEndpoint}/login`, {
                 method: "POST",
                 headers: {
@@ -67,7 +65,6 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
             if (dispatch as Dispatch && navigateFunction) {
                 dispatch && dispatch(setLoggedIn(user));
                 navigateFunction('/account');
-                console.log("User log in");
             }
 
         } catch (error) {

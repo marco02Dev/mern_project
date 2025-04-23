@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useRef, useState, FormEvent } from "react";
+import { ReactElement, FC, useRef, useState, FormEvent, Dispatch as ReactStateDispatch, SetStateAction} from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -18,6 +18,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
+import { StyledTextInput } from "../themed/StyledTextInput";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,
@@ -47,13 +48,19 @@ type FormProps = {
     fields: string[];
     textArea?: string;
     service: AllowedServices;
+    productImage?: boolean;
+    setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
+    setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>
 };
 
 export const Form: FC<FormProps> = ({
     title,
     fields,
     textArea,
-    service
+    productImage,
+    service,
+    setCrateProductForm,
+    setProductCreated
 }: FormProps ): ReactElement => {
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
@@ -72,8 +79,8 @@ export const Form: FC<FormProps> = ({
             loginService(event, dispatch, navigateFunction, setErrorMessage);
         } else if (service === "sign-up") {
             signUpService(event, dispatch, navigateFunction, setErrorMessage);
-        } else if(service === "create-course") {
-            createCourseService(event, setErrorMessage, setMessageSent);
+        } else if(service === "create-course" && setCrateProductForm && setProductCreated) {
+            createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated);
         }
     };
 
@@ -97,6 +104,9 @@ export const Form: FC<FormProps> = ({
                     <input type="text" name="website" style={{ display: 'none' }} autoComplete="off" />
                     
                     <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
+
+                    {productImage && <StyledTextInput name="product-image" isFile /> }
+                    {productImage && <StyledSpace medium vertical />}
 
                     {textArea && <StyledSpace small vertical />}
                     {textArea && <FieldSetAdditionalInfoBox textArea={textArea} />}

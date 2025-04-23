@@ -42,10 +42,11 @@ const Wrapper = styled.div<{$isMobile: boolean, $borderColor: string, $paddingRi
 
 export type StyledTextInputProps = {
     name: string,
-    paddingRight?: string
+    paddingRight?: string,
+    isFile?: boolean
 }
 
-export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight}: StyledTextInputProps): ReactElement => {
+export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, isFile}: StyledTextInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
@@ -60,7 +61,7 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight}: 
         </label>
         <StyledSpace verySmall vertical />
         <FadeInWrapper >
-            <input type="text" id={name} name={name} />
+            <input type={isFile ? "file" : "text"} id={name} name={name} />
         </FadeInWrapper>
     </Wrapper>
 }

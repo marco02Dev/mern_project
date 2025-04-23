@@ -6,7 +6,9 @@ import { deleteDocumentByModel } from "../queries/delete-document-by-model";
 import { updateDocumentByModel } from "../queries/update-document-by-model";
 import { getDocumentsByCategory } from "../queries/get-documents-by-category";
 import { getDocumentsByCategoryAndId } from "../queries/get-documents-by-category-and-name";
-import { Request } from "express";
+import { Request, response, Response } from "express";
+import { sendSuccessMessage } from "../utils/send-success-message.util";
+import { sendErrorMessage } from "../utils/send-error-massage.util";
 
 export const getAllProducts: Controller = async (req, res) => {
     getAllDocumentsByModel<ProductSchema>({
@@ -61,3 +63,23 @@ export const updateProduct: Controller<ProductParams, {}, ProductSchema> = async
         resourceName: "Product"
     });
 }
+
+
+export const uploadImageController = async (request: Request, response: Response): Promise<void> => {
+    const { id } = request.params;
+    const { category } = request.body;
+  
+    if (!request.file && category && id) {
+        sendErrorMessage({
+            response: response,
+            statusCode: 400
+        })
+    } else {
+        sendSuccessMessage({
+          response: response,
+          statusCode: 200,
+        });
+    
+        return;
+    }
+};

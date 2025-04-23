@@ -10,7 +10,6 @@ export const sendErrorWhenHoneyPotIsFilled = ({
 }): void => {
     const honeyPot: FormDataEntryValue | null = formData.get("website");
     const { badRequest }: ErrorMessages = errorMessages;
-    console.log("bot alert");
     if (honeyPot !== null && honeyPot.toString().trim() !== "") {
         setErrorMessage && setErrorMessage(badRequest); 
         throw new Error(badRequest);        

@@ -21,6 +21,6 @@ export const usePurchasedProducts = (shouldFetch: boolean = true) => {
       dispatch(fetchPurchasedProducts(_id));
     }
   }, [isLoggedIn, _id, shouldFetch, dispatch]);
-  console.log(productsPurchased)
+
   return { productsPurchased, isLoggedIn, _id };
 };

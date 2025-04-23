@@ -11,12 +11,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { LoginState } from "../../store/slices/login.slice";
 import styled from "styled-components";
-import { FormSection } from "./FormSection";
-import { endpoints } from "../../config/endpoints.config";
+import { Form } from "../ui/Form";
+import { StyledText } from "../themed/StyledText";
+import { colors } from "../../config/colors.config";
 
 const ButtonWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
 `;
 
 type LargeProductsPreviewSectionProps = {
@@ -37,7 +39,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     const [products, setProducts] = useState<number>(limit);
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
     const [createProductForm, setCrateProductForm] = useState<boolean>(false);
-    console.log(createProductForm);
+    const [productCreated, setProductCreated] = useState<boolean>(false);
 
     const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
     const login: LoginState = useSelector((state: RootState) => state.login);
@@ -45,7 +47,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     const { user } = login;
 
     const isAdmin: boolean = isLoggedIn && user?.role === "admin";
-    const thereAreProductsToShow = productsNumber !== undefined && products <= productsNumber;
+    const thereAreProductsToShow: boolean = productsNumber !== undefined && products <= productsNumber;
 
     return <>
         <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
@@ -67,27 +69,35 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
                     }
 
                     {isAdmin && createProducts && <FadeInWrapper>
-                        <StyledButton unsetShadow content="Create course" action={(): void => setCrateProductForm(true)} />
+                        <StyledButton unsetShadow content="Create course" action={(): void => {
+                            setCrateProductForm(true);
+                            setProductCreated(false);
+                        }} />
                     </FadeInWrapper> }
+
+                    {productCreated && <>
+                        <StyledSpace small horizontal />
+                        <StyledText tag="h6" color={colors.dark.successMessage} content="New Product created!" />
+                    </>}
                 </ButtonWrapper>
             }
 
             <StyledSpace large vertical/>
         </ StyledSection>  
 
-        { createProductForm && isAdmin && createProducts &&  <FormSection 
+        { createProductForm && isAdmin && createProducts &&  <Form
             title={"Create a new course"} 
             service="create-course"
+            productImage
+            setCrateProductForm={setCrateProductForm}
+            setProductCreated={setProductCreated}
             fields={[
                 "name",
                 "price",
-                "category"
+                "category",
+                "tags"
             ]}
-
-            imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
-            secondaryColor
         /> }
-
     </>
 
 }

@@ -20,7 +20,6 @@ export const Productpage: FC = (): ReactElement => {
     const { imagesEndpoint }: Endpoints = endpoints
     const location: Location = useLocation();
     const { title, price, courseId, category, details }: ProductData = location.state;
-    console.log(details)
 
     const heroImage: string = `${imagesEndpoint}/products/${category}/${courseId}/hero-image.webp`;
 
