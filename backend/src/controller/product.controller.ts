@@ -6,7 +6,7 @@ import { deleteDocumentByModel } from "../queries/delete-document-by-model";
 import { updateDocumentByModel } from "../queries/update-document-by-model";
 import { getDocumentsByCategory } from "../queries/get-documents-by-category";
 import { getDocumentsByCategoryAndId } from "../queries/get-documents-by-category-and-name";
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { sendSuccessMessage } from "../utils/send-success-message.util";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
 

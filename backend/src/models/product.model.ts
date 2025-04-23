@@ -30,7 +30,7 @@ const productSchema: Schema<ProductSchema> = new mongoose.Schema({
             title: String,
             content: String
         }],
-        required: false  // Se non obbligatorio
+        required: false 
     }
 }, {
     timestamps: true

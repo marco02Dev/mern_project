@@ -20,6 +20,8 @@ export const createCourseService: CreateCourseService = async (event, setErrorMe
     const price = formData.get('price');
     const category = formData.get('category');
     const productImage = formData.get('product-image');
+
+    console.dir(productImage)
     const parsedPrice = Number(price);
 
     if (!title || !price || !category || isNaN(parsedPrice)) {
@@ -50,7 +52,11 @@ export const createCourseService: CreateCourseService = async (event, setErrorMe
 
             if (productImage instanceof File) {
                 const fd = new FormData();
-                fd.append("product-image", productImage);      
+
+                const newFileName = "feature-image" + productImage.name.substring(productImage.name.lastIndexOf('.'));
+                const productImageFileUpdated = new File([productImage], newFileName, { type: productImage.type });
+
+                fd.append("product-image", productImageFileUpdated);      
                 fd.append("category", category as string);    
               
                 await fetch(`${endpoints.coursesEndpoint}/image/${category}/${product_id}`, {

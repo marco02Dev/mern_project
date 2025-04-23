@@ -4,6 +4,7 @@ import { productsEndpointName } from "../config/env.config";
 import { checkAthorizedIp } from "../middlewares/authorize-ip";
 import { uploadProductImage } from "../middlewares/upload-product-image.middleware";
 import { uploadImageController } from "../controller/product.controller";
+import { imageConversionMiddleware } from "../middlewares/upload-product-image.middleware";
 
 const productsRouter: Router = Router();
 const defaultEndpoint: string = `/${productsEndpointName}`;
@@ -17,7 +18,7 @@ productsRouter.get(endpointWithCategory, getProductsByCategory);
 productsRouter.get(endpointWithCategoryAndName, getProductsByCategoryAndName);
 
 productsRouter.post(defaultEndpoint, checkAthorizedIp, createProduct);
-productsRouter.post(endpointPostImage, checkAthorizedIp, uploadProductImage, uploadImageController); 
+productsRouter.post(endpointPostImage, checkAthorizedIp, uploadProductImage, imageConversionMiddleware, uploadImageController); 
 productsRouter.delete(endpointWithId, checkAthorizedIp, deleteProduct);
 productsRouter.put(endpointWithId, checkAthorizedIp, updateProduct);
 
