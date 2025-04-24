@@ -8,6 +8,11 @@ import { StyledBox } from "../themed/StyledBox";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { Link } from "react-router-dom";
+import { LoginState } from "../../store/slices/login.slice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { useLocation } from "react-router-dom";
+import { deleteCourseService } from "../../services/delete-course.service";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -61,6 +66,11 @@ const InnerWrapper = styled.div<{$isMobile: boolean}>`
     }
 `;
 
+const ModifyDeleteWrapper = styled.div`
+    display: flex !important;
+    flex-direction: row;
+`;
+
 export type CourseBoxProps = {
     title: string;
     price: string;
@@ -84,6 +94,10 @@ export const CourseBox = ({
     details
 }: CourseBoxProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
+    const login: LoginState = useSelector((state: RootState) => state.login);
+    const { isLoggedIn }: {isLoggedIn: boolean} = login;
+    const location = useLocation();
+    const isAdminPage: boolean = location.pathname.startsWith("/admin");
 
     const handleButtonClick = () => {
       if (hiddenLinkRef.current) {
@@ -122,10 +136,25 @@ export const CourseBox = ({
 
                     <StyledSpace verySmall vertical height="5%" />
 
-                    <FadeInWrapper>
+                    {!isLoggedIn && <FadeInWrapper>
                         <StyledButton unsetShadow content={"Discover"} action={handleButtonClick} />
                         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
-                    </FadeInWrapper>
+                    </FadeInWrapper> }
+
+                    {isLoggedIn && isAdminPage && <ModifyDeleteWrapper>
+                        <FadeInWrapper>
+                            <StyledButton unsetShadow content="Update" action={(): void => {
+
+                            }} />
+                        </FadeInWrapper>
+
+                        <StyledSpace horizontal small />
+
+                        <FadeInWrapper>
+                            <StyledButton unsetShadow content="Delete" action={() => deleteCourseService(courseId)} />
+                        </FadeInWrapper>
+                        
+                    </ ModifyDeleteWrapper> }
                 </div>
             </InnerWrapper>
         </StyledBox>

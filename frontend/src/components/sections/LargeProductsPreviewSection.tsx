@@ -1,4 +1,4 @@
-import { ReactElement, FC, useState } from "react";
+import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
 import { CoursesLoop } from "../loops/CoursesLoop";
 import { StyledSection } from "../themed/StyledSection";
 import { sizes } from "../../config/sizes.config";
