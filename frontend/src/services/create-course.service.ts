@@ -23,8 +23,23 @@ export const createCourseService: CreateCourseService = async (
   const title     = formData.get("name");
   const price     = formData.get("price");
   const category  = formData.get("category");
+  const tagString = formData.get("tags");
   const prodImg   = formData.get("product-image");
   const heroImg   = formData.get("hero-image");
+
+  let tagsArray: string[] = [];
+
+  if (typeof tagString === "string") {
+    tagsArray = tagString
+      .split(",")  
+      .map(t => t.trim())   
+      .filter(Boolean);  
+  } else {
+    setErrorMessage("Please fill tags field");
+  }
+
+  console.log(tagsArray);
+
 
   const parsedPrice = Number(price);
   if (!title || !price || !category || isNaN(parsedPrice)) {
@@ -36,6 +51,7 @@ export const createCourseService: CreateCourseService = async (
     name: title as string,
     price: parsedPrice,
     category: category as string,
+    tags: tagsArray as string[]
   };
 
   try {

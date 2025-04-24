@@ -87,7 +87,12 @@ export type StyledTextInputProps = {
     onChangeAction?: ChangeEventHandler<HTMLInputElement>
 }
 
-export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, isFile, onChangeAction}: StyledTextInputProps): ReactElement => {
+export const StyledTextInput: FC<StyledTextInputProps> = ({
+    name, 
+    paddingRight, 
+    isFile,
+    onChangeAction
+}: StyledTextInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
@@ -97,6 +102,12 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, i
     const hoverColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
+
+    let placeholder: string | undefined;
+
+    if(name === "tags") {
+        placeholder = "Write tags separated by commas";
+    }
 
     return <Wrapper 
         $isMobile={isMobile} 
@@ -117,7 +128,7 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, i
         <FadeInWrapper >
             {
                 onChangeAction ?  <input onChange={onChangeAction} type={isFile ? "file" : "text"} id={name} name={name} /> 
-                :  <input type={isFile ? "file" : "text"} id={name} name={name} />
+                :  <input placeholder={placeholder} type={isFile ? "file" : "text"} id={name} name={name} />
             }
         </FadeInWrapper>
     </Wrapper>
