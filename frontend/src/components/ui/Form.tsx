@@ -18,7 +18,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
-import { StyledTextInput } from "../themed/StyledTextInput";
+import { StyledInput } from "../themed/StyledInput";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,
@@ -129,9 +129,9 @@ export const Form: FC<FormProps> = ({
                     {productImage && <> 
                         <StyledSpace medium vertical />
                         <FileInputFieldset> 
-                            <StyledTextInput onChangeAction={onChangeFileAction} name="product-image" isFile /> 
+                            <StyledInput onChangeAction={onChangeFileAction} name="product-image" isFile /> 
                             <StyledSpace medium vertical />
-                            <StyledTextInput name="hero-image" isFile /> 
+                            <StyledInput name="hero-image" isFile /> 
                         </ FileInputFieldset> 
                         <StyledSpace medium vertical />
                     </>}

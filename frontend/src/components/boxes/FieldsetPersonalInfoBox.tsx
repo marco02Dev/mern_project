@@ -1,6 +1,6 @@
 import { FC, ReactElement, Fragment } from "react";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
-import { StyledTextInput } from "../themed/StyledTextInput";
+import { StyledInput } from "../themed/StyledInput";
 import { StyledSpace } from "../themed/StyledSpace";
 
 import styled from "styled-components";
@@ -25,7 +25,7 @@ export const FieldSetPersonalInfoBox: FC<FieldSetPersonalInfoBoxProps> = ({textA
             const isEven = (index + 1) % 2 === 0;
 
             return <Fragment key={index}>
-                <StyledTextInput name={field} paddingRight={!isEven && !isMobile ? "4%" : "0%"} />
+                <StyledInput name={field} paddingRight={!isEven && !isMobile ? "4%" : "0%"} />
 
                 {!isEven && isMobile && <StyledSpace verySmall vertical medium width="100%"/> }
                 {isEven && !textArea && <StyledSpace verySmall vertical medium width="100%"/> }

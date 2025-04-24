@@ -51,19 +51,19 @@ const Wrapper = styled.div<{
     };
 `;
 
-export type StyledTextInputProps = {
+export type StyledInputProps = {
     name: string,
     paddingRight?: string,
     isFile?: boolean,
     onChangeAction?: ChangeEventHandler<HTMLInputElement>
 }
 
-export const StyledTextInput: FC<StyledTextInputProps> = ({
+export const StyledInput: FC<StyledInputProps> = ({
     name, 
     paddingRight, 
     isFile,
     onChangeAction
-}: StyledTextInputProps): ReactElement => {
+}: StyledInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
