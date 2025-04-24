@@ -4,7 +4,7 @@ import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
-import styled, { RuleSet, css } from "styled-components";
+import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
@@ -12,14 +12,8 @@ import { colors } from "../../config/colors.config";
 import { getInputType } from "../../utils/get-input-type.util";
 import { EyeIconButton } from "../ui/EyeIconButton";
 import { getPasswordPatternAttrs } from "../../utils/get-password-pattern-atts";
-
-const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: string}>`
-    border-top: unset;
-    border-left: unset;
-    border-right: unset;
-    border-bottom-width: 0.4vh;    
-    border-color: ${({$borderColor}) => $borderColor};
-`;
+import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
+import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 
 const Wrapper = styled.div<{
         $isMobile: boolean, 
@@ -30,13 +24,15 @@ const Wrapper = styled.div<{
         $fileButtonBackgroundColor: string,
         $fileBorderButtonColor: string,
         $hoverColor: string,
-        $buttonColor: string
+        $buttonColor: string,
+        $inputOnFocus: boolean
     }>`
     width: 100%;
     display: flex;
     flex-direction: column;
     width: ${({$isMobile}) => $isMobile ? "100%" : "48%"};
-    padding-right: ${({$paddingRight}) => $paddingRight};
+    margin-right: ${({$paddingRight}) => $paddingRight};
+    position: relative;
     label {
         width: 100%;
         div {
@@ -48,8 +44,12 @@ const Wrapper = styled.div<{
         background-color: unset;
         font-size: ${() => sizes.fontSizes.h5};
         color: ${({$color}) => $color};
+        padding: unset;
         ${() => InputBorderStyles}
     };
+
+    ${() => styledInpuTextAreaFocusAnimation}
+
 `;
 
 export type StyledInputProps = {
@@ -75,7 +75,8 @@ export const StyledInput: FC<StyledInputProps> = ({
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
 
     const passwordAttrs = getPasswordPatternAttrs(name);
 
@@ -99,6 +100,7 @@ export const StyledInput: FC<StyledInputProps> = ({
             $hoverColor={hoverColor}
             $buttonColor={buttonColor}
             $fileBorderButtonColor={fileBorderButtonColor}
+            $inputOnFocus={inputOnFocus}
         >
             <label htmlFor={name}>
                 <TextRevealWrapper>
@@ -111,6 +113,12 @@ export const StyledInput: FC<StyledInputProps> = ({
                     {
                         onChangeAction ?  
                             <input 
+                                onFocus={() => {
+                                    setInputOnFocus(true);
+                                }}
+                                onBlur={() => {
+                                    setInputOnFocus(false);
+                                }}
                                 onChange={onChangeAction} 
                                 type={getInputType({ isFile, name, isPasswordVisible })} 
                                 id={name} 
@@ -120,6 +128,8 @@ export const StyledInput: FC<StyledInputProps> = ({
                             /> 
                         :  
                             <input 
+                                onFocus={() => setInputOnFocus(true)}
+                                onBlur={() => setInputOnFocus(false)}
                                 placeholder={placeholder} 
                                 type={getInputType({ isFile, name, isPasswordVisible })} 
                                 id={name} 
