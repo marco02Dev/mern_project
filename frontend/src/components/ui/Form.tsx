@@ -52,6 +52,7 @@ type FormProps = {
     title: string;
     fields: string[];
     textArea?: string;
+    textAreaPlaceholder?: string;
     service: AllowedServices;
     productImage?: boolean;
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
@@ -63,6 +64,7 @@ export const Form: FC<FormProps> = ({
     title,
     fields,
     textArea,
+    textAreaPlaceholder,
     productImage,
     service,
     setCrateProductForm,
@@ -134,7 +136,7 @@ export const Form: FC<FormProps> = ({
 
                     {textArea && <> 
                         <StyledSpace small vertical />
-                        <FieldSetAdditionalInfoBox textArea={textArea} />
+                        <FieldSetAdditionalInfoBox textArea={textArea} placeholder={textAreaPlaceholder} />
                         <StyledSpace medium vertical />
                     </> }
 

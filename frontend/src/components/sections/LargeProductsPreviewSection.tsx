@@ -94,6 +94,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             setCrateProductForm={setCrateProductForm}
             setProductCreated={setProductCreated}
             textArea="details"
+            textAreaPlaceholder="Write as title=…,content=…; separate sections with commas."
             fields={[
                 "name",
                 "price",

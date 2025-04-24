@@ -22,6 +22,7 @@ type FormSectionProps = {
     title: string,
     fields: string[],
     textArea?: string,
+    textAreaPlaceholder: string,
     service: AllowedServices,
     secondaryColor?: boolean,
     productImage?: boolean,
@@ -29,7 +30,7 @@ type FormSectionProps = {
     setProductCreated?: Dispatch<SetStateAction<boolean>>
 }
 
-export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, service, secondaryColor, productImage, setCrateProductForm, setProductCreated}: FormSectionProps): ReactElement => {
+export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, textAreaPlaceholder, service, secondaryColor, productImage, setCrateProductForm, setProductCreated}: FormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
     console.log(formImage);
@@ -47,6 +48,7 @@ export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textAr
                 title={title}
                 fields={fields}
                 textArea={textArea}
+                textAreaPlaceholder={textAreaPlaceholder}
                 service={service}
                 productImage={productImage}
                 setCrateProductForm={setCrateProductForm}

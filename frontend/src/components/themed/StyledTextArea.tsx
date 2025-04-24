@@ -36,10 +36,11 @@ const TextAreaWrapper = styled.div<{$borderColor: string}>`
 `;
 
 type StyledTextAreaProps = {
-    name: string
+    name: string,
+    placeholder?: string
 }
 
-export const StyledTextArea: FC<StyledTextAreaProps> = ({ name }: StyledTextAreaProps): ReactElement => {
+export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: StyledTextAreaProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
@@ -95,6 +96,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({ name }: StyledTextArea
 
             <FadeInWrapper>
                 <textarea
+                    placeholder={placeholder}
                     ref={textAreaRef}
                     rows={rows}
                     name={name}

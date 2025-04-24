@@ -9,11 +9,12 @@ const Wrapper = styled.fieldset`
 `;
 
 type FieldSetAdditionalInfoBoxProps = {
-    textArea: string
+    textArea: string,
+    placeholder?: string
 }
 
-export const FieldSetAdditionalInfoBox: FC<FieldSetAdditionalInfoBoxProps> = ({ textArea }: FieldSetAdditionalInfoBoxProps): ReactElement => {
+export const FieldSetAdditionalInfoBox: FC<FieldSetAdditionalInfoBoxProps> = ({ textArea, placeholder }: FieldSetAdditionalInfoBoxProps): ReactElement => {
     return <Wrapper>
-        <StyledTextArea name={textArea} />
+        <StyledTextArea name={textArea} placeholder={placeholder} />
     </ Wrapper> 
 }
