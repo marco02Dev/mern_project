@@ -1,4 +1,4 @@
-import { FC, ReactElement, useContext, ChangeEventHandler, useState } from "react";
+import { FC, ReactElement, useContext, ChangeEventHandler, useState, MouseEventHandler } from "react";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
@@ -9,7 +9,8 @@ import { sizes } from "../../config/sizes.config";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Icone per occhio da react-icons
+import { getInputType } from "../../utils/get-input-type.util";
+import { EyeIconButton } from "../ui/EyeIconButton";
 
 const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: string}>`
     border-top: unset;
@@ -73,7 +74,7 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Stato per la visibilità della password
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     let placeholder: string | undefined;
 
@@ -81,8 +82,8 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({
         placeholder = "Write tags separated by commas";
     }
 
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible((prev) => !prev); // Cambia la visibilità della password
+    const togglePasswordVisibility: MouseEventHandler<HTMLDivElement> = () => {
+        setIsPasswordVisible((prev) => !prev); 
     };
 
     return (
@@ -108,7 +109,7 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({
                         onChangeAction ?  
                             <input 
                                 onChange={onChangeAction} 
-                                type={name === "password" && !isPasswordVisible ? "password" : (isFile ? "file" : "text")} 
+                                type={getInputType({ isFile, name, isPasswordVisible })} 
                                 id={name} 
                                 name={name} 
                                 placeholder={placeholder} 
@@ -116,24 +117,13 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({
                         :  
                             <input 
                                 placeholder={placeholder} 
-                                type={name === "password" && !isPasswordVisible ? "password" : (isFile ? "file" : "text")} 
+                                type={getInputType({ isFile, name, isPasswordVisible })} 
                                 id={name} 
                                 name={name} 
                             />
                     }
                     {name === "password" && (
-                        <div 
-                            style={{
-                                position: "absolute", 
-                                right: "10px", 
-                                top: "50%", 
-                                transform: "translateY(-50%)", 
-                                cursor: "pointer"
-                            }} 
-                            onClick={togglePasswordVisibility}
-                        >
-                            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icona per visibilità password */}
-                        </div>
+                        <EyeIconButton isPasswordVisible={isPasswordVisible} togglePasswordVisibility={togglePasswordVisibility} />
                     )}
                 </div>
             </FadeInWrapper>

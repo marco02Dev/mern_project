@@ -24,7 +24,7 @@ type FormSectionProps = {
     title: string,
     fields: string[],
     textArea?: string,
-    textAreaPlaceholder: string,
+    textAreaPlaceholder?: string,
     service: AllowedServices,
     secondaryColor?: boolean,
     productImage?: boolean,
