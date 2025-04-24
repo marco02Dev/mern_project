@@ -1,14 +1,15 @@
-import { FC, ReactElement, useContext, ChangeEventHandler } from "react";
+import { FC, ReactElement, useContext, ChangeEventHandler, useState } from "react";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
-import styled, { RuleSet, css} from "styled-components";
+import styled, { RuleSet, css } from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Icone per occhio da react-icons
 
 const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: string}>`
     border-top: unset;
@@ -16,34 +17,6 @@ const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: st
     border-right: unset;
     border-bottom-width: 0.4vh;    
     border-color: ${({$borderColor}) => $borderColor};
-`;
-
-type inputFileStylesProps = {
-    $fileButtonBackgroundColor: string, 
-    $color: string,
-    $hoverColor: string
-    $buttonColor: string,
-    $fileBorderButtonColor: string
-}
-
-const inputFileStyles: RuleSet<inputFileStylesProps> = css<inputFileStylesProps>`
-
-    input[type="file"]::file-selector-button {
-        background-color: ${({$fileButtonBackgroundColor}) => $fileButtonBackgroundColor};
-        border: ${({$fileBorderButtonColor}) => $fileBorderButtonColor} solid 0.4vh;
-        font-size: ${() => sizes.fontSizes.paragraph};
-        color: ${({$buttonColor}) => $buttonColor};
-        cursor: pointer;
-        padding-top: 1vh;
-        padding-bottom: 1vh;
-        padding-left: 2vh;
-        padding-right: 2vh;
-        margin-right: 2vh;
-    };
-
-    input[type="file"]::file-selector-button:hover {
-        background-color: ${({$hoverColor}) => $hoverColor};
-    }
 `;
 
 const Wrapper = styled.div<{
@@ -75,9 +48,6 @@ const Wrapper = styled.div<{
         color: ${({$color}) => $color};
         ${() => InputBorderStyles}
     };
-
-    ${({$isFile}) => $isFile && inputFileStyles}
-
 `;
 
 export type StyledTextInputProps = {
@@ -103,33 +73,70 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Stato per la visibilità della password
+
     let placeholder: string | undefined;
 
     if(name === "tags") {
         placeholder = "Write tags separated by commas";
     }
 
-    return <Wrapper 
-        $isMobile={isMobile} 
-        $borderColor={borderColor} 
-        $paddingRight={paddingRight} 
-        $color={color} $isFile={isFile} 
-        $fileButtonBackgroundColor={fileButtonBackgroundColor}
-        $hoverColor={hoverColor}
-        $buttonColor={buttonColor}
-        $fileBorderButtonColor={fileBorderButtonColor}
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible((prev) => !prev); // Cambia la visibilità della password
+    };
+
+    return (
+        <Wrapper 
+            $isMobile={isMobile} 
+            $borderColor={borderColor} 
+            $paddingRight={paddingRight} 
+            $color={color} 
+            $fileButtonBackgroundColor={fileButtonBackgroundColor}
+            $hoverColor={hoverColor}
+            $buttonColor={buttonColor}
+            $fileBorderButtonColor={fileBorderButtonColor}
         >
-        <label htmlFor={name}>
-            <TextRevealWrapper>
-                <StyledText tag="h3" size="h5" content={capitalizeTitle} />
-            </TextRevealWrapper>
-        </label>
-        <StyledSpace verySmall vertical />
-        <FadeInWrapper >
-            {
-                onChangeAction ?  <input onChange={onChangeAction} type={isFile ? "file" : "text"} id={name} name={name} /> 
-                :  <input placeholder={placeholder} type={isFile ? "file" : "text"} id={name} name={name} />
-            }
-        </FadeInWrapper>
-    </Wrapper>
-}
+            <label htmlFor={name}>
+                <TextRevealWrapper>
+                    <StyledText tag="h3" size="h5" content={capitalizeTitle} />
+                </TextRevealWrapper>
+            </label>
+            <StyledSpace verySmall vertical />
+            <FadeInWrapper>
+                <div style={{ position: 'relative' }}>
+                    {
+                        onChangeAction ?  
+                            <input 
+                                onChange={onChangeAction} 
+                                type={name === "password" && !isPasswordVisible ? "password" : (isFile ? "file" : "text")} 
+                                id={name} 
+                                name={name} 
+                                placeholder={placeholder} 
+                            /> 
+                        :  
+                            <input 
+                                placeholder={placeholder} 
+                                type={name === "password" && !isPasswordVisible ? "password" : (isFile ? "file" : "text")} 
+                                id={name} 
+                                name={name} 
+                            />
+                    }
+                    {name === "password" && (
+                        <div 
+                            style={{
+                                position: "absolute", 
+                                right: "10px", 
+                                top: "50%", 
+                                transform: "translateY(-50%)", 
+                                cursor: "pointer"
+                            }} 
+                            onClick={togglePasswordVisibility}
+                        >
+                            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icona per visibilità password */}
+                        </div>
+                    )}
+                </div>
+            </FadeInWrapper>
+        </Wrapper>
+    );
+};
