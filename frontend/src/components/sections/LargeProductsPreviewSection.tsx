@@ -88,6 +88,8 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
 
         { createProductForm && isAdmin && createProducts && <FormSection
             imgSrc={`${endpoints.imagesEndpoint}/pages/admin/form-section.webp`}
+            imageBorderedBoxWidth="40%"
+            formWidth="60%"
             title={"Create a new course"} 
             service="create-course"
             productImage

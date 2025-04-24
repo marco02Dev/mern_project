@@ -3,8 +3,12 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import styled from "styled-components";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
-const Wrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
-    width: ${({$isMobile, $isTablet}) => $isMobile || $isTablet ? '100%' : '50%'};
+const Wrapper = styled.div<{
+    $isMobile: boolean, 
+    $isTablet: boolean,
+    $boxWidth?: string,
+    }>`
+    width: ${({$isMobile, $isTablet, $boxWidth}) => $isMobile || $isTablet ? '100%' : $boxWidth ? $boxWidth : "50%"};
     height: ${({$isTablet}) => $isTablet ? '50%' : '100%'};
     display: flex;
     justify-content: center;
@@ -24,14 +28,15 @@ const Wrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
 `;
 
 type ImageBorderdBoxProps = {
-    imgSrc?: string
+    imgSrc?: string,
+    boxWidth?: string
 }
 
-export const ImageBorderedBox: FC<ImageBorderdBoxProps> = ({imgSrc}: ImageBorderdBoxProps): ReactElement => {
+export const ImageBorderedBox: FC<ImageBorderdBoxProps> = ({imgSrc, boxWidth}: ImageBorderdBoxProps): ReactElement => {
 
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
 
-    return <Wrapper $isTablet={isTablet} $isMobile={isMobile}>
+    return <Wrapper $boxWidth={boxWidth} $isTablet={isTablet} $isMobile={isMobile}>
         <FadeInWrapper width="50%">
             <img src={imgSrc} alt="" />
         </FadeInWrapper>

@@ -25,9 +25,9 @@ const FormWrapper = styled.div<{
     $isTablet: boolean
     $paddingLeft: string,
     $paddingRight: string,
-
+    $formWidth?: string
 }>`
-    width: ${({$isMobile, $isTablet}) => $isMobile || $isTablet? "100%" : "50%"};
+    width: ${({$isMobile, $isTablet, $formWidth}) => $isMobile || $isTablet? "100%" : $formWidth ? $formWidth : "50%"};
     height: 100%;
     padding-left: ${({$paddingLeft, $isMobile}) => $paddingLeft && !$isMobile ? $paddingLeft : "unset"};
     padding-right: ${({$paddingRight, $isMobile}) => $paddingRight && !$isMobile ? $paddingRight : "unset"};
@@ -55,6 +55,7 @@ type FormProps = {
     textAreaPlaceholder?: string;
     service: AllowedServices;
     productImage?: boolean;
+    formWidth?: string;
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
     setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
@@ -67,6 +68,7 @@ export const Form: FC<FormProps> = ({
     textAreaPlaceholder,
     productImage,
     service,
+    formWidth,
     setCrateProductForm,
     setProductCreated,
     setFormImage
@@ -108,7 +110,7 @@ export const Form: FC<FormProps> = ({
     }
 
     return (
-        <FormWrapper $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
+        <FormWrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
 
             <StyledSpace medium vertical />
 

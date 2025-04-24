@@ -19,6 +19,8 @@ const MainWrapper = styled.div<{$isTablet: boolean}>`
 
 type FormSectionProps = {
     imgSrc: string,
+    imageBorderedBoxWidth?: string,
+    formWidth?: string,
     title: string,
     fields: string[],
     textArea?: string,
@@ -30,21 +32,21 @@ type FormSectionProps = {
     setProductCreated?: Dispatch<SetStateAction<boolean>>
 }
 
-export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, textAreaPlaceholder, service, secondaryColor, productImage, setCrateProductForm, setProductCreated}: FormSectionProps): ReactElement => {
+export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, imageBorderedBoxWidth, textArea, textAreaPlaceholder, service, formWidth , secondaryColor, productImage, setCrateProductForm, setProductCreated}: FormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
-    console.log(formImage);
 
     return <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
 
         <MainWrapper $isTablet={isTablet}>
             {isTablet && <StyledSpace large vertical />}
 
-            {!isMobile && <ImageBorderedBox imgSrc={formImage ? formImage : imgSrc} /> }
+            {!isMobile && <ImageBorderedBox boxWidth={imageBorderedBoxWidth} imgSrc={formImage ? formImage : imgSrc} /> }
 
             {isMobile && <StyledSpace large vertical />}
 
             <Form 
+                formWidth={formWidth}
                 title={title}
                 fields={fields}
                 textArea={textArea}
