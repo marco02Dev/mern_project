@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useRef, useState, FormEvent, Dispatch as ReactStateDispatch, SetStateAction} from "react";
+import { ReactElement, FC, useRef, useState, FormEvent, Dispatch as ReactStateDispatch, SetStateAction, ChangeEventHandler} from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -55,7 +55,8 @@ type FormProps = {
     service: AllowedServices;
     productImage?: boolean;
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
-    setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>
+    setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
+    setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
 };
 
 export const Form: FC<FormProps> = ({
@@ -65,7 +66,8 @@ export const Form: FC<FormProps> = ({
     productImage,
     service,
     setCrateProductForm,
-    setProductCreated
+    setProductCreated,
+    setFormImage
 }: FormProps ): ReactElement => {
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
@@ -93,6 +95,16 @@ export const Form: FC<FormProps> = ({
         hiddenLinkRef.current?.click();
     };
 
+    const onChangeFileAction: ChangeEventHandler<HTMLInputElement> = (event): void => {
+        const file = event.target.files?.[0];   
+        if(file) {
+            const url = URL.createObjectURL(file);
+            setFormImage && setFormImage(url);
+        } else {
+            return;
+        }
+    }
+
     return (
         <FormWrapper $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
 
@@ -111,17 +123,20 @@ export const Form: FC<FormProps> = ({
                     <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
 
                     {productImage && <> 
+                        <StyledSpace medium vertical />
                         <FileInputFieldset> 
-                            <StyledTextInput name="product-image" isFile /> 
+                            <StyledTextInput onChangeAction={onChangeFileAction} name="product-image" isFile /> 
                             <StyledSpace medium vertical />
                             <StyledTextInput name="hero-image" isFile /> 
                         </ FileInputFieldset> 
                         <StyledSpace medium vertical />
                     </>}
 
-                    {textArea && <StyledSpace small vertical />}
-                    {textArea && <FieldSetAdditionalInfoBox textArea={textArea} />}
-                    {textArea && <StyledSpace medium vertical />}
+                    {textArea && <> 
+                        <StyledSpace small vertical />
+                        <FieldSetAdditionalInfoBox textArea={textArea} />
+                        <StyledSpace medium vertical />
+                    </> }
 
                     <FadeInWrapper>
                         <StyledButton content="Send it" action={handleButtonClick} unsetShadow />

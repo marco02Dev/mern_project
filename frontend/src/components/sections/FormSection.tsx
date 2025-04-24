@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { Dispatch, FC, ReactElement, SetStateAction, useState } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
@@ -23,18 +23,23 @@ type FormSectionProps = {
     fields: string[],
     textArea?: string,
     service: AllowedServices,
-    secondaryColor?: boolean
+    secondaryColor?: boolean,
+    productImage?: boolean,
+    setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
+    setProductCreated?: Dispatch<SetStateAction<boolean>>
 }
 
-export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, service, secondaryColor}: FormSectionProps): ReactElement => {
+export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textArea, service, secondaryColor, productImage, setCrateProductForm, setProductCreated}: FormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const [ formImage, setFormImage ] = useState<string | null>(null);
+    console.log(formImage);
 
     return <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
 
         <MainWrapper $isTablet={isTablet}>
             {isTablet && <StyledSpace large vertical />}
 
-            {!isMobile && <ImageBorderedBox imgSrc={imgSrc} /> }
+            {!isMobile && <ImageBorderedBox imgSrc={formImage ? formImage : imgSrc} /> }
 
             {isMobile && <StyledSpace large vertical />}
 
@@ -43,6 +48,10 @@ export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, textAr
                 fields={fields}
                 textArea={textArea}
                 service={service}
+                productImage={productImage}
+                setCrateProductForm={setCrateProductForm}
+                setProductCreated={setProductCreated}
+                setFormImage={setFormImage}
             />
         </MainWrapper>
 

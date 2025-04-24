@@ -1,4 +1,4 @@
-import { FC, ReactElement, useContext } from "react";
+import { FC, ReactElement, useContext, ChangeEventHandler } from "react";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
@@ -83,10 +83,11 @@ const Wrapper = styled.div<{
 export type StyledTextInputProps = {
     name: string,
     paddingRight?: string,
-    isFile?: boolean
+    isFile?: boolean,
+    onChangeAction?: ChangeEventHandler<HTMLInputElement>
 }
 
-export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, isFile}: StyledTextInputProps): ReactElement => {
+export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, isFile, onChangeAction}: StyledTextInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
@@ -114,7 +115,10 @@ export const StyledTextInput: FC<StyledTextInputProps> = ({name, paddingRight, i
         </label>
         <StyledSpace verySmall vertical />
         <FadeInWrapper >
-            <input type={isFile ? "file" : "text"} id={name} name={name} />
+            {
+                onChangeAction ?  <input onChange={onChangeAction} type={isFile ? "file" : "text"} id={name} name={name} /> 
+                :  <input type={isFile ? "file" : "text"} id={name} name={name} />
+            }
         </FadeInWrapper>
     </Wrapper>
 }

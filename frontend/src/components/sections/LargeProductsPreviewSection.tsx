@@ -11,9 +11,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { LoginState } from "../../store/slices/login.slice";
 import styled from "styled-components";
-import { Form } from "../ui/Form";
+import { FormSection } from "./FormSection";
 import { StyledText } from "../themed/StyledText";
 import { colors } from "../../config/colors.config";
+import { endpoints } from "../../config/endpoints.config";
 
 const ButtonWrapper = styled.div`
     display: flex;
@@ -85,21 +86,21 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             <StyledSpace large vertical/>
         </ StyledSection>  
 
-        { createProductForm && isAdmin && createProducts &&  <StyledSection >
-            <Form
-                title={"Create a new course"} 
-                service="create-course"
-                productImage
-                setCrateProductForm={setCrateProductForm}
-                setProductCreated={setProductCreated}
-                fields={[
-                    "name",
-                    "price",
-                    "category",
-                    "tags"
-                ]}
-            /> 
-        </StyledSection> }
+        { createProductForm && isAdmin && createProducts && <FormSection
+            imgSrc={`${endpoints.imagesEndpoint}/pages/admin/form-section.webp`}
+            title={"Create a new course"} 
+            service="create-course"
+            productImage
+            setCrateProductForm={setCrateProductForm}
+            setProductCreated={setProductCreated}
+            textArea="details"
+            fields={[
+                "name",
+                "price",
+                "category",
+                "tags"
+            ]}
+        /> }
     </>
 
 }
