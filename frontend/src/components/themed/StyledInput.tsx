@@ -11,6 +11,7 @@ import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeMod
 import { colors } from "../../config/colors.config";
 import { getInputType } from "../../utils/get-input-type.util";
 import { EyeIconButton } from "../ui/EyeIconButton";
+import { getPasswordPatternAttrs } from "../../utils/get-password-pattern-atts";
 
 const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: string}>`
     border-top: unset;
@@ -76,6 +77,8 @@ export const StyledInput: FC<StyledInputProps> = ({
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+    const passwordAttrs = getPasswordPatternAttrs(name);
+
     let placeholder: string | undefined;
 
     if(name === "tags") {
@@ -113,6 +116,7 @@ export const StyledInput: FC<StyledInputProps> = ({
                                 id={name} 
                                 name={name} 
                                 placeholder={placeholder} 
+                                {...passwordAttrs}
                             /> 
                         :  
                             <input 
@@ -120,6 +124,7 @@ export const StyledInput: FC<StyledInputProps> = ({
                                 type={getInputType({ isFile, name, isPasswordVisible })} 
                                 id={name} 
                                 name={name} 
+                                {...passwordAttrs}
                             />
                     }
                     {name === "password" && (
