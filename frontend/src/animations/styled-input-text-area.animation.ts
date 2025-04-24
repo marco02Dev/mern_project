@@ -2,7 +2,6 @@ import { RuleSet, css } from "styled-components";
 
 type InputBorderStylesProps = {
     $borderColor: string, 
-    $hoverColor: string    
 }
 
 type StyledInpuTextAreaFocusAnimation = {

@@ -1,4 +1,4 @@
-import styled, { RuleSet, css } from "styled-components";
+import styled from "styled-components";
 import { ReactElement, useContext, useState, useRef, useEffect, FC } from "react";
 import { StyledText } from "./StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
@@ -8,21 +8,21 @@ import { sizes } from "../../config/sizes.config";
 import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
+import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
+import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 
 const linesLimit: number = 5;
 
-const InputBorderStyles: RuleSet<{$borderColor: string}> = css<{$borderColor: string}>`
-    border-top: unset;
-    border-left: unset;
-    border-right: unset;
-    border-bottom-width: 0.4vh;    
-    border-color: ${({$borderColor}) => $borderColor};
-`;
-
-const TextAreaWrapper = styled.div<{$borderColor: string}>`
+const TextAreaWrapper = styled.div<{
+    $borderColor: string, 
+    $hoverColor: string,
+    $inputOnFocus: boolean
+}>`
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
+    display: flex;
     textarea {
         background-color: unset;
         font-size: ${() => sizes.fontSizes.h5};
@@ -33,6 +33,8 @@ const TextAreaWrapper = styled.div<{$borderColor: string}>`
         white-space: pre-wrap;
         word-wrap: break-word; 
     }  
+
+    ${() => styledInpuTextAreaFocusAnimation}
 `;
 
 type StyledTextAreaProps = {
@@ -41,8 +43,10 @@ type StyledTextAreaProps = {
 }
 
 export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: StyledTextAreaProps): ReactElement => {
+    const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
+    const hoverColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
 
     const [text, setText] = useState('');
@@ -85,7 +89,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: S
     };
 
     return (
-        <TextAreaWrapper $borderColor={borderColor}>
+        <TextAreaWrapper $inputOnFocus={inputOnFocus} $hoverColor={hoverColor} $borderColor={borderColor}>
             <label htmlFor={name}>
                 <TextRevealWrapper>
                     <StyledText tag="h3" size="h5" content={textAreaCapitalized} />
@@ -107,6 +111,12 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: S
                     onKeyDown={handleKeyDown} 
                     wrap="soft"
                     disabled={isMaxedOut} 
+                    onFocus={() => {
+                        setInputOnFocus(true);
+                    }}
+                    onBlur={() => {
+                        setInputOnFocus(false);
+                    }}
                 />
             </FadeInWrapper>
         </TextAreaWrapper>
