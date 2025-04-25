@@ -72,12 +72,12 @@ export type CourseBoxProps = {
     price: string;
     imageUrl: string;
     link: string;
-    courseId: string;
+    courseId: string | undefined;
     category: string;
     details: {
         title: string,
         content: string
-    }[]
+    }[] | undefined
 };
 
 export const CourseBox = ({
@@ -136,12 +136,12 @@ export const CourseBox = ({
 
                     <StyledSpace verySmall vertical height="5%" />
 
-                    {!isLoggedIn && <FadeInWrapper>
+                    {!isAdminPage && <FadeInWrapper>
                         <StyledButton unsetShadow content={"Discover"} action={handleDiscoverButtonClick} />
                         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper> }
 
-                    {isLoggedIn && isAdminPage && isAdmin && <UpdateDeleteCourseButtons
+                    {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons
                         setProductDeleted={setProductDeleted}
                         setProductDeletedErrorMessage={setProductDeletedErrorMessage}
                         courseId={courseId}

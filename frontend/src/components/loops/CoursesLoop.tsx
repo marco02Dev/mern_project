@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, ReactElement, SetStateAction, useContext } from "react";
+import { Dispatch, Fragment, ReactElement, SetStateAction, useContext, useState } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
@@ -12,6 +12,8 @@ import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeMod
 import { colors } from "../../config/colors.config";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -33,6 +35,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+  const dataChanged = useSelector((state: RootState) => state.coursesDataChanged.dataChanged);
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
@@ -41,7 +44,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
     productsId: purchasedProducts && purchasedProducts
   });
 
-  const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber);
+  const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber, dataChanged);
   const courses = objectData?.data;
   const limitedCourses: Course[] | undefined = courses?.slice(0, limit);
   const backgroundColor: string = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
@@ -68,7 +71,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
       
       return <Fragment key={index}>
         <CourseBox 
-          courseId={course._id}
+          courseId={course?._id}
           title={course.name}
           price={`${String(course.price)}$`}
           link={`${course.category}/${course.name}`}

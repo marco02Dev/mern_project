@@ -10,7 +10,11 @@ type UseFetchResult<T> = {
   error: string | null;
 };
 
-export const useFetchGet = <T>(endpoint: string, setProductsNumber?: Dispatch<SetStateAction<number | undefined>>): UseFetchResult<T> => {
+export const useFetchGet = <T>(
+  endpoint: string, 
+  setProductsNumber?: Dispatch<SetStateAction<number | undefined>>, 
+  dataChanged?: boolean
+): UseFetchResult<T> => {
   const [objectData, setObjectData] = useState<DataWrapper<T> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +41,7 @@ export const useFetchGet = <T>(endpoint: string, setProductsNumber?: Dispatch<Se
     };
 
     fetchData();
-  }, [endpoint]);
+  }, [endpoint, dataChanged]);
 
   useEffect(() => {
     if (objectData && Array.isArray(objectData.data) && setProductsNumber) {

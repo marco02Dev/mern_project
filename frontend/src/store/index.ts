@@ -3,7 +3,7 @@ import menuReducer from "./slices/menu.slice";
 import routeStatusReducer from "./slices/route-status.slice";
 import loginReducer from "./slices/login.slice";
 import purchasedProductsReducer from "./slices/purchased-products.slice";
-import nonceReducer from "./slices/nonce.slice";
+import coursesDataChangedReducer from "./slices/courses-data-changed.slice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +11,7 @@ export const store = configureStore({
     routeStatus: routeStatusReducer,
     login: loginReducer,
     purchasedProducts: purchasedProductsReducer,
-    nonce: nonceReducer
+    coursesDataChanged: coursesDataChangedReducer
   },
 });
 

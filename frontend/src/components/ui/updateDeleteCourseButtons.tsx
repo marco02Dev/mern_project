@@ -1,4 +1,4 @@
-import { FC, ReactElement, Dispatch, SetStateAction, useContext } from "react";
+import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";
@@ -7,12 +7,13 @@ import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { colors } from "../../config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { LoginState } from "../../store/slices/login.slice";
 import { User } from "../../types/user.types";
 import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
+import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
 
 const Wrapper = styled.div`
     display: flex !important;
@@ -35,6 +36,7 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
     productDeleted,
     productDeletedErrorMessage
 }: UpdateDeleteCourseButtonProps): ReactElement => {
+    const dispatch = useDispatch();
     const login: LoginState = useSelector((state: RootState) => state.login);
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const { user }: { user?: User } = login;
@@ -42,9 +44,7 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
     const location = useLocation();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
 
-    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {
-
-    };
+    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
 
     let updateProductFormState: UpdateProductFormContextStateObject = {
         state: false,
@@ -69,6 +69,12 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
             });
         }
     };
+
+    useEffect(() => {
+        if (productDeleted) {
+            dispatch(setDataChanged());
+        }
+    }, [productDeleted, dispatch]);
 
     return (
         <Wrapper>
