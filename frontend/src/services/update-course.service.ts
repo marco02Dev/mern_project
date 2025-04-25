@@ -10,6 +10,6 @@ export const updateCourseService = (
     console.log("course updated");
     setUpdateProductFormSetState && setUpdateProductFormSetState({
         state: false,
-        courseId: ""
+        courseId: "updated"
     });
 }
