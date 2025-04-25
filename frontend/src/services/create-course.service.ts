@@ -1,6 +1,7 @@
 import { endpoints } from "../config/endpoints.config";
 import { Course } from "../types/course.types";
 import { FormEvent, Dispatch, SetStateAction } from "react";
+import { parseDetailsCourseFormData } from "../utils/parse-details-course-form-data.util";
 
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,
@@ -26,9 +27,16 @@ export const createCourseService: CreateCourseService = async (
   const tagString = formData.get("tags");
   const prodImg   = formData.get("product-image");
   const heroImg   = formData.get("hero-image");
-  const details   = formData.get("details");
+  const detailsRaw   = formData.get("details");
 
-  console.log(details);
+  let detailsParsed: {
+    title: string;
+    content: string;
+  }[] | undefined;
+  
+  if (typeof detailsRaw === "string") {
+    detailsParsed = parseDetailsCourseFormData(detailsRaw);
+  }
 
   let tagsArray: string[] = [];
 
@@ -54,7 +62,8 @@ export const createCourseService: CreateCourseService = async (
     name: title as string,
     price: parsedPrice,
     category: category as string,
-    tags: tagsArray as string[]
+    tags: tagsArray as string[],
+    details: detailsParsed
   };
 
   try {
