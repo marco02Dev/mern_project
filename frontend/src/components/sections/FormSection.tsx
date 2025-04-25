@@ -7,6 +7,7 @@ import { sizes } from "../../config/sizes.config";
 import { Form } from "../ui/Form";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "../../types/service.type";
+import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 
 const MainWrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -29,10 +30,25 @@ type FormSectionProps = {
     secondaryColor?: boolean,
     productImage?: boolean,
     setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
-    setProductCreated?: Dispatch<SetStateAction<boolean>>
+    setProductCreated?: Dispatch<SetStateAction<boolean>>,
+    setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>
 }
 
-export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, imageBorderedBoxWidth, textArea, textAreaPlaceholder, service, formWidth , secondaryColor, productImage, setCrateProductForm, setProductCreated}: FormSectionProps): ReactElement => {
+export const FormSection: FC<FormSectionProps> = ({
+    title, 
+    fields, 
+    imgSrc, 
+    imageBorderedBoxWidth, 
+    textArea, 
+    textAreaPlaceholder,
+    service, 
+    formWidth , 
+    secondaryColor, 
+    productImage, 
+    setCrateProductForm, 
+    setProductCreated,
+    setUpdateProductFormSetState
+}: FormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
 
@@ -56,6 +72,7 @@ export const FormSection: FC<FormSectionProps> = ({title, fields, imgSrc, imageB
                 setCrateProductForm={setCrateProductForm}
                 setProductCreated={setProductCreated}
                 setFormImage={setFormImage}
+                setUpdateProductFormSetState={setUpdateProductFormSetState}
             />
         </MainWrapper>
 

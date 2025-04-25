@@ -19,6 +19,7 @@ import { AllowedServices } from "../../types/service.type";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
 import { StyledInput } from "../themed/StyledInput";
+import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,
@@ -43,6 +44,11 @@ const FormWrapper = styled.div<{
     }
 `;
 
+const ButtonsWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
+
 const FileInputFieldset = styled.fieldset`
     display: flex;
     flex-direction: row;
@@ -59,6 +65,7 @@ type FormProps = {
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
     setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
+    setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormContextStateObject>>;
 };
 
 export const Form: FC<FormProps> = ({
@@ -71,7 +78,8 @@ export const Form: FC<FormProps> = ({
     formWidth,
     setCrateProductForm,
     setProductCreated,
-    setFormImage
+    setFormImage,
+    setUpdateProductFormSetState
 }: FormProps ): ReactElement => {
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
@@ -92,6 +100,8 @@ export const Form: FC<FormProps> = ({
             signUpService(event, dispatch, navigateFunction, setErrorMessage);
         } else if(service === "create-course" && setCrateProductForm && setProductCreated) {
             createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated);
+        } else if(service === "update-course") {
+            console.log(service)
         }
     };
 
@@ -142,10 +152,34 @@ export const Form: FC<FormProps> = ({
                         <StyledSpace medium vertical />
                     </> }
 
-                    <FadeInWrapper>
-                        <StyledButton content="Send it" action={handleButtonClick} unsetShadow />
-                        <button className="is-hidden" ref={hiddenLinkRef} type="submit" />
-                    </FadeInWrapper>
+                    <ButtonsWrapper>
+                        <FadeInWrapper>
+                            <StyledButton content="Send it" action={handleButtonClick} unsetShadow />
+                            <button className="is-hidden" ref={hiddenLinkRef} type="submit" />
+                        </FadeInWrapper>
+
+                        { productImage && setCrateProductForm && <>
+                            <StyledSpace horizontal medium />
+                            <FadeInWrapper>
+                                <StyledButton content="Undo" action={() => {
+                                    setCrateProductForm(false)
+                                }} unsetShadow />
+                            </FadeInWrapper>
+                        </> }
+
+                        { productImage && setUpdateProductFormSetState && <>
+                            <StyledSpace horizontal medium />
+                            <FadeInWrapper>
+                                <StyledButton content="Undo" action={() => {
+                                    setUpdateProductFormSetState({
+                                        state: false,
+                                        courseId: ""
+                                    });
+                                }} unsetShadow />
+                            </FadeInWrapper>
+                        </> }
+
+                    </ButtonsWrapper>
 
                     {errorMessage && <StyledSpace medium vertical />}
                     {errorMessage && (

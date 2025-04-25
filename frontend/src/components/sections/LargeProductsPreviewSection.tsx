@@ -54,7 +54,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     const isAdmin: boolean = isLoggedIn && user?.role === "admin";
     const thereAreProductsToShow: boolean = productsNumber !== undefined && products <= productsNumber;
 
-    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>;
+    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
     let updateProductFormState: UpdateProductFormContextStateObject = {
         state: false,
         courseId: ""
@@ -115,8 +115,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
         />}
 
         { isAdmin && createProducts && updateProductFormState.state && <UpdateProductForm 
-            setCrateProductForm={setCrateProductForm}
-            setProductCreated={setProductCreated}
+            setUpdateProductFormSetState={setUpdateProductFormSetState}
         />}
     </>
 
