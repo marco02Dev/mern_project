@@ -9,10 +9,6 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { FieldSetPersonalInfoBox } from "../boxes/FieldsetPersonalInfoBox";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
-import { loginService } from "../../services/login.service";
-import { sendEmail } from "../../services/contact.service";
-import { signUpService } from "../../services/singup.service";
-import { createCourseService } from "../../services/create-course.service";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
@@ -20,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
 import { StyledInput } from "../themed/StyledInput";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { generateFormServiceSubmitFunction } from "../../utils/generate-form-service-submit-function.util";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,
@@ -89,21 +86,16 @@ export const Form: FC<FormProps> = ({
     const { isMobile, isTablet } = useMediaQuery();
     const hiddenLinkRef = useRef<HTMLButtonElement | null>(null);
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        if (service === "send-email") {
-            sendEmail(event, setErrorMessage, setMessageSent);
-        } else if (service === "login") {
-            loginService(event, dispatch, navigateFunction, setErrorMessage);
-        } else if (service === "sign-up") {
-            signUpService(event, dispatch, navigateFunction, setErrorMessage);
-        } else if(service === "create-course" && setCrateProductForm && setProductCreated) {
-            createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated);
-        } else if(service === "update-course") {
-            console.log(service)
-        }
-    };
+    const handleSubmit = generateFormServiceSubmitFunction({
+        service: service,
+        dispatch: dispatch,
+        setUpdateProductFormSetState: setUpdateProductFormSetState,
+        setErrorMessage: setErrorMessage,
+        navigateFunction: navigateFunction,
+        setCrateProductForm: setCrateProductForm,
+        setProductCreated: setProductCreated,
+        setMessageSent: setMessageSent,
+    })
 
     const handleButtonClick = () => {
         hiddenLinkRef.current?.click();
