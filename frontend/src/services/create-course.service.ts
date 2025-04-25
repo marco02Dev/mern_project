@@ -2,19 +2,23 @@ import { endpoints } from "../config/endpoints.config";
 import { Course } from "../types/course.types";
 import { FormEvent, Dispatch, SetStateAction } from "react";
 import { parseDetailsCourseFormData } from "../utils/parse-details-course-form-data.util";
+import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
+import { setDataChanged } from "../store/slices/courses-data-changed.slice";
 
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,
   setErrorMessage: Dispatch<SetStateAction<string | undefined>>,
   setCrateProductForm: Dispatch<SetStateAction<boolean>>,
-  setProductCreated: Dispatch<SetStateAction<boolean>>
+  setProductCreated: Dispatch<SetStateAction<boolean>>,
+  dispatch: ReduxDispatch
 ) => Promise<void>;
 
 export const createCourseService: CreateCourseService = async (
   event,
   setErrorMessage,
   setCrateProductForm,
-  setProductCreated
+  setProductCreated,
+  dispatch
 ) => {
   event.preventDefault();
 
@@ -107,6 +111,7 @@ export const createCourseService: CreateCourseService = async (
 
     setCrateProductForm(false);
     setProductCreated(true);
+    dispatch(setDataChanged());
   } catch (err) {
     console.error(err);
     setErrorMessage("Some fields are invalid or missing");

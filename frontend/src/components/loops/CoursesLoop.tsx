@@ -44,6 +44,8 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
     productsId: purchasedProducts && purchasedProducts
   });
 
+  console.log("data changed", dataChanged)
+
   const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber, dataChanged);
   const courses = objectData?.data;
   const limitedCourses: Course[] | undefined = courses?.slice(0, limit);

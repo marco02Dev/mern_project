@@ -41,7 +41,7 @@ export const generateFormServiceSubmitFunction = ({
         } else if (service === "sign-up") {
             signUpService(event, dispatch, navigateFunction, setErrorMessage);
         } else if(service === "create-course" && setCrateProductForm && setProductCreated && setErrorMessage) {
-            createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated);
+            createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated, dispatch);
         } else if(service === "update-course") {
             updateCourseService(event, setUpdateProductFormSetState);
         }
