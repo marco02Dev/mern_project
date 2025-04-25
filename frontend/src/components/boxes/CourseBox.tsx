@@ -14,7 +14,8 @@ import { RootState } from "../../store";
 import { useLocation } from "react-router-dom";
 import { deleteCourseService } from "../../services/delete-course.service";
 import { UpdateProductFormContext } from "../../contexts/UpdateProductFormProvider";
-import { UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { User } from "../../types/user.types";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -98,13 +99,14 @@ export const CourseBox = ({
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
     const login: LoginState = useSelector((state: RootState) => state.login);
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
+    const { user }: { user?: User } = login;
     const location = useLocation();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
-    let setUpdateProductFormSetState: Dispatch<SetStateAction<boolean>>;
-    let updateProductFormState: boolean;
+    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
+    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>;
+    let updateProductFormState: UpdateProductFormContextStateObject;
 
-
-    if(isLoggedIn && isAdminPage) {
+    if(isLoggedIn && isAdminPage && isAdmin) {
         const updateProductFormContext: any = useContext(UpdateProductFormContext);
         if(UpdateProductFormContext !== undefined) {
             const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
@@ -114,17 +116,18 @@ export const CourseBox = ({
         }
     }
 
-
-    const handleDiscoverButtonClick = () => {
+    const handleDiscoverButtonClick: Function = () => {
       if (hiddenLinkRef.current) {
         hiddenLinkRef.current.click();
       }
     };
 
-
-    const handleUpdateButtonClick = () => {
+    const handleUpdateButtonClick: Function = () => {
         if (setUpdateProductFormSetState) {
-            setUpdateProductFormSetState(true);
+            setUpdateProductFormSetState({
+                state: true,
+                courseId: courseId
+            });
         }
     };
 
@@ -164,7 +167,7 @@ export const CourseBox = ({
                         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper> }
 
-                    {isLoggedIn && isAdminPage && <ModifyDeleteWrapper>
+                    {isLoggedIn && isAdminPage && isAdmin && <ModifyDeleteWrapper>
                         <FadeInWrapper>
                             <StyledButton unsetShadow content="Update" action={handleUpdateButtonClick} />
                         </FadeInWrapper>
