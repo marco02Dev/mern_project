@@ -26,6 +26,9 @@ export const createCourseService: CreateCourseService = async (
   const tagString = formData.get("tags");
   const prodImg   = formData.get("product-image");
   const heroImg   = formData.get("hero-image");
+  const details   = formData.get("details");
+
+  console.log(details);
 
   let tagsArray: string[] = [];
 

@@ -1,4 +1,4 @@
-import { ReactElement, SetStateAction, useContext, useRef, Dispatch } from "react";
+import { ReactElement, SetStateAction, useContext, useRef, Dispatch, useState } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledButton } from "../themed/StyledButton";
@@ -16,6 +16,7 @@ import { deleteCourseService } from "../../services/delete-course.service";
 import { UpdateProductFormContext } from "../../contexts/UpdateProductFormProvider";
 import { UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { User } from "../../types/user.types";
+import { colors } from "../../config/colors.config";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -72,6 +73,7 @@ const InnerWrapper = styled.div<{$isMobile: boolean}>`
 const ModifyDeleteWrapper = styled.div`
     display: flex !important;
     flex-direction: row;
+    align-items: center;
 `;
 
 export type CourseBoxProps = {
@@ -98,6 +100,8 @@ export const CourseBox = ({
 }: CourseBoxProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
     const login: LoginState = useSelector((state: RootState) => state.login);
+    const [productDeleted, setProductDeleted] = useState<boolean>(false);
+    const [productDeletedErrorMessage, setProductDeletedErrorMessage] = useState<string | undefined>("");
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const { user }: { user?: User } = login;
     const location = useLocation();
@@ -175,9 +179,16 @@ export const CourseBox = ({
                         <StyledSpace horizontal small />
 
                         <FadeInWrapper>
-                            <StyledButton unsetShadow content="Delete" action={() => deleteCourseService(courseId)} />
+                            { productDeleted || productDeletedErrorMessage ? !productDeletedErrorMessage ? <StyledText tag="h6" content="Course deleted!" color={colors.dark.errorMessage} /> 
+                            :  <StyledText tag="h6" content="Permission denied!" color={colors.dark.errorMessage} />
+                            :  <StyledButton unsetShadow content="Delete" action={() => deleteCourseService({
+                                courseId: courseId,
+                                setProductDeleted: setProductDeleted,
+                                setProductDeletedErrorMessage: setProductDeletedErrorMessage,
+                                isAdmin: isAdmin
+                            })} />}
                         </FadeInWrapper>
-                        
+
                     </ ModifyDeleteWrapper> }
                 </div>
             </InnerWrapper>
