@@ -9,6 +9,7 @@ import { LogInPage } from "./LogInPage";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
 import { logOutService } from "../services/log-out.service";
+import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
 
 export const AdminPage: FC = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);
@@ -29,10 +30,13 @@ export const AdminPage: FC = (): ReactElement => {
                 secondaryColor
             />
 
-            <LargeProductsPreviewSection
-                limit={6}
-                createProducts
-            />
+            <UpdateProductFormContextProvider>
+                <LargeProductsPreviewSection
+                    limit={6}
+                    createProducts
+                />
+            </UpdateProductFormContextProvider>
+
 
             <TextSection
                 title="Master Your Skills Today!"

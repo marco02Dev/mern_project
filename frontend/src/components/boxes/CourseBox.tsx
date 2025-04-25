@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from "react";
+import { ReactElement, SetStateAction, useContext, useRef, Dispatch } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledButton } from "../themed/StyledButton";
@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useLocation } from "react-router-dom";
 import { deleteCourseService } from "../../services/delete-course.service";
+import { UpdateProductFormContext } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -98,11 +100,32 @@ export const CourseBox = ({
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const location = useLocation();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
+    let setUpdateProductFormSetState: Dispatch<SetStateAction<boolean>>;
+    let updateProductFormState: boolean;
 
-    const handleButtonClick = () => {
+
+    if(isLoggedIn && isAdminPage) {
+        const updateProductFormContext: any = useContext(UpdateProductFormContext);
+        if(UpdateProductFormContext !== undefined) {
+            const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
+            setUpdateProductFormSetState = setUpdateProductForm;
+            updateProductFormState = updateProductForm;
+            console.log(updateProductFormState)
+        }
+    }
+
+
+    const handleDiscoverButtonClick = () => {
       if (hiddenLinkRef.current) {
         hiddenLinkRef.current.click();
       }
+    };
+
+
+    const handleUpdateButtonClick = () => {
+        if (setUpdateProductFormSetState) {
+            setUpdateProductFormSetState(true);
+        }
     };
 
     const { isMobile, isTablet } = useMediaQuery();
@@ -137,15 +160,13 @@ export const CourseBox = ({
                     <StyledSpace verySmall vertical height="5%" />
 
                     {!isLoggedIn && <FadeInWrapper>
-                        <StyledButton unsetShadow content={"Discover"} action={handleButtonClick} />
+                        <StyledButton unsetShadow content={"Discover"} action={handleDiscoverButtonClick} />
                         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper> }
 
                     {isLoggedIn && isAdminPage && <ModifyDeleteWrapper>
                         <FadeInWrapper>
-                            <StyledButton unsetShadow content="Update" action={(): void => {
-
-                            }} />
+                            <StyledButton unsetShadow content="Update" action={handleUpdateButtonClick} />
                         </FadeInWrapper>
 
                         <StyledSpace horizontal small />

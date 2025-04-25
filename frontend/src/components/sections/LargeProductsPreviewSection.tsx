@@ -1,4 +1,4 @@
-import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
+import { ReactElement, FC, useState } from "react";
 import { CoursesLoop } from "../loops/CoursesLoop";
 import { StyledSection } from "../themed/StyledSection";
 import { sizes } from "../../config/sizes.config";
@@ -11,10 +11,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { LoginState } from "../../store/slices/login.slice";
 import styled from "styled-components";
-import { FormSection } from "./FormSection";
 import { StyledText } from "../themed/StyledText";
 import { colors } from "../../config/colors.config";
-import { endpoints } from "../../config/endpoints.config";
+import { CreateProductForm } from "../layouts/CreateProductForm";
 
 const ButtonWrapper = styled.div`
     display: flex;
@@ -86,24 +85,10 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             <StyledSpace large vertical/>
         </ StyledSection>  
 
-        { createProductForm && isAdmin && createProducts && <FormSection
-            imgSrc={`${endpoints.imagesEndpoint}/pages/admin/form-section.webp`}
-            imageBorderedBoxWidth="40%"
-            formWidth="60%"
-            title={"Create a new course"} 
-            service="create-course"
-            productImage
+        { createProductForm && isAdmin && createProducts && <CreateProductForm 
             setCrateProductForm={setCrateProductForm}
             setProductCreated={setProductCreated}
-            textArea="details"
-            textAreaPlaceholder="Write as title=…,content=…; separate sections with commas."
-            fields={[
-                "name",
-                "price",
-                "category",
-                "tags"
-            ]}
-        /> }
+        />}
     </>
 
 }
