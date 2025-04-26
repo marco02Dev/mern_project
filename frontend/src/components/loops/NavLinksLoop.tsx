@@ -5,6 +5,7 @@ import { FadeInWrapper } from '../animated/FadeInWrapper';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { useLocation } from 'react-router-dom';
 
 export const NavLinksLoop: React.FC<{ links: { name: string; to: string }[]; row?: boolean }> = ({
   links,
@@ -16,18 +17,29 @@ export const NavLinksLoop: React.FC<{ links: { name: string; to: string }[]; row
   const { isMobile, isTablet } = useMediaQuery();
   const login = useSelector((state: RootState) => state.login);
   const { isLoggedIn }: { isLoggedIn: boolean } = login;
+  const location = useLocation();
 
   return (
     <>
-      {links.map((link, index) => (
-        <React.Fragment key={index}>
-          <FadeInWrapper>
-            <StyledLink content={link.name} to={link.to} fontWeight="700" size={row ? 'p' : 'h3'} />
-          </FadeInWrapper>
+      {links.map((link, index) => {
+        const isActive = location.pathname === link.to;
 
-          <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
-        </React.Fragment>
-      ))}
+        return (
+          <React.Fragment key={index}>
+            <FadeInWrapper>
+              <StyledLink
+                content={link.name}
+                to={link.to}
+                fontWeight="700"
+                size={row ? 'p' : 'h3'}
+                color={isActive ? 'blue' : undefined}
+              />
+            </FadeInWrapper>
+
+            <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
+          </React.Fragment>
+        );
+      })}
 
       {isMobile || isTablet ? (
         <>
@@ -37,6 +49,7 @@ export const NavLinksLoop: React.FC<{ links: { name: string; to: string }[]; row
               to={isLoggedIn ? '/account' : '/login'}
               fontWeight="700"
               size={row ? 'p' : 'h3'}
+              color={location.pathname === (isLoggedIn ? '/account' : '/login') ? 'blue' : undefined}
             />
           </FadeInWrapper>
         </>
