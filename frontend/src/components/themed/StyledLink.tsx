@@ -22,6 +22,7 @@ interface LinkWrapperProps {
     $size: string;
     $logo?: boolean;
     $absolute?: boolean;
+    $action?: boolean;
 }
 
 const wrapperStyles = css<LinkWrapperProps>`
@@ -101,6 +102,8 @@ const wrapperStyles = css<LinkWrapperProps>`
 
 export const DivWrapper = styled.div<LinkWrapperProps>`
     ${() => wrapperStyles}
+
+    ${({$action}) => $action && "border-width: clamp(0.1vh, 0.1vh + 0.1vw, 100vw) !important;"}
 `;
 
 export const LinkWrapper = styled(Link)<LinkWrapperProps>`
@@ -154,6 +157,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
         $size={size ? size : sizes.fontSizes.paragraph.medium}
         $logo={logo}
         $absolute={absolute}
+        $action={action}
         >
             <StyledText 
             tag={defaultTag}
