@@ -1,11 +1,6 @@
-import { StyledLink } from "../themed/StyledLink";
-import { StyledSpace } from "../themed/StyledSpace";
 import { ReactElement, FC } from "react";
 import styled from "styled-components";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { NavLinksLoop } from "../loops/NavLinksLoop";
 
 const NavLinksWrapper = styled.div<{$row?: boolean}>`
     display: flex;
@@ -15,41 +10,16 @@ const NavLinksWrapper = styled.div<{$row?: boolean}>`
 
 export const NavLinks: FC<{row?: boolean}> = ({row}: {row?: boolean}): ReactElement => {
 
-    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
-    const login = useSelector((state: RootState) => state.login);
-    const { isLoggedIn }: { isLoggedIn: boolean} = login;
+    const links = [
+        { name: 'Home', to: '/' },
+        { name: 'Courses', to: '/courses' },
+        { name: 'About', to: '/about' },
+        { name: 'Contact', to: '/contact' },
+    ];
 
     return (
         <NavLinksWrapper $row={row}>
-            <FadeInWrapper>
-                <StyledLink content="Home" to="/" fontWeight="700" size={row ? "p" : "h3"} />
-            </FadeInWrapper>
-
-            <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
-
-            <FadeInWrapper>
-                <StyledLink content="Courses" to="/courses" fontWeight="700" size={row ? "p" : "h3"} />
-            </FadeInWrapper>
-
-            <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
-
-            <FadeInWrapper>
-                <StyledLink content="About" to="/about" fontWeight="700" size={row ? "p" : "h3"} />
-            </FadeInWrapper>
-
-            <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
-
-            <FadeInWrapper>
-                <StyledLink content="Contact" to="/contact" fontWeight="700" size={row ? "p" : "h3"} />
-            </FadeInWrapper>
-
-            { isMobile || isTablet ? <>
-                <StyledSpace horizontal={row} vertical={!row} small={row} medium={!row} />
-
-                <FadeInWrapper>
-                    <StyledLink content={isLoggedIn ? "Account" : "login"} to={isLoggedIn ? "/account" : "/login"} fontWeight="700" size={row ? "p" : "h3"} />
-                </FadeInWrapper>
-            </> : null}
-        </NavLinksWrapper>
+        <NavLinksLoop links={links} row={row} />
+      </NavLinksWrapper>
     );
 };
