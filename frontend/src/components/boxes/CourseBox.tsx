@@ -1,19 +1,18 @@
-import { ReactElement, useRef } from "react";
+import { ReactElement } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
-import { StyledButton } from "../themed/StyledButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledBox } from "../themed/StyledBox";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Link } from "react-router-dom";
 import { LoginState } from "../../store/slices/login.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useLocation } from "react-router-dom";
+import { useLocation, Location } from "react-router-dom";
 import { User } from "../../types/user.types";
 import { UpdateDeleteCourseButtons } from "../ui/updateDeleteCourseButtons";
+import { DiscoverCourseButton } from "../ui/discoverCourseButton";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -89,22 +88,15 @@ export const CourseBox = ({
     category,
     details
 }: CourseBoxProps): ReactElement => {
-    const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
     const login: LoginState = useSelector((state: RootState) => state.login);
+    const location: Location = useLocation();
+    const { isMobile, isTablet } = useMediaQuery();
 
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const { user }: { user?: User } = login;
-    const location = useLocation();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
     const isAdmin: boolean = isLoggedIn && user?.role === "admin";
 
-    const handleDiscoverButtonClick: Function = () => {
-      if (hiddenLinkRef.current) {
-        hiddenLinkRef.current.click();
-      }
-    };
-
-    const { isMobile, isTablet } = useMediaQuery();
     const desktopSize: string = '32%';
     const tabletSize: string = '48%';
     const mobileSize: string = '98%';
@@ -135,10 +127,15 @@ export const CourseBox = ({
 
                     <StyledSpace verySmall vertical height="5%" />
 
-                    {!isAdminPage && <FadeInWrapper>
-                        <StyledButton unsetShadow content={"Discover"} action={handleDiscoverButtonClick} />
-                        <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
-                    </FadeInWrapper> }
+                    {!isAdminPage && courseId && details && <DiscoverCourseButton 
+                        courseId={courseId}
+                        title={title}
+                        imageUrl={imageUrl}
+                        price={price}
+                        category={category}
+                        details={details}
+                        link={link}
+                    /> }
 
                     {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons courseId={courseId}/> }
                 </div>
