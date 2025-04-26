@@ -33,6 +33,7 @@ export const NavLinksLoop: React.FC<{ links: { name: string; to: string }[]; row
                 fontWeight="700"
                 size={row ? 'p' : 'h3'}
                 color={isActive ? 'blue' : undefined}
+                inactive={isActive}
               />
             </FadeInWrapper>
 

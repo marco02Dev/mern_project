@@ -23,13 +23,15 @@ interface LinkWrapperProps {
     $logo?: boolean;
     $absolute?: boolean;
     $action?: boolean;
+    $inactive?: boolean
 }
 
 const wrapperStyles = css<LinkWrapperProps>`
     color: ${({$color}) => $color};
     background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
     display: inline-block;
-    cursor: pointer;
+    cursor: ${({$inactive}) => $inactive ? "unset" : "pointer"};
+    pointer-events: ${({$inactive}) => $inactive ? "none" : "auto"};
     text-decoration: none;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -124,9 +126,10 @@ type StyledLinkProps = {
     logo?: boolean,
     absolute?: boolean,
     action?: boolean,
+    inactive?: boolean
 }
 
-export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute, action}: StyledLinkProps): ReactElement => {
+export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute, action, inactive}: StyledLinkProps): ReactElement => {
 
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const {mode} = ThemeModeValue;
@@ -184,6 +187,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
         $size={size ? size : sizes.fontSizes.paragraph.medium}
         $logo={logo}
         $absolute={absolute}
+        $inactive={inactive}
         >
             <StyledText 
                 tag={defaultTag}
