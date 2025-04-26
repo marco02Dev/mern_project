@@ -7,9 +7,9 @@ import { StyledSection } from "../themed/StyledSection";
 import { UseScrollY, useScrollY } from "../../hooks/useScrollY";
 import {useMediaQuery, UseMediaQuery} from "../../hooks/useMediaQuery";
 import { StyledMobileMenu } from "../themed/StyledMobileMenu";
-import { Logo } from "../ui/Logo";
+import { LogoHomeButton } from "../buttons/LogoHomeButton";
 import { sizes } from "../../config/sizes.config";
-import { SwitchThemeModeButton } from "../ui/SwitchThemeModeButton";
+import { SwitchThemeModeButton } from "../buttons/SwitchThemeModeButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
 import useLocationChange from "../../hooks/useLocationChange";
@@ -96,7 +96,7 @@ export const Header: FC = (): ReactElement => {
         { isMobile || isTablet ? 
             <Nav>
                 <MobileNavInnerWrapper>
-                    <Logo />
+                    <LogoHomeButton />
                 </MobileNavInnerWrapper>
 
                 <MobileNavInnerWrapper $justifyEnd> 
@@ -107,7 +107,7 @@ export const Header: FC = (): ReactElement => {
             </ Nav> : <Nav>
 
                 <DesktopNavInnerWrapper $width={'20%'}>
-                    <Logo />
+                    <LogoHomeButton />
                 </DesktopNavInnerWrapper>
 
                 <DesktopNavInnerWrapper $width={'60%'} $middleWrapper>

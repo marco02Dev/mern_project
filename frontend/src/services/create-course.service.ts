@@ -53,9 +53,6 @@ export const createCourseService: CreateCourseService = async (
     setErrorMessage("Please fill tags field");
   }
 
-  console.log(tagsArray);
-
-
   const parsedPrice = Number(price);
   if (!title || !price || !category || isNaN(parsedPrice)) {
     setErrorMessage("Some fields are invalid or missing");

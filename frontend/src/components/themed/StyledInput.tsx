@@ -10,7 +10,7 @@ import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import { getInputType } from "../../utils/get-input-type.util";
-import { EyeIconButton } from "../ui/EyeIconButton";
+import { EyeIconButton } from "../buttons/EyeIconButton";
 import { getPasswordPatternAttrs } from "../../utils/get-password-pattern-atts";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";

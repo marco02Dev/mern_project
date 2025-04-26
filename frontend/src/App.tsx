@@ -4,12 +4,13 @@ import { Router } from './Router';
 import { MobileMenu } from './components/template-parts/MobileMenu';
 import { PageTransitionElement } from './components/animated/PageTransitionElement';
 import { PageTransitionTitle } from './components/animated/PageTransitionTitle';
-import { useEffect } from 'react';
+import { useMediaQuery, UseMediaQuery } from './hooks/useMediaQuery';
 import useLocationChange from './hooks/useLocationChange';
+import { useEffect } from 'react';
 
 function App() {
-
   const hasLocationChanged: boolean = useLocationChange();
+  const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
 
   useEffect(() => {
     if (hasLocationChanged) {
@@ -18,7 +19,7 @@ function App() {
   }, [hasLocationChanged]);
 
   return <>
-    <MobileMenu />
+    {(isMobile || isTablet) && <MobileMenu /> }
     <Header />
     <Router />
     <Footer />

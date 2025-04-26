@@ -51,7 +51,6 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
             const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
             setUpdateProductFormSetState = setUpdateProductForm;
             updateProductFormState = updateProductForm;
-            console.log(updateProductFormState)
         }
     }
 

@@ -66,13 +66,9 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
             setUpdateProductFormSetState = setUpdateProductForm;
             updateProductFormState = updateProductForm;
-            console.log(updateProductFormState)
         }
     }
-
-    console.log(updateProductFormState);
     
-
     return <>
         <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
             <StyledSpace large vertical/>

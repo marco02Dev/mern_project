@@ -3,7 +3,7 @@ import { ReactElement, FC } from "react";
 import { logoHover } from "../../animations/logo.animation";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 
-export const Logo: FC = (): ReactElement => {
+export const LogoHomeButton: FC = (): ReactElement => {
 
   return (
     <FadeInWrapper additionalAnimation={logoHover}> 

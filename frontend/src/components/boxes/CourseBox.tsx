@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useLocation, Location } from "react-router-dom";
 import { User } from "../../types/user.types";
-import { UpdateDeleteCourseButtons } from "../ui/updateDeleteCourseButtons";
-import { DiscoverCourseButton } from "../ui/discoverCourseButton";
+import { UpdateDeleteCourseButtons } from "../buttons/updateDeleteCourseButtons";
+import { DiscoverCourseButton } from "../buttons/discoverCourseButton";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;

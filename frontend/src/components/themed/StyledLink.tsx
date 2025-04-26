@@ -188,6 +188,12 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
         $logo={logo}
         $absolute={absolute}
         $inactive={inactive}
+        tabIndex={inactive ? -1 : 0}
+        onClick={(e) => {
+            if (inactive) {
+              e.preventDefault();
+            }
+        }}
         >
             <StyledText 
                 tag={defaultTag}
