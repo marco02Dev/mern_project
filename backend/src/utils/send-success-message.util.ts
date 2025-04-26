@@ -1,10 +1,11 @@
 import { Response } from "express";
 import { ModelsAllowed } from "../types/models-allowed.type";
+import { LoggedUser } from "../types/logged-user.type";
 
 export type SendSuccessMessageData = {
     response: Response,
     statusCode: number,
-    data?: ModelsAllowed | ModelsAllowed[] | { _id: string }
+    data?: ModelsAllowed | ModelsAllowed[] | { _id: string } | LoggedUser
     resource?: string,
     deleteResource?: boolean,
     updateResource?: boolean

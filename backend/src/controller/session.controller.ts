@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { sendSuccessMessage } from "../utils/send-success-message.util";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { LoggedUser } from "../types/logged-user.type";
 
 export const checkUserSession = (req: Request, res: Response): any => {
   if (req.isAuthenticated && req.isAuthenticated()) {
-    const user = req.user as any;
+    const user = req.user as LoggedUser;
 
     return sendSuccessMessage({
       response: res,
