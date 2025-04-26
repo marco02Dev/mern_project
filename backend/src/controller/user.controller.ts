@@ -48,29 +48,29 @@ export const deleteUser: Controller<UsersParams, {}, UsersSchema> = async (req, 
 
 export const logUserIntoAccount = (req: Request, res: Response, next: NextFunction) => {
     passport.authenticate('local', (err: Error, user: any ) => {
-      if (err) return next(err);
-  
-      if (!user) {
-        sendErrorMessage({
-            response: res,
-            statusCode: 400
-        })
-      }
-  
-      req.logIn(user, (err) => {
-        if (err) return next(err);
-        console.log("session id", req.sessionID);  
-        return sendSuccessMessage({
-            response: res,
-            statusCode: 200,
-            data: {
-                _id: user._id,
-                name: user.name,
-                surname: user.surname,
-                email: user.email,
-                role: user.role
-            }
-        });
-      });
+    if (err) return next(err);
+
+    if (!user) {
+    sendErrorMessage({
+        response: res,
+        statusCode: 400
+    })
+    }
+
+    req.logIn(user, (err) => {
+    if (err) return next(err);
+    console.log("session id", req.sessionID);  
+    return sendSuccessMessage({
+        response: res,
+        statusCode: 200,
+        data: {
+            _id: user._id,
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+            role: user.role
+        }
+    });
+    });
     })(req, res, next);
-  };
+};

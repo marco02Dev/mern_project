@@ -9,6 +9,7 @@ export const checkAthorizedIp = (request: Request<any>, response: Response, next
         console.log("Authorized Ip checked")
         next();
     } else {
+        console.log("Unothrized")
         sendErrorMessage({
             response: response,
             statusCode: 403

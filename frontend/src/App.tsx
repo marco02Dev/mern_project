@@ -7,10 +7,12 @@ import { PageTransitionTitle } from './components/animated/PageTransitionTitle';
 import { useMediaQuery, UseMediaQuery } from './hooks/useMediaQuery';
 import useLocationChange from './hooks/useLocationChange';
 import { useEffect } from 'react';
+import { useRestoreSession } from './hooks/useRestoreSession';
 
 function App() {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+  useRestoreSession();
 
   useEffect(() => {
     if (hasLocationChanged) {

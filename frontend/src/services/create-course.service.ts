@@ -111,7 +111,7 @@ export const createCourseService: CreateCourseService = async (
     dispatch(setDataChanged());
   } catch (err) {
     console.error(err);
-    setErrorMessage("Some fields are invalid or missing");
+    setErrorMessage("You don't have permission to access this resource!");
     throw err;
   }
 };

@@ -13,8 +13,8 @@ import passport from 'passport';
 import { rejectRequestIfHoneyPotIsFilled } from './middlewares/reject-request-if-honey-pot-is-filled.middleware';
 import { initializePassport } from './config/passport.config';
 import { corsOptions } from './config/cors-options.config';
-import sessionRoute from './routes/session.route';
 import cookieParser from 'cookie-parser';
+import sessionRouter from './routes/session.route';
 
 import https from 'https';
 import fs from 'fs';
@@ -26,8 +26,6 @@ const certificatePath = path.join(__dirname, '..', 'ssl', 'dev-cert.pem');
 const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
 const certificate = fs.readFileSync(certificatePath, 'utf8');
 const credentials = { key: privateKey, cert: certificate };
-
-
 
 const app: Express = express();
 
@@ -47,10 +45,11 @@ app.use(rejectRequestIfHoneyPotIsFilled);
 
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
-app.use("/api", sessionRoute);
+app.use("/api", sessionRouter);
 app.use("/api", productsRouter);
 app.use("/api", usersRouter);
 app.use("/api", contactRouter);
+
 
 https.createServer(credentials, app).listen(port, '0.0.0.0', () => {
     connectToDatabase();
