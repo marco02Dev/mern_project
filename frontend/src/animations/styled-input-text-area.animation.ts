@@ -13,8 +13,7 @@ export const InputBorderStyles: RuleSet<InputBorderStylesProps> = css<InputBorde
     border-top: unset;
     border-left: unset;
     border-right: unset;
-    border-bottom-width: 0.4vh;    
-    border-color: ${({$borderColor}) => $borderColor};
+    border-bottom-width: 0.4vh;
     position: relative;
 
     &:focus {

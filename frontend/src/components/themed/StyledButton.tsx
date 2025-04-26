@@ -4,6 +4,7 @@ import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeMod
 import { colors } from "../../config/colors.config";
 import styled from "styled-components";
 import { styledButtonHoverAnimation } from "../../animations/styled-button.animation";
+import { buttonFontSize } from "../../config/sizes.config";
 
 type StyledButtonProps = {
     content: string,
@@ -54,7 +55,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
             padding={unsetShadow? 'unsetShadowElement' : "default"}
             fontWeight={'700'}
             button
-            size={"100%"}
+            size={buttonFontSize}
             border
             action
         />

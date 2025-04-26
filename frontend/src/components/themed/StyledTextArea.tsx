@@ -32,6 +32,7 @@ const TextAreaWrapper = styled.div<{
         resize: none;
         white-space: pre-wrap;
         word-wrap: break-word; 
+        padding: unset;
     }  
 
     ${() => styledInpuTextAreaFocusAnimation}

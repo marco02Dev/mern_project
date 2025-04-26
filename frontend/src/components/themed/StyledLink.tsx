@@ -9,6 +9,8 @@ import { AllowedTextTags } from "../../config/styled-text.config";
 import { sizes } from "../../config/sizes.config";
 import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
+import { buttonFontSize } from "../../config/sizes.config";
+
 interface LinkWrapperProps {
     $color: string,
     $hoverColor: string,
@@ -53,7 +55,7 @@ const wrapperStyles = css<LinkWrapperProps>`
                     width: auto;
                     display: flex;
                     span {
-                        font-size: 100%;
+                        font-size:  ${() => buttonFontSize};
                         padding-left: clamp(4vh, 1vh + 3vw, 4vh);
                         padding-right: clamp(4vh, 1vh + 3vw, 4vh);
                         padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
@@ -67,10 +69,12 @@ const wrapperStyles = css<LinkWrapperProps>`
                     padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
                     padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
 
-                    ${() => `border: clamp(0.1vh, 0.1vh + 0.1vw, 100vh) solid ${$borderColor} !important;`}
+                    ${() => `border: solid ${$borderColor} !important;
+                        border-width: ${sizes.heights.verySmall} !important;`
+                    }
                     
                     span {
-                        font-size: 100%;
+                        font-size: ${() => buttonFontSize};
                     }
                 `;
             }
@@ -105,7 +109,7 @@ const wrapperStyles = css<LinkWrapperProps>`
 export const DivWrapper = styled.div<LinkWrapperProps>`
     ${() => wrapperStyles}
 
-    ${({$action}) => $action && "border-width: clamp(0.1vh, 0.1vh + 0.1vw, 100vw) !important;"}
+    ${({$action}) => $action && `border-width: ${sizes.heights.verySmall} !important;`}
 `;
 
 export const LinkWrapper = styled(Link)<LinkWrapperProps>`
@@ -191,7 +195,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
         tabIndex={inactive ? -1 : 0}
         onClick={(e) => {
             if (inactive) {
-              e.preventDefault();
+            e.preventDefault();
             }
         }}
         >

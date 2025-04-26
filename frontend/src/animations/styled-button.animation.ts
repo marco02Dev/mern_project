@@ -1,12 +1,13 @@
 import { RuleSet, css, keyframes } from "styled-components";
 import Keyframes from "styled-components/dist/models/Keyframes";
+import { buttonFontSize } from "../config/sizes.config";
 
 const animationDuration: string = "0.3s";
 
 export const buttonHoverAnimation: RuleSet<{$hoverColor: string, $content: string, $size: string}> = css<{$hoverColor: string, $content: string, $size: string}>`
     &::after {
         content: "${({ $content }) => $content}";
-        font-size: 100%;
+        font-size: ${() => buttonFontSize};
         width: 100%;
         height: 100%;
         position: absolute;

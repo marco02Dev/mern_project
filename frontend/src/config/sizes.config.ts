@@ -70,10 +70,13 @@ export let sizes: Sizes = {
         large: "clamp(6vh, 6vh + 1vw, 100vw)"
     },
     heights: {
-        verySmall: "clamp(0.1vh, 0.1vh + 0.1vw, 100vw)",
+        verySmall: "clamp(0.3vh, 0.1vh + 0.1vw, 100vw)",
         small: "clamp(0.2vh, 0.2vh + 0.1vw, 100vw)",
         medium: "clamp(4vh, 4vh + 0.5vw, 100vw)",
         large: "clamp(50vh, 50vh + 10vw, 100vw)"
     }
 };
+
+//Button sizes:
+export const buttonFontSize = "2.5vh";
 
