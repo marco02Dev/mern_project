@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useRef, useState, FormEvent, Dispatch as ReactStateDispatch, SetStateAction, ChangeEventHandler} from "react";
+import { ReactElement, FC, useRef, useState, Dispatch as ReactStateDispatch, SetStateAction, ChangeEventHandler} from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";

@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, ReactElement, SetStateAction, useContext, useState } from "react";
+import { Dispatch, Fragment, ReactElement, SetStateAction, useContext } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
@@ -43,8 +43,6 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
     category: category,
     productsId: purchasedProducts && purchasedProducts
   });
-
-  console.log("data changed", dataChanged)
 
   const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber, dataChanged);
   const courses = objectData?.data;

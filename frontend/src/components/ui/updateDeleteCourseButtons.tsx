@@ -1,4 +1,4 @@
-import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect } from "react";
+import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";
@@ -11,9 +11,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { LoginState } from "../../store/slices/login.slice";
 import { User } from "../../types/user.types";
-import { useLocation } from "react-router-dom";
+import { useLocation, Location } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
+import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 
 const Wrapper = styled.div`
     display: flex !important;
@@ -22,34 +23,27 @@ const Wrapper = styled.div`
 `;
 
 type UpdateDeleteCourseButtonProps = {
-    setProductDeletedErrorMessage:  Dispatch<SetStateAction<string | undefined>>,
-    courseId: string,
-    productDeleted: boolean,
-    productDeletedErrorMessage: string | undefined,
-    setProductDeleted: Dispatch<SetStateAction<boolean>>
+    courseId: string
 }
 
 export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
-    setProductDeleted,
-    setProductDeletedErrorMessage,
     courseId,
-    productDeleted,
-    productDeletedErrorMessage
 }: UpdateDeleteCourseButtonProps): ReactElement => {
-    const dispatch = useDispatch();
-    const login: LoginState = useSelector((state: RootState) => state.login);
-    const { isLoggedIn }: {isLoggedIn: boolean} = login;
-    const { user }: { user?: User } = login;
-    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
-    const location = useLocation();
-    const isAdminPage: boolean = location.pathname.startsWith("/admin");
-
+    const dispatch: ReduxDispatch = useDispatch();
+    const location: Location = useLocation();
+    const [productDeleted, setProductDeleted] = useState<boolean>(false);
+    const [productDeletedErrorMessage, setProductDeletedErrorMessage] = useState<string | undefined>("");
     let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
-
     let updateProductFormState: UpdateProductFormContextStateObject = {
         state: false,
         courseId: ""
     }
+
+    const login: LoginState = useSelector((state: RootState) => state.login);
+    const { isLoggedIn }: {isLoggedIn: boolean} = login;
+    const { user }: { user?: User } = login;
+    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
+    const isAdminPage: boolean = location.pathname.startsWith("/admin");
 
     if(isLoggedIn && isAdminPage && isAdmin) {
         const updateProductFormContext: any = useContext(UpdateProductFormContext);

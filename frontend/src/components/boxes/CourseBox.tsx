@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useRef } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledButton } from "../themed/StyledButton";
@@ -91,8 +91,7 @@ export const CourseBox = ({
 }: CourseBoxProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
     const login: LoginState = useSelector((state: RootState) => state.login);
-    const [productDeleted, setProductDeleted] = useState<boolean>(false);
-    const [productDeletedErrorMessage, setProductDeletedErrorMessage] = useState<string | undefined>("");
+
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const { user }: { user?: User } = login;
     const location = useLocation();
@@ -141,13 +140,7 @@ export const CourseBox = ({
                         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
                     </FadeInWrapper> }
 
-                    {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons
-                        setProductDeleted={setProductDeleted}
-                        setProductDeletedErrorMessage={setProductDeletedErrorMessage}
-                        courseId={courseId}
-                        productDeleted={productDeleted}
-                        productDeletedErrorMessage={productDeletedErrorMessage}
-                    /> }
+                    {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons courseId={courseId}/> }
                 </div>
             </InnerWrapper>
         </StyledBox>
