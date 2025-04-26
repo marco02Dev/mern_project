@@ -4,5 +4,13 @@ export type User = {
     surname: string,
     email: string,
     purchasedProducts?: string[],
-    role?: string
+    role?: string,
+    password?: string
+}
+export interface LoggedUser {
+    _id: string;
+    name: string;
+    surname: string;
+    email: string;
+    role: string;
 }

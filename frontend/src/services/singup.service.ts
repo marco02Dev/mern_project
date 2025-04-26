@@ -5,6 +5,7 @@ import { User } from "../types/user.types";
 import { setLoggedIn } from "../store/slices/login.slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
+import { LoggedUser } from "../types/user.types";
 
 export const signUpService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();
@@ -59,11 +60,17 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
             }
 
             const loginData = await loginResponse.json();
-            const _id: string = loginData.data._id;
-            user._id = _id;
+            
+            const fullUser: LoggedUser = {
+                _id: loginData.data._id,
+                name: loginData.data.name,
+                surname: loginData.data.surname,
+                email: loginData.data.email,
+                role: loginData.data.role
+            };
 
             if (dispatch as Dispatch && navigateFunction) {
-                dispatch && dispatch(setLoggedIn(user));
+                dispatch && dispatch(setLoggedIn(fullUser));
                 navigateFunction('/account');
             }
 

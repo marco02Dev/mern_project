@@ -5,6 +5,7 @@ import { FormService } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
+import { LoggedUser } from "../types/user.types";
 
 export const loginService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();
@@ -58,7 +59,7 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                     user.role = role;
 
                     if(dispatch as Dispatch && dispatch !== undefined && navigateFunction) {
-                        dispatch(setLoggedIn(user));
+                        dispatch(setLoggedIn(user as LoggedUser));
                         navigateFunction('/account')
                     }
                 }

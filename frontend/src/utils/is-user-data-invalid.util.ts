@@ -8,7 +8,11 @@ export const isUserDataInvalid = (user: User): boolean => {
         const {name, surname, email, password}: User = user;
         const isMissingData: boolean = !name || !surname || !email || !password;
         const isEmail: boolean = validateEmail(email);
-        const isStrongPassword: boolean = validatePassword(password);
+        let isStrongPassword: boolean = false;
+
+        if(password) {
+            isStrongPassword = validatePassword(password);
+        }
 
         let isInvalid: boolean = isMissingData || !isString(name) || !isString(surname) || !isEmail || !isStrongPassword;
 
