@@ -125,6 +125,7 @@ export const StyledInput: FC<StyledInputProps> = ({
                                 name={name} 
                                 placeholder={placeholder} 
                                 {...passwordAttrs}
+                                required
                             /> 
                         :  
                             <input 
@@ -135,6 +136,7 @@ export const StyledInput: FC<StyledInputProps> = ({
                                 id={name} 
                                 name={name} 
                                 {...passwordAttrs}
+                                required
                             />
                     }
                     {name === "password" && (
