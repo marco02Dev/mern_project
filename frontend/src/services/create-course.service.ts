@@ -4,6 +4,7 @@ import { FormEvent, Dispatch, SetStateAction } from "react";
 import { parseDetailsCourseFormData } from "../utils/parse-details-course-form-data.util";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "../store/slices/courses-data-changed.slice";
+import { uploadCourseImagesService } from "./upload-course-image-service";
 
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,
@@ -74,44 +75,32 @@ export const createCourseService: CreateCourseService = async (
       credentials: "include",
       body: JSON.stringify(course),
     });
-
+    
     if (!res.ok) throw new Error("Course creation failed");
     const { data } = await res.json();         
     const productId = data._id as string;
-
-    const fd = new FormData();
-
-    if (prodImg instanceof File) {
-      const newName =
-        "feature-image" + prodImg.name.slice(prodImg.name.lastIndexOf("."));
-      fd.append("product-image", new File([prodImg], newName, { type: prodImg.type }));
-    }
-
-    if (heroImg instanceof File) {
-      const newName =
-        "hero-image" + heroImg.name.slice(heroImg.name.lastIndexOf("."));
-      fd.append("hero-image", new File([heroImg], newName, { type: heroImg.type }));
-    }
-
-    if (fd.has("product-image") || fd.has("hero-image")) {
-      fd.append("category", category as string);
-
-      await fetch(
-        `${endpoints.coursesEndpoint}/image/${category}/${productId}`,
-        {
-          method: "POST",
-          credentials: "include",
-          body: fd,
-        }
-      );
-    }
-
+    
+    await uploadCourseImagesService(
+      prodImg,
+      heroImg,
+      category as string,
+      productId
+    );
+    
     setCrateProductForm(false);
     setProductCreated(true);
     dispatch(setDataChanged());
   } catch (err) {
     console.error(err);
-    setErrorMessage("You don't have permission to access this resource!");
+
+    const sid = document.cookie.split('; ').find(row => row.startsWith('sid='));
+  
+    if (!sid) {
+      setErrorMessage("Session expired, please re-authenticate.");
+    } else {
+      setErrorMessage("You don't have permission to access this resource!");
+    }
+  
     throw err;
   }
 };
