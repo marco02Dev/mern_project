@@ -81,4 +81,4 @@ export const uploadImageController = async (
     }
   
     sendSuccessMessage({ response: res, statusCode: 200 });
-  };
+};

@@ -5,6 +5,8 @@ import { checkAthorizedIp } from "../middlewares/authorize-ip.middleware";
 import { uploadProductImages } from "../middlewares/upload-product-image.middleware";
 import { uploadImageController } from "../controller/product.controller";
 import { imagesConversionMiddleware } from "../middlewares/upload-product-image.middleware";
+import { isAdmin } from "../middlewares/is-admin.middleware";
+import { RequestHandler } from "express";
 
 const productsRouter: Router = Router();
 const defaultEndpoint: string = `/${productsEndpointName}`;
@@ -17,9 +19,9 @@ productsRouter.get(defaultEndpoint, getAllProducts);
 productsRouter.get(endpointWithCategory, getProductsByCategory);
 productsRouter.get(endpointWithCategoryAndName, getProductsByCategoryAndName);
 
-productsRouter.post(defaultEndpoint, checkAthorizedIp, createProduct);
-productsRouter.post(endpointPostImage, checkAthorizedIp, uploadProductImages, imagesConversionMiddleware, uploadImageController); 
-productsRouter.delete(endpointWithId, checkAthorizedIp, deleteProduct);
-productsRouter.put(endpointWithId, checkAthorizedIp, updateProduct);
+productsRouter.post(defaultEndpoint, isAdmin, checkAthorizedIp, createProduct);
+productsRouter.post(endpointPostImage, isAdmin, checkAthorizedIp, uploadProductImages, imagesConversionMiddleware, uploadImageController); 
+productsRouter.delete(endpointWithId, isAdmin, checkAthorizedIp, deleteProduct as unknown as RequestHandler);
+productsRouter.put(endpointWithId, isAdmin, checkAthorizedIp, updateProduct as unknown as RequestHandler);
 
 export default productsRouter;

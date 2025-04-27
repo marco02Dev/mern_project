@@ -5,6 +5,7 @@ import { usersEndpointName } from "../config/env.config";
 import { deleteUser } from "../controller/user.controller";
 import { getUserById } from "../controller/user.controller";
 import { checkAthorizedIp } from "../middlewares/authorize-ip.middleware";
+import { isAdmin } from "../middlewares/is-admin.middleware";
 
 const usersRouter: Router = Router();
 const defaultEndpoint: string = `/${usersEndpointName}`;
@@ -14,7 +15,7 @@ const signInEndpoint: string = `${defaultEndpoint}/signup`;
 const loginEndpoint: string = `${defaultEndpoint}/login`;
 const logOutEndpoint: string = `${defaultEndpoint}/logout`;
 
-usersRouter.get(defaultEndpoint, checkAthorizedIp, getAllUsers);
+usersRouter.get(defaultEndpoint, isAdmin, checkAthorizedIp, getAllUsers);
 usersRouter.get(endpointWithId, getUserById)
 usersRouter.post(signInEndpoint, createUser);
 usersRouter.post(loginEndpoint, logUserIntoAccount);
