@@ -5,6 +5,9 @@ import { parseDetailsCourseFormData } from "../utils/parse-details-course-form-d
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "../store/slices/courses-data-changed.slice";
 import { uploadCourseImagesService } from "./upload-course-image-service";
+import { checkSession } from "../utils/check-session.util";
+import { reloadLoginPage } from "../utils/reload-login-page.util";
+import { errorMessages } from "../config/error-messages.config";
 
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,
@@ -93,12 +96,13 @@ export const createCourseService: CreateCourseService = async (
   } catch (err) {
     console.error(err);
 
-    const sid = document.cookie.split('; ').find(row => row.startsWith('sid='));
-  
-    if (!sid) {
-      setErrorMessage("Session expired, please re-authenticate.");
+    if (!checkSession()) {
+      setErrorMessage(errorMessages.sessionExpired);
+      reloadLoginPage();
+      return;
     } else {
       setErrorMessage("You don't have permission to access this resource!");
+      reloadLoginPage();
     }
   
     throw err;

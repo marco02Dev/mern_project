@@ -1,5 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { endpoints } from "../config/endpoints.config";
+import { checkSession } from "../utils/check-session.util";
+import { reloadLoginPage } from "../utils/reload-login-page.util";
+import { errorMessages } from "../config/error-messages.config";
 
 type DeleteCourseServiceProps = {
     courseId: string,
@@ -14,6 +17,12 @@ export const deleteCourseService = async ({
     isAdmin,
     setProductDeletedErrorMessage
 }: DeleteCourseServiceProps) => {
+
+    if (!checkSession()) {
+        setProductDeletedErrorMessage(errorMessages.sessionExpired);
+        reloadLoginPage();
+        return;
+    }
 
     if(courseId && isAdmin) {
         try {
