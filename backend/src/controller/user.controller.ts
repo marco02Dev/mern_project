@@ -9,6 +9,8 @@ import { getDocumentById } from "../queries/get-document-by-id";
 import { Request, response, Response } from "express";
 import passport from "passport";
 import { NextFunction } from "express";
+import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
+import bcrypt from 'bcrypt';
 
 export const getAllUsers: Controller = async (req, res) => {
     getAllDocumentsByModel<UsersSchema>({
@@ -29,13 +31,23 @@ export const getUserById: Controller = async (req, res) => {
 }
 
 export const createUser: Controller<{}, {}, UsersSchema> = async (req, res) => {
-    createNewDocumentByModel<UsersSchema>({
+    const clientData: UsersSchema = req.body;
+
+    if (isUserDataInvalid(clientData)) {
+        sendErrorMessage({ response: res, statusCode: 400 });
+        return;
+    }
+
+    const hashedPassword = await bcrypt.hash(clientData.password, 10);
+    clientData.password = hashedPassword;
+
+    await createNewDocumentByModel<UsersSchema>({
         Model: User,
-        request: req,
+        clientData,
         response: res,
         resourceName: "User"
     });
-}
+};
 
 export const deleteUser: Controller<UsersParams, {}, UsersSchema> = async (req, res) => {
     deleteDocumentByModel<UsersSchema>({

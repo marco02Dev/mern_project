@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { RequestHandler, Router } from "express";
 import { getAllUsers, logUserIntoAccount } from "../controller/user.controller";
 import { createUser } from "../controller/user.controller";
 import { usersEndpointName } from "../config/env.config";
@@ -20,6 +20,6 @@ usersRouter.get(defaultEndpoint, isAuthenticated, isAdmin, checkAthorizedIp, get
 usersRouter.get(endpointWithId, isAuthenticated, getUserById)
 usersRouter.post(signInEndpoint, createUser);
 usersRouter.post(loginEndpoint, logUserIntoAccount);
-usersRouter.delete(endpointWithId, deleteUser);
+usersRouter.delete(endpointWithId, isAuthenticated, deleteUser as unknown as RequestHandler);
 
 export default usersRouter;

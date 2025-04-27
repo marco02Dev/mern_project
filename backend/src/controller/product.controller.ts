@@ -9,6 +9,7 @@ import { getDocumentsByCategoryAndId } from "../queries/get-documents-by-categor
 import { Request, Response } from "express";
 import { sendSuccessMessage } from "../utils/send-success-message.util";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { isProductDataInvalid } from "../utils/is-product-data-invalid.util";
 
 export const getAllProducts: Controller = async (req, res) => {
     getAllDocumentsByModel<ProductSchema>({
@@ -38,13 +39,20 @@ export const getProductsByCategoryAndName: Controller = async (req, res) => {
 }
 
 export const createProduct: Controller<{}, {}, ProductSchema> = async (req, res) => {
-    createNewDocumentByModel<ProductSchema>({
+    const clientData: ProductSchema = req.body;
+
+    if (isProductDataInvalid(clientData)) {
+        sendErrorMessage({ response: res, statusCode: 400 });
+        return;
+    }
+
+    await createNewDocumentByModel<ProductSchema>({
         Model: Product,
-        request: req,
+        clientData,
         response: res,
         resourceName: "Product"
     });
-}
+};
 
 export const deleteProduct: Controller<ProductParams> = async (req, res) => {
     deleteDocumentByModel<ProductSchema>({
