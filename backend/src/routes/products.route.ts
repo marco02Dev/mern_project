@@ -7,6 +7,7 @@ import { uploadImageController } from "../controller/product.controller";
 import { imagesConversionMiddleware } from "../middlewares/upload-product-image.middleware";
 import { isAdmin } from "../middlewares/is-admin.middleware";
 import { RequestHandler } from "express";
+import { isAuthenticated } from "../middlewares/is-authenticated.middleware";
 
 const productsRouter: Router = Router();
 const defaultEndpoint: string = `/${productsEndpointName}`;
@@ -19,9 +20,9 @@ productsRouter.get(defaultEndpoint, getAllProducts);
 productsRouter.get(endpointWithCategory, getProductsByCategory);
 productsRouter.get(endpointWithCategoryAndName, getProductsByCategoryAndName);
 
-productsRouter.post(defaultEndpoint, isAdmin, checkAthorizedIp, createProduct);
-productsRouter.post(endpointPostImage, isAdmin, checkAthorizedIp, uploadProductImages, imagesConversionMiddleware, uploadImageController); 
-productsRouter.delete(endpointWithId, isAdmin, checkAthorizedIp, deleteProduct as unknown as RequestHandler);
-productsRouter.put(endpointWithId, isAdmin, checkAthorizedIp, updateProduct as unknown as RequestHandler);
+productsRouter.post(defaultEndpoint, isAuthenticated, isAdmin, checkAthorizedIp, createProduct);
+productsRouter.post(endpointPostImage, isAuthenticated, isAdmin, checkAthorizedIp, uploadProductImages, imagesConversionMiddleware, uploadImageController); 
+productsRouter.delete(endpointWithId, isAuthenticated, isAdmin, checkAthorizedIp, deleteProduct as unknown as RequestHandler);
+productsRouter.put(endpointWithId, isAuthenticated, isAdmin, checkAthorizedIp, updateProduct as unknown as RequestHandler);
 
 export default productsRouter;
