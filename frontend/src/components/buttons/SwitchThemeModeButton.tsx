@@ -5,6 +5,7 @@ import moon from "../../images/svg/moon.svg";
 import styled, { createGlobalStyle } from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { setCookie } from "../../utils/set-cookie";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -40,6 +41,8 @@ export const SwitchThemeModeButton: FC = (): ReactElement => {
         if(setMode) {
             setMode(mode === "light" ? "dark" : "light");
         }
+
+        setCookie('themeMode', mode === "light" ? "dark" : "light");
     };
 
     useEffect(() => {
