@@ -11,6 +11,7 @@ import passport from "passport";
 import { NextFunction } from "express";
 import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
 import bcrypt from 'bcrypt';
+import { isUserAlreadyExists } from "../queries/is-user-already-exists.query";
 
 export const getAllUsers: Controller = async (req, res) => {
     getAllDocumentsByModel<UsersSchema>({
@@ -35,6 +36,13 @@ export const createUser: Controller<{}, {}, UsersSchema> = async (req, res) => {
 
     if (isUserDataInvalid(clientData)) {
         sendErrorMessage({ response: res, statusCode: 400 });
+        return;
+    }
+
+    const emailExists = await isUserAlreadyExists(clientData.email);
+
+    if (emailExists) {
+        sendErrorMessage({ response: res, statusCode: 409 });
         return;
     }
 

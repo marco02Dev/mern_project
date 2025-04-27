@@ -1,7 +1,7 @@
 import { sendSuccessMessage } from "../utils/send-success-message.util";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
 import { ModelsAllowed } from "../types/models-allowed.type";
-import { Request, Response } from "express";
+import { Response } from "express";
 import { Model } from "mongoose";
 
 type CreateNewDocumentByModelData<T extends object> = {

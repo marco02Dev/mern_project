@@ -6,6 +6,7 @@ import { setLoggedIn } from "../store/slices/login.slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { sendErrorWhenHoneyPotIsFilled } from "../utils/form/send-error-message-when-honey-pot-is-filled";
 import { LoggedUser } from "../types/user.types";
+import { handleErrorResponse, HandleErrorResponse } from "../utils/form/handle-error-response";
 
 export const signUpService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();
@@ -43,7 +44,11 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
             });
 
             if (!response.ok) {
-                throw new Error("Failed to create a new user");
+                handleErrorResponse({
+                    response: response,
+                    setErrorMessage: setErrorMessage
+                });
+                return;
             }
 
             const loginResponse = await fetch(`${usersEndpoint}/login`, {

@@ -27,6 +27,10 @@ export const sendErrorMessage = ({response, statusCode, resource}: SendErrorMess
             message = "You don't have permission to access this resource";
         break;
 
+        case(409):
+            message = 'A resource with the provided data already exists';
+        break;
+
         default: 
             message = 'error';
         break;
