@@ -94,3 +94,24 @@ export const logUserIntoAccount = (req: Request, res: Response, next: NextFuncti
     });
     })(req, res, next);
 };
+
+export const logUserOut = (req: Request, res: Response, next: NextFunction) => {
+    req.logout((err) => {
+        if (err) {
+            sendErrorMessage({
+                response: res,
+                statusCode: 404
+            });
+            return;
+        }
+        req.session.destroy((err) => {
+            if (err) {
+                return next(err);
+            }
+            return sendSuccessMessage({
+                response: res,
+                statusCode: 200,
+            });
+        });
+    });
+};

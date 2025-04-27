@@ -6,6 +6,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { isUserDataInvalid } from "../utils/form/is-user-data-invalid.util";
 import { sendErrorWhenHoneyPotIsFilled } from "../utils/form/send-error-message-when-honey-pot-is-filled";
 import { LoggedUser } from "../types/user.types";
+import { handleErrorResponse } from "../utils/form/handle-error-response";
 
 export const loginService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();
@@ -34,8 +35,7 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
             };
 
             if (isUserDataInvalid(user)) {
-                setErrorMessage && setErrorMessage("Some fields are invalid or missing");
-                throw new Error("Some fields are invalid or missing");
+                handleErrorResponse({ statusCode: 400, setErrorMessage });
             }
 
             try {
@@ -69,8 +69,7 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
             }
 
         } else {
-            setErrorMessage && setErrorMessage("Please fill in all the requested fields.");
-            throw new Error("Please fill in all the requested fields.");
+            handleErrorResponse({ statusCode: 400, setErrorMessage });
         }
     }
 }

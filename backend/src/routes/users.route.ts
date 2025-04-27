@@ -7,6 +7,7 @@ import { getUserById } from "../controller/user.controller";
 import { checkAthorizedIp } from "../middlewares/authorize-ip.middleware";
 import { isAdmin } from "../middlewares/is-admin.middleware";
 import { isAuthenticated } from "../middlewares/is-authenticated.middleware";
+import { logUserOut } from "../controller/user.controller";
 
 const usersRouter: Router = Router();
 const defaultEndpoint: string = `/${usersEndpointName}`;
@@ -21,5 +22,6 @@ usersRouter.get(endpointWithId, isAuthenticated, getUserById)
 usersRouter.post(signInEndpoint, createUser);
 usersRouter.post(loginEndpoint, logUserIntoAccount);
 usersRouter.delete(endpointWithId, isAuthenticated, deleteUser as unknown as RequestHandler);
+usersRouter.post(logOutEndpoint, isAuthenticated, logUserOut);
 
 export default usersRouter;

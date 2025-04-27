@@ -1,3 +1,4 @@
+
 export type ErrorMessages = {
     badRequest: string,
     serverError: string,

@@ -2,20 +2,19 @@ import { Dispatch, SetStateAction } from 'react';
 import { errorMessages } from '../../config/error-messages.config';
 
 export type HandleErrorResponse = ({
-    response, 
+    statusCode, 
     setErrorMessage
 }: {
-    response: Response, 
-    setErrorMessage: Dispatch<SetStateAction<string | undefined>> | undefined
+    statusCode: number, 
+    setErrorMessage?: Dispatch<SetStateAction<string | undefined>> | undefined
 }) => Promise<void>;
 
-export const handleErrorResponse: HandleErrorResponse = async ({response, setErrorMessage}): Promise<void> => {
-    console.log('Status code:', response.status);
+export const handleErrorResponse: HandleErrorResponse = async ({statusCode, setErrorMessage}): Promise<void> => {
 
-    if (!response.ok) {
+    if (statusCode >= 400) {
         let errorMessage: string;
 
-        switch (response.status) {
+        switch (statusCode) {
             case 400:
                 errorMessage = errorMessages.badRequest;
                 break;
