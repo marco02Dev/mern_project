@@ -118,6 +118,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: S
                     onBlur={() => {
                         setInputOnFocus(false);
                     }}
+                    required
                 />
             </FadeInWrapper>
         </TextAreaWrapper>
