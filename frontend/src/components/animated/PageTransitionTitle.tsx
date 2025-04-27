@@ -12,7 +12,7 @@ import { RootState } from "../../store";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { FC } from "react";
 import { LoginState } from "../../store/slices/login.slice";
-import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
+import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;

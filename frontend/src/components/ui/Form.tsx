@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
 import { StyledInput } from "../themed/StyledInput";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
-import { generateFormServiceSubmitFunction } from "../../utils/generate-form-service-submit-function.util";
+import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
 
 const FormWrapper = styled.div<{
     $isMobile: boolean,

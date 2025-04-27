@@ -1,10 +1,10 @@
 import { FormService } from "../types/service.type";
 import { Endpoints, endpoints } from "../config/endpoints.config";
-import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
+import { isUserDataInvalid } from "../utils/form/is-user-data-invalid.util";
 import { User } from "../types/user.types";
 import { setLoggedIn } from "../store/slices/login.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
+import { sendErrorWhenHoneyPotIsFilled } from "../utils/form/send-error-message-when-honey-pot-is-filled";
 import { LoggedUser } from "../types/user.types";
 
 export const signUpService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {

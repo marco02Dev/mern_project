@@ -1,12 +1,12 @@
 import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react";
-import { sendEmail } from "../services/contact.service";
-import { loginService } from "../services/login.service";
-import { signUpService } from "../services/singup.service";
-import { updateCourseService } from "../services/update-course.service";
-import { createCourseService } from "../services/create-course.service";
-import { AllowedServices } from "../types/service.type";
+import { sendEmail } from "../../services/contact.service";
+import { loginService } from "../../services/login.service";
+import { signUpService } from "../../services/singup.service";
+import { updateCourseService } from "../../services/update-course.service";
+import { createCourseService } from "../../services/create-course.service";
+import { AllowedServices } from "../../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
-import { UpdateProductFormContextStateObject } from "../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { NavigateFunction } from "react-router-dom";
 
 type GenerateFormServiceSubmitFunction = {

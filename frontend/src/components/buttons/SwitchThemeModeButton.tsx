@@ -5,7 +5,7 @@ import moon from "../../images/svg/moon.svg";
 import styled, { createGlobalStyle } from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { setCookie } from "../../utils/set-cookie";
+import { setCookie } from "../../utils/cookies/set-cookie";
 
 const GlobalStyle = createGlobalStyle`
   * {

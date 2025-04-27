@@ -1,4 +1,4 @@
-import { User } from "../types/user.types";
+import { User } from "../../types/user.types";
 import { validateEmail } from "./validate-email.util";
 import { validatePassword } from "./validate-password.util";
 import { isString } from "./is-string.util";

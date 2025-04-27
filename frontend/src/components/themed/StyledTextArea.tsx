@@ -5,7 +5,7 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledSpace } from "./StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sizes } from "../../config/sizes.config";
-import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
+import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";

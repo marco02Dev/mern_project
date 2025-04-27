@@ -8,7 +8,7 @@ import { TextImageSection } from "../components/sections/TextImageSection";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { User } from "../types/user.types";
-import { capitalizeFirstLetter } from "../utils/capitalize-first-letter.util";
+import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
 
 export const HomePage: FC = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);

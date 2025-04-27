@@ -1,3 +1,4 @@
-import { getThemeModeFromCookie } from "../utils/get-theme-mode-from-cookie";
+import { getSystemThemePreference } from "../utils/browser/get-system-theme-preference";
+import { getThemeModeFromCookie } from "../utils/cookies/get-theme-mode-from-cookie";
 
-export const defaultMode: string = getThemeModeFromCookie() || import.meta.env.VITE_DEFAULT_THEME_MODE || "light";
+export const defaultMode: string = getThemeModeFromCookie() || getSystemThemePreference() || import.meta.env.VITE_DEFAULT_THEME_MODE || "light";

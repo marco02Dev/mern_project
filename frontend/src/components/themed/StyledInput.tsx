@@ -3,15 +3,15 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter.util";
+import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
-import { getInputType } from "../../utils/get-input-type.util";
+import { getInputType } from "../../utils/form/get-input-type.util";
 import { EyeIconButton } from "../buttons/EyeIconButton";
-import { getPasswordPatternAttrs } from "../../utils/get-password-pattern-atts";
+import { getPasswordPatternAttrs } from "../../utils/form/get-password-pattern-atts";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 

@@ -3,8 +3,8 @@ import { setLoggedIn } from "../store/slices/login.slice";
 import { User } from "../types/user.types";
 import { FormService } from "../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
-import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
-import { sendErrorWhenHoneyPotIsFilled } from "../utils/send-error-message-when-honey-pot-is-filled";
+import { isUserDataInvalid } from "../utils/form/is-user-data-invalid.util";
+import { sendErrorWhenHoneyPotIsFilled } from "../utils/form/send-error-message-when-honey-pot-is-filled";
 import { LoggedUser } from "../types/user.types";
 
 export const loginService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
