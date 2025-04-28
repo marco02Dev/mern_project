@@ -17,8 +17,9 @@ import { colors } from "../../config/colors.config";
 import { StyledInput } from "../themed/StyledInput";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
+import { FormButtons } from "../buttons/FormButtons";
 
-const FormWrapper = styled.div<{
+const Wrapper = styled.div<{
     $isMobile: boolean,
     $isTablet: boolean
     $paddingLeft: string,
@@ -112,7 +113,7 @@ export const Form: FC<FormProps> = ({
     }
 
     return (
-        <FormWrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
+        <Wrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
 
             <StyledSpace medium vertical />
 
@@ -144,34 +145,11 @@ export const Form: FC<FormProps> = ({
                         <StyledSpace medium vertical />
                     </> }
 
-                    <ButtonsWrapper>
-                        <FadeInWrapper>
-                            <StyledButton content="Send it" action={handleButtonClick} unsetShadow />
-                            <button className="is-hidden" ref={hiddenLinkRef} type="submit" />
-                        </FadeInWrapper>
-
-                        { productImage && setCrateProductForm && <>
-                            <StyledSpace horizontal medium />
-                            <FadeInWrapper>
-                                <StyledButton content="Undo" action={() => {
-                                    setCrateProductForm(false)
-                                }} unsetShadow />
-                            </FadeInWrapper>
-                        </> }
-
-                        { productImage && setUpdateProductFormSetState && <>
-                            <StyledSpace horizontal medium />
-                            <FadeInWrapper>
-                                <StyledButton content="Undo" action={() => {
-                                    setUpdateProductFormSetState({
-                                        state: false,
-                                        courseId: ""
-                                    });
-                                }} unsetShadow />
-                            </FadeInWrapper>
-                        </> }
-
-                    </ButtonsWrapper>
+                    <FormButtons 
+                        productImage={productImage} 
+                        setCrateProductForm={setCrateProductForm}
+                        setUpdateProductFormSetState={setUpdateProductFormSetState}
+                    />
 
                     {errorMessage && <StyledSpace medium vertical />}
                     {errorMessage && (
@@ -182,6 +160,6 @@ export const Form: FC<FormProps> = ({
 
             {messageSent && <StyledText color={colors.dark.successMessage} tag="h5" content="Message sent successfully. Thank you!" />}
 
-        </FormWrapper>
+        </Wrapper>
     );
 };
