@@ -1,4 +1,5 @@
-import { ReactNode, useContext, useEffect } from "react";
+import { ReactNode, useContext } from "react";
+import { useBodyOverflow } from "../../hooks/useBodyOverflow";
 import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
@@ -42,34 +43,23 @@ const Wrapper = styled.div<WrapperProps>`
 
 export const PageTransitionElement: FC = (): ReactNode => {
     const hasLocationChanged: boolean = useLocationChange();
+    useBodyOverflow(hasLocationChanged);
     
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const wrapperColor = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
 
-    useEffect(() => {
-        if (hasLocationChanged) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [hasLocationChanged]);
-
-    if(!hasLocationChanged) {
+    if (!hasLocationChanged) {
         return null;
     } else {
-        return <Wrapper $color={wrapperColor} $hasLocationChanged={hasLocationChanged}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </Wrapper>
+        return (
+            <Wrapper $color={wrapperColor} $hasLocationChanged={hasLocationChanged}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </Wrapper>
+        );
     }
-
-
-}
+};
