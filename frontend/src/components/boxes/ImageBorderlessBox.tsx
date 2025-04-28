@@ -15,12 +15,13 @@ const Wrapper = styled.div<{$imageLeft?: boolean}>`
 type ImageBorderLessBox = {
     imageLeft?: boolean,
     imageSrc?: string,
-    imageAlt?: string
+    imageAlt?: string,
+    delay?: string
 }
 
-export const ImageBorderlessBox: FC<ImageBorderLessBox> = ({imageLeft, imageSrc, imageAlt}: ImageBorderLessBox): ReactElement => {
+export const ImageBorderlessBox: FC<ImageBorderLessBox> = ({imageLeft, imageSrc, imageAlt, delay}: ImageBorderLessBox): ReactElement => {
     return <Wrapper $imageLeft={imageLeft}>
-        <FadeInWrapper width="100%" height="100%">
+        <FadeInWrapper delay={delay} width="100%" height="100%">
             <img src={imageSrc} alt={imageAlt || "Image"} />
         </FadeInWrapper>
     </Wrapper>

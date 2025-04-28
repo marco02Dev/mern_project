@@ -90,33 +90,30 @@ export const HeroSection: FC<HeroSectionProps> = ({
                 <StyledSpace small vertical />
 
                 {description && (
-                    <TextRevealWrapper delay={"700ms"}>
+                    <TextRevealWrapper delay={"1000ms"}>
                         <StyledText tag="p" content={description} />
                     </TextRevealWrapper>
                 )}
 
                 <StyledSpace medium vertical />
 
-                {buttonLabel && buttonLink && (
+                {buttonLabel && (
                     <FadeInWrapper delay={"1200ms"}>
-                        <StyledButton content={buttonLabel} to={buttonLink} />
+                        <StyledButton 
+                            content={buttonLabel} 
+                            to={buttonLink} 
+                            action={buttonAction ? () => buttonAction({ dispatch, navigate }) : undefined} 
+                        />
                     </FadeInWrapper>
                 )}
-
-                {buttonLabel && buttonAction && (
-                    <FadeInWrapper>
-                        <StyledButton content={buttonLabel} action={() => buttonAction({dispatch, navigate})} />
-                    </FadeInWrapper>
-                )}
-
             </TextWrapper>
 
             {!isMobile && !isTablet && imageSrc && !imageLeft && !borderedImage && (
-                <ImageBorderlessBox imageLeft={imageLeft} imageSrc={imageSrc} imageAlt={imageAlt} />
+                <ImageBorderlessBox delay={"1400ms"} imageLeft={imageLeft} imageSrc={imageSrc} imageAlt={imageAlt} />
             )}
 
             {!isMobile && !isTablet && imageSrc && !imageLeft && borderedImage && (
-                <ImageBorderedBox imgSrc={imageSrc} />
+                <ImageBorderedBox  delay={"1400ms"} imgSrc={imageSrc} />
             )}
         </StyledSection>
     );

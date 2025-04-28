@@ -29,15 +29,16 @@ const Wrapper = styled.div<{
 
 type ImageBorderdBoxProps = {
     imgSrc?: string,
-    boxWidth?: string
+    boxWidth?: string,
+    delay?: string
 }
 
-export const ImageBorderedBox: FC<ImageBorderdBoxProps> = ({imgSrc, boxWidth}: ImageBorderdBoxProps): ReactElement => {
+export const ImageBorderedBox: FC<ImageBorderdBoxProps> = ({imgSrc, boxWidth, delay}: ImageBorderdBoxProps): ReactElement => {
 
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
 
     return <Wrapper $boxWidth={boxWidth} $isTablet={isTablet} $isMobile={isMobile}>
-        <FadeInWrapper width="50%">
+        <FadeInWrapper delay={delay} width="50%">
             <img src={imgSrc} alt="" />
         </FadeInWrapper>
     </Wrapper>
