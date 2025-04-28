@@ -131,7 +131,10 @@ type StyledLinkProps = {
     absolute?: boolean,
     action?: boolean,
     inactive?: boolean,
-    onClickFunction?: MouseEventHandler
+    onClickFunction?: MouseEventHandler,
+    onMouseOverFunction?: MouseEventHandler,
+    onMouseLeaveFunction?: MouseEventHandler,
+    className?: string
 }
 
 export const StyledLink: FC<StyledLinkProps> = ({
@@ -149,7 +152,9 @@ export const StyledLink: FC<StyledLinkProps> = ({
     absolute, 
     action, 
     inactive,
-    onClickFunction
+    onClickFunction,
+    onMouseOverFunction,
+    onMouseLeaveFunction
 }: StyledLinkProps): ReactElement => {
 
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
@@ -215,6 +220,8 @@ export const StyledLink: FC<StyledLinkProps> = ({
             e.preventDefault();
             }
         }}
+        onMouseOver={onMouseOverFunction ? onMouseOverFunction : undefined} 
+        onMouseLeave={onMouseLeaveFunction ? onMouseLeaveFunction : undefined} 
         >
             <StyledText 
                 tag={defaultTag}
