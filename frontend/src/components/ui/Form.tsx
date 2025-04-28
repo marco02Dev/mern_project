@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { ReactElement, FC, useRef, useState, Dispatch as ReactStateDispatch, SetStateAction, ChangeEventHandler} from "react";
+import { ReactElement, FC, useState, Dispatch as ReactStateDispatch, SetStateAction, ChangeEventHandler} from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
-import { StyledButton } from "../themed/StyledButton";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { InputDataFieldSetLoop } from "../loops/InputDataFieldSetLoop";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
@@ -14,10 +12,10 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
-import { StyledInput } from "../themed/StyledInput";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
 import { FormButtons } from "../buttons/FormButtons";
+import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";
 
 const Wrapper = styled.div<{
     $isMobile: boolean,
@@ -40,16 +38,6 @@ const Wrapper = styled.div<{
     .is-hidden {
         display: none;
     }
-`;
-
-const ButtonsWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-`;
-
-const FileInputFieldset = styled.fieldset`
-    display: flex;
-    flex-direction: row;
 `;
 
 type FormProps = {
@@ -85,7 +73,6 @@ export const Form: FC<FormProps> = ({
     const dispatch: Dispatch = useDispatch();
     const navigateFunction = useNavigate();
     const { isMobile, isTablet } = useMediaQuery();
-    const hiddenLinkRef = useRef<HTMLButtonElement | null>(null);
 
     const handleSubmit = generateFormServiceSubmitFunction({
         service: service,
@@ -97,10 +84,6 @@ export const Form: FC<FormProps> = ({
         setProductCreated: setProductCreated,
         setMessageSent: setMessageSent,
     })
-
-    const handleButtonClick = () => {
-        hiddenLinkRef.current?.click();
-    };
 
     const onChangeFileAction: ChangeEventHandler<HTMLInputElement> = (event): void => {
         const file = event.target.files?.[0];   
@@ -131,11 +114,13 @@ export const Form: FC<FormProps> = ({
 
                     {productImage && <> 
                         <StyledSpace medium vertical />
-                        <FileInputFieldset> 
-                            <StyledInput onChangeAction={onChangeFileAction} name="product-image" isFile /> 
-                            <StyledSpace medium vertical />
-                            <StyledInput name="hero-image" isFile /> 
-                        </ FileInputFieldset> 
+                        <FileInputFieldSetLoop 
+                            fileFields={[
+                                "product-image",
+                                "hero-image"
+                            ]}
+                            setFormImage={setFormImage}
+                        />
                         <StyledSpace medium vertical />
                     </>}
 
@@ -151,10 +136,10 @@ export const Form: FC<FormProps> = ({
                         setUpdateProductFormSetState={setUpdateProductFormSetState}
                     />
 
-                    {errorMessage && <StyledSpace medium vertical />}
-                    {errorMessage && (
+                    {errorMessage && <>
+                        <StyledSpace medium vertical />
                         <StyledText color={colors.dark.errorMessage} tag="p" content={errorMessage} />
-                    )}
+                    </>}
                 </form>
             </>}
 
