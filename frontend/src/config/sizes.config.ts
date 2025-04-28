@@ -64,7 +64,7 @@ export let sizes: Sizes = {
         large: "clamp(6vh, 3vh + 3vw, 100vw)"
     },
     widths: {
-        verySmall: "clamp(1.5vh, 1.5vh + 0.5vw, 100vw)",
+        verySmall: "clamp(2.1vh, 1.5vh + 0.5vw, 100vw)",
         small: "clamp(3vh, 3vh + 0.5vw, 100vw)",
         medium: "clamp(4vh, 4vh + 0.5vw, 100vw)",
         large: "clamp(6vh, 6vh + 1vw, 100vw)"
