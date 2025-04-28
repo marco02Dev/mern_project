@@ -11,10 +11,18 @@ type TitleParams = {
 
 export const getFormattedTitle: GetFormattedTitle = ({ pathName, isFirstRender, isLoggedIn, userName }: TitleParams): string => {
     let title: string = pathName.replace('/', "");
-    const innerPathName: number = title.indexOf("/");
 
-    if (innerPathName !== -1) {
-        title = title.slice(0, innerPathName);
+    const coursesPathPrefix: string = "courses";
+    const pathParts = title.split("/");
+
+    if (pathParts[0] === coursesPathPrefix && pathParts.length > 1) {
+        title = capitalizeFirstLetter(pathParts[1]);
+    } else {
+        const innerPathName: number = title.indexOf("/");
+
+        if (innerPathName !== -1) {
+            title = title.slice(0, innerPathName);
+        }
     }
 
     let titleCapitalized: string = title.charAt(0).toUpperCase() + title.slice(1);
