@@ -11,12 +11,12 @@ const Wrapper = styled.fieldset<{$isMobile: boolean}>`
     flex-wrap: wrap;  
 `;
 
-type FieldSetPersonalInfoBoxProps = {
+type InputDataFieldSetLoopProps = {
     textArea?: string,
     fields: string[]
 }
 
-export const FieldSetPersonalInfoBox: FC<FieldSetPersonalInfoBoxProps> = ({textArea, fields}: FieldSetPersonalInfoBoxProps): ReactElement => {
+export const InputDataFieldSetLoop: FC<InputDataFieldSetLoopProps> = ({textArea, fields}: InputDataFieldSetLoopProps): ReactElement => {
 
     const { isMobile }: UseMediaQuery = useMediaQuery();
 

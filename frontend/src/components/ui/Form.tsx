@@ -7,7 +7,7 @@ import { StyledButton } from "../themed/StyledButton";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { FieldSetPersonalInfoBox } from "../boxes/FieldsetPersonalInfoBox";
+import { InputDataFieldSetLoop } from "../loops/InputDataFieldSetLoop";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -126,7 +126,7 @@ export const Form: FC<FormProps> = ({
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="website" style={{ display: 'none' }} autoComplete="off" />
                     
-                    <FieldSetPersonalInfoBox textArea={textArea} fields={fields} />
+                    <InputDataFieldSetLoop textArea={textArea} fields={fields} />
 
                     {productImage && <> 
                         <StyledSpace medium vertical />
