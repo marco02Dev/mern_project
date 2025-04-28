@@ -26,14 +26,23 @@ type FadeInWrapperProps = {
     absolute?: string,
     width?: string,
     height?: string,
-    flex?: boolean
+    flex?: boolean,
+    delay?: string
 }
 
-export const FadeInWrapper: FC<FadeInWrapperProps> = ({children, absolute, additionalAnimation, width, height, flex}: FadeInWrapperProps): ReactElement => {
+export const FadeInWrapper: FC<FadeInWrapperProps> = ({children, absolute, additionalAnimation, width, height, flex, delay}: FadeInWrapperProps): ReactElement => {
     const hasLocationChanged: boolean = useLocationChange(); 
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     
-    let delayed = hasLocationChanged ? "1000ms" : "unset";
+    const combinedDelay = (() => {
+        if (hasLocationChanged) {
+            const baseDelay = delay ? parseInt(delay.replace('ms', '')) : 0;
+            return `${baseDelay + 1000}ms`;
+        }
+        return delay;
+    })();
+
+    const delayCalculated = combinedDelay ? combinedDelay : "";
 
     return <Wrapper 
             $addiniotalAnimation={additionalAnimation}
@@ -43,7 +52,7 @@ export const FadeInWrapper: FC<FadeInWrapperProps> = ({children, absolute, addit
             $height={height}
             className={isInView ? 'in-view' : ''}
             $flex={flex}
-            $delayed={delayed}
+            $delayed={delayCalculated}
         >
         {children}
     </Wrapper>

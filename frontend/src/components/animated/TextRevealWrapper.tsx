@@ -24,13 +24,23 @@ type TextRevealWrapperProps = {
     height?: string,
     left?: boolean,
     textCenter?: boolean;
+    delay?: string
 }
 
-export const TextRevealWrapper: FC<TextRevealWrapperProps> = ({children, absolute, additionalAnimation, width, height, left, textCenter }: TextRevealWrapperProps): ReactElement => {
+export const TextRevealWrapper: FC<TextRevealWrapperProps> = ({children, absolute, additionalAnimation, width, height, left, textCenter, delay }: TextRevealWrapperProps): ReactElement => {
 
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     const hasLocationChanged: boolean = useLocationChange();
-    const dealyed: string = hasLocationChanged ? "1000ms" : "";
+
+    const combinedDelay = (() => {
+        if (hasLocationChanged) {
+            const baseDelay = delay ? parseInt(delay.replace('ms', '')) : 0;
+            return `${baseDelay + 1000}ms`;
+        }
+        return delay;
+    })();
+
+    const delayCalculated = combinedDelay ? combinedDelay : "";
 
     return <Wrapper 
             $addiniotalAnimation={additionalAnimation}
@@ -40,7 +50,7 @@ export const TextRevealWrapper: FC<TextRevealWrapperProps> = ({children, absolut
             $height={height}
             $revealText={isInView}
             $left={left as boolean}
-            $delayed={dealyed}
+            $delayed={delayCalculated}
             $textCenter={textCenter}
         >
         {children}

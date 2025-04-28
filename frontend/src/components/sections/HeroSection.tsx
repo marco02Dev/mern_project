@@ -83,14 +83,14 @@ export const HeroSection: FC<HeroSectionProps> = ({
 
                 <StyledSpace medium vertical />
 
-                <TextRevealWrapper left>
+                <TextRevealWrapper left delay={"700ms"}>
                     <StyledText tag="h2" content={title} />
                 </TextRevealWrapper>
 
                 <StyledSpace small vertical />
 
                 {description && (
-                    <TextRevealWrapper>
+                    <TextRevealWrapper delay={"700ms"}>
                         <StyledText tag="p" content={description} />
                     </TextRevealWrapper>
                 )}
@@ -98,7 +98,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                 <StyledSpace medium vertical />
 
                 {buttonLabel && buttonLink && (
-                    <FadeInWrapper>
+                    <FadeInWrapper delay={"1200ms"}>
                         <StyledButton content={buttonLabel} to={buttonLink} />
                     </FadeInWrapper>
                 )}
