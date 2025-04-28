@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { MouseEventHandler, ReactElement, useContext } from "react";
 import { FC } from "react";
 import { StyledText } from "./StyledText";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ interface LinkWrapperProps {
     $logo?: boolean;
     $absolute?: boolean;
     $action?: boolean;
-    $inactive?: boolean
+    $inactive?: boolean;
 }
 
 const wrapperStyles = css<LinkWrapperProps>`
@@ -130,10 +130,27 @@ type StyledLinkProps = {
     logo?: boolean,
     absolute?: boolean,
     action?: boolean,
-    inactive?: boolean
+    inactive?: boolean,
+    onClickFunction?: MouseEventHandler
 }
 
-export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWeight, backgroundColor, color, padding, button, border, logo, absolute, action, inactive}: StyledLinkProps): ReactElement => {
+export const StyledLink: FC<StyledLinkProps> = ({
+    content, 
+    to, 
+    tag, 
+    size, 
+    fontWeight, 
+    backgroundColor, 
+    color, 
+    padding, 
+    button, 
+    border, 
+    logo, 
+    absolute, 
+    action, 
+    inactive,
+    onClickFunction
+}: StyledLinkProps): ReactElement => {
 
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
     const {mode} = ThemeModeValue;
@@ -193,7 +210,7 @@ export const StyledLink: FC<StyledLinkProps> = ({content, to, tag, size, fontWei
         $absolute={absolute}
         $inactive={inactive}
         tabIndex={inactive ? -1 : 0}
-        onClick={(e) => {
+        onClick={onClickFunction ? onClickFunction : (e) => {
             if (inactive) {
             e.preventDefault();
             }

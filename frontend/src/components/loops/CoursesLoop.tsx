@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, ReactElement, SetStateAction, useContext } from "react";
+import { Dispatch, Fragment, ReactElement, SetStateAction, useContext, useState } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
@@ -38,11 +38,14 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
   const dataChanged = useSelector((state: RootState) => state.coursesDataChanged.dataChanged);
+  const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
+  console.log(categoriesFilter)
+  const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
     latest: latest,
-    category: category,
+    category: isCategory,
     productsId: purchasedProducts && purchasedProducts
   });
 
@@ -67,7 +70,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
 
   return <>
 
-    {categoriesFilter && <CategoriesFilterLoop />}
+    {categoriesFilter && <CategoriesFilterLoop setCategoryFilter={setCategoryFilter} categoryFilter={categoryFilter} />}
 
     <StyledSpace medium vertical/>
 
