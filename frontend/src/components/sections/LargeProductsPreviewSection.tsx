@@ -72,8 +72,13 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     return <>
         <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
             <StyledSpace large vertical/>
-
-            <CoursesLoop purchasedProducts={productsPurchased} limit={products} category={category} setProductsNumber={setProductsNumber}/>
+            <CoursesLoop 
+                purchasedProducts={productsPurchased} 
+                limit={products} 
+                category={category} 
+                setProductsNumber={setProductsNumber}
+                categoriesFilter
+            />
             
             <StyledSpace small vertical />
             <StyledSpace small vertical />

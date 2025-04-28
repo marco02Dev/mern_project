@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { StyledSection } from "../components/themed/StyledSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { endpoints } from "../config/endpoints.config";
 import { useEffect } from "react";

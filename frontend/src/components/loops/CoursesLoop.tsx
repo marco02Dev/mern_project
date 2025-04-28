@@ -14,6 +14,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -28,10 +29,11 @@ type CoursesLoop = {
   latest?: boolean,
   category?: string,
   purchasedProducts?: string[] | null,
-  setProductsNumber?: Dispatch<SetStateAction<number | undefined>>
+  setProductsNumber?: Dispatch<SetStateAction<number | undefined>>,
+  categoriesFilter?: boolean
 }
 
-export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts, setProductsNumber }: CoursesLoop): ReactElement => {
+export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts, setProductsNumber, categoriesFilter }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
@@ -63,34 +65,41 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
 
 
 
-  return <CoursesWrapper $backgroundColor={backgroundColor}>
-    {limitedCourses?.map((course: Course, index: number): ReactElement => {
-      const istheThirdOne: boolean = (index + 1) % 3 === 0;
-      const isEven: boolean = (index + 1) % 2 === 0;
-      const isOdd: boolean = (index + 1) % 2 !== 0;
-      
-      return <Fragment key={index}>
-        <CourseBox 
-          courseId={course?._id}
-          title={course.name}
-          price={`${String(course.price)}$`}
-          link={`${course.category}/${course.name}`}
-          category={course.category}
-          imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
-          details={course.details}
-        />
+  return <>
 
-        {/* Mobile */}
-        {isMobile && <StyledSpace small vertical height={sizes.spaces.medium} width="100%"/>} 
+    {categoriesFilter && <CategoriesFilterLoop />}
 
-        {/* Tablet */}
-        {!isMobile && isTablet && isOdd && <StyledSpace horizontal height="100%" width={"3.4%"}/>}
-        {!isMobile && isTablet && isEven && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
+    <StyledSpace medium vertical/>
 
-        {/* Desktop */}
-        {!isMobile && !isTablet && !istheThirdOne && <StyledSpace horizontal height="100%" width={"1.7%"}/>}
-        {!isMobile && !isTablet && istheThirdOne && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
-      </Fragment >
-    })}
-  </CoursesWrapper>
+    <CoursesWrapper $backgroundColor={backgroundColor}>
+      {limitedCourses?.map((course: Course, index: number): ReactElement => {
+        const istheThirdOne: boolean = (index + 1) % 3 === 0;
+        const isEven: boolean = (index + 1) % 2 === 0;
+        const isOdd: boolean = (index + 1) % 2 !== 0;
+        
+        return <Fragment key={index}>
+          <CourseBox 
+            courseId={course?._id}
+            title={course.name}
+            price={`${String(course.price)}$`}
+            link={`${course.category}/${course.name}`}
+            category={course.category}
+            imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
+            details={course.details}
+          />
+
+          {/* Mobile */}
+          {isMobile && <StyledSpace small vertical height={sizes.spaces.medium} width="100%"/>} 
+
+          {/* Tablet */}
+          {!isMobile && isTablet && isOdd && <StyledSpace horizontal height="100%" width={"3.4%"}/>}
+          {!isMobile && isTablet && isEven && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
+
+          {/* Desktop */}
+          {!isMobile && !isTablet && !istheThirdOne && <StyledSpace horizontal height="100%" width={"1.7%"}/>}
+          {!isMobile && !isTablet && istheThirdOne && <StyledSpace vertical height={sizes.spaces.medium} width={"100%"}/>}
+        </Fragment >
+      })}
+    </CoursesWrapper>
+  </>
 };
