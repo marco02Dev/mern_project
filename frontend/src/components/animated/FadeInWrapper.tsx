@@ -1,6 +1,6 @@
 import styled, { RuleSet, css } from "styled-components";
 import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { useInView } from "../../hooks/useViewIn";
 import useLocationChange from "../../hooks/useLocationChange";
 import { FC } from "react";
@@ -21,7 +21,7 @@ const Wrapper = styled.div<{$absolute?: string, $addiniotalAnimation?: RuleSet, 
 `;
 
 type FadeInWrapperProps = {
-    children: ReactElement[] | ReactElement,
+    children: ReactElement[] | ReactElement | ReactNode,
     additionalAnimation?: RuleSet
     absolute?: string,
     width?: string,

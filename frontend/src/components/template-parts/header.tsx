@@ -1,7 +1,6 @@
 import { FC, ReactElement, useEffect, useState } from "react";
 import styled, { css, RuleSet } from "styled-components";
 import { NavLinks } from "../ui/NavLinks";
-import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledSection } from "../themed/StyledSection";
 import { UseScrollY, useScrollY } from "../../hooks/useScrollY";
@@ -10,12 +9,9 @@ import { StyledMobileMenu } from "../themed/StyledMobileMenu";
 import { LogoHomeButton } from "../buttons/LogoHomeButton";
 import { sizes } from "../../config/sizes.config";
 import { SwitchThemeModeButton } from "../buttons/SwitchThemeModeButton";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
 import useLocationChange from "../../hooks/useLocationChange";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { User } from "../../types/user.types";
+import { LoginAccountAdminButton } from "../buttons/LoginAccountAdminButton";
 
 const Nav = styled.nav`
     width: 100%;
@@ -51,10 +47,6 @@ export const Header: FC = (): ReactElement => {
     const [headerHidden, setHeaderHidden] = useState<boolean>(true);
     const {scrollY, latestScrollY}: UseScrollY = useScrollY();
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
-
-    const { isLoggedIn }: { isLoggedIn: boolean } = useSelector((state: RootState) => state.login);
-    const user: User | undefined = useSelector((state: RootState) => state.login.user);
-    const role: string | undefined = user?.role;
 
     let animation: RuleSet = css`
         animation: unset;
@@ -115,13 +107,7 @@ export const Header: FC = (): ReactElement => {
                 </DesktopNavInnerWrapper>
 
                 <DesktopNavInnerWrapper $width={'20%'} $flexEnd>
-                    <FadeInWrapper>
-                        <StyledButton 
-                            content={isLoggedIn ? role === "customer" ? "Account" : "Admin" : "Login"} 
-                            to={isLoggedIn ? role === "customer" ? "/account" : "/admin" : "/login"} 
-                            unsetShadow
-                        />
-                    </FadeInWrapper>
+                    <LoginAccountAdminButton />
                     <StyledSpace horizontal small />
                     <SwitchThemeModeButton />
                 </DesktopNavInnerWrapper>

@@ -3,13 +3,14 @@ import { ReactElement, FC } from "react";
 import { logoHover } from "../../animations/logo.animation";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useLocation, Location } from "react-router-dom";
+import { css } from "styled-components";
 
 export const LogoHomeButton: FC = (): ReactElement => {
   const location: Location = useLocation();
   const isInactive: boolean = location.pathname == "/";
 
   return (
-    <FadeInWrapper additionalAnimation={logoHover}> 
+    <FadeInWrapper additionalAnimation={!isInactive ? logoHover : css``}> 
       <StyledLink 
         content={'<WebCourses>'} 
         to="/" 
@@ -20,16 +21,17 @@ export const LogoHomeButton: FC = (): ReactElement => {
         inactive={isInactive}
       />
 
-      <StyledLink 
+      {!isInactive && <StyledLink 
         content={'<WebCourses>'} 
         to="/" 
-        tag={"h1"} 
+        tag={"h1"}  
         size={'p'}
         fontWeight={'900'}
         logo
         absolute
         inactive={isInactive}
-      />
+      /> }
+     
     </FadeInWrapper>
   );
 };

@@ -12,7 +12,8 @@ type StyledButtonProps = {
     unsetShadow?: boolean,
     action?: Function,
     courseId?: string,
-    type?: string
+    type?: string,
+    isInactive?: boolean
 }
 
 const ButtonWrapper = styled.div<{$unsetShadow?: boolean}>`
@@ -35,7 +36,7 @@ const ButtonShadow = styled.div<{$color: string}>`
     clip-path: inset(0.6vh 0% 0% 0.6vh);
 `;
 
-export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action}: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action, isInactive}: StyledButtonProps): ReactElement => {
 
     const {mode}: ThemeModeContextProps = useContext(ThemeModeContext)
     const backGroundColor: string = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
@@ -58,6 +59,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
             size={buttonFontSize}
             border
             action
+            inactive={isInactive}
         />
 
         {!unsetShadow && <ButtonShadow $color={shadowColor} />}
