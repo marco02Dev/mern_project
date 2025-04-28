@@ -25,7 +25,7 @@ export const useRestoreSession = () => {
           }));
         }
       } catch (error) {
-        console.error("Errore nel ripristino della sessione:", error);
+          return;
       }
     };
 
