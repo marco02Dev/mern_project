@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useState, Dispatch as ReactStateDispatch, SetStateAction, ChangeEventHandler} from "react";
+import { ReactElement, FC, useState, Dispatch as ReactStateDispatch, SetStateAction } from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -83,17 +83,7 @@ export const Form: FC<FormProps> = ({
         setCrateProductForm: setCrateProductForm,
         setProductCreated: setProductCreated,
         setMessageSent: setMessageSent,
-    })
-
-    const onChangeFileAction: ChangeEventHandler<HTMLInputElement> = (event): void => {
-        const file = event.target.files?.[0];   
-        if(file) {
-            const url = URL.createObjectURL(file);
-            setFormImage && setFormImage(url);
-        } else {
-            return;
-        }
-    }
+    });
 
     return (
         <Wrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
@@ -101,7 +91,7 @@ export const Form: FC<FormProps> = ({
             <StyledSpace medium vertical />
 
             <TextRevealWrapper left>
-                <StyledText tag="p" largeParagraph content={title} lineHeight="h1" />
+                <StyledText tag="h2" content={title} lineHeight="h1" />
             </TextRevealWrapper>
 
             <StyledSpace medium vertical />

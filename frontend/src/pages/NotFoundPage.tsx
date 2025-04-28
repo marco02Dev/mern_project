@@ -18,7 +18,7 @@ export const NotFoundPage = (): ReactElement => {
     }, [dispatch]);
 
 
-    return <StyledSection secondaryColor>
+    return <>
         <HeroSection
             eyebrowText="Oops!"
             title="Page Not Found"
@@ -29,6 +29,5 @@ export const NotFoundPage = (): ReactElement => {
             buttonLabel="Go to home page"
             buttonLink="/"
         />
-
-    </StyledSection>
+    </>
 }
