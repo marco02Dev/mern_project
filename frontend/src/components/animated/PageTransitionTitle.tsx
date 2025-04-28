@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useState, useEffect } from "react";
+import { ReactNode, useContext } from "react";
 import styled from "styled-components";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
@@ -13,6 +13,7 @@ import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { FC } from "react";
 import { LoginState } from "../../store/slices/login.slice";
 import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
+import { useFirstRender } from "../../hooks/useIsFirstRender";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;
@@ -37,65 +38,54 @@ const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
 
 export const PageTransitionTitle: FC = (): ReactNode => {
     const is404 = useSelector((state: RootState) => state.routeStatus.is404);
-    const { isMobile }: UseMediaQuery = useMediaQuery()
+    const { isMobile }: UseMediaQuery = useMediaQuery();
     const hasLocationChanged: boolean = useLocationChange();
-    const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
-
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const color = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
+    const { isLoggedIn, user }: LoginState = useSelector((state: RootState) => state.login);
 
-    const location: Location = useLocation(); 
+    const color = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
+    const location: Location = useLocation();
     const pathName: string = location.pathname;
     let title: string = pathName.replace('/', "");
-    const innerPathName: number = title.indexOf("/")
+    const innerPathName: number = title.indexOf("/");
 
-    if(innerPathName !== -1) {
-        title = title.slice(0, innerPathName)
+    if (innerPathName !== -1) {
+        title = title.slice(0, innerPathName);
     }
 
     let titleCapitalized: string = title.charAt(0).toUpperCase() + title.slice(1);
 
-    useEffect(() => {
-        if (pathName === "/") {
-            setTimeout(() => {
-                setIsFirstRender(false);
-            }, 1500)
+    const isFirstRender = useFirstRender(pathName);
 
-        }
-    }, [pathName]);
-
-    if(!titleCapitalized) {
-        if(isFirstRender) {
+    if (!titleCapitalized) {
+        if (isFirstRender) {
             titleCapitalized = "Welcome";
-        } else if(!isFirstRender){
+        } else if (!isFirstRender) {
             titleCapitalized = "Welcome back";
         }
     }
 
-    const { isLoggedIn, user }: LoginState = useSelector((state: RootState) => state.login);
-
-    if(isLoggedIn && pathName === '/account' && user) {
-        titleCapitalized = `Welcome back ${capitalizeFirstLetter(user?.name)}`
+    if (isLoggedIn && pathName === '/account' && user) {
+        titleCapitalized = `Welcome back ${capitalizeFirstLetter(user?.name)}`;
     }
 
-
-    if(!hasLocationChanged || is404) {
+    if (!hasLocationChanged || is404) {
         return null;
     } else {
         return (
             <TitleWrapper $hasLocationChanged={hasLocationChanged}>
                 <RevealWrapper $hasLocationChanged={hasLocationChanged}>
                     {pathName === "/" ? !isMobile ?
-                    <StyledText lineHeight="20vh" tag="h2" size="h2" content={titleCapitalized} color={color} />
-                    : titleCapitalized === "Welcome" ? <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} /> : <>
-                        <StyledText tag="h2" size="h2" content={"Welcome"} color={color} />  
-                        <br /> 
-                        <StyledText tag="h2" size="h2" content={"back"} color={color} />   
-                    </>
-                    
+                        <StyledText lineHeight="20vh" tag="h2" size="h2" content={titleCapitalized} color={color} />
+                        : titleCapitalized === "Welcome" ? <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} /> : <>
+                            <StyledText tag="h2" size="h2" content={"Welcome"} color={color} />
+                            <br />
+                            <StyledText tag="h2" size="h2" content={"back"} color={color} />
+                        </>
                     : <StyledText tag="h2" size="h2" content={titleCapitalized} color={color} />}
                 </RevealWrapper>
             </TitleWrapper>
         );
     }
 };
+
