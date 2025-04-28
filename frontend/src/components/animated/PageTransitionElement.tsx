@@ -1,5 +1,6 @@
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useContext } from "react";
 import { useBodyOverflow } from "../../hooks/useBodyOverflow";
+import { useColorToggle } from "../../hooks/useColorToggle";
 import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
@@ -48,16 +49,7 @@ export const PageTransitionElement: FC = (): ReactNode => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const wrapperColor = mode === 'dark' ? colors.light.backgroundColor : colors.dark.backgroundColor;
     const secondaryWrapperColor = mode === "dark" ? colors.light.backgroundColorSecondary : colors.dark.backgroundColorSecondary;
-
-    const [isDefaultColor, setIsDefaultColor] = useState<boolean>(true); 
-
-    useEffect(() => {
-        if (hasLocationChanged) {
-            setIsDefaultColor(prev => !prev); 
-        }
-    }, [hasLocationChanged]);
-
-    const currentColor = isDefaultColor ? wrapperColor : secondaryWrapperColor;
+    const currentColor: string = useColorToggle(hasLocationChanged, wrapperColor, secondaryWrapperColor);
 
     if (!hasLocationChanged) {
         return null;
