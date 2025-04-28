@@ -1,13 +1,13 @@
 import { ReactElement, useEffect } from "react";
 import { TextSection } from "../components/sections/TextSection";
 import { endpoints } from "../config/endpoints.config";
-import { FormSection } from "../components/sections/FormSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { setIsLoginPage } from "../store/slices/route-status.slice";
 import { Dispatch } from "@reduxjs/toolkit";
+import { LoginForm } from "../components/forms/LoginForm";
 
 export const LogInPage = (): ReactElement => {
     const dispatch: Dispatch = useDispatch();
@@ -40,16 +40,8 @@ export const LogInPage = (): ReactElement => {
             secondaryColor
         />
 
-        <FormSection 
-            title={"Welcome back!"} 
-            fields={[
-                "name",
-                "surname",
-                "email",
-                "password"
-            ]}
+        <LoginForm 
             imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
-            service="login"
         />
 
         <TextSection

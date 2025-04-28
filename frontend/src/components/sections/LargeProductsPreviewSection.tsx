@@ -13,8 +13,8 @@ import { LoginState } from "../../store/slices/login.slice";
 import styled from "styled-components";
 import { StyledText } from "../themed/StyledText";
 import { colors } from "../../config/colors.config";
-import { CreateProductForm } from "../layouts/CreateProductForm";
-import { UpdateProductForm } from "../layouts/UpdateProductForm";
+import { CreateProductForm } from "../forms/CreateProductForm";
+import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 

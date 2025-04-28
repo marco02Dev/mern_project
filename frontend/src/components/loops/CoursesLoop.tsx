@@ -4,7 +4,7 @@ import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
 import { Course } from "../../types/course.types";
 import { CourseBox } from "../boxes/CourseBox";
-import { determineUseFetchGetEndpoint } from "../../utils/determine-use-fetch-get-endpoint.util";
+import { determineUseFetchGetEndpoint } from "../../utils/components/determine-use-fetch-get-endpoint.util";
 import { endpoints, Endpoints } from "../../config/endpoints.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
