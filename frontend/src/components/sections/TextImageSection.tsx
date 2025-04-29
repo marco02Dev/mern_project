@@ -8,6 +8,8 @@ import styled from "styled-components";
 import { StyledText } from "../themed/StyledText";
 import { ShortParagraphsLoop } from "../loops/ShortParagraphsLoop";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { defaultDelayIncrement } from "../../config/animation.config";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const MainWrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -46,6 +48,7 @@ type TextImageSectionProps = {
 
 export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColor, contentSections, title }: TextImageSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const delay: string = defaultDelayIncrement;
 
     return (
         <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
@@ -56,7 +59,7 @@ export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColo
                 <TextWrapper $isTablet={isTablet} $isMobile={isMobile}>
                     {isTablet && <StyledSpace small medium />}
 
-                    <TextRevealWrapper left delay="500ms">
+                    <TextRevealWrapper left delay={delay}>
                         <StyledText content={title} tag="h2" />
                     </TextRevealWrapper>
 
@@ -65,7 +68,7 @@ export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColo
                     <PragraphsSectionWrapper $isTablet={isTablet}>
                         <ShortParagraphsLoop 
                             contentSections={contentSections} 
-                            startDelay={"500ms"}
+                            startDelay={sumStringDelays(delay, "200ms")}
                         />
                     </PragraphsSectionWrapper>
                 </TextWrapper>

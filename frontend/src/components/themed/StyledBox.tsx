@@ -7,6 +7,7 @@ import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeMod
 import { styledBoxHoverAnimation } from "../../animations/styled-box.animation";
 import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
 import { useInView } from "../../hooks/useViewIn";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{
         $isMobileDevices: boolean, 
@@ -68,7 +69,8 @@ type StyledBoxProps = {
     headerButton?: boolean,
     animation?: RuleSet,
     button?: boolean,
-    height?: string
+    height?: string,
+    delay?: string
 }
 
 export const StyledBox: FC<StyledBoxProps> = ({
@@ -77,7 +79,8 @@ export const StyledBox: FC<StyledBoxProps> = ({
     headerButton, 
     animation,
     button,
-    height
+    height,
+    delay
 }: StyledBoxProps): ReactElement => {
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     const { isMobile, isTablet } = useMediaQuery();
@@ -85,7 +88,9 @@ export const StyledBox: FC<StyledBoxProps> = ({
     const color = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
     const borderColor = mode === "dark" ? colors.dark.borderColor : colors.light.textColor;
 
-    return <Wrapper $height={height} $delayed="1000ms" $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
+    const delayCalculated = sumStringDelays(delay ? delay : "0ms", "1000ms");
+
+    return <Wrapper $height={height} $delayed={delayCalculated} $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
         <BodyWrapper  as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={color}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>
             {children}
         </BodyWrapper>

@@ -15,6 +15,7 @@ import { sizes } from "../../config/sizes.config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -30,10 +31,21 @@ type CoursesLoop = {
   category?: string,
   purchasedProducts?: string[] | null,
   setProductsNumber?: Dispatch<SetStateAction<number | undefined>>,
-  categoriesFilter?: boolean
+  categoriesFilter?: boolean,
+  resetIncrementalDelay?: boolean,
+  setResetIncrementalDelay?: Dispatch<SetStateAction<boolean>>
 }
 
-export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchasedProducts, setProductsNumber, categoriesFilter }: CoursesLoop): ReactElement => {
+export const CoursesLoop: FC<CoursesLoop> = ({
+  limit, 
+  latest, 
+  category, 
+  purchasedProducts, 
+  setProductsNumber, 
+  categoriesFilter, 
+  resetIncrementalDelay,
+  setResetIncrementalDelay
+}: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
@@ -41,6 +53,8 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
   const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
   console.log(categoriesFilter)
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
+  let incrementalDelay: string = "100ms";
+
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
@@ -79,6 +93,16 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
         const istheThirdOne: boolean = (index + 1) % 3 === 0;
         const isEven: boolean = (index + 1) % 2 === 0;
         const isOdd: boolean = (index + 1) % 2 !== 0;
+
+        if(index >= 1) {
+          incrementalDelay = sumStringDelays(incrementalDelay, "100ms");
+          
+          if(index % 3 === 0) {
+            incrementalDelay = "200ms";
+          }
+
+          console.log(index, incrementalDelay)
+        }
         
         return <Fragment key={index}>
           <CourseBox 
@@ -89,6 +113,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({limit, latest, category, purchased
             category={course.category}
             imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
             details={course.details}
+            delay={incrementalDelay}
           />
 
           {/* Mobile */}

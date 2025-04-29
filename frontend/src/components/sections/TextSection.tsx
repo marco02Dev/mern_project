@@ -6,6 +6,8 @@ import { StyledButton } from "../themed/StyledButton";
 import { sizes } from "../../config/sizes.config";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { defaultDelayIncrement } from "../../config/animation.config";
 
 type TextSectionProps = {
   title: string;
@@ -31,13 +33,13 @@ export const TextSection: FC<TextSectionProps> = ({
 
       <StyledSpace medium vertical />
 
-      <TextRevealWrapper>
+      <TextRevealWrapper delay={defaultDelayIncrement}>
         <StyledText tag={'p'} content={description} />
       </TextRevealWrapper>
 
       <StyledSpace medium vertical />
 
-      <FadeInWrapper>
+      <FadeInWrapper delay={sumStringDelays(defaultDelayIncrement, { increment: 2 })}>
         <StyledButton content={buttonLabel} to={buttonLink} />
       </FadeInWrapper>
     </StyledSection>

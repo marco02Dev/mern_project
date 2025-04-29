@@ -1,0 +1,1 @@
+export const defaultDelayIncrement: string = "500ms";

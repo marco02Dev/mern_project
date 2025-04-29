@@ -13,6 +13,9 @@ import { useLocation, Location } from "react-router-dom";
 import { User } from "../../types/user.types";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 import { DiscoverCourseButton } from "../buttons/DiscoverCourseButton";
+import { defaultDelayIncrement } from "../../config/animation.config";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { UseMediaQuery } from "../../hooks/useMediaQuery";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -76,7 +79,8 @@ export type CourseBoxProps = {
     details: {
         title: string,
         content: string
-    }[] | undefined
+    }[] | undefined,
+    delay?: string
 };
 
 export const CourseBox = ({
@@ -86,11 +90,13 @@ export const CourseBox = ({
     link,
     courseId,
     category,
-    details
+    details,
+    delay
 }: CourseBoxProps): ReactElement => {
     const login: LoginState = useSelector((state: RootState) => state.login);
     const location: Location = useLocation();
-    const { isMobile, isTablet } = useMediaQuery();
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const innerDelay: string = sumStringDelays(delay, defaultDelayIncrement);
 
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const { user }: { user?: User } = login;
@@ -101,12 +107,11 @@ export const CourseBox = ({
     const tabletSize: string = '48%';
     const mobileSize: string = '98%';
 
-
     return (
-        <StyledBox width={isMobile || isTablet ? isMobile ? mobileSize : tabletSize : desktopSize} >
+        <StyledBox delay={delay} width={isMobile || isTablet ? isMobile ? mobileSize : tabletSize : desktopSize} >
             <InnerWrapper $isMobile={isMobile}>
                 <div className="image-wrapper">
-                    <FadeInWrapper>
+                    <FadeInWrapper delay={innerDelay}>
                         <img src={imageUrl} alt={title} width={150} />
                     </FadeInWrapper>
                 </div>
@@ -114,14 +119,14 @@ export const CourseBox = ({
                 <div className="text-wrapper">
 
                     {!isMobile && <div className="small-text">
-                        <TextRevealWrapper>
+                        <TextRevealWrapper delay={sumStringDelays(innerDelay, "200ms")}>
                             <StyledText tag="h6" content={price} />
                         </TextRevealWrapper>
                     </div>}
 
                     <StyledSpace small vertical height="5%" />
 
-                    <TextRevealWrapper left>
+                    <TextRevealWrapper left delay={sumStringDelays(innerDelay, "200ms", "200ms")} >
                         <StyledText tag="h5" size="p" largeParagraph  content={title} />
                     </TextRevealWrapper>
 

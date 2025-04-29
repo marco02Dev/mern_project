@@ -38,8 +38,6 @@ export const BrowseSection: FC<BrowseSectionProps> = ({categories, title, second
                 <CategoriesLoop />
             } 
 
-            {/* //to handle future sections with similar layout */}
-
         </StyledSection>
     }
 
