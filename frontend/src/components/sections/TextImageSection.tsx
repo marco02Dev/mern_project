@@ -56,14 +56,17 @@ export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColo
                 <TextWrapper $isTablet={isTablet} $isMobile={isMobile}>
                     {isTablet && <StyledSpace small medium />}
 
-                    <TextRevealWrapper left>
+                    <TextRevealWrapper left delay="500ms">
                         <StyledText content={title} tag="h2" />
                     </TextRevealWrapper>
 
                     <StyledSpace medium vertical />
 
                     <PragraphsSectionWrapper $isTablet={isTablet}>
-                        <ShortParagraphsLoop contentSections={contentSections} />
+                        <ShortParagraphsLoop 
+                            contentSections={contentSections} 
+                            startDelay={"500ms"}
+                        />
                     </PragraphsSectionWrapper>
                 </TextWrapper>
             </MainWrapper>

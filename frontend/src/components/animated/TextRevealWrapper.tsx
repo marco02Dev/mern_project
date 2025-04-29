@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import { useInView } from "../../hooks/useViewIn";
 import useLocationChange from "../../hooks/useLocationChange";
 import { FC } from "react";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{$revealText: boolean, $absolute?: string, $addiniotalAnimation?: RuleSet, $width?: string, $height?: string, $left: boolean, $right?: boolean, $delayed: string, $textCenter?: boolean}>`
     overflow-y: hidden;
@@ -32,15 +33,11 @@ export const TextRevealWrapper: FC<TextRevealWrapperProps> = ({children, absolut
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     const hasLocationChanged: boolean = useLocationChange();
 
-    const combinedDelay = (() => {
-        if (hasLocationChanged) {
-            const baseDelay = delay ? parseInt(delay.replace('ms', '')) : 0;
-            return `${baseDelay + 1000}ms`;
-        }
-        return delay;
-    })();
+    const combinedDelay = hasLocationChanged
+        ? sumStringDelays(delay, '1000ms')
+        : delay;
 
-    const delayCalculated = combinedDelay ? combinedDelay : "";
+    const delayCalculated = combinedDelay ?? "";
 
     return <Wrapper 
             $addiniotalAnimation={additionalAnimation}

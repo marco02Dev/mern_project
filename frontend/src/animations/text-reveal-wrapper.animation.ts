@@ -10,7 +10,7 @@ const turnCompletlyVisbileText = keyframes`
 `;
 
 export const turnCompletlyVisbileTextAnimation = css`
-    animation: ${turnCompletlyVisbileText} 1.5s ease-in-out forwards;
+    animation: ${turnCompletlyVisbileText} 1.5s ease-in forwards;
 `;
 
 export const TextReaveal: RuleSet<{$revealText: boolean, $delayed: string}> = css<{$revealText: boolean, $left?: boolean, $delayed: string }>`
@@ -20,7 +20,7 @@ export const TextReaveal: RuleSet<{$revealText: boolean, $delayed: string}> = cs
         transform: ${({$left}) => $left ? "translateX(-100%)" : "translateY(100%)"};
         ${({$revealText, $left, $delayed}) => $revealText && css`
             transform: translateY(0) translateX(0);
-            transition: transform ${$left ? "1s" : "1s"} ease-in-out ${$delayed};
+            transition: transform ${$left ? "1s" : "1s"} ${ $left ? "ease-out" : "ease-in-out"} ${$delayed};
         `};
     }
 `;
