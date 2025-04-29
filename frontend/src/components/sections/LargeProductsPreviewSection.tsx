@@ -17,6 +17,7 @@ import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { useBodyOverflow } from "../../hooks/useBodyOverflow";
 
 const ButtonWrapper = styled.div`
     display: flex;
@@ -68,6 +69,8 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             updateProductFormState = updateProductForm;
         }
     }
+
+    useBodyOverflow(createProductForm);
     
     return <>
         <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
@@ -94,10 +97,12 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
                     }
 
                     {isAdmin && createProducts && <FadeInWrapper>
-                        <StyledButton unsetShadow content="Create course" action={(): void => {
-                            setCrateProductForm(true);
-                            setProductCreated(false);
-                        }} />
+                        <a href="#create-course-form-section" style={{textDecoration: "none"}}>
+                            <StyledButton unsetShadow content="Create course" action={(): void => {
+                                setCrateProductForm(true);
+                                setProductCreated(false);
+                            }} />
+                        </a>
                     </FadeInWrapper> }
 
                     {productCreated && <>
