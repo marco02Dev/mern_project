@@ -9,6 +9,9 @@ import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeMod
 import whiteTick from"../../images/svg/tick-white.svg";
 import blackTick from"../../images/svg/tick-black.svg";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -23,6 +26,10 @@ const ImageWrapper = styled.div`
     display: flex;
     justify-content: center;
     padding-right: 5%;
+    div {
+        display: flex;
+        justify-content: center;   
+    }
 `;
 
 const TextWrapper = styled.div`
@@ -37,28 +44,43 @@ type CategoryBoxProps = {
     title: string,
     description: string,
     to: string,
-    marginLeft?: string
+    marginLeft?: string,
+    delay: string
 }
 
-export const CategoryBox: FC<CategoryBoxProps> = ({title, description, to}: CategoryBoxProps): ReactElement => {
+export const CategoryBox: FC<CategoryBoxProps> = ({
+    title, 
+    description, 
+    to,
+    delay
+}: CategoryBoxProps): ReactElement => {
 
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
-    return <StyledBox width={isMobile ? "100%" : "48%"} height={isMobile ? "18vh" : "30vh"}>
+    return <StyledBox width={isMobile ? "100%" : "48%"} height={isMobile ? "18vh" : "30vh"} delay={delay}>
         <Wrapper>
+            
             <ImageWrapper>
-                <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
+                <FadeInWrapper width="100%" height="100%" delay={sumStringDelays(delay, "100ms")}>
+                    <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
+                </FadeInWrapper>
             </ImageWrapper> 
 
             <TextWrapper>
-                <StyledText tag="h3" content={title} />
+                <TextRevealWrapper left delay={sumStringDelays(delay, "300ms")}>
+                    <StyledText tag="h3" content={title} />
+                </TextRevealWrapper>
                 <StyledSpace small vertical />
                 {!isMobile && <>
-                    <StyledText tag="p" size="h5"  content={description} smallParagraph />
+                    <TextRevealWrapper delay={sumStringDelays(delay, "400ms")}>
+                        <StyledText tag="p" size="h5"  content={description} smallParagraph />
+                    </TextRevealWrapper>
                     <StyledSpace small vertical/>
                 </>}
-                <StyledButton content="Discover" to={to} unsetShadow/>
+                <FadeInWrapper delay={sumStringDelays(delay, "500ms")}>
+                    <StyledButton content="Discover" to={to} unsetShadow/>
+                </FadeInWrapper>
             </TextWrapper>
         </Wrapper>
     </StyledBox>;

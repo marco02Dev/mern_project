@@ -5,6 +5,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{$isMobile: boolean}>`
   width: 100%;
@@ -15,7 +16,7 @@ const Wrapper = styled.div<{$isMobile: boolean}>`
 `;
 
 export const CategoriesLoop: FC = (): ReactElement => {
-
+    let delay: string;
     const { isMobile }: UseMediaQuery = useMediaQuery();
 
     return <Wrapper $isMobile={isMobile}>
@@ -23,11 +24,16 @@ export const CategoriesLoop: FC = (): ReactElement => {
             const isEven: boolean = (index + 1) % 2 === 0;
             const isOdd: boolean = (index + 1) % 2 !== 0;
 
+            if(index >= 1) {
+                delay = sumStringDelays(delay, "300ms");
+            }
+
             return <Fragment key={index} > 
                 <CategoryBox 
                     title={cat}
                     description={`Master the basics of ${cat}`}
                     to={`/courses/${cat}`}
+                    delay={delay}
                 />
 
                 {isOdd && !isMobile && <StyledSpace vertical height={"20vh"} width={"3.4%"}/>}
