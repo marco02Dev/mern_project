@@ -52,7 +52,7 @@ export const FormSection: FC<FormSectionProps> = ({
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
 
-    return <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
+    return <StyledSection id={`${service}-form-section`} secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
 
         <MainWrapper $isTablet={isTablet}>
             {isTablet && <StyledSpace large vertical />}

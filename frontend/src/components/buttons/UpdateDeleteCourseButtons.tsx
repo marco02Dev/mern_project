@@ -1,4 +1,4 @@
-import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, RefObject } from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";
@@ -16,6 +16,7 @@ import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../c
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useBodyOverflow } from "../../hooks/useBodyOverflow";
 
 const Wrapper = styled.div`
     display: flex !important;
@@ -36,17 +37,21 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
     const location: Location = useLocation();
     const [productDeleted, setProductDeleted] = useState<boolean>(false);
     const [productDeletedErrorMessage, setProductDeletedErrorMessage] = useState<string | undefined>("");
+
+
     let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
     let updateProductFormState: UpdateProductFormContextStateObject = {
         state: false,
         courseId: ""
     }
 
+
     const login: LoginState = useSelector((state: RootState) => state.login);
     const { isLoggedIn }: {isLoggedIn: boolean} = login;
     const { user }: { user?: User } = login;
     const isAdmin: boolean = isLoggedIn && user?.role === "admin";
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
+
 
     if(isLoggedIn && isAdminPage && isAdmin) {
         const updateProductFormContext: any = useContext(UpdateProductFormContext);
@@ -66,6 +71,8 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
         }
     };
 
+    useBodyOverflow(updateProductFormState.courseId ? true : false)
+
     useEffect(() => {
         if (productDeleted) {
             dispatch(setDataChanged());
@@ -77,11 +84,13 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
             {!updateProductFormState.state && (
                 <>
                     <FadeInWrapper delay={initialDelay}>
-                        <StyledButton 
-                            unsetShadow 
-                            content="Update" 
-                            action={handleUpdateButtonClick} 
-                        />
+                        <a href="#update-course-form-section">
+                            <StyledButton 
+                                unsetShadow 
+                                content="Update" 
+                                action={handleUpdateButtonClick} 
+                            />
+                        </a>
                     </FadeInWrapper>
                     <StyledSpace horizontal small />
                 </>
@@ -93,16 +102,19 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
                         <StyledText tag="h6" content="Course deleted!" color={colors.dark.errorMessage} /> :
                         <StyledText tag="h6" content="Permission denied!" color={colors.dark.errorMessage} />
                     ) :
-                    <StyledButton 
-                        unsetShadow 
-                        content="Delete" 
-                        action={() => deleteCourseService({
-                            courseId: courseId,
-                            setProductDeleted: setProductDeleted,
-                            setProductDeletedErrorMessage: setProductDeletedErrorMessage,
-                            isAdmin: isAdmin
-                        })}
-                    />
+                    <>
+                        <StyledButton 
+                            unsetShadow 
+                            content="Delete" 
+                            action={() => deleteCourseService({
+                                courseId: courseId,
+                                setProductDeleted: setProductDeleted,
+                                setProductDeletedErrorMessage: setProductDeletedErrorMessage,
+                                isAdmin: isAdmin
+                            })}
+                        />
+
+                    </>
                 }
             </FadeInWrapper>
         </Wrapper>

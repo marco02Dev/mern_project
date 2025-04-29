@@ -1,5 +1,5 @@
 import styled, { RuleSet, css } from "styled-components";
-import { useContext, ReactNode, JSX } from "react";
+import { useContext, ReactNode, JSX, ReactElement } from "react";
 import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
@@ -74,42 +74,43 @@ const Section = styled.section<SectionProps>`
   ${({ $animation }) => ($animation ? $animation : 'unset')};
 `;
 
-interface StyledSectionProps {
-    children: ReactNode;
-    secondaryColor?: boolean;
-    column?: boolean,
-    row?: boolean,
-    alignCenter?: boolean,
-    semanticTag?: string,
-    fixed?: boolean,
-    height?: string,
-    animation?: RuleSet,
-    block?: boolean,
-    paddingLeft?: string,
-    paddingRight?: string,
-    justifyCenter?: boolean,
-    hiddenFirstRender?: boolean,
-    overflowVisible?: boolean
+type StyledSectionProps = {
+  children: ReactNode;
+  secondaryColor?: boolean;
+  column?: boolean,
+  row?: boolean,
+  alignCenter?: boolean,
+  semanticTag?: string,
+  fixed?: boolean,
+  height?: string,
+  animation?: RuleSet,
+  block?: boolean,
+  paddingLeft?: string,
+  paddingRight?: string,
+  justifyCenter?: boolean,
+  hiddenFirstRender?: boolean,
+  overflowVisible?: boolean,
+  id?: string
 }
 
 export const StyledSection: React.FC<StyledSectionProps> = ({ 
-      children, 
-      secondaryColor, 
-      column, 
-      row, 
-      alignCenter,
-      semanticTag,
-      fixed, 
-      height,
-      animation,
-      block,
-      paddingLeft,
-      paddingRight,
-      justifyCenter,
-      hiddenFirstRender,
-      overflowVisible
-
-   }) => {
+    children, 
+    secondaryColor, 
+    column, 
+    row, 
+    alignCenter,
+    semanticTag,
+    fixed, 
+    height,
+    animation,
+    block,
+    paddingLeft,
+    paddingRight,
+    justifyCenter,
+    hiddenFirstRender,
+    overflowVisible,
+    id
+  }): ReactElement => {
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
   const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
 
@@ -135,6 +136,7 @@ export const StyledSection: React.FC<StyledSectionProps> = ({
     $smallSpace={sizes.spaces.small}
     $semanticTag={semanticTag}
     $overflowVisible={overflowVisible}
+    id={id}
     > {children} 
   </Section>;
 };
