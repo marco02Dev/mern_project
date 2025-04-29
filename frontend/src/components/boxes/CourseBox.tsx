@@ -126,7 +126,7 @@ export const CourseBox = ({
 
                     <StyledSpace small vertical height="5%" />
 
-                    <TextRevealWrapper left delay={sumStringDelays(innerDelay, "200ms", "200ms")} >
+                    <TextRevealWrapper left delay={sumStringDelays(innerDelay, "400ms")} >
                         <StyledText tag="h5" size="p" largeParagraph  content={title} />
                     </TextRevealWrapper>
 
@@ -140,9 +140,13 @@ export const CourseBox = ({
                         category={category}
                         details={details}
                         link={link}
+                        delay={sumStringDelays(innerDelay, "600ms")}
                     /> }
 
-                    {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons courseId={courseId}/> }
+                    {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons 
+                        courseId={courseId}
+                        initialDelay={sumStringDelays(innerDelay, "600ms")}
+                    />}
                 </div>
             </InnerWrapper>
         </StyledBox>

@@ -15,6 +15,7 @@ import { useLocation, Location } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div`
     display: flex !important;
@@ -23,11 +24,13 @@ const Wrapper = styled.div`
 `;
 
 type UpdateDeleteCourseButtonProps = {
-    courseId: string
+    courseId: string,
+    initialDelay?: string
 }
 
 export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
     courseId,
+    initialDelay
 }: UpdateDeleteCourseButtonProps): ReactElement => {
     const dispatch: ReduxDispatch = useDispatch();
     const location: Location = useLocation();
@@ -73,14 +76,18 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
         <Wrapper>
             {!updateProductFormState.state && (
                 <>
-                    <FadeInWrapper>
-                        <StyledButton unsetShadow content="Update" action={handleUpdateButtonClick} />
+                    <FadeInWrapper delay={initialDelay}>
+                        <StyledButton 
+                            unsetShadow 
+                            content="Update" 
+                            action={handleUpdateButtonClick} 
+                        />
                     </FadeInWrapper>
                     <StyledSpace horizontal small />
                 </>
             )}
     
-            <FadeInWrapper>
+            <FadeInWrapper delay={sumStringDelays(initialDelay, "200ms")}>
                 {productDeleted || productDeletedErrorMessage ? 
                     (!productDeletedErrorMessage ? 
                         <StyledText tag="h6" content="Course deleted!" color={colors.dark.errorMessage} /> :

@@ -13,7 +13,8 @@ type DiscoverCourseButtonProps = {
         title: string,
         content: string
     }[],
-    link: string
+    link: string,
+    delay?: string
 }
 
 export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
@@ -23,7 +24,8 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
     price,
     category,
     details,
-    link
+    link,
+    delay
 }: DiscoverCourseButtonProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -33,7 +35,7 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
         }
     };
 
-    return <FadeInWrapper>
+    return <FadeInWrapper delay={delay}>
         <StyledButton unsetShadow content={"Discover"} action={handleDiscoverButtonClick} />
         <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
     </FadeInWrapper>

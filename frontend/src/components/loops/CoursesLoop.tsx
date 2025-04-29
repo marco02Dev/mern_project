@@ -42,9 +42,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   category, 
   purchasedProducts, 
   setProductsNumber, 
-  categoriesFilter, 
-  resetIncrementalDelay,
-  setResetIncrementalDelay
+  categoriesFilter
 }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
