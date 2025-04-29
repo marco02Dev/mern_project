@@ -1,4 +1,4 @@
-import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, RefObject } from "react";
+import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState} from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";

@@ -3,27 +3,16 @@ import { CoursesLoop } from "../loops/CoursesLoop";
 import { StyledSection } from "../themed/StyledSection";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
-import { StyledButton } from "../themed/StyledButton";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 import { usePurchasedProducts } from "../../hooks/usePurchasedProducts";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { LoginState } from "../../store/slices/login.slice";
-import styled from "styled-components";
-import { StyledText } from "../themed/StyledText";
-import { colors } from "../../config/colors.config";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { useBodyOverflow } from "../../hooks/useBodyOverflow";
-
-const ButtonWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-`;
+import { LargeProductsPreviewButtons } from "../buttons/LargeProductsPreviewButtons";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -39,7 +28,6 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     userProductsPurchased,
     createProducts
 }: LargeProductsPreviewSectionProps): ReactElement => {
-    const { isMobile }: UseMediaQuery = useMediaQuery();
     const [products, setProducts] = useState<number>(limit);
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
     const [createProductForm, setCrateProductForm] = useState<boolean>(false);
@@ -53,7 +41,6 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
 
     const isAdmin: boolean = isLoggedIn && user?.role === "admin";
-    const thereAreProductsToShow: boolean = productsNumber !== undefined && products <= productsNumber;
 
     let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
     let updateProductFormState: UpdateProductFormContextStateObject = {
@@ -86,31 +73,15 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
             <StyledSpace small vertical />
             <StyledSpace small vertical />
 
-            { (isAdmin || thereAreProductsToShow) &&
-                <ButtonWrapper>
-                    {thereAreProductsToShow && <FadeInWrapper>
-                        <StyledButton unsetShadow content="Load more" action={(): void => setProducts(isMobile ? products + 4 : products + 3)} />
-                    </FadeInWrapper> }
-
-                    {
-                        (isAdmin || thereAreProductsToShow) && <StyledSpace small horizontal />
-                    }
-
-                    {isAdmin && createProducts && <FadeInWrapper>
-                        <a href="#create-course-form-section" style={{textDecoration: "none"}}>
-                            <StyledButton unsetShadow content="Create course" action={(): void => {
-                                setCrateProductForm(true);
-                                setProductCreated(false);
-                            }} />
-                        </a>
-                    </FadeInWrapper> }
-
-                    {productCreated && <>
-                        <StyledSpace small horizontal />
-                        <StyledText tag="h6" color={colors.dark.successMessage} content="New Product created!" />
-                    </>}
-                </ButtonWrapper>
-            }
+            <LargeProductsPreviewButtons 
+                productsNumber={productsNumber}
+                createProducts={createProducts}
+                products={products}
+                productCreated={productCreated}
+                setProductCreated={setProductCreated}
+                setCrateProductForm={setCrateProductForm}
+                setProducts={setProducts}
+            />
 
             <StyledSpace large vertical/>
         </ StyledSection>  
