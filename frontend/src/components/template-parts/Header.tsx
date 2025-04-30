@@ -45,7 +45,6 @@ export const Header: FC = (): ReactElement => {
     const { headerHidden, animation } = useHeaderVisibility();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [desktopButtonsStartDelay, setDesktopButtonStartDelay] = useState<string | undefined>("");
-    console.log(desktopButtonsStartDelay)
 
     return (
         <StyledSection 

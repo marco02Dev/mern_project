@@ -7,7 +7,6 @@ export const updateCourseService = (
     setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> | undefined
 ) => {
     event.preventDefault();
-    console.log("course updated");
     setUpdateProductFormSetState && setUpdateProductFormSetState({
         state: false,
         courseId: "updated"

@@ -89,8 +89,6 @@ export const Form: FC<FormProps> = ({
         setMessageSent: setMessageSent,
     });
 
-    console.log(inputDataFieldSetLoopLastDelay, fileInputFieldSetLoopLoopLastDelay);
-
     return (
         <Wrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
 

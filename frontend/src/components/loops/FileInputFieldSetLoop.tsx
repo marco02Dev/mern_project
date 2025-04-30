@@ -37,7 +37,6 @@ export const FileInputFieldSetLoop: FC<FileInputFieldSetLoopProps> = ({
         if (setFileInputFieldSetLoopLastDelay) {
             setFileInputFieldSetLoopLastDelay(lastDelayRef.current);
         }
-        console.log("file last", lastDelayRef.current);
     }, []);
 
     return (

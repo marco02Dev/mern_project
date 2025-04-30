@@ -20,7 +20,7 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
     delay
 }: DiscoverCourseButtonProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
-
+    console.log(link)
     const handleDiscoverButtonClick: Function = () => {
         if (hiddenLinkRef.current) {
           hiddenLinkRef.current.click();

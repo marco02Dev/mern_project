@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useLocation, Location } from "react-router-dom";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -33,7 +34,7 @@ type CoursesLoop = {
   setProductsNumber?: Dispatch<SetStateAction<number | undefined>>,
   categoriesFilter?: boolean,
   resetIncrementalDelay?: boolean,
-  setResetIncrementalDelay?: Dispatch<SetStateAction<boolean>>
+  setResetIncrementalDelay?: Dispatch<SetStateAction<boolean>>,
 }
 
 export const CoursesLoop: FC<CoursesLoop> = ({
@@ -49,10 +50,11 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
   const dataChanged = useSelector((state: RootState) => state.coursesDataChanged.dataChanged);
   const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
-  console.log(categoriesFilter)
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
+  const location: Location = useLocation();
+  const path: string = location.pathname;
+  const isNotCoursesPath: boolean = path !== "/courses";
   let incrementalDelay: string = "100ms";
-
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
@@ -96,8 +98,6 @@ export const CoursesLoop: FC<CoursesLoop> = ({
           if(index % 3 === 0) {
             incrementalDelay = "200ms";
           }
-
-          console.log(index, incrementalDelay)
         }
         
         return <Fragment key={dataChanged ? `${categoriesFilter}-${index}` : index}>
@@ -105,7 +105,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
             courseId={course?._id}
             title={course?.name!}
             price={`${String(course?.price)}$`}
-            link={`${course?.category}/${course?.name}`}
+            link={`${isNotCoursesPath && "courses/"}${course?.category}/${course?.name}`}
             category={course?.category}
             imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
             details={course.details}

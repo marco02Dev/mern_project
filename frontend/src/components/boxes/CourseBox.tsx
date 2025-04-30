@@ -73,13 +73,14 @@ export type CourseBoxProps = {
     title: string;
     price: string;
     imageUrl: string;
-    link: string;
+
     courseId: string | undefined;
     category: string;
     details: {
         title: string,
         content: string
     }[] | undefined,
+    link: string,
     delay?: string
 };
 
