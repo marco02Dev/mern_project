@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { SetStateAction, useContext, Dispatch, FC, useEffect } from 'react';
 import { StyledLink } from '../themed/StyledLink';
 import { StyledSpace } from '../themed/StyledSpace';
 import { FadeInWrapper } from '../animated/FadeInWrapper';
@@ -9,28 +9,43 @@ import { useLocation } from 'react-router-dom';
 import { ThemeModeContext } from '../../contexts/ThemeModeProvider';
 import { colors } from '../../config/colors.config';
 import { useUnsetActiveColor } from '../../hooks/useUnsetActiveColor';
+import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
 
-export const NavLinksLoop: React.FC<{ links: { name: string; to: string }[]; row?: boolean }> = ({
+type NavLinksLoopProps = {
+  links: { name: string; to: string }[];
+  row?: boolean;
+  setDesktopButtonStartDelay?: Dispatch<SetStateAction<string | undefined>>;
+}
+
+export const NavLinksLoop: FC<NavLinksLoopProps> = ({
   links,
   row,
-}) => {
+  setDesktopButtonStartDelay
+}: NavLinksLoopProps) => {
   const { isMobile, isTablet } = useMediaQuery();
   const login = useSelector((state: RootState) => state.login);
   const { isLoggedIn } = login;
   const location = useLocation();
   const { mode } = useContext(ThemeModeContext);
   const isActiveColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
-  
   const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
+  let delay: string = "0ms";
+  let lastDelay: string = "0ms";
+
+  useEffect(() => {
+    setDesktopButtonStartDelay && setDesktopButtonStartDelay(lastDelay)
+  }, [delay, lastDelay]);
 
   return (
     <>
       {links.map((link, index) => {
         const isActive = location.pathname === link.to;
+        delay = sumStringDelays(delay, "200ms");
+        lastDelay = delay
 
         return (
           <React.Fragment key={index}>
-            <FadeInWrapper>
+            <FadeInWrapper delay={delay}>
                 <div onMouseOver={handleMouseHover} onMouseLeave={handleMouseLeave} className={isActive ? "is-active" : "is-not-active"}>
                     <StyledLink
                         content={link.name}
@@ -49,7 +64,7 @@ export const NavLinksLoop: React.FC<{ links: { name: string; to: string }[]; row
       })}
 
       {(isMobile || isTablet) && (
-        <FadeInWrapper>
+        <FadeInWrapper delay={sumStringDelays(lastDelay, "200ms")}>
           <StyledLink
             content={isLoggedIn ? 'Account' : 'login'}
             to={isLoggedIn ? '/account' : '/login'}

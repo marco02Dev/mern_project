@@ -46,8 +46,11 @@ const Line = styled.div<{$smallSize: string, $mediumSize: string, $color: string
     ${({$rotateLineUp, $rotateLineDown}) => !$rotateLineUp && !$rotateLineDown && restoreRotatedLine}
 `;
 
+type StyledMobileMenuProps = {
+    delay?: string
+}
 
-export const StyledMobileMenu: FC = (): ReactElement => {
+export const StyledMobileMenu: FC<StyledMobileMenuProps> = ({delay}: StyledMobileMenuProps): ReactElement => {
     const isOpened = useSelector(({menu}: RootState) => menu.isOpened);
     const dispatch = useDispatch();
 
@@ -68,7 +71,7 @@ export const StyledMobileMenu: FC = (): ReactElement => {
     }, [isMobile, isTablet]);
 
     return (
-        <FadeInWrapper>
+        <FadeInWrapper delay={delay}>
             <Wrapper $isOpened={isOpened} onClick={toggleMenuHandler}>
                 <Line $smallSize={lineHeight} $mediumSize={"100%"} $color={color} $rotateLineDown={isOpened} />
 

@@ -1,4 +1,4 @@
-import { ReactElement, FC } from "react";
+import { ReactElement, FC, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { NavLinksLoop } from "../loops/NavLinksLoop";
 
@@ -8,7 +8,12 @@ const NavLinksWrapper = styled.div<{$row?: boolean}>`
     align-items: center;
 `;
 
-export const NavLinks: FC<{row?: boolean}> = ({row}: {row?: boolean}): ReactElement => {
+type NavLinksProps = {
+    row?: boolean;
+    setDesktopButtonStartDelay?: Dispatch<SetStateAction<string | undefined>>;
+}
+
+export const NavLinks: FC<NavLinksProps> = ({row, setDesktopButtonStartDelay}: NavLinksProps): ReactElement => {
 
     const links = [
         { name: 'Home', to: '/' },
@@ -19,7 +24,7 @@ export const NavLinks: FC<{row?: boolean}> = ({row}: {row?: boolean}): ReactElem
 
     return (
         <NavLinksWrapper $row={row}>
-        <NavLinksLoop links={links} row={row} />
+        <NavLinksLoop links={links} row={row} setDesktopButtonStartDelay={setDesktopButtonStartDelay} />
       </NavLinksWrapper>
     );
 };

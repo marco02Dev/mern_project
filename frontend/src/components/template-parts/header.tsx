@@ -1,4 +1,4 @@
-import { FC, ReactElement} from "react";
+import { FC, ReactElement, useState} from "react";
 import styled from "styled-components";
 import { useHeaderVisibility } from "../../hooks/useHeaderVisibility";
 import { NavLinks } from "../ui/NavLinks";
@@ -10,6 +10,7 @@ import { LogoHomeButton } from "../buttons/LogoHomeButton";
 import { sizes } from "../../config/sizes.config";
 import { SwitchThemeModeButton } from "../buttons/SwitchThemeModeButton";
 import { LoginAccountAdminButton } from "../buttons/LoginAccountAdminButton";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Nav = styled.nav`
     width: 100%;
@@ -43,6 +44,8 @@ const DesktopNavInnerWrapper = styled.div<{$width: string, $middleWrapper?: bool
 export const Header: FC = (): ReactElement => {
     const { headerHidden, animation } = useHeaderVisibility();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const [desktopButtonsStartDelay, setDesktopButtonStartDelay] = useState<string | undefined>("");
+    console.log(desktopButtonsStartDelay)
 
     return (
         <StyledSection 
@@ -65,9 +68,9 @@ export const Header: FC = (): ReactElement => {
                     </MobileNavInnerWrapper>
 
                     <MobileNavInnerWrapper $justifyEnd> 
-                        <SwitchThemeModeButton />
+                        <SwitchThemeModeButton delay={"200ms"}/>
                         <StyledSpace horizontal small />
-                        <StyledMobileMenu /> 
+                        <StyledMobileMenu delay={"400ms"} /> 
                     </MobileNavInnerWrapper>
                 </Nav>
             ) : (
@@ -77,13 +80,13 @@ export const Header: FC = (): ReactElement => {
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="60%" $middleWrapper>
-                        <NavLinks row />
+                        <NavLinks row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="20%" $flexEnd>
-                        <LoginAccountAdminButton />
+                        <LoginAccountAdminButton delay={sumStringDelays(desktopButtonsStartDelay, "200ms")} />
                         <StyledSpace horizontal small />
-                        <SwitchThemeModeButton />
+                        <SwitchThemeModeButton delay={sumStringDelays(desktopButtonsStartDelay, "400ms")} />
                     </DesktopNavInnerWrapper>
                 </Nav>
             )}

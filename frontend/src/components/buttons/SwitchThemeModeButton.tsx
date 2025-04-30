@@ -34,7 +34,12 @@ const Button = styled.button<{$imageSize: string}>`
     }
 `;
 
-export const SwitchThemeModeButton: FC = (): ReactElement => {
+type SwitchThemeModeButtonProps = {
+    delay?: string
+}
+
+
+export const SwitchThemeModeButton: FC<SwitchThemeModeButtonProps> = ({delay}: SwitchThemeModeButtonProps): ReactElement => {
     const { mode, setMode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
     const toggleTheme = () => {
@@ -56,7 +61,7 @@ export const SwitchThemeModeButton: FC = (): ReactElement => {
     return (
         <>
             <GlobalStyle />
-            <FadeInWrapper flex>
+            <FadeInWrapper flex delay={delay}>
                 <Button onClick={toggleTheme} $imageSize={sizes.widths.small}>
                     <img width={20} height={20} src={mode === "light" ? sun : moon} alt="theme-icon" className="w-6 h-6" />
                 </Button>
