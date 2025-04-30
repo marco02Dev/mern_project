@@ -62,23 +62,23 @@ export const CategoryBox: FC<CategoryBoxProps> = ({
         <Wrapper>
             
             <ImageWrapper>
-                <FadeInWrapper width="100%" height="100%" delay={sumStringDelays(delay, "100ms")}>
+                <FadeInWrapper width="100%" height="100%" delay={sumStringDelays(delay, "300ms")}>
                     <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
                 </FadeInWrapper>
             </ImageWrapper> 
 
             <TextWrapper>
-                <TextRevealWrapper left delay={sumStringDelays(delay, "300ms")}>
+                <TextRevealWrapper left delay={sumStringDelays(delay, "600ms")}>
                     <StyledText tag="h3" content={title} />
                 </TextRevealWrapper>
                 <StyledSpace small vertical />
                 {!isMobile && <>
-                    <TextRevealWrapper delay={sumStringDelays(delay, "400ms")}>
+                    <TextRevealWrapper delay={sumStringDelays(delay, "800ms")}>
                         <StyledText tag="p" size="h5"  content={description} smallParagraph />
                     </TextRevealWrapper>
                     <StyledSpace small vertical/>
                 </>}
-                <FadeInWrapper delay={sumStringDelays(delay, "500ms")}>
+                <FadeInWrapper delay={sumStringDelays(delay, "900ms")}>
                     <StyledButton content="Discover" to={to} unsetShadow/>
                 </FadeInWrapper>
             </TextWrapper>

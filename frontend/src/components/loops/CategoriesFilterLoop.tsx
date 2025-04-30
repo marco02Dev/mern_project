@@ -7,6 +7,8 @@ import { StyledSpace } from "../themed/StyledSpace";
 import { ThemeModeContext } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import { useUnsetActiveColor } from "../../hooks/useUnsetActiveColor";
+import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.nav`
     display: flex;
@@ -38,49 +40,58 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
 }: CategoriesFIlterProps): ReactElement => {
     const { mode } = useContext(ThemeModeContext);
     const isActiveColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
-    
     const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
+    let delay: string;
 
     return (
         <Wrapper>
             <div className="all">
-                <div
-                    onMouseOver={handleMouseHover}
-                    onMouseLeave={handleMouseLeave}
-                    className={categoryFilter === "" ? "is-active" : "is-not-active"}
-                >
-                    <StyledLink 
-                        content="All" 
-                        color={categoryFilter === "" && !unsetActiveColor ? isActiveColor : ""}
-                        inactive={categoryFilter === ""}
-                        onClickFunction={(event) => {
-                            event.preventDefault();
-                            setCategoryFilter("");
-                        }}
-                    />
-                </div>
+                <FadeInWrapper>
+                    <div
+                        onMouseOver={handleMouseHover}
+                        onMouseLeave={handleMouseLeave}
+                        className={categoryFilter === "" ? "is-active" : "is-not-active"}
+                    >
+                        <StyledLink 
+                            content="All" 
+                            color={categoryFilter === "" && !unsetActiveColor ? isActiveColor : ""}
+                            inactive={categoryFilter === ""}
+                            onClickFunction={(event) => {
+                                event.preventDefault();
+                                setCategoryFilter("");
+                            }}
+                        />
+                    </div>
+                </FadeInWrapper>
             </div>
 
             <div className="categories">
-                {categories.map((category, index) => (
-                    <div
-                        key={index}
-                        onMouseOver={handleMouseHover}
-                        onMouseLeave={handleMouseLeave}
-                        className={categoryFilter === category ? "is-active" : "is-not-active"}
-                    >
-                        <StyledLink
-                            inactive={categoryFilter === category}
-                            color={categoryFilter === category && !unsetActiveColor ? isActiveColor : ""}
-                            content={capitalizeFirstLetter(category)}
-                            onClickFunction={(event) => {
-                                event.preventDefault();
-                                setCategoryFilter(category);
-                            }}
-                        />
-                        <StyledSpace small horizontal />
-                    </div>
-                ))}
+                {categories.map((category, index) => {
+                    
+                    if(index > 0) {
+                        delay = sumStringDelays(delay, "200ms");
+                    }
+
+                    return <FadeInWrapper key={index} delay={delay}>
+                        <div
+                            key={index}
+                            onMouseOver={handleMouseHover}
+                            onMouseLeave={handleMouseLeave}
+                            className={categoryFilter === category ? "is-active" : "is-not-active"}
+                        >
+                            <StyledLink
+                                inactive={categoryFilter === category}
+                                color={categoryFilter === category && !unsetActiveColor ? isActiveColor : ""}
+                                content={capitalizeFirstLetter(category)}
+                                onClickFunction={(event) => {
+                                    event.preventDefault();
+                                    setCategoryFilter(category);
+                                }}
+                            />
+                            <StyledSpace small horizontal />
+                        </div>
+                    </FadeInWrapper>
+                })}
             </div>
         </Wrapper>
     );
