@@ -1,7 +1,8 @@
 import fs from "fs";
 import { Response } from "express";
 import { sendErrorMessage } from "./send-error-massage.util";
-import { indexHtmlPath } from "../server";
+import path from "path";
+import { multiPageAppMode, node_env } from "../config/env.config";
 
 export const renderHtmlWithMeta = (
   res: Response,
@@ -13,20 +14,27 @@ export const renderHtmlWithMeta = (
     description: string;
   }
 ): void => {
-  fs.readFile(indexHtmlPath, "utf8", (err, htmlData) => {
-    if (err) {
-      console.error("Error reading index.html", err);
-      sendErrorMessage({
-        response: res,
-        statusCode: 500
-      });
-      return;
-    }
+  if(multiPageAppMode && node_env === "production") {
+    const reactAppBuildPath: string = path.join(__dirname, "../../../frontend/dist/");
+    const indexHtmlPath: string = path.join(reactAppBuildPath, "index.html");
 
-    const renderedHtml = htmlData
-    .replace(/<title>.*<\/title>/, `<title>${title}</title>`)
-    .replace("{{DESCRIPTION}}", description);
-
-    res.send(renderedHtml);
-  });
+    fs.readFile(indexHtmlPath, "utf8", (err, htmlData) => {
+      if (err) {
+        console.error("Error reading index.html", err);
+        sendErrorMessage({
+          response: res,
+          statusCode: 500
+        });
+        return;
+      }
+  
+      const renderedHtml = htmlData
+      .replace(/<title>.*<\/title>/, `<title>${title}</title>`)
+      .replace("{{DESCRIPTION}}", description);
+  
+      res.send(renderedHtml);
+    });
+  } else {
+    return;
+  }
 }
