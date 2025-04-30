@@ -1,0 +1,1 @@
+export const multiPageAppMode = import.meta.env.VITE_MPA_MODE || false;
