@@ -1,7 +1,7 @@
 import { categories } from "../../config/categories.config";
 import { StyledLink } from "../themed/StyledLink";
 import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
-import { FC, ReactElement, SetStateAction, Dispatch, useContext } from "react";
+import { FC, ReactElement, SetStateAction, Dispatch, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { StyledSpace } from "../themed/StyledSpace";
 import { ThemeModeContext } from "../../contexts/ThemeModeProvider";
@@ -9,6 +9,9 @@ import { colors } from "../../config/colors.config";
 import { useUnsetActiveColor } from "../../hooks/useUnsetActiveColor";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useDispatch } from "react-redux";
+import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
+import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
 
 const Wrapper = styled.nav`
     display: flex;
@@ -41,7 +44,14 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
     const { mode } = useContext(ThemeModeContext);
     const isActiveColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
     const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
+    const dispatch: ReduxDispatch = useDispatch();
     let delay: string;
+
+    useEffect(() => {
+        if (categoryFilter) {
+            dispatch(setDataChanged());
+        }
+    }, [categoryFilter, dispatch]);
 
     return (
         <Wrapper>

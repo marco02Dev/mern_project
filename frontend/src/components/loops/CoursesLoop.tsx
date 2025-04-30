@@ -78,8 +78,6 @@ export const CoursesLoop: FC<CoursesLoop> = ({
       return <StyledText content="No courses available" tag="h3" />;
   }
 
-
-
   return <>
 
     {categoriesFilter && <CategoriesFilterLoop setCategoryFilter={setCategoryFilter} categoryFilter={categoryFilter} />}
@@ -102,7 +100,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
           console.log(index, incrementalDelay)
         }
         
-        return <Fragment key={index}>
+        return <Fragment key={dataChanged ? `${categoriesFilter}-${index}` : index}>
           <CourseBox 
             courseId={course?._id}
             title={course?.name!}
