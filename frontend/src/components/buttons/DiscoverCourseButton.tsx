@@ -28,9 +28,9 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
     };
 
     const productData: Course = {
-        courseId: courseId!,
-        title: title!,
-        imageUrl: imageUrl!,
+        courseId: courseId ? courseId : "",
+        title: title ? title : "",
+        imageUrl: imageUrl ? imageUrl : "",
         price: price,
         category: category,
         details: details

@@ -19,14 +19,16 @@ type LargeProductsPreviewSectionProps = {
     all?: boolean,
     limit: number,
     userProductsPurchased?: boolean;
-    createProducts?: boolean
+    createProducts?: boolean,
+    categoriesFilter?: boolean
 }
 
 export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> = ({
     limit,
     category,
     userProductsPurchased,
-    createProducts
+    createProducts,
+    categoriesFilter
 }: LargeProductsPreviewSectionProps): ReactElement => {
     const [products, setProducts] = useState<number>(limit);
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
@@ -67,7 +69,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
                 limit={products} 
                 category={category} 
                 setProductsNumber={setProductsNumber}
-                categoriesFilter
+                categoriesFilter={categoriesFilter}
             />
             
             <StyledSpace small vertical />

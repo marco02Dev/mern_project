@@ -7,11 +7,13 @@ import { UseMediaQuery, useMediaQuery } from "../hooks/useMediaQuery";
 import { useParams } from "react-router-dom";
 import { categories } from "../config/categories.config";
 import { NotFoundPage } from "./NotFoundPage";
+import { generateCoursesPageTexts, CoursePageTextsData } from "../utils/components/generate-courses-page-text.util";
 
 export const CoursesPage = (): ReactElement => {
   const { isMobile }: UseMediaQuery = useMediaQuery();
   const { imagesEndpoint }: Endpoints = endpoints;
   const { category } = useParams<{ category: string }>();
+  const { eyebrow, title, description }: CoursePageTextsData = generateCoursesPageTexts(category);
 
   if (category) {
     const isCategory = categories.some((cat) => cat === category);
@@ -19,18 +21,6 @@ export const CoursesPage = (): ReactElement => {
       return <NotFoundPage />;
     }
   }
-
-  const eyebrow = category
-    ? `Courses in ${category.charAt(0).toUpperCase() + category.slice(1)}`
-    : "Unlock Your Potential";
-
-  const title = category
-    ? `Learn the Best of ${category.charAt(0).toUpperCase() + category.slice(1)}`
-    : "Explore Our Exclusive Courses";
-
-  const description = category
-    ? `Looking to improve in ${category}? Browse our tailored courses designed specifically to help you master this field!`
-    : "Browse through a wide range of expertly crafted courses designed to help you grow and succeed. Whether you're looking to upgrade your skills or learn something new, we have something for everyone!";
 
   return (
     <>
@@ -46,6 +36,7 @@ export const CoursesPage = (): ReactElement => {
       <LargeProductsPreviewSection
         limit={isMobile ? 4 : 6}
         category={category}
+        categoriesFilter={category ? false : true}
       />
 
       <TextSection
