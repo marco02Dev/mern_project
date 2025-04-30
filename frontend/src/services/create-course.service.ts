@@ -1,13 +1,12 @@
 import { endpoints } from "../config/endpoints.config";
-import { Course } from "../types/course.types";
 import { FormEvent, Dispatch, SetStateAction } from "react";
-import { parseDetailsCourseFormData } from "../utils/form/parse-details-course-form-data.util";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "../store/slices/courses-data-changed.slice";
 import { uploadCourseImagesService } from "./upload-course-image-service";
 import { checkSession } from "../utils/cookies/check-session.util";
 import { reloadLoginPage } from "../utils/browser/reload-login-page.util";
 import { errorMessages } from "../config/error-messages.config";
+import { retrieveFormProductData } from "../utils/form/retrieve-form-product-data.util";
 
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,
@@ -26,50 +25,10 @@ export const createCourseService: CreateCourseService = async (
 ) => {
   event.preventDefault();
 
-  const form = event.currentTarget;
-  const formData = new FormData(form);
-
-  const title     = formData.get("name");
-  const price     = formData.get("price");
-  const category  = formData.get("category");
-  const tagString = formData.get("tags");
-  const prodImg   = formData.get("product-image");
-  const heroImg   = formData.get("hero-image");
-  const detailsRaw   = formData.get("details");
-
-  let detailsParsed: {
-    title: string;
-    content: string;
-  }[] | undefined;
-  
-  if (typeof detailsRaw === "string") {
-    detailsParsed = parseDetailsCourseFormData(detailsRaw);
-  }
-
-  let tagsArray: string[] = [];
-
-  if (typeof tagString === "string") {
-    tagsArray = tagString
-      .split(",")  
-      .map(t => t.trim())   
-      .filter(Boolean);  
-  } else {
-    setErrorMessage("Please fill tags field");
-  }
-
-  const parsedPrice = Number(price);
-  if (!title || !price || !category || isNaN(parsedPrice)) {
-    setErrorMessage("Some fields are invalid or missing");
-    throw new Error("Validation error");
-  }
-
-  const course: Course = {
-    name: title as string,
-    price: parsedPrice,
-    category: category as string,
-    tags: tagsArray as string[],
-    details: detailsParsed
-  };
+  const { course, courseImages } = retrieveFormProductData({
+    form: event.currentTarget,
+    setErrorMessage
+  });
 
   try {
     const res = await fetch(endpoints.coursesEndpoint, {
@@ -84,9 +43,9 @@ export const createCourseService: CreateCourseService = async (
     const productId = data._id as string;
     
     await uploadCourseImagesService(
-      prodImg,
-      heroImg,
-      category as string,
+      courseImages.prodImg,
+      courseImages.heroImg,
+      course.category as string,
       productId
     );
     

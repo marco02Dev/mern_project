@@ -58,7 +58,7 @@ export type StyledInputProps = {
     paddingRight?: string,
     isFile?: boolean,
     onChangeAction?: ChangeEventHandler<HTMLInputElement>,
-    delay: string
+    delay?: string
 }
 
 export const StyledInput: FC<StyledInputProps> = ({
@@ -66,7 +66,6 @@ export const StyledInput: FC<StyledInputProps> = ({
     paddingRight, 
     isFile,
     onChangeAction,
-    delay
 }: StyledInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
