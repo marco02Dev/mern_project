@@ -3,7 +3,7 @@ import cors from 'cors';
 import session from 'express-session';
 import { sessionConfig } from './config/session.config';
 import { Express } from 'express';
-import { port } from './config/env.config';
+import { port, node_env } from './config/env.config';
 import { connectToDatabase } from './config/connect-to-database.config';
 import productsRouter from './routes/products.route';
 import usersRouter from './routes/users.route';
@@ -19,9 +19,9 @@ import sessionRouter from './routes/session.route';
 import https from 'https';
 import fs from 'fs';
 
-
 const privateKeyPath = path.join(__dirname, '..', 'ssl', 'dev-key.pem');
 const certificatePath = path.join(__dirname, '..', 'ssl', 'dev-cert.pem');
+const reactAppBuildPath = path.join(__dirname, "../../frontend/dist");
 
 const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
 const certificate = fs.readFileSync(certificatePath, 'utf8');
@@ -44,6 +44,10 @@ app.use(express.json());
 app.use(rejectRequestIfHoneyPotIsFilled);
 
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
+
+if(node_env === "production") {
+    app.use("/", express.static(reactAppBuildPath));
+}
 
 app.use("/api", sessionRouter);
 app.use("/api", productsRouter);
