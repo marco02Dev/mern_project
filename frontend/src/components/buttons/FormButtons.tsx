@@ -1,4 +1,4 @@
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC, Dispatch, SetStateAction, RefObject } from "react";
 import { ReactElement } from "react";
 import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
@@ -29,7 +29,7 @@ export const FormButtons: FC<FormButtonsProps> = ({
         <Wrapper>
             <FadeInWrapper>
                 <StyledButton content="Send it" action={handleHiddenClick} unsetShadow />
-                <button className="is-hidden" ref={hiddenRef} type="submit" />
+                <button className="is-hidden" ref={hiddenRef as RefObject<HTMLButtonElement>} type="submit" />
             </FadeInWrapper>
 
             {productImage && (setCrateProductForm || setUpdateProductFormSetState) && (

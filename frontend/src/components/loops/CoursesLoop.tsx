@@ -105,10 +105,10 @@ export const CoursesLoop: FC<CoursesLoop> = ({
         return <Fragment key={index}>
           <CourseBox 
             courseId={course?._id}
-            title={course.name}
-            price={`${String(course.price)}$`}
-            link={`${course.category}/${course.name}`}
-            category={course.category}
+            title={course?.name!}
+            price={`${String(course?.price)}$`}
+            link={`${course?.category}/${course?.name}`}
+            category={course?.category}
             imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
             details={course.details}
             delay={incrementalDelay}

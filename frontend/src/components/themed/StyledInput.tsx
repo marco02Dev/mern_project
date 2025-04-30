@@ -14,6 +14,7 @@ import { EyeIconButton } from "../buttons/EyeIconButton";
 import { getPasswordPatternAttrs } from "../../utils/form/get-password-pattern-atts";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{
         $isMobile: boolean, 
@@ -56,14 +57,16 @@ export type StyledInputProps = {
     name: string,
     paddingRight?: string,
     isFile?: boolean,
-    onChangeAction?: ChangeEventHandler<HTMLInputElement>
+    onChangeAction?: ChangeEventHandler<HTMLInputElement>,
+    delay: string
 }
 
 export const StyledInput: FC<StyledInputProps> = ({
     name, 
     paddingRight, 
     isFile,
-    onChangeAction
+    onChangeAction,
+    delay
 }: StyledInputProps): ReactElement => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
@@ -103,12 +106,12 @@ export const StyledInput: FC<StyledInputProps> = ({
             $inputOnFocus={inputOnFocus}
         >
             <label htmlFor={name}>
-                <TextRevealWrapper>
+                <TextRevealWrapper delay={sumStringDelays("200ms")}>
                     <StyledText tag="h3" size="h5" content={capitalizeTitle} />
                 </TextRevealWrapper>
             </label>
             <StyledSpace verySmall vertical />
-            <FadeInWrapper>
+            <FadeInWrapper delay={sumStringDelays("400ms")}>
                 <div style={{ position: 'relative' }}>
                     {
                         onChangeAction ?  

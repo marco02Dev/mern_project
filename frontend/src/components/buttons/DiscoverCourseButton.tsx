@@ -2,17 +2,9 @@ import { FC, ReactElement, useRef } from "react";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
 import { Link } from "react-router-dom";
+import { Course } from "../../types/course.types";
 
-type DiscoverCourseButtonProps = {
-    courseId: string,
-    title: string,
-    imageUrl: string,
-    price: string,
-    category: string,
-    details: {
-        title: string,
-        content: string
-    }[],
+type DiscoverCourseButtonProps = Course & {
     link: string,
     delay?: string
 }
@@ -35,8 +27,19 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
         }
     };
 
+    const productData: Course = {
+        courseId: courseId!,
+        title: title!,
+        imageUrl: imageUrl!,
+        price: price,
+        category: category,
+        details: details
+    };
+
+    console.log(productData)
+
     return <FadeInWrapper delay={delay}>
         <StyledButton unsetShadow content={"Discover"} action={handleDiscoverButtonClick} />
-        <Link ref={hiddenLinkRef} state={{ courseId, title, imageUrl, price, category, details }} to={link} style={{ display: 'none' }}> </Link>
+        <Link ref={hiddenLinkRef} state={productData} to={link} style={{ display: 'none' }}> </Link>
     </FadeInWrapper>
 }
