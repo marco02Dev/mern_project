@@ -9,7 +9,7 @@ import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "../../types/service.type";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 
-const MainWrapper = styled.div<{$isTablet: boolean}>`
+const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
     flex-direction: ${({$isTablet}) => $isTablet ? "column" : "row"};
     width: 100%;
@@ -52,9 +52,14 @@ export const FormSection: FC<FormSectionProps> = ({
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
 
-    return <StyledSection id={`${service}-form-section`} secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
+    return <StyledSection 
+        id={`${service}-form-section`} 
+        secondaryColor={secondaryColor} 
+        paddingRight={sizes.spaces.small} 
+        paddingLeft={sizes.spaces.small}
+        >
 
-        <MainWrapper $isTablet={isTablet}>
+        <Wrapper $isTablet={isTablet}>
             {isTablet && <StyledSpace large vertical />}
 
             {!isMobile && <ImageBorderedBox boxWidth={imageBorderedBoxWidth} imgSrc={formImage ? formImage : imgSrc} /> }
@@ -74,7 +79,7 @@ export const FormSection: FC<FormSectionProps> = ({
                 setFormImage={setFormImage}
                 setUpdateProductFormSetState={setUpdateProductFormSetState}
             />
-        </MainWrapper>
+        </Wrapper>
 
         <StyledSpace small vertical/>
     </StyledSection>

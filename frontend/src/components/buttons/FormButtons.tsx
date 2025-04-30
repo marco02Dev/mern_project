@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 
 type FormButtonsProps = {
     productImage?: boolean;
+    delay?: string;
     setCrateProductForm?: Dispatch<SetStateAction<boolean>>;
     setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>;
 }
@@ -21,13 +22,14 @@ type FormButtonsProps = {
 export const FormButtons: FC<FormButtonsProps> = ({
     productImage,
     setCrateProductForm,
-    setUpdateProductFormSetState
+    setUpdateProductFormSetState,
+    delay
 }: FormButtonsProps): ReactElement => {
     const { hiddenRef, handleHiddenClick } = useHiddenLink();
 
     return (
         <Wrapper>
-            <FadeInWrapper>
+            <FadeInWrapper delay={delay}>
                 <StyledButton content="Send it" action={handleHiddenClick} unsetShadow />
                 <button className="is-hidden" ref={hiddenRef as RefObject<HTMLButtonElement>} type="submit" />
             </FadeInWrapper>

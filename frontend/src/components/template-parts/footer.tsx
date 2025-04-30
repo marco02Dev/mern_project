@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { colors } from "../../config/colors.config";
 import { getCurrentYear } from "../../utils/browser/get-current-year.util";
+import { FadeInWrapper } from "../animated/FadeInWrapper";
 
 const FooterWrapper = styled.footer<{$backgroundColor: string}>`
     display: flex;
@@ -24,12 +25,14 @@ export const Footer: FC = (): ReactElement => {
 
         <StyledSpace small vertical />
 
-        <StyledText
-            tag="p" 
-            size="p"
-            verySmallParagraph
-            content={`© ${year} Courses Inc. All rights reserved.`}
-        />
+        <FadeInWrapper>
+            <StyledText
+                tag="p" 
+                size="p"
+                verySmallParagraph
+                content={`© ${year} Courses Inc. All rights reserved.`}
+            />
+        </FadeInWrapper>
 
         <StyledSpace small vertical />
     </FooterWrapper>

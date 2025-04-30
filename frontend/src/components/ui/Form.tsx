@@ -16,6 +16,7 @@ import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProduc
 import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
 import { FormButtons } from "../buttons/FormButtons";
 import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{
     $isMobile: boolean,
@@ -67,6 +68,9 @@ export const Form: FC<FormProps> = ({
     setFormImage,
     setUpdateProductFormSetState
 }: FormProps ): ReactElement => {
+    const [inputDataFieldSetLoopLastDelay, setInputDataFieldSetLoopLastDelay] = useState<string>("0ms");
+    const [fileInputFieldSetLoopLoopLastDelay, setFileInputFieldSetLoopLastDelay] = useState<string>("0ms");
+    const [fieldSetAdditionalInfoBoxLastDelay, setFieldSetAdditionalInfoBoxLastDelay] = useState<string>("0ms");
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
     const [messageSent, setMessageSent] = useState< boolean | undefined>();
@@ -85,12 +89,14 @@ export const Form: FC<FormProps> = ({
         setMessageSent: setMessageSent,
     });
 
+    console.log(inputDataFieldSetLoopLastDelay, fileInputFieldSetLoopLoopLastDelay);
+
     return (
         <Wrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>
 
             <StyledSpace medium vertical />
 
-            <TextRevealWrapper left>
+            <TextRevealWrapper left delay="300ms">
                 <StyledText tag="h2" content={title} lineHeight="h1" />
             </TextRevealWrapper>
 
@@ -100,7 +106,12 @@ export const Form: FC<FormProps> = ({
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="website" style={{ display: 'none' }} autoComplete="off" />
                     
-                    <InputDataFieldSetLoop textArea={textArea} fields={fields} />
+                    <InputDataFieldSetLoop 
+                        textArea={textArea} 
+                        fields={fields}
+                        startDelay={"300ms"} 
+                        setInputDataFieldSetLoopLastDelay={setInputDataFieldSetLoopLastDelay}
+                    />
 
                     {productImage && <> 
                         <StyledSpace medium vertical />
@@ -110,13 +121,20 @@ export const Form: FC<FormProps> = ({
                                 "hero-image"
                             ]}
                             setFormImage={setFormImage}
+                            startDelay={inputDataFieldSetLoopLastDelay}
+                            setFileInputFieldSetLoopLastDelay={setFileInputFieldSetLoopLastDelay}
                         />
                         <StyledSpace medium vertical />
                     </>}
 
                     {textArea && <> 
                         <StyledSpace small vertical />
-                        <FieldSetAdditionalInfoBox textArea={textArea} placeholder={textAreaPlaceholder} />
+                        <FieldSetAdditionalInfoBox 
+                            textArea={textArea} 
+                            placeholder={textAreaPlaceholder} 
+                            delay={sumStringDelays(productImage ? fileInputFieldSetLoopLoopLastDelay : inputDataFieldSetLoopLastDelay)}
+                            setFieldSetAdditionalInfoBoxLastDelay={setFieldSetAdditionalInfoBoxLastDelay}
+                        />
                         <StyledSpace medium vertical />
                     </> }
 
@@ -124,6 +142,11 @@ export const Form: FC<FormProps> = ({
                         productImage={productImage} 
                         setCrateProductForm={setCrateProductForm}
                         setUpdateProductFormSetState={setUpdateProductFormSetState}
+                        delay={sumStringDelays(
+                            productImage && textArea ? fieldSetAdditionalInfoBoxLastDelay :
+                            !textArea && productImage ? fileInputFieldSetLoopLoopLastDelay :
+                            inputDataFieldSetLoopLastDelay
+                        )}
                     />
 
                     {errorMessage && <>

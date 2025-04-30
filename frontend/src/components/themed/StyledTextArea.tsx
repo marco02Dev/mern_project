@@ -10,6 +10,7 @@ import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeMod
 import { colors } from "../../config/colors.config";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
+import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const linesLimit: number = 5;
 
@@ -40,10 +41,11 @@ const TextAreaWrapper = styled.div<{
 
 type StyledTextAreaProps = {
     name: string,
-    placeholder?: string
+    placeholder?: string,
+    startDelay?: string
 }
 
-export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: StyledTextAreaProps): ReactElement => {
+export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder, startDelay }: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
@@ -92,14 +94,14 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder }: S
     return (
         <TextAreaWrapper $inputOnFocus={inputOnFocus} $hoverColor={hoverColor} $borderColor={borderColor}>
             <label htmlFor={name}>
-                <TextRevealWrapper>
+                <TextRevealWrapper delay={sumStringDelays(startDelay, "200ms")}>
                     <StyledText tag="h3" size="h5" content={textAreaCapitalized} />
                 </TextRevealWrapper>
             </label>
 
             <StyledSpace verySmall vertical />
 
-            <FadeInWrapper>
+            <FadeInWrapper delay={sumStringDelays(startDelay, "400ms")}>
                 <textarea
                     placeholder={placeholder}
                     ref={textAreaRef}
