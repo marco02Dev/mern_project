@@ -12,8 +12,13 @@ import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 import { useDispatch } from "react-redux";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 
-const Wrapper = styled.nav`
+type WrapperProps = {
+    $isMobile: boolean
+}
+
+const Wrapper = styled.nav<WrapperProps>`
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -46,6 +51,7 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
     const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
     const dispatch: ReduxDispatch = useDispatch();
     let delay: string;
+    const { isMobile }: UseMediaQuery = useMediaQuery();
 
     useEffect(() => {
         if (categoryFilter) {
@@ -54,7 +60,7 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
     }, [categoryFilter, dispatch]);
 
     return (
-        <Wrapper>
+        <Wrapper $isMobile={isMobile}>
             <div className="all">
                 <FadeInWrapper>
                     <div
@@ -64,6 +70,7 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
                     >
                         <StyledLink 
                             content="All" 
+                            size={isMobile ? "h5" : "h6"}
                             color={categoryFilter === "" && !unsetActiveColor ? isActiveColor : ""}
                             inactive={categoryFilter === ""}
                             onClickFunction={(event) => {
@@ -90,6 +97,7 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
                             className={categoryFilter === category ? "is-active" : "is-not-active"}
                         >
                             <StyledLink
+                                size={isMobile ? "h5" : "h6"}
                                 inactive={categoryFilter === category}
                                 color={categoryFilter === category && !unsetActiveColor ? isActiveColor : ""}
                                 content={capitalizeFirstLetter(category)}
