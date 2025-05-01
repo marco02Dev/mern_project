@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 import react from '@vitejs/plugin-react'
 import mkcert from 'vite-plugin-mkcert'
 import path from 'path'
 import dotenv from 'dotenv'
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 dotenv.config({ path: path.resolve(__dirname, '../frontend.env') })
 
 const envVariables: Record<string, string> = Object.keys(process.env)
