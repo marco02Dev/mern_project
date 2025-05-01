@@ -22,8 +22,8 @@ import frontendRouter from './routes/front-end.route';
 export const reactAppBuildPath = path.join(__dirname, "../../frontend/dist/");
 export const indexHtmlPath = path.join(reactAppBuildPath, "index.html");
 
-const privateKeyPath = path.join(__dirname, '..', 'ssl', 'dev-key.pem');
-const certificatePath = path.join(__dirname, '..', 'ssl', 'dev-cert.pem');
+const privateKeyPath = path.join(__dirname, '..', "..", 'ssl', 'dev-key.pem');
+const certificatePath = path.join(__dirname, '..', "..", 'ssl', 'dev-cert.pem');
 
 const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
 const certificate = fs.readFileSync(certificatePath, 'utf8');

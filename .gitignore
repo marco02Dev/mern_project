@@ -3,6 +3,7 @@
 node_modules
 frontend.env
 backend.env
+ssl
 
 
 backend/.env
