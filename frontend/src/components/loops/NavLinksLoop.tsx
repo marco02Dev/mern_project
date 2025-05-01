@@ -70,7 +70,7 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
             to={isLoggedIn ? '/account' : '/login'}
             fontWeight="700"
             size={row ? 'p' : 'h3'}
-            color={location.pathname === (isLoggedIn ? '/account' : '/login') ? 'blue' : undefined}
+            color={location.pathname === (isLoggedIn ? '/account' : '/login') ? isActiveColor : undefined}
           />
         </FadeInWrapper>
       )}

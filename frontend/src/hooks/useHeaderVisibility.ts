@@ -12,7 +12,7 @@ export const useHeaderVisibility = (): { headerHidden: boolean, animation: RuleS
     useEffect(() => {
         const timer = setTimeout(() => {
             setHeaderHidden(false);
-        }, 2000);
+        }, 3000);
 
         return () => clearTimeout(timer);
     }, []);
