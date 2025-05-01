@@ -1,2 +1,3 @@
-export const multiPageAppMode: boolean = import.meta.env.VITE_MPA_MODE === "true" || false;
-console.log(multiPageAppMode)
+export const multiPageAppMode: boolean = false;
+export const devolopmentApiEndpoint: string = import.meta.env.VITE_DEV_ENDPOINT;
+export const isProduction: boolean = import.meta.env.VITE_ENV === "production";

@@ -1,5 +1,7 @@
-export type Endpoints ={
-    initSessionEndpoint: string
+import { devolopmentApiEndpoint } from "./app.config";
+import { isProduction } from "./app.config";
+
+export type Endpoints = {
     usersEndpoint: string,
     coursesEndpoint: string,
     imagesEndpoint: string,
@@ -8,10 +10,9 @@ export type Endpoints ={
 }
 
 export const endpoints: Endpoints = {
-    initSessionEndpoint: import.meta.env.VITE_INIT_SESSION_ENDPOINT,
-    usersEndpoint: import.meta.env.VITE_USERS_ENDPOINT,
-    coursesEndpoint: import.meta.env.VITE_PRODUCTS_ENDPOINT,
-    imagesEndpoint: import.meta.env.VITE_IMAGES_ENDPOINT,
-    contactUsEndpoint: import.meta.env.VITE_CONTACT_US_ENDPOINT,
-    sessionEndpoint: import.meta.env.VITE_SESSION_ENDPOINT
+    usersEndpoint: isProduction ? '/api/account' : `${devolopmentApiEndpoint }/api/account`,           
+    coursesEndpoint: isProduction ? '/api/courses' : `${devolopmentApiEndpoint }/api/courses`,         
+    imagesEndpoint: isProduction ? '/images' : `${devolopmentApiEndpoint }/images`,            
+    contactUsEndpoint: isProduction ? '/api/contact-us' : `${devolopmentApiEndpoint }/api/contact-us`,     
+    sessionEndpoint: isProduction ? '/api/session' : `${devolopmentApiEndpoint }/api/session`,               
 }
