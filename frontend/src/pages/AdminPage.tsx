@@ -34,6 +34,7 @@ export const AdminPage: FC = (): ReactElement => {
                 <LargeProductsPreviewSection
                     limit={6}
                     createProducts
+                    latest
                 />
             </UpdateProductFormContextProvider>
 

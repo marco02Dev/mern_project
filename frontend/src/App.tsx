@@ -8,11 +8,13 @@ import { useMediaQuery, UseMediaQuery } from './hooks/useMediaQuery';
 import useLocationChange from './hooks/useLocationChange';
 import { useEffect } from 'react';
 import { useRestoreSession } from './hooks/useRestoreSession';
+import { useDynamicTitle } from './hooks/useDynamicDocumentTitle';
 
 function App() {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   useRestoreSession();
+  useDynamicTitle();
 
   useEffect(() => {
     if (hasLocationChanged) {

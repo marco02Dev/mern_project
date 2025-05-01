@@ -37,9 +37,8 @@ export const HomePage: FC = (): ReactElement => {
         />
 
         <SmallProductsPreviewSection
-            title={isLoggedIn ? "Your courses" : "Latest Courses"}
-            userProductsPurchased={isLoggedIn}
-            latest={!isLoggedIn}
+            title={ "Latest Courses"}
+            latest
         />
 
         <TextImageSection 

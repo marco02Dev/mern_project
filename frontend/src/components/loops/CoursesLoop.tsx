@@ -48,7 +48,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   const { isMobile, isTablet} = useMediaQuery();
   const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-  const dataChanged = useSelector((state: RootState) => state.coursesDataChanged.dataChanged);
+  const { dataChanged } = useSelector((state: RootState) => state.coursesDataChanged);
   const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
   const location: Location = useLocation();
@@ -56,6 +56,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   const isAdminPage: boolean = path === "/admin";
   const isNotCoursesPath: boolean = path !== "/courses";
   let incrementalDelay: string = "100ms";
+  console.log(latest)
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
