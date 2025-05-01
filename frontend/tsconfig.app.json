@@ -21,6 +21,7 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "declaration": false,
 
     /* Linting */
     "strict": false,
