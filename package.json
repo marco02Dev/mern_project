@@ -2,8 +2,8 @@
     "name": "mearn-project",
     "version": "1.0.0",
     "scripts": {
-        "build:backend": "cd backend && npm run build",
-        "build:frontend": "cd frontend && npm run build", 
+        "build:backend": "cd backend && npm install && npm run build",
+        "build:frontend": "cd frontend && npm install && npm run build", 
         "start:backend": "cd backend && npm start",
         "start:frontend": "cd frontend && npm start",
         "dev:backend": "cd backend && npm run dev",
