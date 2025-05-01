@@ -1,7 +1,5 @@
 import { ReactElement, useContext, useEffect, FC } from "react";
 import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
-import sun from "../../images/svg/sun.svg";
-import moon from "../../images/svg/moon.svg";
 import styled, { createGlobalStyle } from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
@@ -63,7 +61,7 @@ export const SwitchThemeModeButton: FC<SwitchThemeModeButtonProps> = ({delay}: S
             <GlobalStyle />
             <FadeInWrapper flex delay={delay}>
                 <Button onClick={toggleTheme} $imageSize={sizes.widths.small}>
-                    <img width={20} height={20} src={mode === "light" ? sun : moon} alt="theme-icon" className="w-6 h-6" />
+                    <img width={20} height={20} src={mode === "light" ? "/icons/sun.svg" : "/icons/moon.svg"} alt="theme-icon" className="w-6 h-6" />
                 </Button>
             </FadeInWrapper>
         </>

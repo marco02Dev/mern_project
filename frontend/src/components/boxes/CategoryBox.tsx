@@ -6,8 +6,6 @@ import { StyledSpace } from "../themed/StyledSpace";
 import { FC } from "react";
 import { StyledBox } from "../themed/StyledBox";
 import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
-import whiteTick from"../../images/svg/tick-white.svg";
-import blackTick from"../../images/svg/tick-black.svg";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
@@ -63,7 +61,7 @@ export const CategoryBox: FC<CategoryBoxProps> = ({
             
             <ImageWrapper>
                 <FadeInWrapper width="100%" height="100%" delay={sumStringDelays(delay, "300ms")}>
-                    <img width={"70%"} src={mode === 'dark' ? whiteTick : blackTick } alt="Checkmark icon" />
+                    <img width={"70%"} src={mode === 'dark' ? "/icons/tick-white.svg" : '/icons/tick-black.svg' } alt="Checkmark icon" />
                 </FadeInWrapper>
             </ImageWrapper> 
 
