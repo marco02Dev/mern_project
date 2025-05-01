@@ -1,5 +1,10 @@
 declare module 'validator';
 declare module 'validator/lib/isEmail';
+declare module 'react-dom/client';
+declare module 'vite';
+declare module '@vitejs/plugin-react';
+declare module 'vite-plugin-mkcert';
+declare module 'path';
 interface ImportMetaEnv {
     readonly VITE_ENV: string;
     readonly VITE_DEV_ENDPOINT: string;
