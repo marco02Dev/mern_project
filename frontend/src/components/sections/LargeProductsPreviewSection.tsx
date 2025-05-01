@@ -21,7 +21,7 @@ type LargeProductsPreviewSectionProps = {
     userProductsPurchased?: boolean;
     createProducts?: boolean,
     categoriesFilter?: boolean,
-    latest: boolean
+    latest?: boolean
 }
 
 export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> = ({

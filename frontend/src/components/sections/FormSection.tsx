@@ -29,7 +29,7 @@ type FormSectionProps = {
     service: AllowedServices,
     secondaryColor?: boolean,
     productImage?: boolean,
-    updateProductFormState: UpdateProductFormContextStateObject,
+    updateProductFormState?: UpdateProductFormContextStateObject,
     setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
     setProductCreated?: Dispatch<SetStateAction<boolean>>,
     setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>

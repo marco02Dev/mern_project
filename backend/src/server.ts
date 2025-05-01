@@ -17,7 +17,7 @@ import cookieParser from 'cookie-parser';
 import sessionRouter from './routes/session.route';
 import https from 'https';
 import fs from 'fs';
-import frontendRouter from './routes/frontEnd.route';
+import frontendRouter from './routes/front-end.route';
 
 export const reactAppBuildPath = path.join(__dirname, "../../frontend/dist/");
 export const indexHtmlPath = path.join(reactAppBuildPath, "index.html");
