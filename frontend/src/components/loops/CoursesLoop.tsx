@@ -53,6 +53,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
   const location: Location = useLocation();
   const path: string = location.pathname;
+  const isAdminPage: boolean = path === "/admin";
   const isNotCoursesPath: boolean = path !== "/courses";
   let incrementalDelay: string = "100ms";
 
@@ -100,7 +101,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
           }
         }
         
-        return <Fragment key={dataChanged ? `${categoriesFilter}-${index}` : index}>
+        return <Fragment key={dataChanged && !isAdminPage ? `${categoriesFilter}-${index}` : index}>
           <CourseBox 
             courseId={course?._id}
             title={course?.name!}
