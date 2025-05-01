@@ -65,7 +65,10 @@ export const deleteProduct: Controller<ProductParams> = async (req, res) => {
 
 export const updateProduct: Controller<ProductParams, {}, ProductSchema> = async (req, res) => {
 
-    console.log("This controller was executed")
+    if (isProductDataInvalid(req.body)) {
+        sendErrorMessage({ response: res, statusCode: 400 });
+        return;
+    }
 
     updateDocumentByModel<ProductSchema>({
         Model: Product,
