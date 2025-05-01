@@ -3,8 +3,7 @@ import { UpdateProductFormContextStateObject } from "../contexts/UpdateProductFo
 import { retrieveFormProductData } from "../utils/form/retrieve-form-product-data.util";
 import { endpoints } from "../config/endpoints.config";
 
- 
-export const updateCourseService = (
+export const updateCourseService = async (
     event: FormEvent<HTMLFormElement>,
     setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> | undefined,
     setErrorMessage: Dispatch<SetStateAction<string | undefined>>,
@@ -20,7 +19,16 @@ export const updateCourseService = (
     const courseId: unknown = updateProductFormState?.courseId;
 
     if(course && courseImages && courseId && typeof courseId === "string") {
-        console.log(courseId)
+        
+        const response = await fetch(`${endpoints.coursesEndpoint}/${courseId}`, {
+            method: "PUT",
+            body: JSON.stringify(course),
+            headers: { "Content-Type": "application/json" },
+            credentials: "include"
+        });
+
+        console.log(response);
+
         setUpdateProductFormSetState && setUpdateProductFormSetState({
             state: false,
             courseId: "updated"

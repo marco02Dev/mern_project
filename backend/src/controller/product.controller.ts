@@ -64,6 +64,9 @@ export const deleteProduct: Controller<ProductParams> = async (req, res) => {
 }
 
 export const updateProduct: Controller<ProductParams, {}, ProductSchema> = async (req, res) => {
+
+    console.log("This controller was executed")
+
     updateDocumentByModel<ProductSchema>({
         Model: Product,
         request: req,
