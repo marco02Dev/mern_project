@@ -10,7 +10,7 @@ import { sizes } from "../../config/sizes.config";
 import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
 import { buttonFontSize } from "../../config/sizes.config";
-
+import { multiPageAppMode } from "../../config/app.config";
 interface LinkWrapperProps {
     $color: string,
     $hoverColor: string,
@@ -134,8 +134,7 @@ type StyledLinkProps = {
     onClickFunction?: MouseEventHandler,
     onMouseOverFunction?: MouseEventHandler,
     onMouseLeaveFunction?: MouseEventHandler,
-    className?: string,
-    reloadDocument?: boolean
+    className?: string
 }
 
 export const StyledLink: FC<StyledLinkProps> = ({
@@ -155,8 +154,7 @@ export const StyledLink: FC<StyledLinkProps> = ({
     inactive,
     onClickFunction,
     onMouseOverFunction,
-    onMouseLeaveFunction,
-    reloadDocument
+    onMouseLeaveFunction
 }: StyledLinkProps): ReactElement => {
 
     const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
@@ -224,7 +222,7 @@ export const StyledLink: FC<StyledLinkProps> = ({
         }}
         onMouseOver={onMouseOverFunction ? onMouseOverFunction : undefined} 
         onMouseLeave={onMouseLeaveFunction ? onMouseLeaveFunction : undefined} 
-        reloadDocument={reloadDocument}
+        reloadDocument={multiPageAppMode}
         >
             <StyledText 
                 tag={defaultTag}

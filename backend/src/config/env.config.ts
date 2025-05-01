@@ -4,6 +4,7 @@ dotenv.config();
 const env = process.env;
 
 export const node_env = env.NODE_ENV || "dev";
+export const isProduction = node_env === "production";
 export const multiPageAppMode = env.MPA_MODE || false;
 
 export const databaseUri = env.DATABASE_URI;

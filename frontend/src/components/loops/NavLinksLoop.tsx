@@ -10,7 +10,6 @@ import { ThemeModeContext } from '../../contexts/ThemeModeProvider';
 import { colors } from '../../config/colors.config';
 import { useUnsetActiveColor } from '../../hooks/useUnsetActiveColor';
 import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
-import { multiPageAppMode } from '../../config/app.config';
 
 type NavLinksLoopProps = {
   links: { name: string; to: string }[];
@@ -55,7 +54,6 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
                         size={row ? 'p' : 'h3'}
                         color={isActive && !unsetActiveColor ? isActiveColor : undefined}
                         inactive={isActive}
-                        reloadDocument={multiPageAppMode}
                     />
                 </div>
             </FadeInWrapper>

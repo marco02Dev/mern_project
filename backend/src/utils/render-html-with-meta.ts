@@ -2,7 +2,7 @@ import fs from "fs";
 import { Response } from "express";
 import { sendErrorMessage } from "./send-error-massage.util";
 import path from "path";
-import { multiPageAppMode, node_env } from "../config/env.config";
+import { multiPageAppMode, isProduction } from "../config/env.config";
 
 export const renderHtmlWithMeta = (
   res: Response,
@@ -14,7 +14,7 @@ export const renderHtmlWithMeta = (
     description: string;
   }
 ): void => {
-  if(multiPageAppMode && node_env === "production") {
+  if(multiPageAppMode && isProduction) {
     const reactAppBuildPath: string = path.join(__dirname, "../../../frontend/dist/");
     const indexHtmlPath: string = path.join(reactAppBuildPath, "index.html");
 
