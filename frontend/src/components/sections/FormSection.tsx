@@ -29,6 +29,7 @@ type FormSectionProps = {
     service: AllowedServices,
     secondaryColor?: boolean,
     productImage?: boolean,
+    updateProductFormState: UpdateProductFormContextStateObject,
     setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
     setProductCreated?: Dispatch<SetStateAction<boolean>>,
     setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>
@@ -45,6 +46,7 @@ export const FormSection: FC<FormSectionProps> = ({
     formWidth , 
     secondaryColor, 
     productImage, 
+    updateProductFormState,
     setCrateProductForm, 
     setProductCreated,
     setUpdateProductFormSetState
@@ -78,6 +80,7 @@ export const FormSection: FC<FormSectionProps> = ({
                 setProductCreated={setProductCreated}
                 setFormImage={setFormImage}
                 setUpdateProductFormSetState={setUpdateProductFormSetState}
+                updateProductFormState={updateProductFormState}
             />
         </Wrapper>
 

@@ -21,7 +21,7 @@ usersRouter.get(defaultEndpoint, isAuthenticated, isAdmin, checkAthorizedIp, get
 usersRouter.get(endpointWithId, isAuthenticated, getUserById)
 usersRouter.post(signInEndpoint, createUser);
 usersRouter.post(loginEndpoint, logUserIntoAccount);
-usersRouter.delete(endpointWithId, isAuthenticated, isAdmin, deleteUser as unknown as RequestHandler);
+usersRouter.delete(endpointWithId, isAuthenticated, isAdmin, checkAthorizedIp, deleteUser as unknown as RequestHandler);
 usersRouter.post(logOutEndpoint, isAuthenticated, logUserOut);
 
 export default usersRouter;

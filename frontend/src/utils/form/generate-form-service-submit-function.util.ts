@@ -12,8 +12,9 @@ import { NavigateFunction } from "react-router-dom";
 type GenerateFormServiceSubmitFunction = {
     service: AllowedServices,
     dispatch: Dispatch,
+    updateProductFormState?: UpdateProductFormContextStateObject,
     setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormContextStateObject>>;
-    setErrorMessage?: ReactStateDispatch<SetStateAction<string | undefined>>,
+    setErrorMessage: ReactStateDispatch<SetStateAction<string | undefined>>,
     navigateFunction?: NavigateFunction,
     setMessageSent?: ReactStateDispatch<SetStateAction<boolean | undefined>>,
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>,
@@ -25,12 +26,14 @@ export const generateFormServiceSubmitFunction = ({
     service, 
     dispatch, 
     setUpdateProductFormSetState, 
+    updateProductFormState,
     setErrorMessage,
     navigateFunction,
     setMessageSent,
     setCrateProductForm,
     setProductCreated
 }: GenerateFormServiceSubmitFunction) => {
+    console.log(updateProductFormState)
     return (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -42,8 +45,8 @@ export const generateFormServiceSubmitFunction = ({
             signUpService(event, dispatch, navigateFunction, setErrorMessage);
         } else if(service === "create-course" && setCrateProductForm && setProductCreated && setErrorMessage) {
             createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated, dispatch);
-        } else if(service === "update-course") {
-            updateCourseService(event, setUpdateProductFormSetState);
+        } else if(service === "update-course" && updateProductFormState) {
+            updateCourseService(event, setUpdateProductFormSetState, setErrorMessage, updateProductFormState);
         }
     };
 }

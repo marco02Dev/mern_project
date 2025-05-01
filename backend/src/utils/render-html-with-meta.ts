@@ -30,7 +30,10 @@ export const renderHtmlWithMeta = (
   
       const renderedHtml = htmlData
       .replace(/<title>.*<\/title>/, `<title>${title}</title>`)
-      .replace("{{DESCRIPTION}}", description);
+      .replace(
+        /<meta\s+name=["']description["']\s+content=["'][^"']*["']\s*\/?>/,
+        `<meta name="description" content="${description}" />`
+      );
   
       res.send(renderedHtml);
     });

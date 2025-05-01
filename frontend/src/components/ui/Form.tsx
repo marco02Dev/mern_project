@@ -49,6 +49,7 @@ type FormProps = {
     service: AllowedServices;
     productImage?: boolean;
     formWidth?: string;
+    updateProductFormState?: UpdateProductFormContextStateObject;
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
     setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
@@ -63,6 +64,7 @@ export const Form: FC<FormProps> = ({
     productImage,
     service,
     formWidth,
+    updateProductFormState,
     setCrateProductForm,
     setProductCreated,
     setFormImage,
@@ -81,6 +83,7 @@ export const Form: FC<FormProps> = ({
     const handleSubmit = generateFormServiceSubmitFunction({
         service: service,
         dispatch: dispatch,
+        updateProductFormState: updateProductFormState,
         setUpdateProductFormSetState: setUpdateProductFormSetState,
         setErrorMessage: setErrorMessage,
         navigateFunction: navigateFunction,
