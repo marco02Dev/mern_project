@@ -1,8 +1,2 @@
-interface ImportMetaEnv {
-    readonly VITE_ENV: string;
-    readonly VITE_DEV_ENDPOINT: string;
-}
-  
-interface ImportMeta {
-    readonly env: ImportMetaEnv;
-}
+/// <reference types="vite/client" />
+/// <reference types="vite/types/importMeta.d.ts" />
