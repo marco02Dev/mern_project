@@ -1,19 +1,20 @@
-import { authorizedIp } from "../config/env.config";
+import { getAuthorizedIps } from "../utils/get-authorized-ips.util";
 import { NextFunction, Response, Request } from "express";
 import { sendErrorMessage } from "../utils/send-error-massage.util";
 import { RequestHandler } from "express";
 
-export const checkAthorizedIp: RequestHandler = (request: Request<any>, response: Response, next: NextFunction) => {
-    const clientIp = request.ip;
+export const checkAuthorizedIp: RequestHandler = (request: Request<any>, response: Response, next: NextFunction) => {
+    const clientIp = request.ip?.replace("::ffff:", "");
+    const authorizedIps = getAuthorizedIps(); 
 
-    if(authorizedIp === clientIp ) {
-        console.log("Authorized Ip checked")
+    if (clientIp && authorizedIps.includes(clientIp)) {
+        console.log("Authorized IP:", clientIp);
         next();
     } else {
-        console.log("Unothrized")
+        console.warn("Unauthorized IP:", clientIp);
         sendErrorMessage({
             response: response,
             statusCode: 403
-        })
+        });
     }
-}
+};
