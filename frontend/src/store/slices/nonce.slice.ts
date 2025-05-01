@@ -17,7 +17,7 @@ export const initializeSession = createAsyncThunk(
   'nonce/initializeSession',
   async (_, thunkAPI) => {
     try {
-      const response = await fetch(endpoints.initSessionEndpoint, {
+      const response = await fetch(endpoints.sessionEndpoint, {
         method: 'GET',
         credentials: 'include',
       });
