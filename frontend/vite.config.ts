@@ -18,11 +18,15 @@ const envVariables: Record<string, string> = Object.keys(process.env)
   }, {} as Record<string, string>)
 
 export default defineConfig({
+  base: './', 
   plugins: [react(), mkcert()],
   server: {
     https: {},
     host: '0.0.0.0',
     port: 4000,
+  },
+  build: {
+    outDir: 'dist',
   },
   define: {
     'process.env': envVariables,
