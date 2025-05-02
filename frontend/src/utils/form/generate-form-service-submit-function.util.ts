@@ -33,7 +33,6 @@ export const generateFormServiceSubmitFunction = ({
     setCrateProductForm,
     setProductCreated
 }: GenerateFormServiceSubmitFunction) => {
-    console.log(updateProductFormState)
     return (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

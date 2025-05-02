@@ -20,7 +20,6 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
     delay
 }: DiscoverCourseButtonProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
-    console.log(link)
     const handleDiscoverButtonClick: Function = () => {
         if (hiddenLinkRef.current) {
           hiddenLinkRef.current.click();
@@ -35,8 +34,6 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
         category: category,
         details: details
     };
-
-    console.log(productData)
 
     return <FadeInWrapper delay={delay}>
         <StyledButton unsetShadow content={"Discover"} action={handleDiscoverButtonClick} />

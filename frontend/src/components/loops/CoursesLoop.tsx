@@ -56,7 +56,6 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   const isAdminPage: boolean = path === "/admin";
   const isNotCoursesPath: boolean = path !== "/courses";
   let incrementalDelay: string = "100ms";
-  console.log(latest)
 
   const endpoint: string = determineUseFetchGetEndpoint({
     defaultEndpoint: coursesEndpoint,
