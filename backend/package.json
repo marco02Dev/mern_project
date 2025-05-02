@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --max-old-space-size=4096 dist/server.js",
     "dev": "tsc --watch & nodemon dist/server.js",
-    "build": "npx tsc"
+    "build": "node --max-old-space-size=4096 node_modules/.bin/tsc"
   },
   "keywords": [],
   "author": "",
