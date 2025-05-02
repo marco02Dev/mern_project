@@ -11,6 +11,7 @@ export const isProduction = node_env === "production";
 export const multiPageAppMode = env.MPA_MODE || false;
 
 export const databaseUri = env.DATABASE_URI;
+console.log("Database URI:", process.env.DATABASE_URI);
 export const secret = env.SECRET;
 export const authorizedIp = env.AUTHORIZED_IP;
 
