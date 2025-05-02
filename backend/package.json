@@ -45,6 +45,7 @@
     "@types/passport-local": "^1.0.38",
     "@types/validator": "^13.12.3",
     "express-session": "^1.18.1",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "typescript": "^5.8.3"
   }
 }
