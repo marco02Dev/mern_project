@@ -29,7 +29,7 @@ const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
 const certificate = fs.readFileSync(certificatePath, 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
-const app: Express = express();
+const app = express();
 
 app.use(cookieParser());
 
