@@ -1,5 +1,6 @@
 import { devolopmentApiEndpoint } from "./app.config";
 import { isProduction } from "./app.config";
+console.log(isProduction);
 
 export type Endpoints = {
     usersEndpoint: string,
@@ -16,3 +17,5 @@ export const endpoints: Endpoints = {
     contactUsEndpoint: isProduction ? '/api/contact-us' : `${devolopmentApiEndpoint }/api/contact-us`,     
     sessionEndpoint: isProduction ? '/api/session' : `${devolopmentApiEndpoint }/api/session`,               
 }
+
+console.log(endpoints)

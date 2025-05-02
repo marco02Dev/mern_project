@@ -2,15 +2,12 @@
     "name": "mearn-project",
     "version": "1.0.0",
     "scripts": {
-        "build:backend": "cd backend && npm install && npm run build",
-        "build:frontend": "cd frontend && npm install && npm run build", 
-        "start:backend": "cd backend && npm start",
-        "start:frontend": "cd frontend && npm start",
-        "dev:backend": "cd backend && npm run dev",
-        "dev:frontend": "cd frontend && npm run dev",
-        "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-        "start": "cd backend && npm start",
-        "build": "npm install && npm run build:backend && npm run build:frontend"
+        "build:backend": "cd backend && npm install && NODE_ENV=production npm run build",
+        "build:frontend": "cd frontend && npm install && NODE_ENV=production npm run build", 
+        
+        "dev": "concurrently \"cd backend && NODE_ENV=development npm run dev\" \"cd frontend && VITE_ENV=development npm run dev\"",
+        "build": "npm install && npm run build:backend && npm run build:frontend",
+        "start": "npm run build && cd backend && NODE_ENV=production npm start"
     },
     "devDependencies": {
         "concurrently": "^9.1.2"

@@ -12,3 +12,7 @@ Key features include:
 - Custom animated transitions for smooth navigation between pages
 - Real-time database integration to display available courses
 - Scalable and secure architecture designed for easy maintenance and future project expansion
+
+Instructions:
+- Replace env examples files with the correct values
+- Add an ssl folder in the root of the project directory containing the following files: dev-cert.pem and dev-key.pem.
