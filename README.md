@@ -15,4 +15,5 @@ Key features include:
 
 Instructions:
 - Replace env examples files with the correct values
-- Add an ssl folder in the root of the project directory containing the following files: dev-cert.pem and dev-key.pem.
+- Add an ssl folder in the root of the project directory containing the following files: dev-cert.pem and dev-key.pem. (Recommend mkrect development certificate for consistency with the Vite plugin and the mkrect dependency in the frontend.)
+- Run the command npm run start to install all the dependencies, set the Node environment to production, and start the backend.
