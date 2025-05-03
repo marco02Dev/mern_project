@@ -1,6 +1,5 @@
 import { ReactElement, useEffect } from "react";
 import { TextSection } from "../components/sections/TextSection";
-import { endpoints } from "../config/endpoints.config";
 import { HeroSection } from "../components/sections/HeroSection";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
