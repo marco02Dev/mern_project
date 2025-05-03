@@ -61,7 +61,12 @@ export const CategoryBox: FC<CategoryBoxProps> = ({
             
             <ImageWrapper>
                 <FadeInWrapper width="100%" height="100%" delay={sumStringDelays(delay, "300ms")}>
-                    <img width={"70%"} src={mode === 'dark' ? "/icons/tick-white.svg" : '/icons/tick-black.svg' } alt="Checkmark icon" />
+                    <img 
+                        width={"70%"} 
+                        src={ mode === 'dark' ? 
+                            "https://res.cloudinary.com/dqwoo44z8/image/upload/v1746271657/tick-white_gu5cwo.svg" 
+                        : 'https://res.cloudinary.com/dqwoo44z8/image/upload/v1746271651/tick-black_ingyci.svg' } 
+                        alt="Checkmark icon" />
                 </FadeInWrapper>
             </ImageWrapper> 
 
