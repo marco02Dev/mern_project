@@ -11,7 +11,7 @@ import { generateCoursesPageTexts, CoursePageTextsData } from "../utils/componen
 export const CoursesPage = (): ReactElement => {
   const { isMobile }: UseMediaQuery = useMediaQuery();
   const { category } = useParams<{ category: string }>();
-  const { eyebrow, title, description }: CoursePageTextsData = generateCoursesPageTexts(category);
+  const { eyebrow, title, description, imgUrl, imgAltDetailed }: CoursePageTextsData = generateCoursesPageTexts(category);
 
   if (category) {
     const isCategory = categories.some((cat) => cat === category);
@@ -26,8 +26,8 @@ export const CoursesPage = (): ReactElement => {
         eyebrowText={eyebrow}
         title={title}
         description={description}
-        imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268262/hero-section_ucijii.webp`}
-        imageAlt="Minimalist desk setup with monitor and coding posters"
+        imageSrc={imgUrl}
+        imageAlt={imgAltDetailed}
         secondaryColor
       />
 

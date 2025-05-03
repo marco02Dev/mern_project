@@ -2,11 +2,8 @@ import { ReactElement } from "react"
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
 import { TextImageSection } from "../components/sections/TextImageSection";
-import { endpoints, Endpoints } from "../config/endpoints.config";
 
 export const AboutPage = (): ReactElement => {
-
-    const { imagesEndpoint }: Endpoints = endpoints;
 
     return <>
         <HeroSection
@@ -19,7 +16,7 @@ export const AboutPage = (): ReactElement => {
         />
 
         <TextImageSection 
-            img={`${imagesEndpoint}/pages/homepage/text-image-section.webp`} 
+            img={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746277182/text-image-section_iwyz5t.webp`} 
             title={"Why choose us?"}
             contentSections={[
                 {
