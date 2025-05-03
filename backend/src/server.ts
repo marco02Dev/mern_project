@@ -39,9 +39,7 @@ if(!isProduction) {
     app.use(cors(corsOptions));
 }
 
-
 app.use(express.json());
-
 app.use(rejectRequestIfHoneyPotIsFilled);
 
 app.use("/api", sessionRouter);

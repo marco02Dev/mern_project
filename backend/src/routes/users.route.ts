@@ -8,6 +8,7 @@ import { checkAthorizedIp } from "../middlewares/authorize-ip.middleware";
 import { isAdmin } from "../middlewares/is-admin.middleware";
 import { isAuthenticated } from "../middlewares/is-authenticated.middleware";
 import { logUserOut } from "../controller/user.controller";
+import { blockRoleField } from "../middlewares/block-role-field";
 
 const usersRouter: Router = Router();
 const defaultEndpoint: string = `/${usersEndpointName}`;
@@ -19,7 +20,7 @@ const logOutEndpoint: string = `${defaultEndpoint}/logout`;
 
 usersRouter.get(defaultEndpoint, isAuthenticated, isAdmin, checkAthorizedIp, getAllUsers);
 usersRouter.get(endpointWithId, isAuthenticated, getUserById)
-usersRouter.post(signInEndpoint, createUser);
+usersRouter.post(signInEndpoint,  blockRoleField, createUser);
 usersRouter.post(loginEndpoint, logUserIntoAccount);
 usersRouter.delete(endpointWithId, isAuthenticated, isAdmin, checkAthorizedIp, deleteUser as unknown as RequestHandler);
 usersRouter.post(logOutEndpoint, isAuthenticated, logUserOut);
