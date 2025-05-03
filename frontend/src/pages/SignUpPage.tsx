@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
-import { FormSection } from "../components/sections/FormSection";
+import { ReactElement, FC } from "react";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
+import { SignUpForm } from "../components/forms/SignUpForm";
 
-export const SignUpPage = (): ReactElement => {
+export const SignUpPage: FC = (): ReactElement => {
     return <>
 
         <HeroSection
@@ -17,16 +17,8 @@ export const SignUpPage = (): ReactElement => {
             secondaryColor
         />
 
-        <FormSection 
-            title={"Create an Account"} 
-            service="sign-up"
-            fields={[
-                "name",
-                "surname",
-                "email",
-                "password"
-            ]}
-            imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746269820/hero_section_tl9skq.webp`}
+        <SignUpForm 
+            imgSrc="https://res.cloudinary.com/dqwoo44z8/image/upload/v1746269820/hero_section_tl9skq.webp"
         />
 
         <TextSection
