@@ -100,14 +100,14 @@ export const CoursesLoop: FC<CoursesLoop> = ({
           }
         }
         
-        return <Fragment key={dataChanged && !isAdminPage ? `${categoriesFilter}-${index}` : index}>
+        return <Fragment key={dataChanged ? `${categoriesFilter}-${index}` : index}>
           <CourseBox 
             courseId={course?._id}
             title={course?.name!}
             price={`${String(course?.price)}$`}
             link={`/courses/${course?.category}/${course?.name?.replace(/\s+/g, '-')}`}
             category={course?.category}
-            imageUrl={`${imagesEndpoint}/products/${course.category}/${course._id}/feature-image.webp`}
+            imageUrl={`https://res.cloudinary.com/dqwoo44z8/image/upload/web-courses/products/${course.category}/${course._id}/product-image-${course._id}.webp`}
             details={course.details}
             delay={incrementalDelay}
           />
