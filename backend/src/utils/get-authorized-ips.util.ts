@@ -1,4 +1,4 @@
-import { authorizedIp } from "../config/env.config";
+import { authorizedIp } from "../config/system/env.config";
 
 export const getAuthorizedIps = (): string[] => {
     const ipString = authorizedIp || "";

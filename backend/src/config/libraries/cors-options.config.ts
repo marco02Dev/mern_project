@@ -1,4 +1,4 @@
-import { frontendUri } from "./env.config";
+import { frontendUri } from "../system/env.config";
 
 export const corsOptions = {
     origin: frontendUri,

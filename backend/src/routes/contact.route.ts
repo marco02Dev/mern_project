@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { sendEmail } from "../controller/contact.controller";
-import { contactEndpointName } from "../config/env.config";
+import { contactEndpointName } from "../config/system/endpoints.config";
 
 const contactRouter: Router = Router();
 const defaultEndpoint: string = `/${contactEndpointName}`;

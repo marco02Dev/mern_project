@@ -2,7 +2,7 @@ import fs from "fs";
 import { Response } from "express";
 import { sendErrorMessage } from "./send-error-massage.util";
 import path from "path";
-import { multiPageAppMode, isProduction } from "../config/env.config";
+import { multiPageAppMode, isProduction } from "../config/system/env.config";
 
 export const renderHtmlWithMeta = (
   res: Response,

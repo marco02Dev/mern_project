@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import path from "path";
 import { renderHtmlWithMeta } from '../utils/render-html-with-meta';
-import { multiPageAppMode, isProduction } from '../config/env.config';
+import { multiPageAppMode, isProduction } from '../config/system/env.config';
 
 const frontendRouter: Router = express.Router();
 const frontEndImagesPath: string = path.join(__dirname, '../../public/images')

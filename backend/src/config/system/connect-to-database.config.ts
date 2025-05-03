@@ -1,7 +1,8 @@
 import mongoose, { Mongoose } from "mongoose";
-import { databaseUri } from "./env.config";
+import { databaseUri } from "../system/env.config";
 
 export const connectToDatabase = async (): Promise<Mongoose | undefined> => {
+    console.log(databaseUri)
     try {
         if (databaseUri && typeof databaseUri === 'string') {
             const connection: Mongoose = await mongoose.connect(databaseUri);

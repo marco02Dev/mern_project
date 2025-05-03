@@ -1,27 +1,20 @@
 import dotenv from 'dotenv';
 import path from "path";
 
-const envPath: string = path.resolve(__dirname, '../../../.env');
+const envPath = path.resolve(process.cwd(), '../.env');
 dotenv.config({ path: envPath });
-
 const env = process.env;
+const node_env = env.NODE_ENV || "dev";
 
-export const node_env = env.NODE_ENV || "dev";
 export const isProduction = node_env === "production";
 export const multiPageAppMode = env.MPA_MODE || false;
 
 export const databaseUri = env.DATABASE_URI;
-console.log("Database URI:", process.env.DATABASE_URI);
 export const secret = env.SECRET;
 export const authorizedIp = env.AUTHORIZED_IP;
 
 export const frontendUri = env.FRONT_END_URI;
 export const port: number = Number(env.PORT) || 8000;
-
-export const sessionEndpointName: string = "session";
-export const productsEndpointName: string = "courses";
-export const usersEndpointName: string = 'account';
-export const contactEndpointName: string = "contact-us";
 
 export const transporterData: {service: string, user: string | undefined, password: string | undefined} = {
     service: env.TRANSPORTER_SERVICE || "gmail",

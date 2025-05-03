@@ -1,7 +1,7 @@
 import { PassportStatic } from "passport";
 import { Strategy as LocalStrategy, IStrategyOptionsWithRequest, VerifyFunctionWithRequest } from 'passport-local';
 import bcrypt from 'bcrypt';
-import User from '../models/users.model';
+import User from '../../models/users.model';
 
 export const initializePassport = (passport: PassportStatic) => {
 

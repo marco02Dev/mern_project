@@ -1,7 +1,7 @@
 import { RequestHandler, Router } from "express";
 import { getAllUsers, logUserIntoAccount } from "../controller/user.controller";
 import { createUser } from "../controller/user.controller";
-import { usersEndpointName } from "../config/env.config";
+import { usersEndpointName } from "../config/system/endpoints.config";
 import { deleteUser } from "../controller/user.controller";
 import { getUserById } from "../controller/user.controller";
 import { checkAthorizedIp } from "../middlewares/authorize-ip.middleware";

@@ -1,6 +1,6 @@
 import { response, Router } from "express";
 import { createProduct, getAllProducts, deleteProduct, updateProduct, getProductsByCategory, getProductsByCategoryAndName } from "../controller/product.controller";
-import { productsEndpointName } from "../config/env.config";
+import { productsEndpointName } from "../config/system/endpoints.config";
 import { checkAthorizedIp } from "../middlewares/authorize-ip.middleware";
 import { uploadProductImages } from "../middlewares/upload-product-image.middleware";
 import { uploadImageController } from "../controller/product.controller";
