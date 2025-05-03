@@ -15,7 +15,6 @@ import { corsOptions } from './config/libraries/cors-options.config';
 import cookieParser from 'cookie-parser';
 import sessionRouter from './routes/session.route';
 import https from 'https';
-import fs from 'fs';
 import frontendRouter from './routes/front-end.route';
 import { databaseUri } from './config/system/env.config';
 import { memoryLogger } from './middlewares/memory-logger.middleware';

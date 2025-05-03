@@ -1,9 +1,12 @@
 .env
+.pem
 .DS_STORE
 node_modules
 frontend.env
 backend.env
 ssl
+dev-cert.pem
+dev-key.pem
 
 
 backend/.env
