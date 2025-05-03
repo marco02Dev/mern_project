@@ -16,9 +16,10 @@ import cookieParser from 'cookie-parser';
 import sessionRouter from './routes/session.route';
 import https from 'https';
 import frontendRouter from './routes/front-end.route';
-import { databaseUri } from './config/system/env.config';
 import { memoryLogger } from './middlewares/memory-logger.middleware';
 import { sslCredentials } from './config/system/ssl-credentials';
+import { isProduction } from './config/system/env.config';
+import http from "http";
 
 export const reactAppBuildPath = path.join(__dirname, "../../frontend/dist/");
 export const indexHtmlPath = path.join(reactAppBuildPath, "index.html");
@@ -46,10 +47,16 @@ app.use("/api", usersRouter);
 app.use("/api", contactRouter);
 app.use(frontendRouter);
 
-https.createServer(sslCredentials, app).listen(port, '0.0.0.0', () => {
-    console.log('Connecting to MongoDB with URI:', databaseUri);
-    connectToDatabase();
-    console.log(`Server is listen on ${port}`);
-});
+if (isProduction) {
+    http.createServer(app).listen(port, '0.0.0.0', () => {
+        connectToDatabase();
+        console.log(`Server is listening on port ${port} in production mode`);
+    });
+  } else {
+    https.createServer(sslCredentials, app).listen(port, '0.0.0.0', () => {
+        connectToDatabase();
+        console.log(`Server is listening on port ${port} in development mode`);
+    });
+  }
 
 export default app;
