@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useLocation, Location } from "react-router-dom";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -46,14 +45,11 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   categoriesFilter
 }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
-  const { imagesEndpoint, coursesEndpoint }: Endpoints = endpoints;
+  const { coursesEndpoint }: Endpoints = endpoints;
   const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
   const { dataChanged } = useSelector((state: RootState) => state.coursesDataChanged);
   const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
-  const location: Location = useLocation();
-  const path: string = location.pathname;
-  const isAdminPage: boolean = path === "/admin";
   let incrementalDelay: string = "100ms";
 
   const endpoint: string = determineUseFetchGetEndpoint({
