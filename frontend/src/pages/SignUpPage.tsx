@@ -2,7 +2,6 @@ import { ReactElement } from "react";
 import { FormSection } from "../components/sections/FormSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
-import { endpoints } from "../config/endpoints.config";
 
 export const SignUpPage = (): ReactElement => {
     return <>
@@ -13,7 +12,7 @@ export const SignUpPage = (): ReactElement => {
             description="Already have an account?"
             buttonLabel="Log in now!"
             buttonLink="/login"
-            imageSrc={`${endpoints.imagesEndpoint}/pages/homepage/text-image-section.webp`}
+            imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746269695/hero-section_imgswt.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
         />
@@ -27,7 +26,7 @@ export const SignUpPage = (): ReactElement => {
                 "email",
                 "password"
             ]}
-            imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
+            imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746269820/hero_section_tl9skq.webp`}
         />
 
         <TextSection

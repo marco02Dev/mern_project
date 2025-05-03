@@ -3,7 +3,6 @@ import { HeroSection } from "../components/sections/HeroSection";
 import { SmallProductsPreviewSection } from "../components/sections/SmallProductPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
 import { BrowseSection } from "../components/sections/browseSection";
-import { endpoints, Endpoints } from "../config/endpoints.config";
 import { TextImageSection } from "../components/sections/TextImageSection";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -14,7 +13,6 @@ export const HomePage: FC = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);
     const { isLoggedIn }: { isLoggedIn: boolean } = login;
     const name: string = (login?.user as User)?.name ?? "";
-    const { imagesEndpoint }: Endpoints = endpoints;
 
     return <>
         <HeroSection
@@ -31,7 +29,7 @@ export const HomePage: FC = (): ReactElement => {
             }
             buttonLabel={isLoggedIn ? "Go to account" : "Login"}
             buttonLink={isLoggedIn ? "/account" : "/login"}
-            imageSrc={`${imagesEndpoint}/pages/homepage/hero-section.webp`}
+            imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268064/hero-section_hbuymw.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
         />
@@ -42,7 +40,7 @@ export const HomePage: FC = (): ReactElement => {
         />
 
         <TextImageSection 
-            img={`${imagesEndpoint}/pages/homepage/text-image-section.webp`} 
+            img={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746267562/text-image-section_fegznb.webp`} 
             secondaryColor
             title={"Why choose us?"}
             contentSections={[

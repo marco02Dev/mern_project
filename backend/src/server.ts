@@ -18,6 +18,7 @@ import sessionRouter from './routes/session.route';
 import https from 'https';
 import fs from 'fs';
 import frontendRouter from './routes/front-end.route';
+import { memoryLogger } from './middlewares/memory-logger.middleware';
 
 export const reactAppBuildPath = path.join(__dirname, "../../frontend/dist/");
 export const indexHtmlPath = path.join(reactAppBuildPath, "index.html");
@@ -32,6 +33,7 @@ const credentials = { key: privateKey, cert: certificate };
 const app = express();
 
 app.use(cookieParser());
+app.use(memoryLogger)
 
 app.use(session(sessionConfig));
 

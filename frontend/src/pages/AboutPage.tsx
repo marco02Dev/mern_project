@@ -13,7 +13,7 @@ export const AboutPage = (): ReactElement => {
             eyebrowText="Innovate. Build. Achieve."
             title="Welcome to My Portfolio"
             description="This is a portfolio website built using the MERN stack: MongoDB, Express.js, React.js, and Node.js."
-            imageSrc={`${imagesEndpoint}/pages/about/hero-section.webp`}
+            imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746266989/hero-section-erfsd.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
         />

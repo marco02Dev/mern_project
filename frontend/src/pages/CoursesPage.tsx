@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import { HeroSection } from "../components/sections/HeroSection";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
-import { endpoints, Endpoints } from "../config/endpoints.config";
 import { TextSection } from "../components/sections/TextSection";
 import { UseMediaQuery, useMediaQuery } from "../hooks/useMediaQuery";
 import { useParams } from "react-router-dom";
@@ -11,7 +10,6 @@ import { generateCoursesPageTexts, CoursePageTextsData } from "../utils/componen
 
 export const CoursesPage = (): ReactElement => {
   const { isMobile }: UseMediaQuery = useMediaQuery();
-  const { imagesEndpoint }: Endpoints = endpoints;
   const { category } = useParams<{ category: string }>();
   const { eyebrow, title, description }: CoursePageTextsData = generateCoursesPageTexts(category);
 
@@ -28,7 +26,7 @@ export const CoursesPage = (): ReactElement => {
         eyebrowText={eyebrow}
         title={title}
         description={description}
-        imageSrc={`${imagesEndpoint}/pages/courses/hero-section.webp`}
+        imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268262/hero-section_ucijii.webp`}
         imageAlt="Minimalist desk setup with monitor and coding posters"
         secondaryColor
       />

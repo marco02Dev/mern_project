@@ -35,13 +35,13 @@ export const LogInPage = (): ReactElement => {
             description="Don't have an account?"
             buttonLabel="Signup now!"
             buttonLink="/signup"
-            imageSrc={`${endpoints.imagesEndpoint}/pages/login/hero-section.webp`}
+            imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268525/hero-section_ewsf79.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor
         />
 
         <LoginForm 
-            imgSrc={`${endpoints.imagesEndpoint}/pages/contact/form-section.webp`}
+            imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746269092/form-section_xgjtv0.webp`}
         />
 
         <TextSection
