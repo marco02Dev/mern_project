@@ -14,6 +14,7 @@ Key features include:
 - Scalable and secure architecture designed for easy maintenance and future project expansion;
 
 Instructions:
-- Replace env examples files with the correct values;
-- Add an ssl-cert.pem and ssl-key.pem file in the root of the project directory. (It is recommended to create a development certificate for consistency with the Vite plugin and the mkrect dependency in the frontend during development mode.)
+- Replace .env.example files with the correct values;
+- For the development environment, add ssl-cert.pem and ssl-key.pem files to the root of the project directory. (It is recommended to use a mkcert development certificate for consistency with the Vite mkcert dependency installed in the frontend.) Note: The SSL certificates are not required in production, as the application has been deployed and tested on Render.
 - Use npm run build to install all dependencies, then npm run start to launch the backend in production mode, or npm run dev to start the Vite development server and the Node.js application server concurrently.
+
