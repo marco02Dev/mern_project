@@ -8,6 +8,7 @@ Key features include:
 - Light/dark theme implemented using styled-components and CSS-in-JS techniques, enabling flexible UI customization;
 - Secure authentication with advanced password encryption;
 - Email sending functionality via a contact form integrated with the back-end;
+- Integration with Cloudinary for image upload and hosting of course thumbnails and product images;
 - Dedicated admin panel for creating, editing, and deleting courses dynamically;
 - Custom animated transitions for smooth navigation between pages;
 - Real-time database integration to display available courses;
