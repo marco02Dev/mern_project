@@ -35,8 +35,11 @@ initializePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+if(!isProduction) {
+    app.use(cors(corsOptions));
+}
 
-app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use(rejectRequestIfHoneyPotIsFilled);

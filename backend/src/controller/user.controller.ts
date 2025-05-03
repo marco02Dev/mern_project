@@ -34,6 +34,16 @@ export const getUserById: Controller = async (req, res) => {
 export const createUser: Controller<{}, {}, UsersSchema> = async (req, res) => {
     const clientData: UsersSchema = req.body;
 
+    if ('role' in clientData) {
+        delete (clientData as any).role;
+
+        sendErrorMessage({
+            response: res,
+            statusCode: 400,
+        });
+        return;
+    }
+
     if (isUserDataInvalid(clientData)) {
         sendErrorMessage({ response: res, statusCode: 400 });
         return;
