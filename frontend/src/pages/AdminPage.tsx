@@ -3,7 +3,6 @@ import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { HeroSection } from "../components/sections/HeroSection";
-import { endpoints } from "../config/endpoints.config";
 import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
 import { LogInPage } from "./LogInPage";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
@@ -25,7 +24,7 @@ export const AdminPage: FC = (): ReactElement => {
                 description="Access your enrolled courses and continue your learning journey today!"
                 buttonLabel="Logout"
                 buttonAction={logOutService}
-                imageSrc={`${endpoints.imagesEndpoint}/pages/homepage/hero-section.webp`}
+                imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746271424/hero_image_a2zl2l.webp`}
                 imageAlt="Minimalist desk setup with monitor and coding posters"
                 secondaryColor
             />

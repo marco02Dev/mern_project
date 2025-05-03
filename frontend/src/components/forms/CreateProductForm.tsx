@@ -1,6 +1,5 @@
 import { Dispatch, FC, ReactElement, SetStateAction } from "react";
 import { FormSection } from "../sections/FormSection";
-import { endpoints } from "../../config/endpoints.config";
 
 type CreateProductFormProps = {
     setCrateProductForm: Dispatch<SetStateAction<boolean>>,
@@ -9,7 +8,7 @@ type CreateProductFormProps = {
 
 export const CreateProductForm: FC<CreateProductFormProps> = ({setCrateProductForm, setProductCreated}: CreateProductFormProps): ReactElement => {
     return <FormSection
-        imgSrc={`${endpoints.imagesEndpoint}/pages/admin/form-section.webp`}
+        imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268491/form-section_f6y1ml.webp`}
         imageBorderedBoxWidth="40%"
         formWidth="60%"
         title={"Create a new course"} 

@@ -1,6 +1,5 @@
 import { Dispatch, FC, ReactElement, SetStateAction, useContext } from "react";
 import { FormSection } from "../sections/FormSection";
-import { endpoints } from "../../config/endpoints.config";
 import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 
 type UpdateProductFormProps = {
@@ -12,7 +11,7 @@ export const UpdateProductForm: FC<UpdateProductFormProps> = ({setUpdateProductF
     const { updateProductForm }: UpdateProductFormContextProps = updateProductFormContext;
 
     return <FormSection
-        imgSrc={`${endpoints.imagesEndpoint}/pages/admin/form-section.webp`}
+        imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268491/form-section_f6y1ml.webp`}
         imageBorderedBoxWidth="40%"
         formWidth="60%"
         title={"Update the course"} 

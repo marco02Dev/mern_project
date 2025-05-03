@@ -61,7 +61,14 @@ export const SwitchThemeModeButton: FC<SwitchThemeModeButtonProps> = ({delay}: S
             <GlobalStyle />
             <FadeInWrapper flex delay={delay}>
                 <Button onClick={toggleTheme} $imageSize={sizes.widths.small}>
-                    <img width={20} height={20} src={mode === "light" ? "/icons/sun.svg" : "/icons/moon.svg"} alt="theme-icon" className="w-6 h-6" />
+                    <img 
+                        width={20} 
+                        height={20} 
+                        src={mode === "light" 
+                            ? "https://res.cloudinary.com/dqwoo44z8/image/upload/v1746271646/sun_rej5by.svg" 
+                            : "https://res.cloudinary.com/dqwoo44z8/image/upload/v1746271641/moon_kccoqn.svg"
+                        } 
+                        alt="theme-icon" className="w-6 h-6" />
                 </Button>
             </FadeInWrapper>
         </>
