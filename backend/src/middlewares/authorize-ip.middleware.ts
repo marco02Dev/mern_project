@@ -6,6 +6,7 @@ import { RequestHandler } from "express";
 export const checkAthorizedIp: RequestHandler = (request: Request<any>, response: Response, next: NextFunction) => {
     const clientIp = request.ip?.replace("::ffff:", ""); 
     const authorizedIps = getAuthorizedIps(); 
+    console.log(clientIp)
 
     if (clientIp && authorizedIps.includes(clientIp)) {
         console.log("Authorized IP:", clientIp);

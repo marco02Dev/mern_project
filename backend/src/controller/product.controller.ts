@@ -92,6 +92,7 @@ export const uploadImageController = async (
   
     if (!id || !category || noFiles) {
       sendErrorMessage({ response: res, statusCode: 400 });
+      return;
     }
   
     sendSuccessMessage({ response: res, statusCode: 200 });

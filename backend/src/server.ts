@@ -17,7 +17,6 @@ import sessionRouter from './routes/session.route';
 import https from 'https';
 import fs from 'fs';
 import frontendRouter from './routes/front-end.route';
-import { memoryLogger } from './middlewares/memory-logger.middleware';
 import { databaseUri } from './config/system/env.config';
 
 export const reactAppBuildPath = path.join(__dirname, "../../frontend/dist/");
@@ -33,7 +32,6 @@ const credentials = { key: privateKey, cert: certificate };
 const app = express();
 
 app.use(cookieParser());
-app.use(memoryLogger)
 
 app.use(session(sessionConfig));
 
@@ -55,7 +53,6 @@ app.use(frontendRouter);
 
 https.createServer(credentials, app).listen(port, '0.0.0.0', () => {
     console.log('Connecting to MongoDB with URI:', databaseUri);
-
     connectToDatabase();
     console.log(`Server is listen on ${port}`);
 });

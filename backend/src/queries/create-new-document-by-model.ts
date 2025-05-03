@@ -17,9 +17,10 @@ export const createNewDocumentByModel = async <T extends object>({
     resourceName
 }: CreateNewDocumentByModelData<T>): Promise<void> => {
     try {
-        const newDocument = new Model(clientData);
+        const newDocument: any = new Model(clientData);
+        console.log(`New Document Created: ${newDocument}`)
         await newDocument.save();
-        sendSuccessMessage({ response, statusCode: 201, resource: resourceName});
+        sendSuccessMessage({ response, statusCode: 201, resource: resourceName, data: newDocument});
     } catch (error) {
         console.error(`Error creating a new ${resourceName}:`, error);
         sendErrorMessage({ response, statusCode: 500 });

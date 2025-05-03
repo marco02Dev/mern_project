@@ -55,14 +55,14 @@ export const createCourseService: CreateCourseService = async (
   } catch (err) {
     console.error(err);
 
-    if (!checkSession()) {
-      setErrorMessage(errorMessages.sessionExpired);
-      reloadLoginPage();
-      return;
-    } else {
-      setErrorMessage("You don't have permission to access this resource!");
-      reloadLoginPage();
-    }
+    // if (!checkSession()) {
+    //   setErrorMessage(errorMessages.sessionExpired);
+    //   reloadLoginPage();
+    //   return;
+    // } else {
+    //   setErrorMessage("You don't have permission to access this resource!");
+    //   reloadLoginPage();
+    // }
   
     throw err;
   }
