@@ -1,6 +1,6 @@
 Full Stack Web Application for Course Management
 
-This application was developed using the MERN stack (MongoDB, Express.js, React.js, Node.js) as a portfolio project to showcase Full Stack web development skills.
+Web app to manage online courses — a Full Stack TypeScript SPA portfolio project, developed using modern CSR frontend technologies and I/O non-blocking server infrastructures. Implemented using the renowned MERN stack (MongoDB, Express.js, React.js, Node.js), and successfully deployed on Render.
 
 Key features include:
 - Responsive user interface optimized for both desktop and mobile devices;
