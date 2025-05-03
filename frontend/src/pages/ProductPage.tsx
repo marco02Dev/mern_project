@@ -3,16 +3,12 @@ import { useLocation, Location } from "react-router-dom";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
 import { TextImageSection } from "../components/sections/TextImageSection";
-import { endpoints, Endpoints } from "../config/endpoints.config";
 import { Course } from "../types/course.types";
 import { NotFoundPage } from "./NotFoundPage";
 
 export const Productpage: FC = (): ReactElement => {
-    const { imagesEndpoint }: Endpoints = endpoints
     const location: Location = useLocation();
-    const { title, price, courseId, category, details }: Course = location.state;
-
-    const heroImage: string = `${imagesEndpoint}/products/${category}/${courseId}/hero-image.webp`;
+    const { title, price, courseId, category, details, imageUrl, heroImage }: Course = location.state;
 
     if( title && price && courseId && category && details && typeof price === "string" ) {
         return <>
@@ -28,7 +24,7 @@ export const Productpage: FC = (): ReactElement => {
             />
 
             { details.length > 0 && <TextImageSection 
-                img={`${imagesEndpoint}/pages/homepage/text-image-section.webp`} 
+                img={imageUrl} 
                 title={"What will you learn?"}
                 contentSections={details}
             /> }

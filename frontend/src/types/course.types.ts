@@ -16,6 +16,7 @@ type CourseBase = NameOrTitle &
       content: string;
     }[];
     tags?: string[];
+    heroImage?: string;
   };
 
 export type Course =

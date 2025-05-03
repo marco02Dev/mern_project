@@ -17,7 +17,8 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
     category,
     details,
     link,
-    delay
+    delay,
+    heroImage
 }: DiscoverCourseButtonProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
     const handleDiscoverButtonClick: Function = () => {
@@ -32,7 +33,8 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
         imageUrl: imageUrl ? imageUrl : "",
         price: price,
         category: category,
-        details: details
+        details: details,
+        heroImage: heroImage
     };
 
     return <FadeInWrapper delay={delay}>

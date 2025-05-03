@@ -108,6 +108,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
             link={`/courses/${course?.category}/${course?.name?.replace(/\s+/g, '-')}`}
             category={course?.category}
             imageUrl={`https://res.cloudinary.com/dqwoo44z8/image/upload/web-courses/products/${course.category}/${course._id}/product-image-${course._id}.webp`}
+            heroImage={`https://res.cloudinary.com/dqwoo44z8/image/upload/web-courses/products/${course.category}/${course._id}/hero-image-${course._id}.webp`}
             details={course.details}
             delay={incrementalDelay}
           />

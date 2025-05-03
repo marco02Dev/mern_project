@@ -73,7 +73,6 @@ export type CourseBoxProps = {
     title: string;
     price: string;
     imageUrl: string;
-
     courseId: string | undefined;
     category: string;
     details: {
@@ -81,7 +80,8 @@ export type CourseBoxProps = {
         content: string
     }[] | undefined,
     link: string,
-    delay?: string
+    delay?: string,
+    heroImage: string
 };
 
 export const CourseBox = ({
@@ -92,7 +92,8 @@ export const CourseBox = ({
     courseId,
     category,
     details,
-    delay
+    delay,
+    heroImage
 }: CourseBoxProps): ReactElement => {
     const login: LoginState = useSelector((state: RootState) => state.login);
     const location: Location = useLocation();
@@ -141,6 +142,7 @@ export const CourseBox = ({
                         category={category}
                         details={details}
                         link={link}
+                        heroImage={heroImage}
                         delay={sumStringDelays(innerDelay, "600ms")}
                     /> }
 
