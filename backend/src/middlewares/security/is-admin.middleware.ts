@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { LoggedUser } from '../types/logged-user.type';
-import { sendErrorMessage } from '../utils/send-error-massage.util';
+import { LoggedUser } from '../../types/logged-user.type';
+import { sendErrorMessage } from '../../utils/send-error-massage.util';
 import { RequestHandler } from 'express';
 
 export const isAdmin: RequestHandler = (req: Request, res: Response, next: NextFunction) => {

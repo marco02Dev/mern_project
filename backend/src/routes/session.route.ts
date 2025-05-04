@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkUserSession } from "../controller/session.controller";
-import { isAuthenticated } from "../middlewares/is-authenticated.middleware";
+import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
 import { sessionEndpointName } from "../config/system/endpoints.config";
 
 const sessionRouter = Router();

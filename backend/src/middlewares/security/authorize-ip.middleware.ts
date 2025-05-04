@@ -1,6 +1,6 @@
-import { getAuthorizedIps } from "../utils/get-authorized-ips.util";
+import { getAuthorizedIps } from "../../utils/get-authorized-ips.util";
 import { NextFunction, Response, Request } from "express";
-import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { sendErrorMessage } from "../../utils/send-error-massage.util";
 import { RequestHandler } from "express";
 
 export const checkAthorizedIp: RequestHandler = (request: Request<any>, response: Response, next: NextFunction) => {
