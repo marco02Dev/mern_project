@@ -9,14 +9,13 @@ import usersRouter from './routes/users.route';
 import path from "path";
 import contactRouter from './routes/contact.route';
 import passport from 'passport';
-import { rejectRequestIfHoneyPotIsFilled } from './middlewares/reject-request-if-honey-pot-is-filled.middleware';
 import { initializePassport } from './config/libraries/passport.config';
 import { corsOptions } from './config/libraries/cors-options.config';
 import cookieParser from 'cookie-parser';
 import sessionRouter from './routes/session.route';
 import https from 'https';
 import frontendRouter from './routes/front-end.route';
-import { memoryLogger } from './middlewares/memory-logger.middleware';
+import { memoryLogger } from './middlewares/performance/memory-logger.middleware';
 import { sslCredentials } from './config/system/ssl-credentials';
 import { isProduction } from './config/system/env.config';
 import http from "http";
@@ -26,8 +25,13 @@ export const indexHtmlPath = path.join(reactAppBuildPath, "index.html");
 
 const app = express();
 
+if(!isProduction) {
+  app.use(memoryLogger);
+  app.use(cors(corsOptions));
+}
+
 app.use(cookieParser());
-app.use(memoryLogger);
+
 
 app.use(session(sessionConfig));
 
@@ -35,12 +39,9 @@ initializePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-if(!isProduction) {
-    app.use(cors(corsOptions));
-}
+
 
 app.use(express.json());
-app.use(rejectRequestIfHoneyPotIsFilled);
 
 app.use("/api", sessionRouter);
 app.use("/api", productsRouter);
