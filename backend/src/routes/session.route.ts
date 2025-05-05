@@ -5,6 +5,11 @@ import { sessionEndpointName } from "../config/system/endpoints.config";
 
 const sessionRouter = Router();
 
-sessionRouter.get(sessionEndpointName, isAuthenticated, checkUserSession);
+sessionRouter.get(
+    //User
+    sessionEndpointName, 
+    isAuthenticated, 
+    checkUserSession
+);
 
 export default sessionRouter;

@@ -27,7 +27,7 @@ const TextWrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
 
 const PragraphsSectionWrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
-    flex-direction: ${({$isTablet}) => $isTablet ? "row" : "column"};
+    flex-direction: ${({$isTablet}) => $isTablet ? "column" : "column"};
     flex-wrap: wrap;
     div {
         width: ${({$isTablet}) => $isTablet ? "50%" : "column"};
@@ -36,17 +36,24 @@ const PragraphsSectionWrapper = styled.div<{$isTablet: boolean}>`
 
 export type ContentSection = {
     title: string,
-    content: string
+    content: string,
 }
 
 type TextImageSectionProps = {
     img: string,
     secondaryColor?: boolean,
     title: string
-    contentSections: ContentSection[]
+    contentSections: ContentSection[],
+    oneParagraph?: boolean
 }
 
-export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColor, contentSections, title }: TextImageSectionProps): ReactElement => {
+export const TextImageSection: FC<TextImageSectionProps> = ({ 
+    img, 
+    secondaryColor, 
+    contentSections, 
+    title,
+    oneParagraph
+}: TextImageSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const delay: string = defaultDelayIncrement;
 
@@ -63,12 +70,13 @@ export const TextImageSection: FC<TextImageSectionProps> = ({ img, secondaryColo
                         <StyledText content={title} tag="h2" />
                     </TextRevealWrapper>
 
-                    <StyledSpace medium vertical />
+                    <StyledSpace small vertical />
 
                     <PragraphsSectionWrapper $isTablet={isTablet}>
                         <ShortParagraphsLoop 
                             contentSections={contentSections} 
                             startDelay={sumStringDelays(delay, "200ms")}
+                            oneParagraph={oneParagraph}
                         />
                     </PragraphsSectionWrapper>
                 </TextWrapper>

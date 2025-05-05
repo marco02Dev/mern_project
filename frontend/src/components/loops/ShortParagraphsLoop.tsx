@@ -7,10 +7,15 @@ import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 type ShortParagraphsLoopProps = {
     contentSections: ContentSection[],
-    startDelay: string
+    startDelay: string,
+    oneParagraph?: boolean
 }
 
-export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({contentSections, startDelay}: ShortParagraphsLoopProps): ReactElement => {
+export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({
+    contentSections, 
+    startDelay,
+    oneParagraph
+}: ShortParagraphsLoopProps): ReactElement => {
     let incrementalATitleDelay: string = startDelay ? sumStringDelays(startDelay, "200ms") : "200ms";
     let incrementalParagraphDelay: string;
 
@@ -33,6 +38,9 @@ export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({contentSectio
                         <TextRevealWrapper left delay={incrementalATitleDelay}>
                             <StyledText tag="h3" size="h4" content={title}/>
                         </TextRevealWrapper>
+
+                        {oneParagraph && <StyledSpace verySmall vertical />}
+                      
 
                         <TextRevealWrapper delay={incrementalParagraphDelay}>
                             <StyledText tag="p" smallParagraph content={content}/>

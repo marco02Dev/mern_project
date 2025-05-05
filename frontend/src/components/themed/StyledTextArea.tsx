@@ -15,6 +15,7 @@ import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 const linesLimit: number = 5;
 
 const TextAreaWrapper = styled.div<{
+    $textColor: string,
     $borderColor: string, 
     $hoverColor: string,
     $inputOnFocus: boolean
@@ -25,6 +26,7 @@ const TextAreaWrapper = styled.div<{
     position: relative;
     display: flex;
     textarea {
+        color: ${({$textColor}) => $textColor};
         background-color: unset;
         font-size: ${() => sizes.fontSizes.h5};
         ${() => InputBorderStyles}    
@@ -45,11 +47,18 @@ type StyledTextAreaProps = {
     startDelay?: string
 }
 
-export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder, startDelay }: StyledTextAreaProps): ReactElement => {
+export const StyledTextArea: FC<StyledTextAreaProps> = ({ 
+    name, 
+    placeholder, 
+    startDelay 
+}: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+
+    const color = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
     const hoverColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
 
     const [text, setText] = useState('');
@@ -92,7 +101,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({ name, placeholder, sta
     };
 
     return (
-        <TextAreaWrapper $inputOnFocus={inputOnFocus} $hoverColor={hoverColor} $borderColor={borderColor}>
+        <TextAreaWrapper $inputOnFocus={inputOnFocus} $hoverColor={hoverColor} $borderColor={borderColor} $textColor={color}>
             <label htmlFor={name}>
                 <TextRevealWrapper delay={sumStringDelays(startDelay, "200ms")}>
                     <StyledText tag="h3" size="h5" content={textAreaCapitalized} />

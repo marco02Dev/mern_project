@@ -4,7 +4,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
-import { Form } from "../forms/GenerateForm";
+import { Form } from "../forms/Form";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "../../types/service.type";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";

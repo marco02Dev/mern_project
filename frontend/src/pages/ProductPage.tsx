@@ -27,6 +27,7 @@ export const Productpage: FC = (): ReactElement => {
                 img={imageUrl} 
                 title={"What will you learn?"}
                 contentSections={details}
+                oneParagraph
             /> }
 
 
