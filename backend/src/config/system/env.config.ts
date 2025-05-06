@@ -7,13 +7,12 @@ const env = process.env;
 const node_env: string = env.NODE_ENV || "dev";
 
 export const isProduction: boolean = node_env === "production";
-export const multiPageAppMode: boolean = env.MPA_MODE === "true";
 
 export const databaseUri: string = env.DATABASE_URI!;
 export const secret: string = env.SECRET!;
 export const authorizedIp: string = env.AUTHORIZED_IP!;
 
-export const frontendUri = env.FRONT_END_URI;
+export const frontendUri = env.FRONT_END_DEV_URI;
 export const port: number = Number(env.PORT) || 8000;
 
 export const transporterData: {
