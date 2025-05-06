@@ -32,6 +32,9 @@ app.use("/api", sessionRouter);
 app.use("/api", productsRouter);
 app.use("/api", usersRouter);
 app.use("/api", contactRouter);
-app.use(frontendRouter);
+
+if(isProduction) {
+  app.use(frontendRouter);
+}
 
 export default app;
