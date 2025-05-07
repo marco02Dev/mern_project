@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { ThemeModeContext, ThemeModeContextProps } from "../contexts/ThemeModeProvider";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import { colors } from "../config/colors.config";
 
 export type ThemeColors = {
@@ -18,7 +18,7 @@ type useThemeColorsOptions = {
   
 
 export const useThemeColors = ({ invertColors = false }: useThemeColorsOptions = {}): ThemeColors => {
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const mode = useSelector((state: RootState) => state.themeMode.mode);
   
     const shouldInvertAll = typeof invertColors === "boolean" ? invertColors : false;
   

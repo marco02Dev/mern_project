@@ -1,5 +1,7 @@
-import { ReactElement, useContext, useEffect, FC } from "react";
-import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
+import { ReactElement, useEffect, FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { setMode } from "../../store/slices/theme-mode.slice";
 import styled, { createGlobalStyle } from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
@@ -38,14 +40,13 @@ type SwitchThemeModeButtonProps = {
 
 
 export const SwitchThemeModeButton: FC<SwitchThemeModeButtonProps> = ({delay}: SwitchThemeModeButtonProps): ReactElement => {
-    const { mode, setMode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const mode = useSelector((state: RootState) => state.themeMode.mode);
+    const dispatch = useDispatch();
 
     const toggleTheme = () => {
-        if(setMode) {
-            setMode(mode === "light" ? "dark" : "light");
-        }
-
-        setCookie('themeMode', mode === "light" ? "dark" : "light");
+        const newMode = mode === "light" ? "dark" : "light";
+        dispatch(setMode(newMode));
+        setCookie('themeMode', newMode);
     };
 
     useEffect(() => {

@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import themeModeReducer from "./slices/theme-mode.slice"
 import menuReducer from "./slices/menu.slice";
 import routeStatusReducer from "./slices/route-status.slice";
 import loginReducer from "./slices/login.slice";
@@ -7,6 +8,7 @@ import coursesDataChangedReducer from "./slices/courses-data-changed.slice";
 
 export const store = configureStore({
   reducer: {
+    themeMode: themeModeReducer,
     menu: menuReducer,
     routeStatus: routeStatusReducer,
     login: loginReducer,
