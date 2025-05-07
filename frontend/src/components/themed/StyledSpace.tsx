@@ -1,8 +1,7 @@
-import { ReactElement, useContext, FC } from "react";
+import { ReactElement, FC } from "react";
 import { sizes } from "../../config/sizes.config";
 import styled from "styled-components";
-import { colors } from "../../config/colors.config";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
+import { useThemeColors } from "../../hooks/useThemeColors";
 
 type DividerProps = {
     $horizontal?: string;
@@ -47,10 +46,18 @@ type StyledSpaceProps = {
     height?: string
 };
 
-export const StyledSpace: FC<StyledSpaceProps> = ({ horizontal, vertical, small, medium, large, verySmall, width, backgroundColor, height }: StyledSpaceProps): ReactElement => {
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const color = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
-
+export const StyledSpace: FC<StyledSpaceProps> = ({ 
+    horizontal, 
+    vertical, 
+    small, 
+    medium, 
+    large, 
+    verySmall, 
+    width, 
+    backgroundColor, 
+    height 
+}: StyledSpaceProps): ReactElement => {
+    const color: string = useThemeColors().backgroundColor;
     let size: string;
 
     if (small) {
@@ -65,5 +72,11 @@ export const StyledSpace: FC<StyledSpaceProps> = ({ horizontal, vertical, small,
         size = sizes.spaces.small;
     }
 
-    return <Divider $height={height} $backgroundColor={backgroundColor ? color : "unset"} $width={width} $horizontal={horizontal ? size : undefined} $vertical={vertical ? size : undefined} />;
+    return <Divider 
+        $height={height} 
+        $backgroundColor={backgroundColor ? color : "unset"} 
+        $width={width} 
+        $horizontal={horizontal ? size : undefined} 
+        $vertical={vertical ? size : undefined} 
+    />;
 };

@@ -1,14 +1,13 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 import { useBodyOverflow } from "../../hooks/useBodyOverflow";
 import { useColorToggle } from "../../hooks/useColorToggle";
 import styled from "styled-components";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
 import { moveWholeContainerOutAnimation } from "../../animations/page-transition-element.animation";
 import { revealLinesAnimation, revealLinesAnimationDelayedFirst, revealLinesAnimationDelayedSecond } from "../../animations/page-transition-element.animation";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import useLocationChange from "../../hooks/useLocationChange";
 import { FC } from "react";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 type WrapperProps = {
     $hasLocationChanged: boolean,
@@ -45,11 +44,8 @@ const Wrapper = styled.div<WrapperProps>`
 export const PageTransitionElement: FC = (): ReactNode => {
     const hasLocationChanged: boolean = useLocationChange();
     useBodyOverflow(hasLocationChanged);
-
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const wrapperColor = mode === 'dark' ? colors.light.backgroundColor : colors.dark.backgroundColor;
-    const secondaryWrapperColor = mode === "dark" ? colors.light.backgroundColorSecondary : colors.dark.backgroundColorSecondary;
-    const currentColor: string = useColorToggle(hasLocationChanged, wrapperColor, secondaryWrapperColor);
+    const { backgroundColor, backgroundColorSecondary }: ThemeColors = useThemeColors({colorsInverted: true});
+    const currentColor: string = useColorToggle(hasLocationChanged, backgroundColor, backgroundColorSecondary);
 
     if (!hasLocationChanged) {
         return null;

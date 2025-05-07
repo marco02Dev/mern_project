@@ -4,16 +4,25 @@ import { colors } from "../config/colors.config";
 
 export type ThemeColors = {
     textColor: string,
+    backgroundColor: string,
+    backgroundColorSecondary: string
     borderColor: string,
     hoverColor: string
 }
 
-export const useThemeColors = (): ThemeColors => {
+type useThemeColorsOptions = {
+    colorsInverted?: boolean
+}
+
+export const useThemeColors = ({ colorsInverted }: useThemeColorsOptions = {}): ThemeColors => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const themeModeToUse : string = colorsInverted ? "light" : "dark";
 
     return {
-        textColor: mode === "dark" ? colors.dark.textColor : colors.light.textColor,
-        borderColor: mode === "dark" ? colors.dark.textColor : colors.light.textColor, 
-        hoverColor: mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor
+        textColor: mode === themeModeToUse ? colors.dark.textColor : colors.light.textColor,
+        backgroundColor: mode === themeModeToUse  ? colors.dark.backgroundColor : colors.light.backgroundColor,
+        backgroundColorSecondary: mode === themeModeToUse ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary,
+        borderColor: mode === themeModeToUse ? colors.dark.textColor : colors.light.textColor, 
+        hoverColor: mode === themeModeToUse ? colors.dark.hoverColor : colors.light.hoverColor
     };
 };

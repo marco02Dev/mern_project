@@ -1,10 +1,8 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { useLocation, Location } from "react-router-dom";
 import { StyledText } from "../themed/StyledText";
-import { colors } from "../../config/colors.config";
 import useLocationChange from "../../hooks/useLocationChange";
 import { SlideUpDownPageTransitionTitleAnimation } from "../../animations/page-transition-title.animation";
 import { useSelector } from "react-redux";
@@ -14,6 +12,7 @@ import { FC } from "react";
 import { LoginState } from "../../store/slices/login.slice";
 import { useFirstRender } from "../../hooks/useIsFirstRender";
 import { getFormattedTitle } from "../../utils/components/get-formatted-title";
+import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;
@@ -37,18 +36,15 @@ const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
 `;
 
 export const PageTransitionTitle: FC = (): ReactNode => {
-    const is404 = useSelector((state: RootState) => state.routeStatus.is404);
+    const is404: boolean = useSelector((state: RootState) => state.routeStatus.is404);
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const hasLocationChanged: boolean = useLocationChange();
     const { isLoggedIn, user }: LoginState = useSelector((state: RootState) => state.login);
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const color = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
+    const { backgroundColor}: ThemeColors = useThemeColors();
     const location: Location = useLocation();
-    
     const pathName: string = location.pathname;
-
-    const isFirstRender = useFirstRender(pathName);
-    const titleCapitalized = getFormattedTitle({
+    const isFirstRender: boolean = useFirstRender(pathName);
+    const titleCapitalized: string = getFormattedTitle({
         pathName: pathName, 
         isFirstRender: isFirstRender, 
         isLoggedIn: isLoggedIn, 
@@ -62,13 +58,13 @@ export const PageTransitionTitle: FC = (): ReactNode => {
             <TitleWrapper $hasLocationChanged={hasLocationChanged}>
                 <RevealWrapper $hasLocationChanged={hasLocationChanged}>
                     {pathName === "/" ? !isMobile ?
-                        <StyledText lineHeight="20vh" tag="h2" size="h2" content={titleCapitalized} color={color} />
-                        : titleCapitalized === "Welcome" ? <StyledText tag="h2" size="h1" content={titleCapitalized} color={color} /> : <>
-                            <StyledText tag="h2" size="h2" content={"Welcome"} color={color} />
+                        <StyledText lineHeight="20vh" tag="h2" size="h2" content={titleCapitalized} color={backgroundColor} />
+                        : titleCapitalized === "Welcome" ? <StyledText tag="h2" size="h1" content={titleCapitalized} color={backgroundColor} /> : <>
+                            <StyledText tag="h2" size="h2" content={"Welcome"} color={backgroundColor} />
                             <br />
-                            <StyledText tag="h2" size="h2" content={"back"} color={color} />
+                            <StyledText tag="h2" size="h2" content={"back"} color={backgroundColor} />
                         </>
-                    : <StyledText tag="h2" size="h2" content={titleCapitalized} color={color} />}
+                    : <StyledText tag="h2" size="h2" content={titleCapitalized} color={backgroundColor} />}
                 </RevealWrapper>
             </TitleWrapper>
         );

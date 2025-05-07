@@ -1,28 +1,27 @@
 import styled, { RuleSet, css } from "styled-components";
-import { useContext, ReactNode, JSX, ReactElement } from "react";
-import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
+import { ReactNode, JSX, ReactElement } from "react";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 type SectionProps = {
-    as?: keyof JSX.IntrinsicElements,
-    $semanticTag?: string
-    $backgroundColor: string,
-    $column?: boolean,
-    $row?: boolean,
-    $alignCenter?: boolean,
-    $fixed?: boolean, 
-    $height?: string, 
-    $animation?: RuleSet,
-    $block?: boolean,
-    $paddingLeft?: string,
-    $paddingRight?: string,
-    $justifyCenter?: boolean,
-    $hiddenFirstRender?: boolean,
-    $isMobileOrTablet?: boolean,
-    $smallSpace: string;
-    $overflowVisible?: boolean
+  as?: keyof JSX.IntrinsicElements,
+  $semanticTag?: string
+  $backgroundColor: string,
+  $column?: boolean,
+  $row?: boolean,
+  $alignCenter?: boolean,
+  $fixed?: boolean, 
+  $height?: string, 
+  $animation?: RuleSet,
+  $block?: boolean,
+  $paddingLeft?: string,
+  $paddingRight?: string,
+  $justifyCenter?: boolean,
+  $hiddenFirstRender?: boolean,
+  $isMobileOrTablet?: boolean,
+  $smallSpace: string;
+  $overflowVisible?: boolean
 }
 
 const Section = styled.section<SectionProps>`
@@ -94,29 +93,26 @@ type StyledSectionProps = {
 }
 
 export const StyledSection: React.FC<StyledSectionProps> = ({ 
-    children, 
-    secondaryColor, 
-    column, 
-    row, 
-    alignCenter,
-    semanticTag,
-    fixed, 
-    height,
-    animation,
-    block,
-    paddingLeft,
-    paddingRight,
-    justifyCenter,
-    hiddenFirstRender,
-    overflowVisible,
-    id
-  }): ReactElement => {
-  const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+  children, 
+  secondaryColor, 
+  column, 
+  row, 
+  alignCenter,
+  semanticTag,
+  fixed, 
+  height,
+  animation,
+  block,
+  paddingLeft,
+  paddingRight,
+  justifyCenter,
+  hiddenFirstRender,
+  overflowVisible,
+  id
+}): ReactElement => {
   const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
-
-  const color = secondaryColor
-    ? mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary
-    : mode === "dark" ? colors.dark.backgroundColor : colors.light.backgroundColor;
+  const { backgroundColor, backgroundColorSecondary}: ThemeColors = useThemeColors();
+  const color: string = secondaryColor ? backgroundColorSecondary : backgroundColor;
 
   return <Section 
     as={semanticTag || 'section'}
