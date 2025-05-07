@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { ReactElement, useState, useRef, useEffect, FC } from "react";
+import { ReactElement, useState, FC } from "react";
+import { useAutoResizingTextArea, UseAutoResizingTextArea } from "../../hooks/useAutoResizingTextArea";
 import { StyledText } from "./StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledSpace } from "./StyledSpace";
@@ -13,7 +14,7 @@ import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
 
 const linesLimit: number = 5;
 
-const TextAreaWrapper = styled.div<{
+const Wrapper = styled.div<{
     $textColor: string,
     $borderColor: string, 
     $hoverColor: string,
@@ -53,50 +54,12 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
 }: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
     const { textColor, hoverColor }: ThemeColors = useThemeColors();
-
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
-
-    const [text, setText] = useState('');
-    const [rows, setRows] = useState(1);
-    const [isMaxedOut, setIsMaxedOut] = useState(false); 
-    
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        if (isMaxedOut) return; 
-
-        const inputText = e.target.value;
-        const lineCount = inputText.split('\n').length;
-
-        if (lineCount <= linesLimit) {
-            setText(inputText);
-            setRows(lineCount);
-        } else {
-            setIsMaxedOut(true);
-        }
-    };
-
-    const autoResize = () => {
-        if (textAreaRef.current) {
-            textAreaRef.current.style.height = "auto";  
-            textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; 
-        }
-    };
-
-    useEffect(() => {
-        autoResize();
-    }, [text]);
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        const lineCount = text.split('\n').length;
-
-        if (lineCount >= linesLimit && e.key === 'Enter') {
-            e.preventDefault(); 
-        }
-    };
+    const { text, rows, isMaxedOut, handleInput, handleKeyDown, textAreaRef }
+    : UseAutoResizingTextArea = useAutoResizingTextArea({ lineLimit: linesLimit });
 
     return (
-        <TextAreaWrapper 
+        <Wrapper 
         $inputOnFocus={inputOnFocus} 
         $hoverColor={hoverColor} 
         $borderColor={textColor} 
@@ -132,6 +95,6 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
                     required
                 />
             </FadeInWrapper>
-        </TextAreaWrapper>
+        </Wrapper>
     );
 }
