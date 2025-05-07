@@ -9,7 +9,7 @@ import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-lette
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useThemeColors } from "../../hooks/useThemeColors";
+import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
 
 const linesLimit: number = 5;
 
@@ -52,7 +52,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
     startDelay 
 }: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
-    const { textColor, borderColor, hoverColor } = useThemeColors();
+    const { textColor, borderColor, hoverColor }: ThemeColors = useThemeColors();
 
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
 

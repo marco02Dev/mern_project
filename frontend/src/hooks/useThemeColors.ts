@@ -2,7 +2,13 @@ import { useContext } from "react";
 import { ThemeModeContext, ThemeModeContextProps } from "../contexts/ThemeModeProvider";
 import { colors } from "../config/colors.config";
 
-export const useThemeColors = () => {
+export type ThemeColors = {
+    textColor: string,
+    borderColor: string,
+    hoverColor: string
+}
+
+export const useThemeColors = (): ThemeColors => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
 
     return {

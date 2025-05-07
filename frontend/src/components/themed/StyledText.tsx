@@ -1,9 +1,9 @@
 import { ReactElement, JSX } from "react";
 import styled from "styled-components";
-import { useThemeColors } from "../../hooks/useThemeColors";
+import { determineTextFontSizeAndLineHeight, StyledTextSizes } from "../../utils/components/determine-text-font-size-and-line-height.util";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 import { AllowedTextTags } from "../../config/styled-text.config";
 import { defaultTextTag } from "../../config/styled-text.config";
-import { sizes } from "../../config/sizes.config";
 import { FC } from "react";
 
 type TextProps = {
@@ -48,40 +48,17 @@ export const StyledText: FC<StyledTextProps> = ({
     lineHeight,
     color
 }: StyledTextProps): ReactElement => {
-    const { textColor } = useThemeColors();
+    const { textColor }: ThemeColors = useThemeColors();
     let colorMode = textColor;
     if (color) colorMode = color;
 
-    let fontSize: any = sizes.fontSizes.paragraph.medium;
-    let autoLineHeight: any = sizes.lineHeights.paragraph.medium;
-
-    const determineFontSizeAndLineHeight = ({ 
-        tag, 
-        size 
-    }: { tag: string, size?: string }): void => {
-        const value: string = size ?? tag;
-
-        if (value === "p") {
-            if (smallParagraph) {
-                fontSize = sizes.fontSizes.paragraph.small ?? fontSize;
-                autoLineHeight = sizes.lineHeights.paragraph.small ?? autoLineHeight;
-            } else if (largeParagraph) {
-                fontSize = sizes.fontSizes.paragraph.large ?? fontSize;
-                autoLineHeight = sizes.lineHeights.paragraph.large ?? autoLineHeight;
-            } else if (verySmallParagraph) {
-                fontSize = sizes.fontSizes.paragraph.verySmall ?? fontSize;
-                autoLineHeight = sizes.lineHeights.paragraph.verySmall ?? autoLineHeight;
-            } else {
-                fontSize = sizes.fontSizes.paragraph.medium;
-                autoLineHeight = sizes.lineHeights.paragraph.medium;
-            }
-        } else {
-            fontSize = sizes.fontSizes[value as keyof typeof sizes.fontSizes] ?? fontSize;
-            autoLineHeight = sizes.lineHeights[value as keyof typeof sizes.lineHeights] ?? autoLineHeight;
-        }
-    };
-
-    determineFontSizeAndLineHeight({ tag, size });
+    const { fontSize, autoLineHeight}: StyledTextSizes = determineTextFontSizeAndLineHeight({
+        tag: tag,
+        size: size,
+        smallParagraph: smallParagraph,
+        largeParagraph: largeParagraph,
+        verySmallParagraph: verySmallParagraph
+    });
 
     const resolvedLineHeight = lineHeight ?? autoLineHeight;
 
