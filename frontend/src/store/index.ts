@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeModeReducer from "./slices/theme-mode.slice"
+import deviceReducer from "./slices/device.slice";
 import menuReducer from "./slices/menu.slice";
 import routeStatusReducer from "./slices/route-status.slice";
 import loginReducer from "./slices/login.slice";
@@ -10,6 +11,7 @@ export const store = configureStore({
   reducer: {
     themeMode: themeModeReducer,
     menu: menuReducer,
+    device: deviceReducer,
     routeStatus: routeStatusReducer,
     login: loginReducer,
     purchasedProducts: purchasedProductsReducer,
