@@ -11,14 +11,14 @@ const SlideUpDownPageTransitionTitle: Keyframes = keyframes`
     60% {
         transform: translateY(0%);    
     }
-    95% {
+    90% {
         transform: translateY(-100%);
         opacity: 1;
-        display: block;
     }
     100% {
+        transform: translateY(-100%);
         opacity: 0;
-        display: none;
+        visibility: hidden;
     }
 `;
 

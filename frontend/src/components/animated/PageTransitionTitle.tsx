@@ -11,7 +11,7 @@ import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { FC } from "react";
 import { LoginState } from "../../store/slices/login.slice";
 import { useFirstRender } from "../../hooks/ui/useIsFirstRender";
-import { getFormattedTitle } from "../../utils/components/get-formatted-title";
+import { getPageTransitionFormattedTitle } from "../../utils/components/get-formatted-title";
 import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
@@ -44,11 +44,12 @@ export const PageTransitionTitle: FC = (): ReactNode => {
     const location: Location = useLocation();
     const pathName: string = location.pathname;
     const isFirstRender: boolean = useFirstRender(pathName);
-    const titleCapitalized: string = getFormattedTitle({
+    const titleCapitalized: string = getPageTransitionFormattedTitle({
         pathName: pathName, 
         isFirstRender: isFirstRender, 
         isLoggedIn: isLoggedIn, 
-        userName: user?.name as string
+        userName: user?.name as string,
+        isMobile: isMobile
     });
 
     if (!hasLocationChanged || is404) {
@@ -57,12 +58,13 @@ export const PageTransitionTitle: FC = (): ReactNode => {
         return (
             <TitleWrapper $hasLocationChanged={hasLocationChanged}>
                 <RevealWrapper $hasLocationChanged={hasLocationChanged}>
-                    {pathName === "/" ? !isMobile ?
-                        <StyledText lineHeight="20vh" tag="h2" size="h2" content={titleCapitalized} color={backgroundColor} />
-                        : titleCapitalized === "Welcome" ? <StyledText tag="h2" size="h1" content={titleCapitalized} color={backgroundColor} /> : <>
-                            <StyledText tag="h2" size="h2" content={"Hi again"} color={backgroundColor} />
-                        </>
-                    : <StyledText tag="h2" size="h2" content={titleCapitalized} color={backgroundColor} />}
+                        <StyledText 
+                            lineHeight="20vh" 
+                            tag="h2" 
+                            size={isMobile ? "h2" : "h1"} 
+                            content={titleCapitalized} 
+                            color={backgroundColor} 
+                        />
                 </RevealWrapper>
             </TitleWrapper>
         );

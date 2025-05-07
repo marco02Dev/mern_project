@@ -7,9 +7,16 @@ type TitleParams = {
     isFirstRender: boolean;
     isLoggedIn: boolean;
     userName: string | null;
+    isMobile: boolean
 };
 
-export const getFormattedTitle: GetFormattedTitle = ({ pathName, isFirstRender, isLoggedIn, userName }: TitleParams): string => {
+export const getPageTransitionFormattedTitle: GetFormattedTitle = ({ 
+    pathName, 
+    isFirstRender, 
+    isLoggedIn, 
+    userName,
+    isMobile
+}: TitleParams): string => {
     let title: string = pathName.replace('/', "");
 
     const coursesPathPrefix: string = "courses";
@@ -30,8 +37,10 @@ export const getFormattedTitle: GetFormattedTitle = ({ pathName, isFirstRender, 
     if (!titleCapitalized) {
         if (isFirstRender) {
             titleCapitalized = "Welcome";
-        } else if (!isFirstRender) {
+        } else if (!isFirstRender && !isMobile) {
             titleCapitalized = "Welcome back";
+        } else if(!isFirstRender && isMobile) {
+            titleCapitalized = "Hi again!"
         }
     }
 
