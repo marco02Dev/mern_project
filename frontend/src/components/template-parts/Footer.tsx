@@ -1,11 +1,10 @@
-import { FC, ReactElement, useContext } from "react";
+import { FC, ReactElement } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
 import { getCurrentYear } from "../../utils/browser/get-current-year.util";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 const FooterWrapper = styled.footer<{$backgroundColor: string}>`
     display: flex;
@@ -16,9 +15,7 @@ const FooterWrapper = styled.footer<{$backgroundColor: string}>`
 `;
 
 export const Footer: FC = (): ReactElement => {
-
-    const {mode}: ThemeModeContextProps = useContext(ThemeModeContext);
-    const backgroundColor: string = mode === 'dark' ? colors.dark.backgroundColor : colors.light.backgroundColor;
+    const { backgroundColor }: ThemeColors = useThemeColors()
     const year: string = getCurrentYear();
 
     return <FooterWrapper $backgroundColor={backgroundColor}>

@@ -1,13 +1,13 @@
-import { ReactElement, useContext, FC } from "react";
+import { ReactElement, FC } from "react";
+import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
 import styled, { RuleSet } from "styled-components";
 import { sizes } from "../../config/sizes.config";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { colors } from "../../config/colors.config";
-import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 import { styledBoxHoverAnimation } from "../../animations/styled-box.animation";
 import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
 import { useInView } from "../../hooks/useViewIn";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+
 
 const Wrapper = styled.div<{
         $isMobileDevices: boolean, 
@@ -83,15 +83,13 @@ export const StyledBox: FC<StyledBoxProps> = ({
     delay
 }: StyledBoxProps): ReactElement => {
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
-    const { isMobile, isTablet } = useMediaQuery();
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext)
-    const color = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
-    const borderColor = mode === "dark" ? colors.dark.borderColor : colors.light.textColor;
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const { borderColor, backgroundColorSecondary }: ThemeColors = useThemeColors();
 
     const delayCalculated = sumStringDelays(delay ? delay : "0ms", "1000ms");
 
     return <Wrapper $height={height} $delayed={delayCalculated} $isInView={isInView} className={isInView ? "in-view" : "" } ref={ref} $headerButton={headerButton} $button={button} $isMobileDevices={isMobile || isTablet} $width={width}>
-        <BodyWrapper  as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={color}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>
+        <BodyWrapper  as={button ? "div" : "li"} $button={button} $animation={animation} $borderColor={borderColor} $backgroundColor={backgroundColorSecondary}  $isMobileDevices={isMobile || isTablet} $mediumSpace={sizes.spaces.large} $smallSpace={"5%"}>
             {children}
         </BodyWrapper>
 

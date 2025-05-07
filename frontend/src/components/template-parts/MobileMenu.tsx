@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { NavLinks } from "../ui/NavLinks";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { FC, ReactNode, useContext, useEffect } from "react";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
+import { FC, ReactNode, useEffect } from "react";
 import useLocationChange from "../../hooks/useLocationChange";
 import { closeMenu } from "../../store/slices/menu.slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 type MobileMenuWrapperProps = {
   $isOpened: boolean;
@@ -35,11 +35,9 @@ const MobileMenuWrapper = styled.section<MobileMenuWrapperProps>`
 export const MobileMenu: FC = (): ReactNode => {
   const hasLocationChanged: boolean = useLocationChange();
   const { isTablet, isMobile }: UseMediaQuery = useMediaQuery();
-  const isOpened = useSelector(({menu}: RootState) => menu.isOpened);
-  const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+  const isOpened: boolean = useSelector(({menu}: RootState) => menu.isOpened);
+  const { backgroundColor }: ThemeColors = useThemeColors();
   const dispatch: Dispatch = useDispatch();
-
-  const backgroundColor: string = mode === "dark" ? "black" : "white";
 
   useEffect(():void => {
     dispatch(closeMenu())

@@ -3,6 +3,7 @@ import { ThemeModeContext, ThemeModeContextProps } from "../contexts/ThemeModePr
 import { colors } from "../config/colors.config";
 
 export type ThemeColors = {
+    mode: string,
     textColor: string,
     backgroundColor: string,
     backgroundColorSecondary: string,
@@ -33,6 +34,7 @@ export const useThemeColors = ({ invertColors = false }: useThemeColorsOptions =
     };
   
     return {
+      mode: mode,
       textColor: resolveColor("textColor", colors.light.textColor, colors.dark.textColor),
       backgroundColor: resolveColor("backgroundColor", colors.light.backgroundColor, colors.dark.backgroundColor),
       backgroundColorSecondary: resolveColor("backgroundColorSecondary", colors.light.backgroundColorSecondary, colors.dark.backgroundColorSecondary),

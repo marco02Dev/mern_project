@@ -1,15 +1,15 @@
-import React, { SetStateAction, useContext, Dispatch, FC, useEffect } from 'react';
+import React, { SetStateAction, Dispatch, FC, useEffect } from 'react';
 import { StyledLink } from '../themed/StyledLink';
 import { StyledSpace } from '../themed/StyledSpace';
 import { FadeInWrapper } from '../animated/FadeInWrapper';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { UseMediaQuery, useMediaQuery } from '../../hooks/useMediaQuery';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { useLocation } from 'react-router-dom';
-import { ThemeModeContext } from '../../contexts/ThemeModeProvider';
-import { colors } from '../../config/colors.config';
+import { useLocation, Location } from 'react-router-dom';
 import { useUnsetActiveColor } from '../../hooks/useUnsetActiveColor';
 import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
+import { LoginState } from '../../store/slices/login.slice';
+import { ThemeColors, useThemeColors } from '../../hooks/useThemeColors';
 
 type NavLinksLoopProps = {
   links: { name: string; to: string }[];
@@ -22,12 +22,10 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
   row,
   setDesktopButtonStartDelay
 }: NavLinksLoopProps) => {
-  const { isMobile, isTablet } = useMediaQuery();
-  const login = useSelector((state: RootState) => state.login);
-  const { isLoggedIn } = login;
-  const location = useLocation();
-  const { mode } = useContext(ThemeModeContext);
-  const isActiveColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+  const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+  const { isLoggedIn }: LoginState = useSelector((state: RootState) => state.login);
+  const { hoverColor }: ThemeColors = useThemeColors()
+  const location: Location = useLocation();
   const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
   let delay: string = "0ms";
   let lastDelay: string = "0ms";
@@ -52,7 +50,7 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
                         to={link.to}
                         fontWeight="700"
                         size={row ? 'p' : 'h3'}
-                        color={isActive && !unsetActiveColor ? isActiveColor : undefined}
+                        color={isActive && !unsetActiveColor ? hoverColor : undefined}
                         inactive={isActive}
                     />
                 </div>
@@ -70,7 +68,7 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
             to={isLoggedIn ? '/account' : '/login'}
             fontWeight="700"
             size={row ? 'p' : 'h3'}
-            color={location.pathname === (isLoggedIn ? '/account' : '/login') ? isActiveColor : undefined}
+            color={location.pathname === (isLoggedIn ? '/account' : '/login') ? hoverColor : undefined}
           />
         </FadeInWrapper>
       )}

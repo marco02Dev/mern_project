@@ -1,9 +1,8 @@
-import { FC, MouseEventHandler, ReactElement, useContext } from "react";
+import { FC, MouseEventHandler, ReactElement } from "react";
 import styled, { StyledObject } from "styled-components";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { sizes } from "../../config/sizes.config";
-import { ThemeModeContext } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 const Wrapper = styled.div`
     position: absolute;
@@ -19,11 +18,10 @@ type EyeIconButtonProps = {
 }
 
 export const EyeIconButton: FC<EyeIconButtonProps> = ({isPasswordVisible, togglePasswordVisibility}: EyeIconButtonProps): ReactElement => {
-    const { mode } = useContext(ThemeModeContext);
+    const { textColor }: ThemeColors = useThemeColors();
     const size: StyledObject = {width: sizes.widths.verySmall, height: sizes.widths.verySmall}
-    const color = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
 
     return <Wrapper onClick={togglePasswordVisibility}>
-        {isPasswordVisible ? <FaEyeSlash color={color} style={size} /> : <FaEye color={color} style={size} />} 
+        {isPasswordVisible ? <FaEyeSlash color={textColor} style={size} /> : <FaEye color={textColor} style={size} />} 
     </Wrapper>
 }

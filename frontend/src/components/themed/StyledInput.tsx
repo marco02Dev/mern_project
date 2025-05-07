@@ -1,4 +1,4 @@
-import { FC, ReactElement, useContext, ChangeEventHandler, useState, MouseEventHandler } from "react";
+import { FC, ReactElement, ChangeEventHandler, useState, MouseEventHandler } from "react";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
@@ -7,14 +7,13 @@ import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-lette
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
 import { getInputType } from "../../utils/form/get-input-type.util";
 import { EyeIconButton } from "../buttons/EyeIconButton";
 import { getPasswordPatternAttrs } from "../../utils/form/get-password-pattern-atts";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 const Wrapper = styled.div<{
         $isMobile: boolean, 
@@ -67,19 +66,11 @@ export const StyledInput: FC<StyledInputProps> = ({
     isFile,
     onChangeAction,
 }: StyledInputProps): ReactElement => {
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const color: string = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
-    const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
-    const fileBorderButtonColor = mode === "dark" ? colors.dark.borderColor : colors.light.borderColor;
-    const fileButtonBackgroundColor = mode === "dark" ? colors.dark.buttonBackgroundColor : colors.light.buttonBackgroundColor;
-    const buttonColor = mode === "dark" ? colors.dark.backgroundColor : colors.light.backgroundColor;
-    const hoverColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+    const { textColor, hoverColor, backgroundColorButton, borderColor, backgroundColor }: ThemeColors = useThemeColors();
     const capitalizeTitle: string = capitalizeFirstLetter(name);
     const { isMobile }: UseMediaQuery = useMediaQuery();
-
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
-
     const passwordAttrs = getPasswordPatternAttrs(name);
 
     let placeholder: string | undefined;
@@ -95,13 +86,13 @@ export const StyledInput: FC<StyledInputProps> = ({
     return (
         <Wrapper 
             $isMobile={isMobile} 
-            $borderColor={borderColor} 
+            $borderColor={textColor} 
             $paddingRight={paddingRight} 
-            $color={color} 
-            $fileButtonBackgroundColor={fileButtonBackgroundColor}
+            $color={textColor} 
+            $fileButtonBackgroundColor={backgroundColorButton}
             $hoverColor={hoverColor}
-            $buttonColor={buttonColor}
-            $fileBorderButtonColor={fileBorderButtonColor}
+            $buttonColor={backgroundColor}
+            $fileBorderButtonColor={borderColor}
             $inputOnFocus={inputOnFocus}
         >
             <label htmlFor={name}>

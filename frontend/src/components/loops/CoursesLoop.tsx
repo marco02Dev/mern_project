@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, ReactElement, SetStateAction, useContext, useState } from "react";
+import { Dispatch, Fragment, ReactElement, SetStateAction, useState } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { useFetchGet } from "../../hooks/useFetchGet";
@@ -8,14 +8,13 @@ import { determineUseFetchGetEndpoint } from "../../utils/components/determine-u
 import { endpoints, Endpoints } from "../../config/endpoints.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { ThemeModeContextProps, ThemeModeContext } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -45,8 +44,8 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   categoriesFilter
 }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet} = useMediaQuery();
+  const { backgroundColor }: ThemeColors = useThemeColors();
   const { coursesEndpoint }: Endpoints = endpoints;
-  const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
   const { dataChanged } = useSelector((state: RootState) => state.coursesDataChanged);
   const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
@@ -62,7 +61,6 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber, dataChanged);
   const courses = objectData?.data;
   const limitedCourses: Course[] | undefined = courses?.slice(0, limit);
-  const backgroundColor: string = mode === "dark" ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary;
 
   if (loading) {
     return <StyledText content="Loading..." tag="h2" />;

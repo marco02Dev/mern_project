@@ -1,11 +1,10 @@
 import { categories } from "../../config/categories.config";
 import { StyledLink } from "../themed/StyledLink";
 import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
-import { FC, ReactElement, SetStateAction, Dispatch, useContext, useEffect } from "react";
+import { FC, ReactElement, SetStateAction, Dispatch, useEffect } from "react";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 import styled from "styled-components";
 import { StyledSpace } from "../themed/StyledSpace";
-import { ThemeModeContext } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
 import { useUnsetActiveColor } from "../../hooks/useUnsetActiveColor";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
@@ -46,12 +45,12 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
     setCategoryFilter,
     categoryFilter
 }: CategoriesFIlterProps): ReactElement => {
-    const { mode } = useContext(ThemeModeContext);
-    const isActiveColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+    const { hoverColor }: ThemeColors = useThemeColors();
     const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
+    const { isMobile }: UseMediaQuery = useMediaQuery();
     const dispatch: ReduxDispatch = useDispatch();
     let delay: string;
-    const { isMobile }: UseMediaQuery = useMediaQuery();
+
 
     useEffect(() => {
         if (categoryFilter) {
@@ -71,7 +70,7 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
                         <StyledLink 
                             content="All" 
                             size={isMobile ? "h5" : "h6"}
-                            color={categoryFilter === "" && !unsetActiveColor ? isActiveColor : ""}
+                            color={categoryFilter === "" && !unsetActiveColor ? hoverColor : ""}
                             inactive={categoryFilter === ""}
                             onClickFunction={(event) => {
                                 event.preventDefault();
@@ -99,7 +98,7 @@ export const CategoriesFilterLoop: FC<CategoriesFIlterProps> = ({
                             <StyledLink
                                 size={isMobile ? "h5" : "h6"}
                                 inactive={categoryFilter === category}
-                                color={categoryFilter === category && !unsetActiveColor ? isActiveColor : ""}
+                                color={categoryFilter === category && !unsetActiveColor ? hoverColor : ""}
                                 content={capitalizeFirstLetter(category)}
                                 onClickFunction={(event) => {
                                     event.preventDefault();

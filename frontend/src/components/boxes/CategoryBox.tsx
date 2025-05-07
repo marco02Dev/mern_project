@@ -1,15 +1,15 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 import styled from "styled-components";
 import { StyledText } from "../themed/StyledText";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
 import { FC } from "react";
 import { StyledBox } from "../themed/StyledBox";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -54,7 +54,7 @@ export const CategoryBox: FC<CategoryBoxProps> = ({
 }: CategoryBoxProps): ReactElement => {
 
     const { isMobile }: UseMediaQuery = useMediaQuery();
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const { mode }: ThemeColors = useThemeColors();
 
     return <StyledBox width={isMobile ? "100%" : "48%"} height={isMobile ? "18vh" : "30vh"} delay={delay}>
         <Wrapper>

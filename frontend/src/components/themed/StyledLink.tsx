@@ -1,16 +1,15 @@
-import { MouseEventHandler, ReactElement, useContext } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 import { FC } from "react";
 import { StyledText } from "./StyledText";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { colors } from "../../config/colors.config";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { AllowedTextTags } from "../../config/styled-text.config";
 import { sizes } from "../../config/sizes.config";
 import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
 import { buttonFontSize } from "../../config/sizes.config";
 import { multiPageAppMode } from "../../config/app.config";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 interface LinkWrapperProps {
     $color: string,
     $hoverColor: string,
@@ -156,16 +155,10 @@ export const StyledLink: FC<StyledLinkProps> = ({
     onMouseOverFunction,
     onMouseLeaveFunction
 }: StyledLinkProps): ReactElement => {
-
-    const ThemeModeValue: ThemeModeContextProps = useContext(ThemeModeContext);
-    const {mode} = ThemeModeValue;
-
+    const { textColor, borderColor, hoverColor }: ThemeColors = useThemeColors();
     const defaultTag: AllowedTextTags = tag ? tag : "span";
-
-    let colorMode: string = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
-    const hoverColor: string = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+    let colorMode: string = textColor;
     let islogoHover: string = logo && absolute ? hoverColor : "";
-    const borderColor: string = mode === 'dark' ? colors.dark.borderColor : colors.light.textColor;
 
     if(color) {
         colorMode = color;

@@ -1,7 +1,5 @@
-import { ReactElement, useCallback, useEffect, useContext, FC } from "react";
+import { ReactElement, useCallback, useEffect, FC } from "react";
 import styled, { css } from "styled-components";
-import { colors } from "../../config/colors.config";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
 import { useDispatch, useSelector } from "react-redux"; 
 import { toggleMenu, closeMenu } from "../../store/slices/menu.slice";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
@@ -9,6 +7,8 @@ import { RootState } from "../../store";
 import { removeMiddleLines, rotateLineDown, rotateLineUp, restoreRotatedLine } from "../../animations/styled-mobile-menu.animation";
 import { restoreMiddleLines } from "../../animations/styled-mobile-menu.animation";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { Dispatch } from "@reduxjs/toolkit";
+import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
 
 const Wrapper = styled.div<{$isOpened: boolean}>`
     display: flex;
@@ -51,13 +51,10 @@ type StyledMobileMenuProps = {
 }
 
 export const StyledMobileMenu: FC<StyledMobileMenuProps> = ({delay}: StyledMobileMenuProps): ReactElement => {
-    const isOpened = useSelector(({menu}: RootState) => menu.isOpened);
-    const dispatch = useDispatch();
-
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
+    const isOpened: boolean = useSelector(({menu}: RootState) => menu.isOpened);
+    const dispatch: Dispatch = useDispatch();
+    const { textColor }: ThemeColors = useThemeColors();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
-
-    const color = mode === 'dark' ? colors.dark.textColor : colors.light.textColor;
     const lineHeight: string = '14%';
 
     const toggleMenuHandler = useCallback(() => {
@@ -73,14 +70,14 @@ export const StyledMobileMenu: FC<StyledMobileMenuProps> = ({delay}: StyledMobil
     return (
         <FadeInWrapper delay={delay}>
             <Wrapper $isOpened={isOpened} onClick={toggleMenuHandler}>
-                <Line $smallSize={lineHeight} $mediumSize={"100%"} $color={color} $rotateLineDown={isOpened} />
+                <Line $smallSize={lineHeight} $mediumSize={"100%"} $color={textColor} $rotateLineDown={isOpened} />
 
                 <MiddleWrapper $removeLines={isOpened} $lineHeight={"14%"}>
-                    <Line $smallSize={"100%"} $mediumSize={"50%"} $color={color} />
-                    <Line $smallSize={"100%"} $mediumSize={"50%"} $color={color} />
+                    <Line $smallSize={"100%"} $mediumSize={"50%"} $color={textColor} />
+                    <Line $smallSize={"100%"} $mediumSize={"50%"} $color={textColor} />
                 </MiddleWrapper >
 
-                <Line $lastLine $smallSize={lineHeight} $mediumSize={"100%"} $color={color} $rotateLineUp={isOpened} />
+                <Line $lastLine $smallSize={lineHeight} $mediumSize={"100%"} $color={textColor} $rotateLineUp={isOpened} />
             </Wrapper>
         </FadeInWrapper>
     );
