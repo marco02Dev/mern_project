@@ -11,9 +11,12 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { defaultDelayIncrement } from "../../config/animation.config";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
-const MainWrapper = styled.div<{$isTablet: boolean}>`
+const MainWrapper = styled.div<{
+    $isTablet: boolean
+    $isMobile: boolean
+}>`
     display: flex;
-    flex-direction: ${({$isTablet}) => $isTablet ? "column" : "row"};
+    flex-direction: ${({$isTablet, $isMobile}) => $isTablet || $isMobile ? "column" : "row"};
     width: 100%;
     height: 100vh;
     align-items: center;
@@ -25,12 +28,12 @@ const TextWrapper = styled.div<{$isMobile: boolean, $isTablet: boolean}>`
     padding-left: ${({$isMobile}) => $isMobile ? "0%" : sizes.spaces.small};
 `;
 
-const PragraphsSectionWrapper = styled.div<{$isTablet: boolean}>`
+const PragraphsSectionWrapper = styled.div`
     display: flex;
-    flex-direction: ${({$isTablet}) => $isTablet ? "column" : "column"};
+    flex-direction: column;
     flex-wrap: wrap;
     div {
-        width: ${({$isTablet}) => $isTablet ? "50%" : "column"};
+        width: "100%";
     }
 `;
 
@@ -59,12 +62,12 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
 
     return (
         <StyledSection secondaryColor={secondaryColor} paddingRight={sizes.spaces.small} paddingLeft={sizes.spaces.small}>
-            <MainWrapper $isTablet={isTablet}>
-                {!isMobile && <ImageBorderedBox imgSrc={img} />}
-                {isMobile && <StyledSpace large medium />}
+            <MainWrapper $isTablet={isTablet} $isMobile={isMobile}>
+                <ImageBorderedBox imgSrc={img} />
+
 
                 <TextWrapper $isTablet={isTablet} $isMobile={isMobile}>
-                    {isTablet && <StyledSpace small medium />}
+                    {isTablet && <StyledSpace medium vertical />}
 
                     <TextRevealWrapper left delay={delay}>
                         <StyledText content={title} tag="h2" />
@@ -72,7 +75,7 @@ export const TextImageSection: FC<TextImageSectionProps> = ({
 
                     <StyledSpace small vertical />
 
-                    <PragraphsSectionWrapper $isTablet={isTablet}>
+                    <PragraphsSectionWrapper>
                         <ShortParagraphsLoop 
                             contentSections={contentSections} 
                             startDelay={sumStringDelays(delay, "200ms")}
