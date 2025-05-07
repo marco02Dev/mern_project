@@ -17,19 +17,16 @@ export const ShortParagraphsLoop: FC<ShortParagraphsLoopProps> = ({
     oneParagraph
 }: ShortParagraphsLoopProps): ReactElement => {
     let incrementalATitleDelay: string = startDelay ? sumStringDelays(startDelay, "200ms") : "200ms";
-    let incrementalParagraphDelay: string;
+    let incrementalParagraphDelay: string = startDelay ? sumStringDelays(startDelay, "400ms") : "400ms";
 
     return <>
         {
             contentSections.map((element: ContentSection, index): ReactElement => {
 
-                if(index = 1) {
+                if(index >= 1) {
                     incrementalATitleDelay = sumStringDelays(incrementalATitleDelay, "400ms");
                     incrementalParagraphDelay = sumStringDelays(incrementalATitleDelay, "400ms")
-                } else if(index >= 1) {
-                    incrementalATitleDelay = sumStringDelays(incrementalATitleDelay, incrementalParagraphDelay, "400ms");
-                    incrementalParagraphDelay = sumStringDelays(incrementalATitleDelay, "400ms");
-                }
+                } 
     
                 const { title, content }: ContentSection = element;
 
