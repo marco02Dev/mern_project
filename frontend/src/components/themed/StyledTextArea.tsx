@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import { ReactElement, useContext, useState, useRef, useEffect, FC } from "react";
+import { ReactElement, useState, useRef, useEffect, FC } from "react";
 import { StyledText } from "./StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledSpace } from "./StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sizes } from "../../config/sizes.config";
 import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
-import { colors } from "../../config/colors.config";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useThemeColors } from "../../hooks/useThemeColors";
 
 const linesLimit: number = 5;
 
@@ -53,11 +52,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
     startDelay 
 }: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
-    const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-
-    const color = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
-    const borderColor = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
-    const hoverColor = mode === "dark" ? colors.dark.hoverColor : colors.light.hoverColor;
+    const { textColor, borderColor, hoverColor } = useThemeColors();
 
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
 
@@ -101,7 +96,12 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
     };
 
     return (
-        <TextAreaWrapper $inputOnFocus={inputOnFocus} $hoverColor={hoverColor} $borderColor={borderColor} $textColor={color}>
+        <TextAreaWrapper 
+        $inputOnFocus={inputOnFocus} 
+        $hoverColor={hoverColor} 
+        $borderColor={borderColor} 
+        $textColor={textColor}
+        >
             <label htmlFor={name}>
                 <TextRevealWrapper delay={sumStringDelays(startDelay, "200ms")}>
                     <StyledText tag="h3" size="h5" content={textAreaCapitalized} />

@@ -1,9 +1,8 @@
-import { ReactElement, useContext, JSX } from "react";
+import { ReactElement, JSX } from "react";
 import styled from "styled-components";
-import { ThemeModeContext, ThemeModeContextProps } from "../../contexts/ThemeModeProvider";
+import { useThemeColors } from "../../hooks/useThemeColors";
 import { AllowedTextTags } from "../../config/styled-text.config";
 import { defaultTextTag } from "../../config/styled-text.config";
-import { colors } from "../../config/colors.config";
 import { sizes } from "../../config/sizes.config";
 import { FC } from "react";
 
@@ -49,16 +48,17 @@ export const StyledText: FC<StyledTextProps> = ({
     lineHeight,
     color
 }: StyledTextProps): ReactElement => {
-    const ThemeModeContextValue: ThemeModeContextProps = useContext(ThemeModeContext);
-    const { mode } = ThemeModeContextValue;
-
-    let colorMode = mode === "dark" ? colors.dark.textColor : colors.light.textColor;
+    const { textColor } = useThemeColors();
+    let colorMode = textColor;
     if (color) colorMode = color;
 
     let fontSize: any = sizes.fontSizes.paragraph.medium;
     let autoLineHeight: any = sizes.lineHeights.paragraph.medium;
 
-    const determineFontSizeAndLineHeight = ({ tag, size }: { tag: string, size?: string }): void => {
+    const determineFontSizeAndLineHeight = ({ 
+        tag, 
+        size 
+    }: { tag: string, size?: string }): void => {
         const value: string = size ?? tag;
 
         if (value === "p") {
