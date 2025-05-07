@@ -4,7 +4,7 @@ import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { InputDataFieldSetLoop } from "../loops/InputDataFieldSetLoop";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
 import { useDispatch } from "react-redux";

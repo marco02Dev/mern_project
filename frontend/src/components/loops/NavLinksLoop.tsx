@@ -2,14 +2,14 @@ import React, { SetStateAction, Dispatch, FC, useEffect } from 'react';
 import { StyledLink } from '../themed/StyledLink';
 import { StyledSpace } from '../themed/StyledSpace';
 import { FadeInWrapper } from '../animated/FadeInWrapper';
-import { UseMediaQuery, useMediaQuery } from '../../hooks/useMediaQuery';
+import { UseMediaQuery, useMediaQuery } from '../../hooks/ui/useMediaQuery';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useLocation, Location } from 'react-router-dom';
-import { useUnsetActiveColor } from '../../hooks/useUnsetActiveColor';
+import { useUnsetActiveColor } from '../../hooks/ui/useUnsetActiveColor';
 import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
 import { LoginState } from '../../store/slices/login.slice';
-import { ThemeColors, useThemeColors } from '../../hooks/useThemeColors';
+import { ThemeColors, useThemeColors } from '../../hooks/theme/useThemeColors';
 
 type NavLinksLoopProps = {
   links: { name: string; to: string }[];

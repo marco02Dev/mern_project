@@ -4,7 +4,7 @@ import { CategoryBox } from "../boxes/CategoryBox";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{$isMobile: boolean}>`

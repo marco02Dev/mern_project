@@ -1,8 +1,8 @@
 import styled, { RuleSet, css } from "styled-components";
 import { ReactNode, JSX, ReactElement } from "react";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 type SectionProps = {
   as?: keyof JSX.IntrinsicElements,

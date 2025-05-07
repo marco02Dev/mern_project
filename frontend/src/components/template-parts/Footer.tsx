@@ -4,7 +4,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { getCurrentYear } from "../../utils/browser/get-current-year.util";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 const FooterWrapper = styled.footer<{$backgroundColor: string}>`
     display: flex;

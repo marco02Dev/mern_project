@@ -2,7 +2,7 @@ import { FC, MouseEventHandler, ReactElement } from "react";
 import styled, { StyledObject } from "styled-components";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { sizes } from "../../config/sizes.config";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 const Wrapper = styled.div`
     position: absolute;

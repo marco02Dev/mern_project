@@ -1,8 +1,8 @@
 import styled, { RuleSet } from "styled-components";
 import { TextReaveal } from "../../animations/text-reveal-wrapper.animation";
 import { ReactElement } from "react";
-import { useInView } from "../../hooks/useViewIn";
-import useLocationChange from "../../hooks/useLocationChange";
+import { useInView } from "../../hooks/ui/useViewIn";
+import useLocationChange from "../../hooks/navigation/useLocationChange";
 import { FC } from "react";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 

@@ -1,20 +1,20 @@
 import { Dispatch, Fragment, ReactElement, SetStateAction, useState } from "react";
 import { FC } from "react";
 import { StyledText } from "../themed/StyledText";
-import { useFetchGet } from "../../hooks/useFetchGet";
+import { useFetchGet } from "../../hooks/data/useFetchGet";
 import { Course } from "../../types/course.types";
 import { CourseBox } from "../boxes/CourseBox";
 import { determineUseFetchGetEndpoint } from "../../utils/components/determine-use-fetch-get-endpoint.util";
 import { endpoints, Endpoints } from "../../config/endpoints.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
+import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;

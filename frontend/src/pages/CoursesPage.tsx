@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { HeroSection } from "../components/sections/HeroSection";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
-import { UseMediaQuery, useMediaQuery } from "../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../hooks/ui/useMediaQuery";
 import { useParams } from "react-router-dom";
 import { categories } from "../config/categories.config";
 import { NotFoundPage } from "./NotFoundPage";

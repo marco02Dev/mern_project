@@ -3,11 +3,11 @@ import { NavLinks } from "../ui/NavLinks";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { FC, ReactNode, useEffect } from "react";
-import useLocationChange from "../../hooks/useLocationChange";
+import useLocationChange from "../../hooks/navigation/useLocationChange";
 import { closeMenu } from "../../store/slices/menu.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 type MobileMenuWrapperProps = {
   $isOpened: boolean;

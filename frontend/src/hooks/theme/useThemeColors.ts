@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
-import { colors } from "../config/colors.config";
+import { RootState } from "../../store";
+import { colors } from "../../config/colors.config";
 
 export type ThemeColors = {
     mode: string,

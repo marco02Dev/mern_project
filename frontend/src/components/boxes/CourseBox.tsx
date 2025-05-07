@@ -5,7 +5,7 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledBox } from "../themed/StyledBox";
 import styled from "styled-components";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { LoginState } from "../../store/slices/login.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -15,7 +15,7 @@ import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons"
 import { DiscoverCourseButton } from "../buttons/DiscoverCourseButton";
 import { defaultDelayIncrement } from "../../config/animation.config";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { UseMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery } from "../../hooks/ui/useMediaQuery";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;

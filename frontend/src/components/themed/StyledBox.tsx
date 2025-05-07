@@ -1,11 +1,11 @@
 import { ReactElement, FC } from "react";
-import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
+import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
 import styled, { RuleSet } from "styled-components";
 import { sizes } from "../../config/sizes.config";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { styledBoxHoverAnimation } from "../../animations/styled-box.animation";
 import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
-import { useInView } from "../../hooks/useViewIn";
+import { useInView } from "../../hooks/ui/useViewIn";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
 

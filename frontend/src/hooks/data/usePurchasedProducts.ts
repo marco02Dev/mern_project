@@ -1,9 +1,8 @@
-// hooks/usePurchasedProducts.ts
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../store";
-import { User } from "../types/user.types";
-import { fetchPurchasedProducts } from "../store/slices/purchased-products.slice";
+import { RootState, AppDispatch } from "../../store";
+import { User } from "../../types/user.types";
+import { fetchPurchasedProducts } from "../../store/slices/purchased-products.slice";
 
 export const usePurchasedProducts = (shouldFetch: boolean = true) => {
   const dispatch = useDispatch<AppDispatch>();

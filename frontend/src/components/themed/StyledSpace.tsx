@@ -1,7 +1,7 @@
 import { ReactElement, FC } from "react";
 import { sizes } from "../../config/sizes.config";
 import styled from "styled-components";
-import { useThemeColors } from "../../hooks/useThemeColors";
+import { useThemeColors } from "../../hooks/theme/useThemeColors";
 
 type DividerProps = {
     $horizontal?: string;

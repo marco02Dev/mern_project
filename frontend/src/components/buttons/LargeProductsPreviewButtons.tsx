@@ -8,7 +8,7 @@ import { colors } from "../../config/colors.config";
 import { useSelector } from "react-redux";
 import { LoginState } from "../../store/slices/login.slice";
 import { RootState } from "../../store";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 
 const Wrapper = styled.div`
     display: flex;

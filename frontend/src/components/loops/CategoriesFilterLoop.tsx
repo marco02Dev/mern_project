@@ -2,16 +2,16 @@ import { categories } from "../../config/categories.config";
 import { StyledLink } from "../themed/StyledLink";
 import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
 import { FC, ReactElement, SetStateAction, Dispatch, useEffect } from "react";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 import styled from "styled-components";
 import { StyledSpace } from "../themed/StyledSpace";
-import { useUnsetActiveColor } from "../../hooks/useUnsetActiveColor";
+import { useUnsetActiveColor } from "../../hooks/ui/useUnsetActiveColor";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 import { useDispatch } from "react-redux";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
 
 type WrapperProps = {
     $isMobile: boolean

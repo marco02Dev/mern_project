@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setLoggedIn } from '../store/slices/login.slice';
-import { AppDispatch } from '../store';
-import { endpoints } from '../config/endpoints.config';
+import { setLoggedIn } from '../../store/slices/login.slice';
+import { AppDispatch } from '../../store';
+import { endpoints } from '../../config/endpoints.config';
 
 export const useRestoreSession = () => {
   const dispatch = useDispatch<AppDispatch>();

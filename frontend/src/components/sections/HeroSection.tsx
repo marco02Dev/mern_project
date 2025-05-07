@@ -5,7 +5,7 @@ import { StyledButton } from "../themed/StyledButton";
 import styled from "styled-components";
 import { StyledSpace } from "../themed/StyledSpace";
 import { sizes } from "../../config/sizes.config";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { FC } from "react";

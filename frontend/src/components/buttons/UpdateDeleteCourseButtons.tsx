@@ -16,7 +16,7 @@ import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../c
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useBodyOverflow } from "../../hooks/useBodyOverflow";
+import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
 
 const Wrapper = styled.div`
     display: flex !important;

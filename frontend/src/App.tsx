@@ -4,11 +4,11 @@ import { Router } from './Router';
 import { MobileMenu } from './components/template-parts/MobileMenu';
 import { PageTransitionElement } from './components/animated/PageTransitionElement';
 import { PageTransitionTitle } from './components/animated/PageTransitionTitle';
-import { useMediaQuery, UseMediaQuery } from './hooks/useMediaQuery';
-import useLocationChange from './hooks/useLocationChange';
+import { useMediaQuery, UseMediaQuery } from './hooks/ui/useMediaQuery';
+import useLocationChange from './hooks/navigation/useLocationChange';
 import { useEffect } from 'react';
-import { useRestoreSession } from './hooks/useRestoreSession';
-import { useDynamicTitle } from './hooks/useDynamicDocumentTitle';
+import { useRestoreSession } from './hooks/auth/useRestoreSession';
+import { useDynamicTitle } from './hooks/navigation/useDynamicDocumentTitle';
 
 function App() {
   const hasLocationChanged: boolean = useLocationChange();

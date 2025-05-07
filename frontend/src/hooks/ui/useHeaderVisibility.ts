@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { css, RuleSet } from "styled-components";
-import { UseScrollY, useScrollY } from "./useScrollY";
-import useLocationChange from "./useLocationChange";
-import { HideHeaderAnimation, RevealHeaderAnimation } from "../animations/header.animation";
+import { useScrollY, UseScrollY } from "./useScrollY";
+import useLocationChange from "../navigation/useLocationChange";
+import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
 
 export const useHeaderVisibility = (): { headerHidden: boolean, animation: RuleSet } => {
     const isLocationChanged: boolean = useLocationChange();

@@ -9,7 +9,7 @@ import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
 import { buttonFontSize } from "../../config/sizes.config";
 import { multiPageAppMode } from "../../config/app.config";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 interface LinkWrapperProps {
     $color: string,
     $hoverColor: string,

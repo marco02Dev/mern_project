@@ -1,10 +1,10 @@
 import { FC, ReactElement, useState} from "react";
 import styled from "styled-components";
-import { useHeaderVisibility } from "../../hooks/useHeaderVisibility";
+import { useHeaderVisibility } from "../../hooks/ui/useHeaderVisibility";
 import { NavLinks } from "../ui/NavLinks";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledSection } from "../themed/StyledSection";
-import {useMediaQuery, UseMediaQuery} from "../../hooks/useMediaQuery";
+import {useMediaQuery, UseMediaQuery} from "../../hooks/ui/useMediaQuery";
 import { StyledMobileMenu } from "../themed/StyledMobileMenu";
 import { LogoHomeButton } from "../buttons/LogoHomeButton";
 import { sizes } from "../../config/sizes.config";

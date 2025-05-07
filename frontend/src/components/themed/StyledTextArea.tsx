@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ReactElement, useState, FC } from "react";
-import { useAutoResizingTextArea, UseAutoResizingTextArea } from "../../hooks/useAutoResizingTextArea";
+import { useAutoResizingTextArea, UseAutoResizingTextArea } from "../../hooks/ui/useAutoResizingTextArea";
 import { StyledText } from "./StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledSpace } from "./StyledSpace";
@@ -10,7 +10,7 @@ import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-lette
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
+import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
 
 const linesLimit: number = 5;
 

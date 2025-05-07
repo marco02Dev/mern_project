@@ -6,14 +6,14 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { getInputType } from "../../utils/form/get-input-type.util";
 import { EyeIconButton } from "../buttons/EyeIconButton";
 import { getPasswordPatternAttrs } from "../../utils/form/get-password-pattern-atts";
 import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
 import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 const Wrapper = styled.div<{
         $isMobile: boolean, 

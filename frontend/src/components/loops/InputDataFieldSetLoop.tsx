@@ -1,5 +1,5 @@
 import { FC, ReactElement, Fragment, SetStateAction, Dispatch, useEffect, useRef } from "react";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { StyledInput } from "../themed/StyledInput";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";

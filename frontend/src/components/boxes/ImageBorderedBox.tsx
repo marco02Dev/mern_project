@@ -1,7 +1,7 @@
 import { ReactElement, FC } from "react";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import styled from "styled-components";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
 
 const Wrapper = styled.div<{
     $isMobile: boolean, 

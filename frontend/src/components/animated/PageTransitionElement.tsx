@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
-import { useBodyOverflow } from "../../hooks/useBodyOverflow";
-import { useColorToggle } from "../../hooks/useColorToggle";
+import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
+import { useColorToggle } from "../../hooks/ui/useColorToggle";
 import styled from "styled-components";
 import { moveWholeContainerOutAnimation } from "../../animations/page-transition-element.animation";
 import { revealLinesAnimation, revealLinesAnimationDelayedFirst, revealLinesAnimationDelayedSecond } from "../../animations/page-transition-element.animation";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
-import useLocationChange from "../../hooks/useLocationChange";
+import useLocationChange from "../../hooks/navigation/useLocationChange";
 import { FC } from "react";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 type WrapperProps = {
     $hasLocationChanged: boolean,

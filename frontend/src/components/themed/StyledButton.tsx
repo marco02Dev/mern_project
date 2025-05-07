@@ -3,7 +3,7 @@ import { StyledLink } from "./StyledLink";
 import styled from "styled-components";
 import { styledButtonHoverAnimation } from "../../animations/styled-button.animation";
 import { buttonFontSize } from "../../config/sizes.config";
-import { ThemeColors, useThemeColors } from "../../hooks/useThemeColors";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 type StyledButtonProps = {
     content: string,

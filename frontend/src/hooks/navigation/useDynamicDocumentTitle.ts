@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, Location } from "react-router-dom";
-import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
-import { multiPageAppMode } from "../config/app.config";
+import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
+import { multiPageAppMode } from "../../config/app.config";
 
 export const useDynamicTitle = (suffix = "WebCourses") => {
   const location: Location = useLocation();

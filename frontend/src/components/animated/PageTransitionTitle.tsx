@@ -3,16 +3,16 @@ import styled from "styled-components";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import { useLocation, Location } from "react-router-dom";
 import { StyledText } from "../themed/StyledText";
-import useLocationChange from "../../hooks/useLocationChange";
+import useLocationChange from "../../hooks/navigation/useLocationChange";
 import { SlideUpDownPageTransitionTitleAnimation } from "../../animations/page-transition-title.animation";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { FC } from "react";
 import { LoginState } from "../../store/slices/login.slice";
-import { useFirstRender } from "../../hooks/useIsFirstRender";
+import { useFirstRender } from "../../hooks/ui/useIsFirstRender";
 import { getFormattedTitle } from "../../utils/components/get-formatted-title";
-import { useThemeColors, ThemeColors } from "../../hooks/useThemeColors";
+import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;
