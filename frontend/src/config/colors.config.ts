@@ -36,6 +36,6 @@ export const colors: Colors = {
         hoverColor: '#003EF8',
         errorMessage: "#D93025",
         successMessage: "#28a745",
-        borderColor: "#5c677d"
+        borderColor: "black"
     }
 }

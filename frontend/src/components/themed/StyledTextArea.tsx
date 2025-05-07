@@ -52,7 +52,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
     startDelay 
 }: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
-    const { textColor, borderColor, hoverColor }: ThemeColors = useThemeColors();
+    const { textColor, hoverColor }: ThemeColors = useThemeColors();
 
     let textAreaCapitalized: string = capitalizeFirstLetter(name);
 
@@ -99,7 +99,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
         <TextAreaWrapper 
         $inputOnFocus={inputOnFocus} 
         $hoverColor={hoverColor} 
-        $borderColor={borderColor} 
+        $borderColor={textColor} 
         $textColor={textColor}
         >
             <label htmlFor={name}>

@@ -5,24 +5,41 @@ import { colors } from "../config/colors.config";
 export type ThemeColors = {
     textColor: string,
     backgroundColor: string,
-    backgroundColorSecondary: string
+    backgroundColorSecondary: string,
+    backgroundColorButton: string,
     borderColor: string,
     hoverColor: string
 }
 
 type useThemeColorsOptions = {
-    colorsInverted?: boolean
-}
+    invertColors?: boolean | Partial<Record<keyof ThemeColors, boolean>>;
+};
+  
 
-export const useThemeColors = ({ colorsInverted }: useThemeColorsOptions = {}): ThemeColors => {
+export const useThemeColors = ({ invertColors = false }: useThemeColorsOptions = {}): ThemeColors => {
     const { mode }: ThemeModeContextProps = useContext(ThemeModeContext);
-    const themeModeToUse : string = colorsInverted ? "light" : "dark";
-
+  
+    const shouldInvertAll = typeof invertColors === "boolean" ? invertColors : false;
+  
+    const resolveColor = (
+      key: keyof ThemeColors,
+      lightValue: string,
+      darkValue: string
+    ): string => {
+      const shouldInvertSpecific = typeof invertColors === "object" ? invertColors[key] : false;
+      const shouldInvert = shouldInvertAll || shouldInvertSpecific;
+      const effectiveMode = shouldInvert ? (mode === "dark" ? "light" : "dark") : mode;
+      return effectiveMode === "dark" ? darkValue : lightValue;
+    };
+  
     return {
-        textColor: mode === themeModeToUse ? colors.dark.textColor : colors.light.textColor,
-        backgroundColor: mode === themeModeToUse  ? colors.dark.backgroundColor : colors.light.backgroundColor,
-        backgroundColorSecondary: mode === themeModeToUse ? colors.dark.backgroundColorSecondary : colors.light.backgroundColorSecondary,
-        borderColor: mode === themeModeToUse ? colors.dark.textColor : colors.light.textColor, 
-        hoverColor: mode === themeModeToUse ? colors.dark.hoverColor : colors.light.hoverColor
+      textColor: resolveColor("textColor", colors.light.textColor, colors.dark.textColor),
+      backgroundColor: resolveColor("backgroundColor", colors.light.backgroundColor, colors.dark.backgroundColor),
+      backgroundColorSecondary: resolveColor("backgroundColorSecondary", colors.light.backgroundColorSecondary, colors.dark.backgroundColorSecondary),
+      backgroundColorButton: resolveColor("backgroundColorButton", colors.light.buttonBackgroundColor, colors.dark.buttonBackgroundColor),
+      borderColor: resolveColor("borderColor", colors.light.borderColor, colors.dark.borderColor),
+      hoverColor: resolveColor("hoverColor", colors.light.hoverColor, colors.dark.hoverColor),
     };
 };
+  
+  

@@ -44,7 +44,7 @@ const Wrapper = styled.div<WrapperProps>`
 export const PageTransitionElement: FC = (): ReactNode => {
     const hasLocationChanged: boolean = useLocationChange();
     useBodyOverflow(hasLocationChanged);
-    const { backgroundColor, backgroundColorSecondary }: ThemeColors = useThemeColors({colorsInverted: true});
+    const { backgroundColor, backgroundColorSecondary }: ThemeColors = useThemeColors({ invertColors: true });
     const currentColor: string = useColorToggle(hasLocationChanged, backgroundColor, backgroundColorSecondary);
 
     if (!hasLocationChanged) {
