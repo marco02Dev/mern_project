@@ -7,7 +7,7 @@ import { isProduction } from './config/system/env.config';
 import http from "http";
 
 if (isProduction) {
-    http.createServer(app).listen(port, '0.0.0.0', () => {
+    https.createServer(sslCredentials, app).listen(port, '0.0.0.0', () => {
         connectToDatabase();
         console.log(`Server is listening on port ${port} in production mode`);
     });

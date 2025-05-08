@@ -7,7 +7,7 @@ const sessionRouter = Router();
 
 sessionRouter.get(
     //User
-    sessionEndpointName, 
+    `/${sessionEndpointName}`, 
     isAuthenticated, 
     checkUserSession
 );

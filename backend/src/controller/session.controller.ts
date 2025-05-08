@@ -6,6 +6,7 @@ import { LoggedUser } from "../types/logged-user.type";
 export const checkUserSession = (req: Request, res: Response): any => {
   if (req.isAuthenticated && req.isAuthenticated()) {
     const user = req.user as LoggedUser;
+    console.log("User is authenticated")
 
     return sendSuccessMessage({
       response: res,

@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
-import react from '@vitejs/plugin-react'
-import mkcert from 'vite-plugin-mkcert'
-import path from 'path'
-import dotenv from 'dotenv'
+import { defineConfig } from 'vite';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import react from '@vitejs/plugin-react';
+import mkcert from 'vite-plugin-mkcert';
+import path from 'path';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -26,7 +26,12 @@ export default defineConfig({
     port: 4000,
   },
   build: {
-    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        admin: path.resolve(__dirname, 'admin_index.html')
+      },
+    },
   },
   define: {
     'process.env': envVariables,
