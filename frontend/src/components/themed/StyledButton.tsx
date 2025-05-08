@@ -77,10 +77,18 @@ type StyledButtonProps = {
     action?: Function,
     courseId?: string,
     type?: string,
-    isInactive?: boolean
+    isInactive?: boolean,
+    reloadDocument?: boolean
 }
 
-export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action, isInactive}: StyledButtonProps): ReactElement => {
+export const StyledButton: FC<StyledButtonProps> = ({
+  content, 
+  to, 
+  unsetShadow, 
+  action, 
+  isInactive,
+  reloadDocument
+}: StyledButtonProps): ReactElement => {
     const { textColor, backgroundColorButton }: ThemeColors = useThemeColors({invertColors: {textColor: true}});
 
     const handleClick = () => {
@@ -88,21 +96,22 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
     };
 
     return <Wrapper $unsetShadow={unsetShadow} onClick={handleClick} >
-        <StyledLink 
-            content={content}
-            to={to}
-            backgroundColor={backgroundColorButton}
-            color={textColor}
-            padding={unsetShadow? 'unsetShadowElement' : "default"}
-            fontWeight={'700'}
-            button
-            size={buttonFontSize}
-            border
-            action
-            inactive={isInactive}
-        />
+      <StyledLink 
+        content={content}
+        to={to}
+        backgroundColor={backgroundColorButton}
+        color={textColor}
+        padding={unsetShadow? 'unsetShadowElement' : "default"}
+        fontWeight={'700'}
+        button
+        size={buttonFontSize}
+        border
+        action
+        inactive={isInactive}
+        reloadDocument={reloadDocument}
+      />
 
-        {!unsetShadow && <StyledShadow />}
+      {!unsetShadow && <StyledShadow />}
 
     </Wrapper>
 }

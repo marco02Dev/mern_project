@@ -11,6 +11,7 @@ import { sizes } from "../../config/sizes.config";
 import { SwitchThemeModeButton } from "../buttons/SwitchThemeModeButton";
 import { LoginAccountAdminButton } from "../buttons/LoginAccountAdminButton";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useLocation, Location } from "react-router-dom";
 
 const Nav = styled.nav`
     width: 100%;
@@ -45,6 +46,9 @@ export const Header: FC = (): ReactElement => {
     const { headerHidden, animation } = useHeaderVisibility();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [desktopButtonsStartDelay, setDesktopButtonStartDelay] = useState<string | undefined>("");
+    const location: Location = useLocation();
+    const path: string = location.pathname;
+    const isAdmin: boolean = path === "/admin";
 
     return (
         <StyledSection 
@@ -79,7 +83,7 @@ export const Header: FC = (): ReactElement => {
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="60%" $middleWrapper>
-                        <NavLinks row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />
+                        {!isAdmin && <NavLinks row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />}
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="20%" $flexEnd>

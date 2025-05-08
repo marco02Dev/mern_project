@@ -17,12 +17,14 @@ export const LoginAccountAdminButton: FC<LoginAccountAdminButtonProps> = ({
     const { isLoggedIn }: { isLoggedIn: boolean } = useSelector((state: RootState) => state.login);
     const user: User | undefined = useSelector((state: RootState) => state.login.user);
     const role: string | undefined = user?.role;
+    const isAdmin: boolean = role === "admin";
 
     return <FadeInWrapper delay={sumStringDelays(delay)}>
         <StyledButton 
             content={isLoggedIn ? role === "customer" ? "Account" : "Admin" : "Login"} 
             to={isLoggedIn ? role === "customer" ? "/account" : "/admin" : "/login"} 
             unsetShadow
+            reloadDocument={isAdmin}
         />
     </FadeInWrapper>
 }

@@ -7,7 +7,6 @@ import { AllowedTextTags } from "../../config/styled-text.config";
 import { buttonInnerStyles, ButtonInnerStylesProps } from "./StyledButton";
 import { sizes } from "../../config/sizes.config";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
-import { multiPageAppMode } from "../../config/app.config";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 export type LinkWrapperProps = {
@@ -86,6 +85,7 @@ type StyledLinkProps = {
     absolute?: boolean,
     action?: boolean,
     inactive?: boolean,
+    reloadDocument?: boolean,
     onClickFunction?: MouseEventHandler,
     onMouseOverFunction?: MouseEventHandler,
     onMouseLeaveFunction?: MouseEventHandler,
@@ -107,6 +107,7 @@ export const StyledLink: FC<StyledLinkProps> = ({
     absolute, 
     action, 
     inactive,
+    reloadDocument,
     onClickFunction,
     onMouseOverFunction,
     onMouseLeaveFunction
@@ -167,7 +168,7 @@ export const StyledLink: FC<StyledLinkProps> = ({
                 }}
                 onMouseOver={onMouseOverFunction ? onMouseOverFunction : undefined}
                 onMouseLeave={onMouseLeaveFunction ? onMouseLeaveFunction : undefined}
-                reloadDocument={multiPageAppMode}
+                reloadDocument={reloadDocument}
             >
                 {textComponent}
             </LinkWrapper>

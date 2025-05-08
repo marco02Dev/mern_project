@@ -6,7 +6,7 @@ import { FontStyles } from './styles/font.style.ts';
 import { GlobalStyles } from './styles/global.style.ts';
 import { Provider } from "react-redux";
 import { store } from './store';
-import AppAdmin from './App_admin.tsx';
+import AdminPanel from './admin/AdminPanel.tsx';
 
 createRoot(document.getElementById('admin')!).render(
   <StrictMode>
@@ -15,7 +15,7 @@ createRoot(document.getElementById('admin')!).render(
     <GlobalStyles />
     <BrowserRouter>
       <Provider store={store}>
-            <AppAdmin />
+            <AdminPanel />
       </Provider>
     </ BrowserRouter>
   </StrictMode>

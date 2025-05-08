@@ -9,7 +9,6 @@ import { SignUpPage } from "./pages/SignUpPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Productpage } from "./pages/ProductPage";
 import { AccountPage } from "./pages/AccountPage";
-import { AdminPage } from "./pages/AdminPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import { Navigate } from "react-router-dom";
@@ -36,13 +35,6 @@ export const Router = (): ReactElement => {
 
             {isLoggedIn && role === "customer" && (
                 <Route path="/account" element={<AccountPage />} />
-            )}
-
-            {isLoggedIn && role === "admin" && (
-                <>
-                    <Route path="/account" element={<Navigate to="/admin" /> } />
-                    <Route path="/admin" element={<AdminPage />} />
-                </>
             )}
 
             <Route path="*" element={<NotFoundPage />} />

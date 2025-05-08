@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { HeroSection } from "../components/sections/HeroSection";
 import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
-import { LogInPage } from "./LogInPage";
+import { LogInPage } from "../pages/LogInPage";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
 import { logOutService } from "../services/log-out.service";

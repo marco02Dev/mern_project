@@ -60,7 +60,11 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
 
                     if(dispatch as Dispatch && dispatch !== undefined && navigateFunction) {
                         dispatch(setLoggedIn(user as LoggedUser));
-                        navigateFunction('/account')
+                        if(role === "admin") {
+                            window.location.href = '/admin';
+                        } else {
+                            navigateFunction('/account')
+                        }
                     }
                 }
             } catch {
