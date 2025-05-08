@@ -1,4 +1,5 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { setLoading, setError } from '../../store/slices/app-state-slice';
 
 type DataWrapper<T> = {
   data: T; 
@@ -6,8 +7,6 @@ type DataWrapper<T> = {
 
 type UseFetchResult<T> = {
   objectData: DataWrapper<T> | null; 
-  loading: boolean;
-  error: string | null;
 };
 
 export const useFetchGet = <T>(
@@ -16,13 +15,10 @@ export const useFetchGet = <T>(
   dataChanged?: boolean
 ): UseFetchResult<T> => {
   const [objectData, setObjectData] = useState<DataWrapper<T> | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const response = await fetch(endpoint, {
           method: 'GET', 
           credentials: 'include', 
@@ -49,5 +45,5 @@ export const useFetchGet = <T>(
     }
   }, [objectData, setProductsNumber]);
 
-  return { objectData, loading, error };
+  return { objectData };
 };

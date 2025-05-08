@@ -1,6 +1,7 @@
 import { ReactElement, FC } from "react";
-import { StyledLink } from "./StyledLink";
 import styled from "styled-components";
+import { StyledLink } from "./StyledLink";
+import { StyledShadow } from "./StyledShadow";
 import { styledButtonHoverAnimation } from "../../animations/styled-button.animation";
 import { buttonFontSize } from "../../config/sizes.config";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
@@ -15,34 +16,22 @@ type StyledButtonProps = {
     isInactive?: boolean
 }
 
-const ButtonWrapper = styled.div<{$unsetShadow?: boolean}>`
+const Wrapper = styled.div<{$unsetShadow?: boolean}>`
     position: relative;
     padding: 0;
     display: ${({$unsetShadow}) => $unsetShadow? "flex" : "inline-block"};
     ${({$unsetShadow}) => !$unsetShadow && styledButtonHoverAnimation};
 `;
 
-const ButtonShadow = styled.div<{$color: string}>`
-    position: absolute;
-    background-color: ${({$color}) => $color};
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    border-bottom: 0.6vh solid ${({$color}) => $color};
-    border-right: 0.6vh solid ${({$color}) => $color};
-    clip-path: inset(0.6vh 0% 0% 0.6vh);
-`;
 
 export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, action, isInactive}: StyledButtonProps): ReactElement => {
-    const { textColor, backgroundColorButton, borderColor }: ThemeColors = useThemeColors({invertColors: {textColor: true}});
+    const { textColor, backgroundColorButton }: ThemeColors = useThemeColors({invertColors: {textColor: true}});
 
     const handleClick = () => {
         if (action) action();
     };
 
-    return <ButtonWrapper $unsetShadow={unsetShadow} onClick={handleClick} >
+    return <Wrapper $unsetShadow={unsetShadow} onClick={handleClick} >
         <StyledLink 
             content={content}
             to={to}
@@ -57,7 +46,7 @@ export const StyledButton: FC<StyledButtonProps> = ({content, to, unsetShadow, a
             inactive={isInactive}
         />
 
-        {!unsetShadow && <ButtonShadow $color={borderColor} />}
+        {!unsetShadow && <StyledShadow />}
 
-    </ButtonWrapper>
+    </Wrapper>
 }

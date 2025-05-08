@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type CoursesDataChangedState = {
+export type CoursesDataChangedState = {
   dataChanged: boolean;
 };
 

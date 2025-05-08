@@ -7,6 +7,12 @@ type SizeCategory = {
     large: SizeValue;
 };
 
+type Button = {
+    small: SizeValue,
+    medium: SizeValue,
+    large: SizeValue
+}
+
 type FontSizes = {
     h1: SizeValue;
     h2: SizeValue;
@@ -16,6 +22,7 @@ type FontSizes = {
     h6: SizeValue;
     span: SizeValue;
     paragraph: SizeCategory;
+    button: Button
 };
 
 type Sizes = {
@@ -40,6 +47,11 @@ export let sizes: Sizes = {
             small: "clamp(2.4vh, 0.5vh + 1vw, 100vw)",  
             medium: "clamp(2.8vh, 0.8vh + 1vw, 100vw)",   
             large: "clamp(2vh, 1vh + 1.5vw, 100vw)" 
+        },
+        button: {
+            small: "2vh",
+            medium: "2.2vh",
+            large: "2.5vh"
         }
     },
     lineHeights: {
@@ -56,6 +68,11 @@ export let sizes: Sizes = {
             medium: "clamp(3.2vh, 1vh + 1.2vw, 100vw)",
             large: "clamp(2.6vh, 1vh + 1.8vw, 100vw)"
         },
+        button: {
+            small: "2vh",
+            medium: "2.2vh",
+            large: "2.5vh"
+        }
     },
     spaces: {
         verySmall: "clamp(1vh, 0.05vh + 0.01vw, 100vw)",

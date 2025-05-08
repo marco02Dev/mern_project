@@ -7,7 +7,6 @@ import { AllowedTextTags } from "../../config/styled-text.config";
 import { sizes } from "../../config/sizes.config";
 import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
-import { buttonFontSize } from "../../config/sizes.config";
 import { multiPageAppMode } from "../../config/app.config";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 interface LinkWrapperProps {
@@ -44,17 +43,17 @@ const wrapperStyles = css<LinkWrapperProps>`
     ` : ""}
     
 
-    ${({ $backgroundColor, $content}) => $backgroundColor && $content ? buttonHoverAnimation : ""};
+    
 
-
-    ${({$padding, $border, $borderColor}) => {
+    ${({$padding, $border, $borderColor, $backgroundColor, $content}) => {
             if($border) {
                 if($padding === "default" ) {
                 return css`
+                    ${() => $backgroundColor && $content ? buttonHoverAnimation : ""};
                     width: auto;
                     display: flex;
                     span {
-                        font-size:  ${() => buttonFontSize};
+                        font-size:  ${() => sizes.fontSizes.button.large};
                         padding-left: clamp(4vh, 1vh + 3vw, 4vh);
                         padding-right: clamp(4vh, 1vh + 3vw, 4vh);
                         padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
@@ -63,6 +62,7 @@ const wrapperStyles = css<LinkWrapperProps>`
                 `;
             } else if($borderColor) {
                 return css`
+                    ${() => $backgroundColor && $content ? buttonHoverAnimation : ""};
                     padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
                     padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
                     padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
@@ -73,12 +73,14 @@ const wrapperStyles = css<LinkWrapperProps>`
                     }
                     
                     span {
-                        font-size: ${() => buttonFontSize};
+                        font-size: ${() => sizes.fontSizes.button.large};
                     }
                 `;
             }
         }
     }};
+
+
     border-color: ${({$border, $borderColor}) => $borderColor && $border ? $borderColor : "unset"};
     border-width: ${({$border}) => $border ? sizes.heights.verySmall : 'unset'};
     border-style: ${({$border}) => $border ? 'solid' : 'unset'};

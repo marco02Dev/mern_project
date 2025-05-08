@@ -40,7 +40,7 @@ export const Router = (): ReactElement => {
 
             {isLoggedIn && role === "admin" && (
                 <>
-                    <Route path="/account" element={<Navigate to="/admin" />} />
+                    <Route path="/account" element={<Navigate to="/admin" /> } />
                     <Route path="/admin" element={<AdminPage />} />
                 </>
             )}

@@ -8,13 +8,14 @@ import { determineUseFetchGetEndpoint } from "../../utils/components/determine-u
 import { endpoints, Endpoints } from "../../config/endpoints.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
+import { CoursesDataChangedState } from "../../store/slices/courses-data-changed.slice";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;
@@ -43,10 +44,10 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   setProductsNumber, 
   categoriesFilter
 }: CoursesLoop): ReactElement => {
-  const { isMobile, isTablet} = useMediaQuery();
+  const { isMobile, isTablet}: UseMediaQuery = useMediaQuery();
   const { backgroundColor }: ThemeColors = useThemeColors();
   const { coursesEndpoint }: Endpoints = endpoints;
-  const { dataChanged } = useSelector((state: RootState) => state.coursesDataChanged);
+  const { dataChanged }: CoursesDataChangedState = useSelector((state: RootState) => state.coursesDataChanged);
   const [categoryFilter, setCategoryFilter] = useState<string | undefined>("");
   const isCategory: string | undefined = categoryFilter ? categoryFilter : category ? category : "";
   let incrementalDelay: string = "100ms";
@@ -58,17 +59,9 @@ export const CoursesLoop: FC<CoursesLoop> = ({
     productsId: purchasedProducts && purchasedProducts
   });
 
-  const { objectData, loading, error } = useFetchGet<Course[]>(endpoint, setProductsNumber, dataChanged);
+  const { objectData } = useFetchGet<Course[]>(endpoint, setProductsNumber, dataChanged);
   const courses = objectData?.data;
   const limitedCourses: Course[] | undefined = courses?.slice(0, limit);
-
-  if (loading) {
-    return <StyledText content="Loading..." tag="h2" />;
-  }
-
-  if (error) {
-    return <StyledText content="Error" tag="h2" />;
-  }
 
   if (!courses) {
       return <StyledText content="No courses available" tag="h3" />;

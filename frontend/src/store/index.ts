@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import appStateReducer from "./slices/app-state-slice";
 import themeModeReducer from "./slices/theme-mode.slice"
 import deviceReducer from "./slices/device.slice";
 import menuReducer from "./slices/menu.slice";
@@ -9,6 +10,7 @@ import coursesDataChangedReducer from "./slices/courses-data-changed.slice";
 
 export const store = configureStore({
   reducer: {
+    appState: appStateReducer,
     themeMode: themeModeReducer,
     menu: menuReducer,
     device: deviceReducer,

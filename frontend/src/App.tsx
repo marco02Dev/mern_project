@@ -9,10 +9,16 @@ import useLocationChange from './hooks/navigation/useLocationChange';
 import { useEffect } from 'react';
 import { useRestoreSession } from './hooks/auth/useRestoreSession';
 import { useDynamicTitle } from './hooks/navigation/useDynamicDocumentTitle';
+import { AppState } from './store/slices/app-state-slice';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
+import { LoadingPage } from './pages/LoadingPage';
 
 function App() {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+  const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
+
   useRestoreSession();
   useDynamicTitle();
 
@@ -21,6 +27,9 @@ function App() {
       window.scrollTo(0, 0);
     }
   }, [hasLocationChanged]);
+
+  if (loading) return <LoadingPage />;
+  if (error) return <div>Error: {error}</div>;
 
   return <>
     {(isMobile || isTablet) && <MobileMenu /> }
