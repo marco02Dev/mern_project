@@ -5,10 +5,10 @@ import { RootState } from "../store";
 import { HeroSection } from "../components/sections/HeroSection";
 import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
 import { LogInPage } from "../pages/LogInPage";
-import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
 import { TextSection } from "../components/sections/TextSection";
 import { logOutService } from "../services/log-out.service";
 import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
+import { AdminProductManagement } from "./AdminProductMenagement";
 
 export const AdminPage: FC = (): ReactElement => {
     const login = useSelector((state: RootState) => state.login);
@@ -30,7 +30,7 @@ export const AdminPage: FC = (): ReactElement => {
             />
 
             <UpdateProductFormContextProvider>
-                <LargeProductsPreviewSection
+                <AdminProductManagement
                     limit={6}
                     createProducts
                     latest

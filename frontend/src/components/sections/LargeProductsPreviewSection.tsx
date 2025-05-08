@@ -1,16 +1,9 @@
-import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
+import { ReactElement, FC, useState } from "react";
 import { CoursesLoop } from "../loops/CoursesLoop";
 import { StyledSection } from "../themed/StyledSection";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { LoginState } from "../../store/slices/login.slice";
-import { CreateProductForm } from "../forms/CreateProductForm";
-import { UpdateProductForm } from "../forms/UpdateProductForm";
-import { useLocation } from "react-router-dom";
-import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "../buttons/LargeProductsPreviewButtons";
 
@@ -36,30 +29,7 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
     const [createProductForm, setCrateProductForm] = useState<boolean>(false);
     const [productCreated, setProductCreated] = useState<boolean>(false);
-
     const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
-    const login: LoginState = useSelector((state: RootState) => state.login);
-    const { isLoggedIn } = login;
-    const { user } = login;
-    const location = useLocation();
-    const isAdminPage: boolean = location.pathname.startsWith("/admin");
-
-    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
-
-    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
-    let updateProductFormState: UpdateProductFormContextStateObject = {
-        state: false,
-        courseId: ""
-    };
-
-    if(isLoggedIn && isAdminPage && isAdmin) {
-        const updateProductFormContext: any = useContext(UpdateProductFormContext);
-        if(UpdateProductFormContext !== undefined) {
-            const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
-            setUpdateProductFormSetState = setUpdateProductForm;
-            updateProductFormState = updateProductForm;
-        }
-    }
 
     useBodyOverflow(createProductForm);
     
@@ -90,15 +60,6 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
 
             <StyledSpace large vertical/>
         </ StyledSection>  
-
-        { createProductForm && isAdmin && createProducts && <CreateProductForm 
-            setCrateProductForm={setCrateProductForm}
-            setProductCreated={setProductCreated}
-        />}
-
-        { isAdmin && createProducts && updateProductFormState.state && <UpdateProductForm 
-            setUpdateProductFormSetState={setUpdateProductFormSetState}
-        />}
     </>
 
 }
