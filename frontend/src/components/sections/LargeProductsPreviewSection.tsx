@@ -4,7 +4,6 @@ import { StyledSection } from "../themed/StyledSection";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
-import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "../buttons/LargeProductsPreviewButtons";
 
 type LargeProductsPreviewSectionProps = {
@@ -27,12 +26,8 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
 }: LargeProductsPreviewSectionProps): ReactElement => {
     const [products, setProducts] = useState<number>(limit);
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
-    const [createProductForm, setCrateProductForm] = useState<boolean>(false);
-    const [productCreated, setProductCreated] = useState<boolean>(false);
     const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
 
-    useBodyOverflow(createProductForm);
-    
     return <>
         <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
             <StyledSpace large vertical/>
@@ -52,9 +47,6 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
                 productsNumber={productsNumber}
                 createProducts={createProducts}
                 products={products}
-                productCreated={productCreated}
-                setProductCreated={setProductCreated}
-                setCrateProductForm={setCrateProductForm}
                 setProducts={setProducts}
             />
 

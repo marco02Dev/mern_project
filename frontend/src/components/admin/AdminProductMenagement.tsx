@@ -1,18 +1,18 @@
 import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
-import { CoursesLoop } from "../components/loops/CoursesLoop";
-import { StyledSection } from "../components/themed/StyledSection";
-import { sizes } from "../config/sizes.config";
-import { StyledSpace } from "../components/themed/StyledSpace";
-import { usePurchasedProducts } from "../hooks/data/usePurchasedProducts";
+import { CoursesLoop } from "../loops/CoursesLoop";
+import { StyledSection } from "../themed/StyledSection";
+import { sizes } from "../../config/sizes.config";
+import { StyledSpace } from "../themed/StyledSpace";
+import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
-import { LoginState } from "../store/slices/login.slice";
-import { CreateProductForm } from "../components/forms/CreateProductForm";
-import { UpdateProductForm } from "../components/forms/UpdateProductForm";
+import { RootState } from "../../store";
+import { LoginState } from "../../store/slices/login.slice";
+import { CreateProductForm } from "../forms/CreateProductForm";
+import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
-import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdateProductFormContextProps } from "../contexts/UpdateProductFormProvider";
-import { useBodyOverflow } from "../hooks/ui/useBodyOverflow";
-import { LargeProductsPreviewButtons } from "../components/buttons/LargeProductsPreviewButtons";
+import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
+import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
+import { LargeProductsPreviewButtons } from "../buttons/LargeProductsPreviewButtons";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,

@@ -1,4 +1,4 @@
-import { AdminPage } from './AdminPage';
+import { AdminPage } from '../pages/AdminPage';
 import Layout from '../layout';
 
 function AdminPanel() {

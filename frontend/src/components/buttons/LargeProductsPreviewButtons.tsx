@@ -22,8 +22,8 @@ type LargeProductsPreviewButtonsProps = {
     createProducts?: boolean,
     products: number,
     productCreated?: boolean,
-    setProductCreated: Dispatch<SetStateAction<boolean>>,
-    setCrateProductForm: Dispatch<SetStateAction<boolean>>
+    setProductCreated?: Dispatch<SetStateAction<boolean>>,
+    setCrateProductForm?: Dispatch<SetStateAction<boolean>>
 }
 
 
