@@ -11,7 +11,7 @@ export const sendErrorWhenHoneyPotIsFilled = ({
     const honeyPot: FormDataEntryValue | null = formData.get("website");
     const { badRequest }: ErrorMessages = errorMessages;
     if (honeyPot !== null && honeyPot.toString().trim() !== "") {
-        setErrorMessage && setErrorMessage(badRequest); 
+        if(setErrorMessage) setErrorMessage(badRequest); 
         throw new Error(badRequest);        
     }
 }

@@ -54,7 +54,7 @@ export const StyledTextArea: FC<StyledTextAreaProps> = ({
 }: StyledTextAreaProps): ReactElement => {
     const [inputOnFocus, setInputOnFocus] = useState<boolean>(false);
     const { textColor, hoverColor }: ThemeColors = useThemeColors();
-    let textAreaCapitalized: string = capitalizeFirstLetter(name);
+    const textAreaCapitalized: string = capitalizeFirstLetter(name);
     const { text, rows, isMaxedOut, handleInput, handleKeyDown, textAreaRef }
     : UseAutoResizingTextArea = useAutoResizingTextArea({ lineLimit: linesLimit });
 

@@ -38,7 +38,7 @@ type HeroSectionProps = {
     description?: string;
     buttonLabel?: string;
     buttonLink?: string;
-    buttonAction?: Function;
+    buttonAction?: (args: { dispatch: Dispatch, navigate: NavigateFunction }) => void;
     imageSrc?: string;
     imageAlt?: string;
     secondaryColor?: boolean;

@@ -29,7 +29,7 @@ export const updateCourseService = async (
 
         console.log(response);
 
-        setUpdateProductFormSetState && setUpdateProductFormSetState({
+        if(setUpdateProductFormSetState) setUpdateProductFormSetState({
             state: false,
             courseId: "updated"
         });

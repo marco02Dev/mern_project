@@ -28,7 +28,7 @@ export const initializeSession = createAsyncThunk(
 
       const data = await response.json();
       return data.nonce as string;
-    } catch (error: any) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }

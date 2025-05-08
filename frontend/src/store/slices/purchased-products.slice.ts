@@ -7,7 +7,7 @@ export const fetchPurchasedProducts = createAsyncThunk(
     try {
       const products = await getUserPurchasedProducts({ _id });
       return products;
-    } catch (error) {
+    } catch {
       return thunkAPI.rejectWithValue(null);
     }
   }

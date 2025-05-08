@@ -10,7 +10,7 @@ import { linkHoverAnimation } from "../../animations/styled-link.animation";
 import { multiPageAppMode } from "../../config/app.config";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
-type LinkWrapperProps = {
+export type LinkWrapperProps = {
     $color: string,
     $hoverColor: string,
     $padding?: string,

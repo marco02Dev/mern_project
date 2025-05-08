@@ -11,7 +11,7 @@ let delays: (string | undefined)[] = [];
 if (
     args.length > 1 &&
     typeof args[args.length - 1] === "object" &&
-    "increment" in (args[args.length - 1] as any)
+    "increment" in (args[args.length - 1] as object)
 ) {
     increment = (args.pop() as DelayIncrementOptions).increment;
 }

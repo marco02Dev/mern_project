@@ -1,4 +1,4 @@
-import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState} from "react";
+import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, MouseEventHandler} from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";
@@ -54,7 +54,7 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
 
 
     if(isLoggedIn && isAdminPage && isAdmin) {
-        const updateProductFormContext: any = useContext(UpdateProductFormContext);
+        const updateProductFormContext = useContext(UpdateProductFormContext);
         if(UpdateProductFormContext !== undefined) {
             const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
             setUpdateProductFormSetState = setUpdateProductForm;
@@ -62,7 +62,7 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
         }
     }
 
-    const handleUpdateButtonClick: Function = () => {
+    const handleUpdateButtonClick: MouseEventHandler = () => {
         if (setUpdateProductFormSetState) {
             setUpdateProductFormSetState({
                 state: true,

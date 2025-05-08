@@ -1,4 +1,4 @@
-import { FC, ReactElement, useRef } from "react";
+import { FC, MouseEventHandler, ReactElement, useRef } from "react";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ export const DiscoverCourseButton: FC<DiscoverCourseButtonProps> = ({
     heroImage
 }: DiscoverCourseButtonProps): ReactElement => {
     const hiddenLinkRef = useRef<HTMLAnchorElement | null>(null);
-    const handleDiscoverButtonClick: Function = () => {
+    const handleDiscoverButtonClick: MouseEventHandler = () => {
         if (hiddenLinkRef.current) {
           hiddenLinkRef.current.click();
         }

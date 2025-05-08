@@ -56,7 +56,7 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
             });
 
             if (!loginResponse.ok) {
-                setErrorMessage && setErrorMessage("Signup succeeded but login failed.");
+                if(setErrorMessage) setErrorMessage("Signup succeeded but login failed.");
                 throw new Error("Signup succeeded but login failed.");
             }
 
@@ -71,12 +71,13 @@ export const signUpService: FormService = async (event, dispatch, navigateFuncti
             };
 
             if (dispatch as Dispatch && navigateFunction) {
-                dispatch && dispatch(setLoggedIn(fullUser));
+                if(dispatch) dispatch(setLoggedIn(fullUser));
                 navigateFunction('/account');
             }
 
         } catch (error) {
-            setErrorMessage && setErrorMessage("An error occurred during signup or login.");
+            console.error(error);
+            if(setErrorMessage) setErrorMessage("An error occurred during signup or login.");
             throw new Error("An error occurred during signup or login.");
         }
 

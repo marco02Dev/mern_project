@@ -32,7 +32,7 @@ export const handleErrorResponse: HandleErrorResponse = async ({statusCode, setE
                 break;
         }
 
-        setErrorMessage && setErrorMessage(errorMessage);
+        if(setErrorMessage) setErrorMessage(errorMessage);
 
         throw new Error(errorMessage);
     }

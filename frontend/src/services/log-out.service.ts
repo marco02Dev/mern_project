@@ -18,9 +18,10 @@ export const logOutService: Service = async ({ dispatch, navigate }) => {
 
         destroySessionCookie();
 
-        dispatch && dispatch(setLoggedOut());
-        navigate && navigate("/login");
+        if(dispatch) dispatch(setLoggedOut());
+        if(navigate) navigate("/login");
     } catch (error) {
+        console.error(error);
         handleErrorResponse({ statusCode: 500 });
     }
 };

@@ -14,11 +14,7 @@ export const isUserDataInvalid = (user: User): boolean => {
             isStrongPassword = validatePassword(password);
         }
 
-        let isInvalid: boolean = isMissingData || !isString(name) || !isString(surname) || !isEmail || !isStrongPassword;
-
-        if(isInvalid) {
-            "User data is invalid"
-        }
+        const isInvalid: boolean = isMissingData || !isString(name) || !isString(surname) || !isEmail || !isStrongPassword;
 
         return isInvalid;
     } else {

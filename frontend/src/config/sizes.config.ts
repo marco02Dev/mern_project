@@ -13,7 +13,7 @@ type Button = {
     large: SizeValue
 }
 
-type FontSizes = {
+export type FontSizes = {
     h1: SizeValue;
     h2: SizeValue;
     h3: SizeValue;

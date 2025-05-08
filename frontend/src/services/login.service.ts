@@ -49,7 +49,7 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                 });
                 
                 if(!response.ok) {
-                    setErrorMessage && setErrorMessage("Login failed. Please check your credentials and try again.");
+                    if(setErrorMessage) setErrorMessage("Login failed. Please check your credentials and try again.");
                     throw new Error("Login failed. Please check your credentials and try again.");
                 } else {
                     const json: any = await response.json();
@@ -64,7 +64,7 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                     }
                 }
             } catch {
-                setErrorMessage && setErrorMessage("Login failed. Please check your credentials and try again.");
+                if(setErrorMessage) setErrorMessage("Login failed. Please check your credentials and try again.");
                 throw new Error("Login failed. Please check your credentials and try again.");
             }
 

@@ -1,5 +1,6 @@
 import { css, RuleSet, keyframes } from "styled-components";
 import Keyframes from "styled-components/dist/models/Keyframes";
+import { LinkWrapperProps } from "../components/themed/StyledLink";
 
 export const LineMoveBackIn: Keyframes = keyframes`
   0% {
@@ -19,15 +20,15 @@ export const lineMoveOut: Keyframes = keyframes`
   };
 `;
 
-export const linkHoverAnimation: RuleSet<{$hoverColor: string, $button: string} | any> = css<{$hoverColor: string, $button: string}>`
-        &:hover {
-        color: ${({$hoverColor}) => $hoverColor};
+export const linkHoverAnimation: RuleSet<LinkWrapperProps> = css<LinkWrapperProps>`
+  &:hover {
+    color: ${({$hoverColor}) => $hoverColor};
 
-        ${({$button, $hoverColor}) => !$button && css`
-            &::after {
-                animation: ${lineMoveOut} 0.2s ease-in-out, ${LineMoveBackIn} 0.2s ease-in-out 0.2s;
-                background-color: ${$hoverColor};
-            }
-        `};
-    }
+    ${({$button, $hoverColor}) => !$button && css`
+        &::after {
+            animation: ${lineMoveOut} 0.2s ease-in-out, ${LineMoveBackIn} 0.2s ease-in-out 0.2s;
+            background-color: ${$hoverColor};
+        }
+    `};
+  }
 `;

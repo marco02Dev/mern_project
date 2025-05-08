@@ -1,4 +1,5 @@
 import { sizes } from "../../config/sizes.config";
+import { FontSizes } from "../../config/sizes.config";
 
 type DetermineTextFontSizeAndLineHeightData = {
     tag: string,
@@ -21,8 +22,8 @@ export const determineTextFontSizeAndLineHeight = ({
     verySmallParagraph
 }: DetermineTextFontSizeAndLineHeightData): StyledTextSizes => {
     const value: string = size ?? tag;
-    let fontSize: any = sizes.fontSizes.paragraph.medium;
-    let autoLineHeight: any = sizes.lineHeights.paragraph.medium;
+    let fontSize: string = sizes.fontSizes.paragraph.medium;
+    let autoLineHeight: string = sizes.lineHeights.paragraph.medium;
 
     if (value === "p") {
         if (smallParagraph) {
@@ -38,9 +39,12 @@ export const determineTextFontSizeAndLineHeight = ({
             fontSize = sizes.fontSizes.paragraph.medium;
             autoLineHeight = sizes.lineHeights.paragraph.medium;
         }
+    } else if (value === "button") {
+        fontSize = sizes.fontSizes.button.medium;
+        autoLineHeight = sizes.lineHeights.button.medium;
     } else {
-        fontSize = sizes.fontSizes[value as keyof typeof sizes.fontSizes] ?? fontSize;
-        autoLineHeight = sizes.lineHeights[value as keyof typeof sizes.lineHeights] ?? autoLineHeight;
+        fontSize = sizes.fontSizes[value as Exclude<keyof FontSizes, "paragraph" | "button">] ?? fontSize;
+        autoLineHeight = sizes.lineHeights[value as Exclude<keyof FontSizes, "paragraph" | "button">] ?? autoLineHeight;
     }
 
     return {
