@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement } from "react";
+import { JSX, MouseEventHandler, ReactElement } from "react";
 import { FC } from "react";
 import { StyledText } from "./StyledText";
 import { Link } from "react-router-dom";
@@ -54,7 +54,6 @@ const wrapperStyles = css<LinkWrapperProps>`
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                margin-top: ${$afterHeight};
             };
         `};
 
@@ -114,75 +113,65 @@ export const StyledLink: FC<StyledLinkProps> = ({
 }: StyledLinkProps): ReactElement => {
     const { textColor, borderColor, hoverColor }: ThemeColors = useThemeColors();
     const defaultTag: AllowedTextTags = tag ? tag : "span";
-    let colorMode: string = textColor;
+    const colorMode: string = color ? color : textColor;
     let islogoHover: string = logo && absolute ? hoverColor : "";
 
-    if(color) {
-        colorMode = color;
-    }
+    const commonProps: LinkWrapperProps & ButtonInnerStylesProps = {
+        $color: colorMode,
+        $hoverColor: hoverColor,
+        $backgroundColor: backgroundColor,
+        $padding: padding,
+        $button: button,
+        $afterHeight: sizes.heights.verySmall,
+        $border: border,
+        $borderColor: borderColor,
+        $content: content,
+        $size: size ? size : sizes.fontSizes.paragraph.medium,
+        $logo: logo,
+        $absolute: absolute
+    };
 
-    if(action && !to) {
-        return <DivWrapper 
-        $color={colorMode} 
-        $hoverColor={hoverColor} 
-        as="div"
-        $backgroundColor={backgroundColor}
-        $padding={padding}
-        $button={button}
-        $afterHeight={sizes.heights.verySmall}
-        $border={border}
-        $borderColor={borderColor}
-        $content={content}
-        $size={size ? size : sizes.fontSizes.paragraph.medium}
-        $logo={logo}
-        $absolute={absolute}
-        $action={action}
-        >
-            <StyledText 
+    const textComponent: JSX.Element = (
+        <StyledText
             tag={defaultTag}
             content={content}
             size={size}
             fontWeight={fontWeight}
             smallParagraph
-            color={islogoHover}   
+            color={islogoHover}
             lineHeight={sizes.lineHeights.h5}
-            />
-        </DivWrapper>   
-        } else {
-        return <LinkWrapper 
-        $color={colorMode} 
-        $hoverColor={hoverColor} 
-        to={to as string} 
-        $backgroundColor={backgroundColor}
-        $padding={padding}
-        $button={button}
-        $afterHeight={sizes.heights.verySmall}
-        $border={border}
-        $borderColor={borderColor}
-        $content={content}
-        $size={size ? size : sizes.fontSizes.paragraph.medium}
-        $logo={logo}
-        $absolute={absolute}
-        $inactive={inactive}
-        tabIndex={inactive ? -1 : 0}
-        onClick={onClickFunction ? onClickFunction : (e) => {
-            if (inactive) {
-            e.preventDefault();
-            }
-        }}
-        onMouseOver={onMouseOverFunction ? onMouseOverFunction : undefined} 
-        onMouseLeave={onMouseLeaveFunction ? onMouseLeaveFunction : undefined} 
-        reloadDocument={multiPageAppMode}
-        >
-            <StyledText 
-                tag={defaultTag}
-                content={content}
-                size={size}
-                fontWeight={fontWeight}
-                smallParagraph
-                color={islogoHover}   
-                lineHeight={sizes.lineHeights.h5}
-            />
-        </LinkWrapper>   
+        />
+    );
+
+    if (action && !to) {
+        return (
+            <DivWrapper
+                {...commonProps}
+                as="div"
+                $action={action}
+            >
+                {textComponent}
+            </DivWrapper>
+        );
+    } else {
+        return (
+            <LinkWrapper
+                {...commonProps}
+                to={to as string}
+                $inactive={inactive}
+                tabIndex={inactive ? -1 : 0}
+                onClick={onClickFunction ? onClickFunction : (e) => {
+                    if (inactive) {
+                        e.preventDefault();
+                    }
+                }}
+                onMouseOver={onMouseOverFunction ? onMouseOverFunction : undefined}
+                onMouseLeave={onMouseLeaveFunction ? onMouseLeaveFunction : undefined}
+                reloadDocument={multiPageAppMode}
+            >
+                {textComponent}
+            </LinkWrapper>
+        );
     }
-}
+};
+

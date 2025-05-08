@@ -56,7 +56,7 @@ type FormProps = {
     setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormContextStateObject>>;
 };
 
-export const Form: FC<FormProps> = ({
+export const GenerateForm: FC<FormProps> = ({
     title,
     fields,
     textArea,

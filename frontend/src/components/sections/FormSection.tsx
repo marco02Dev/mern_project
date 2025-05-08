@@ -4,7 +4,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { sizes } from "../../config/sizes.config";
-import { Form } from "../forms/GenerateForm";
+import { GenerateForm } from "../forms/GenerateForm";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "../../types/service.type";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
@@ -68,7 +68,7 @@ export const FormSection: FC<FormSectionProps> = ({
 
             {isMobile && <StyledSpace large vertical />}
 
-            <Form 
+            <GenerateForm 
                 formWidth={formWidth}
                 title={title}
                 fields={fields}
