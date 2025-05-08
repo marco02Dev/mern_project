@@ -4,31 +4,27 @@ import { StyledText } from "./StyledText";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { AllowedTextTags } from "../../config/styled-text.config";
+import { buttonInnerStyles, ButtonInnerStylesProps } from "./StyledButton";
 import { sizes } from "../../config/sizes.config";
-import { buttonHoverAnimation } from "../../animations/styled-button.animation";
 import { linkHoverAnimation } from "../../animations/styled-link.animation";
 import { multiPageAppMode } from "../../config/app.config";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
-interface LinkWrapperProps {
+
+type LinkWrapperProps = {
     $color: string,
     $hoverColor: string,
-    $backgroundColor?: string,
     $padding?: string,
     $button?: boolean,
     $afterHeight: string; 
-    $border?: boolean;
-    $borderColor?: string;
-    $content: string;
     $size: string;
     $logo?: boolean;
     $absolute?: boolean;
     $action?: boolean;
     $inactive?: boolean;
-}
+} & ButtonInnerStylesProps;
 
 const wrapperStyles = css<LinkWrapperProps>`
     color: ${({$color}) => $color};
-    background-color: ${({$backgroundColor}) => $backgroundColor ? $backgroundColor : 'unset'};
     display: inline-block;
     cursor: ${({$inactive}) => $inactive ? "unset" : "pointer"};
     pointer-events: ${({$inactive}) => $inactive ? "none" : "auto"};
@@ -42,48 +38,7 @@ const wrapperStyles = css<LinkWrapperProps>`
         top: 0;
     ` : ""}
     
-
-    
-
-    ${({$padding, $border, $borderColor, $backgroundColor, $content}) => {
-            if($border) {
-                if($padding === "default" ) {
-                return css`
-                    ${() => $backgroundColor && $content ? buttonHoverAnimation : ""};
-                    width: auto;
-                    display: flex;
-                    span {
-                        font-size:  ${() => sizes.fontSizes.button.large};
-                        padding-left: clamp(4vh, 1vh + 3vw, 4vh);
-                        padding-right: clamp(4vh, 1vh + 3vw, 4vh);
-                        padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
-                        padding-bottom: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
-                    }
-                `;
-            } else if($borderColor) {
-                return css`
-                    ${() => $backgroundColor && $content ? buttonHoverAnimation : ""};
-                    padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
-                    padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
-                    padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
-                    padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
-
-                    ${() => `border: solid ${$borderColor} !important;
-                        border-width: ${sizes.heights.verySmall} !important;`
-                    }
-                    
-                    span {
-                        font-size: ${() => sizes.fontSizes.button.large};
-                    }
-                `;
-            }
-        }
-    }};
-
-
-    border-color: ${({$border, $borderColor}) => $borderColor && $border ? $borderColor : "unset"};
-    border-width: ${({$border}) => $border ? sizes.heights.verySmall : 'unset'};
-    border-style: ${({$border}) => $border ? 'solid' : 'unset'};
+    ${({$button}) => $button && buttonInnerStyles}
     z-index: 1;
 
     span {
