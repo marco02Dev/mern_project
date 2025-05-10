@@ -72,8 +72,12 @@ export const Header: FC = (): ReactElement => {
 
                     <MobileNavInnerWrapper $justifyEnd> 
                         <SwitchThemeModeButton delay={"200ms"}/>
-                        <StyledSpace horizontal small />
-                        <StyledMobileMenu delay={"400ms"} /> 
+
+                        {!isAdmin && <>
+                            <StyledSpace horizontal small />
+                            <StyledMobileMenu delay={"400ms"} />
+                        </>}
+
                     </MobileNavInnerWrapper>
                 </Nav>
             ) : (
