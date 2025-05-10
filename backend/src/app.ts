@@ -1,5 +1,5 @@
 import express from "express";
-import { isProduction } from "./config/system/env.config";
+import { isProduction, isRender } from "./config/system/env.config";
 import { memoryLogger } from "./middlewares/performance/memory-logger.middleware";
 import cors from 'cors';
 import { corsOptions } from "./config/libraries/cors-options.config";
@@ -15,6 +15,10 @@ import contactRouter from "./routes/contact.route";
 import frontendRouter from "./routes/front-end.route";
 
 const app = express();
+
+if(isProduction && isRender) {
+  app.set("trust proxy", 1);
+}
 
 if(!isProduction) {
   app.use(memoryLogger);

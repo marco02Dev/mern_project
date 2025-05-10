@@ -7,6 +7,7 @@ const env = process.env;
 const node_env: string = env.NODE_ENV || "dev";
 
 export const isProduction: boolean = node_env === "production";
+export const isRender: boolean = env.RENDER === "true";
 
 export const databaseUri: string = env.DATABASE_URI!;
 export const secret: string = env.SECRET!;
