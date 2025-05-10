@@ -1,23 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../store";
-import { User } from "../../types/user.types";
+import { AppDispatch, RootState } from "../../store";
 import { fetchPurchasedProducts } from "../../store/slices/purchased-products.slice";
-import { LoginState } from "../../store/slices/login.slice";
+import { UseAuth, useAuth } from "../auth/useAuth";
 
 export const usePurchasedProducts = (shouldFetch: boolean = true) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { isLoggedIn, userData }: UseAuth = useAuth();
 
-  const { isLoggedIn, user }: LoginState = useSelector((state: RootState) => state.login);
-  const _id: string = (user as User)?._id ?? "";
-
-  const productsPurchased = useSelector((state: RootState) => state.purchasedProducts.products);
+  const productsPurchased = useSelector(
+    (state: RootState) => state.purchasedProducts.products
+  );
 
   useEffect(() => {
-    if (isLoggedIn && _id && shouldFetch) {
-      dispatch(fetchPurchasedProducts(_id));
+    if (isLoggedIn && userData._id && shouldFetch) {
+      dispatch(fetchPurchasedProducts(userData._id));
     }
-  }, [isLoggedIn, _id, shouldFetch, dispatch]);
+  }, [isLoggedIn, userData._id, shouldFetch, dispatch]);
 
-  return { productsPurchased, isLoggedIn, _id };
+  return { productsPurchased, isLoggedIn, _id: userData._id };
 };

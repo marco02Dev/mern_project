@@ -1,12 +1,10 @@
 import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
+import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
 import { CoursesLoop } from "../loops/CoursesLoop";
 import { StyledSection } from "../themed/StyledSection";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { LoginState } from "../../store/slices/login.slice";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
@@ -36,15 +34,12 @@ export const AdminProductManagement: FC<LargeProductsPreviewSectionProps> = ({
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
     const [createProductForm, setCrateProductForm] = useState<boolean>(false);
     const [productCreated, setProductCreated] = useState<boolean>(false);
-
     const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
-    const login: LoginState = useSelector((state: RootState) => state.login);
-    const { isLoggedIn } = login;
-    const { user } = login;
+    const {isLoggedIn, isAdmin }: UseAuth = useAuth();
+
     const location = useLocation();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
 
-    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
 
     let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
     let updateProductFormState: UpdateProductFormContextStateObject = {

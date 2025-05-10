@@ -1,5 +1,6 @@
 import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, MouseEventHandler} from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
@@ -7,10 +8,7 @@ import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { colors } from "../../config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store";
-import { LoginState } from "../../store/slices/login.slice";
-import { User } from "../../types/user.types";
+import { useDispatch } from "react-redux";
 import { useLocation, Location } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
@@ -45,11 +43,7 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
         courseId: ""
     }
 
-
-    const login: LoginState = useSelector((state: RootState) => state.login);
-    const { isLoggedIn }: {isLoggedIn: boolean} = login;
-    const { user }: { user?: User } = login;
-    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
+    const { isLoggedIn, isAdmin }: UseAuth = useAuth();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
 
 

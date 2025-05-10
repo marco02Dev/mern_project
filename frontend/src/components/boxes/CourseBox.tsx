@@ -6,16 +6,13 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { StyledBox } from "../themed/StyledBox";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { LoginState } from "../../store/slices/login.slice";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
 import { useLocation, Location } from "react-router-dom";
-import { User } from "../../types/user.types";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 import { DiscoverCourseButton } from "../buttons/DiscoverCourseButton";
 import { defaultDelayIncrement } from "../../config/animation.config";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 import { UseMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { useAuth, UseAuth } from "../../hooks/auth/useAuth";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -95,15 +92,11 @@ export const CourseBox = ({
     delay,
     heroImage
 }: CourseBoxProps): ReactElement => {
-    const login: LoginState = useSelector((state: RootState) => state.login);
     const location: Location = useLocation();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const innerDelay: string = sumStringDelays(delay, defaultDelayIncrement);
-
-    const { isLoggedIn }: {isLoggedIn: boolean} = login;
-    const { user }: { user?: User } = login;
+    const { isLoggedIn, isAdmin }: UseAuth = useAuth();
     const isAdminPage: boolean = location.pathname.startsWith("/admin");
-    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
 
     const desktopSize: string = '32%';
     const tabletSize: string = '48%';

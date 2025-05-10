@@ -3,13 +3,11 @@ import { StyledLink } from '../themed/StyledLink';
 import { StyledSpace } from '../themed/StyledSpace';
 import { FadeInWrapper } from '../animated/FadeInWrapper';
 import { UseMediaQuery, useMediaQuery } from '../../hooks/ui/useMediaQuery';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { useLocation, Location } from 'react-router-dom';
 import { useUnsetActiveColor } from '../../hooks/ui/useUnsetActiveColor';
 import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
-import { LoginState } from '../../store/slices/login.slice';
 import { ThemeColors, useThemeColors } from '../../hooks/theme/useThemeColors';
+import { UseAuth, useAuth } from '../../hooks/auth/useAuth';
 
 type NavLinksLoopProps = {
   links: { name: string; to: string }[];
@@ -23,7 +21,7 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
   setDesktopButtonStartDelay
 }: NavLinksLoopProps) => {
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
-  const { isLoggedIn }: LoginState = useSelector((state: RootState) => state.login);
+  const { isLoggedIn }: UseAuth = useAuth();
   const { hoverColor }: ThemeColors = useThemeColors()
   const location: Location = useLocation();
   const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();

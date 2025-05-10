@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
+import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import { useLocation, Location } from "react-router-dom";
 import { StyledText } from "../themed/StyledText";
@@ -9,7 +10,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { FC } from "react";
-import { LoginState } from "../../store/slices/login.slice";
 import { useFirstRender } from "../../hooks/ui/useIsFirstRender";
 import { getPageTransitionFormattedTitle } from "../../utils/components/get-formatted-title";
 import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
@@ -39,8 +39,8 @@ export const PageTransitionTitle: FC = (): ReactNode => {
     const is404: boolean = useSelector((state: RootState) => state.routeStatus.is404);
     const { isMobile }: UseMediaQuery = useMediaQuery();
     const hasLocationChanged: boolean = useLocationChange();
-    const { isLoggedIn, user }: LoginState = useSelector((state: RootState) => state.login);
-    const { backgroundColor}: ThemeColors = useThemeColors();
+    const { isLoggedIn, userData }: UseAuth = useAuth();
+    const { backgroundColor }: ThemeColors = useThemeColors();
     const location: Location = useLocation();
     const pathName: string = location.pathname;
     const isFirstRender: boolean = useFirstRender(pathName);
@@ -48,7 +48,7 @@ export const PageTransitionTitle: FC = (): ReactNode => {
         pathName: pathName, 
         isFirstRender: isFirstRender, 
         isLoggedIn: isLoggedIn, 
-        userName: user?.name as string,
+        userName: userData?.name as string,
         isMobile: isMobile
     });
 

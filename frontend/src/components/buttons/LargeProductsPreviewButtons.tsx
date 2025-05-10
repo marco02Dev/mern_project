@@ -1,14 +1,12 @@
 import { FC, ReactElement, SetStateAction, Dispatch} from "react";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
 import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
 import { colors } from "../../config/colors.config";
-import { useSelector } from "react-redux";
-import { LoginState } from "../../store/slices/login.slice";
-import { RootState } from "../../store";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 
 const Wrapper = styled.div`
     display: flex;
@@ -37,10 +35,7 @@ export const LargeProductsPreviewButtons: FC<LargeProductsPreviewButtonsProps> =
     setProducts
 }): ReactElement => {
     const { isMobile }: UseMediaQuery = useMediaQuery();
-    const login: LoginState = useSelector((state: RootState) => state.login);
-    const { isLoggedIn } = login;
-    const { user } = login;
-    const isAdmin: boolean = isLoggedIn && user?.role === "admin";
+    const { isLoggedIn, isAdmin }: UseAuth = useAuth();
     const thereAreProductsToShow: boolean = productsNumber !== undefined && products <= productsNumber;
 
     return  <Wrapper>
@@ -50,7 +45,7 @@ export const LargeProductsPreviewButtons: FC<LargeProductsPreviewButtonsProps> =
     
         {(isAdmin || thereAreProductsToShow) && <StyledSpace small horizontal />}
     
-        {isAdmin && createProducts && <FadeInWrapper>
+        {isLoggedIn && isAdmin && createProducts && <FadeInWrapper>
             <a href="#create-course-form-section" style={{textDecoration: "none"}}>
                 <StyledButton unsetShadow content="Create course" action={(): void => {
                     setCrateProductForm(true);
