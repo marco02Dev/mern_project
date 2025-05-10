@@ -1,4 +1,4 @@
-import { Dispatch, FC, ReactElement, SetStateAction, useState } from "react";
+import { FC, ReactElement } from "react";
 import { StyledSection } from "../themed/StyledSection";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
@@ -7,7 +7,6 @@ import { sizes } from "../../config/sizes.config";
 import { GenerateForm } from "../forms/GenerateForm";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "../../types/service.type";
-import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -28,11 +27,6 @@ type FormSectionProps = {
     textAreaPlaceholder?: string,
     service: AllowedServices,
     secondaryColor?: boolean,
-    productImage?: boolean,
-    updateProductFormState?: UpdateProductFormContextStateObject,
-    setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
-    setProductCreated?: Dispatch<SetStateAction<boolean>>,
-    setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>
 }
 
 export const FormSection: FC<FormSectionProps> = ({
@@ -44,15 +38,9 @@ export const FormSection: FC<FormSectionProps> = ({
     textAreaPlaceholder,
     service, 
     formWidth , 
-    secondaryColor, 
-    productImage, 
-    updateProductFormState,
-    setCrateProductForm, 
-    setProductCreated,
-    setUpdateProductFormSetState
+    secondaryColor
 }: FormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
-    const [ formImage, setFormImage ] = useState<string | null>(null);
 
     return <StyledSection 
         id={`${service}-form-section`} 
@@ -64,7 +52,7 @@ export const FormSection: FC<FormSectionProps> = ({
         <Wrapper $isTablet={isTablet}>
             {isTablet && <StyledSpace large vertical />}
 
-            {!isMobile && <ImageBorderedBox boxWidth={imageBorderedBoxWidth} imgSrc={formImage ? formImage : imgSrc} /> }
+            {!isMobile && <ImageBorderedBox boxWidth={imageBorderedBoxWidth} imgSrc={imgSrc} /> }
 
             {isMobile && <StyledSpace large vertical />}
 
@@ -75,12 +63,6 @@ export const FormSection: FC<FormSectionProps> = ({
                 textArea={textArea}
                 textAreaPlaceholder={textAreaPlaceholder}
                 service={service}
-                productImage={productImage}
-                setCrateProductForm={setCrateProductForm}
-                setProductCreated={setProductCreated}
-                setFormImage={setFormImage}
-                setUpdateProductFormSetState={setUpdateProductFormSetState}
-                updateProductFormState={updateProductFormState}
             />
         </Wrapper>
 

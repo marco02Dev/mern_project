@@ -1,5 +1,5 @@
 import { Dispatch, FC, ReactElement, SetStateAction } from "react";
-import { FormSection } from "../../../src/components/sections/FormSection";
+import { ProductFormSection } from "../sections/ProductFormSection";
 
 type CreateProductFormProps = {
     setCrateProductForm: Dispatch<SetStateAction<boolean>>,
@@ -7,7 +7,7 @@ type CreateProductFormProps = {
 }
 
 export const CreateProductForm: FC<CreateProductFormProps> = ({setCrateProductForm, setProductCreated}: CreateProductFormProps): ReactElement => {
-    return <FormSection
+    return <ProductFormSection
         imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268491/form-section_f6y1ml.webp`}
         imageBorderedBoxWidth="40%"
         formWidth="60%"

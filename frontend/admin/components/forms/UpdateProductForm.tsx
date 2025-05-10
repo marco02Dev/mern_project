@@ -1,5 +1,5 @@
 import { Dispatch, FC, ReactElement, SetStateAction, useContext } from "react";
-import { FormSection } from "../../../src/components/sections/FormSection";
+import { ProductFormSection } from "../sections/ProductFormSection";
 import { UpdateProductFormContextProps, UpdateProductFormContext, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 
 type UpdateProductFormProps = {
@@ -10,7 +10,7 @@ export const UpdateProductForm: FC<UpdateProductFormProps> = ({setUpdateProductF
     const updateProductFormContext: any = useContext(UpdateProductFormContext);
     const { updateProductForm }: UpdateProductFormContextProps = updateProductFormContext;
 
-    return <FormSection
+    return <ProductFormSection
         imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268491/form-section_f6y1ml.webp`}
         imageBorderedBoxWidth="40%"
         formWidth="60%"
