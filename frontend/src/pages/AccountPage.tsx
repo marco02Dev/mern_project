@@ -1,9 +1,6 @@
-import { FC } from "react";
-import { ReactElement } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { FC, ReactElement } from "react";
+import { UseAuth, useAuth } from "../hooks/auth/useAuth";
 import { HeroSection } from "../components/sections/HeroSection";
-import { endpoints } from "../config/endpoints.config";
 import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
 import { LogInPage } from "./LogInPage";
 import { LargeProductsPreviewSection } from "../components/sections/LargeProductsPreviewSection";
@@ -11,21 +8,17 @@ import { TextSection } from "../components/sections/TextSection";
 import { logOutService } from "../services/log-out.service";
 
 export const AccountPage: FC = (): ReactElement => {
+    const { isLoggedIn, userData }: UseAuth = useAuth();
 
-    const login = useSelector((state: RootState) => state.login);
-    const { user, isLoggedIn } = login;
-
-    if( user && isLoggedIn) {
-        const { name }: {name: string} = user;
-
+    if( userData && isLoggedIn) {
         return <>
             <HeroSection
                 eyebrowText="Learn. Grow. Succeed."
-                title={`Welcome back ${capitalizeFirstLetter(name)}`}
+                title={`Welcome back ${capitalizeFirstLetter(userData.name)}`}
                 description="Access your enrolled courses and continue your learning journey today!"
                 buttonLabel="Logout"
                 buttonAction={logOutService}
-                imageSrc={`${endpoints.imagesEndpoint}/pages/homepage/hero-section.webp`}
+                imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746891011/hero-section_ojpzde.webp`}
                 imageAlt="Minimalist desk setup with monitor and coding posters"
                 secondaryColor
             />

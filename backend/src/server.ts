@@ -6,7 +6,6 @@ import { sslCredentials } from './config/system/ssl-credentials.config';
 import { isProduction, isRender } from './config/system/env.config';
 import http from "http";
 
-console.log("RENDER", isRender);
 if (isProduction && isRender) {
   console.log(isRender);
     http.createServer(app).listen(port, '0.0.0.0', () => {
