@@ -13,6 +13,7 @@ import { defaultDelayIncrement } from "../../config/animation.config";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 import { UseMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { useAuth, UseAuth } from "../../hooks/auth/useAuth";
+import { Course } from "../../types/course.types";
 
 const InnerWrapper = styled.div<{$isMobile: boolean}>`
     width: 100%;
@@ -66,16 +67,7 @@ const InnerWrapper = styled.div<{$isMobile: boolean}>`
     }
 `;
 
-export type CourseBoxProps = {
-    title: string;
-    price: string;
-    imageUrl: string;
-    courseId: string | undefined;
-    category: string;
-    details: {
-        title: string,
-        content: string
-    }[] | undefined,
+export type CourseBoxProps = Course & {
     link: string,
     delay?: string,
     heroImage: string
@@ -115,7 +107,7 @@ export const CourseBox = ({
 
                     {!isMobile && <div className="small-text">
                         <TextRevealWrapper delay={sumStringDelays(innerDelay, "200ms")}>
-                            <StyledText tag="h6" content={price} />
+                            <StyledText tag="h6" content={price as string} />
                         </TextRevealWrapper>
                     </div>}
 
