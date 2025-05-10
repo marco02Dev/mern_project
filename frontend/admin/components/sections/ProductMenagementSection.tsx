@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 import { useBodyOverflow } from "../../../src/hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "../../../src/components/buttons/LargeProductsPreviewButtons";
+import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -68,6 +69,7 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
                 setProductsNumber={setProductsNumber}
                 categoriesFilter={categoriesFilter}
                 latest={latest}
+                AdditionalButtons={UpdateDeleteCourseButtons}
             />
             
             <StyledSpace small vertical />

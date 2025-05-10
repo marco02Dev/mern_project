@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, FC } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
@@ -7,7 +7,6 @@ import { StyledBox } from "../themed/StyledBox";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { useLocation, Location } from "react-router-dom";
-import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 import { DiscoverCourseButton } from "../buttons/DiscoverCourseButton";
 import { defaultDelayIncrement } from "../../config/animation.config";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
@@ -70,7 +69,8 @@ const InnerWrapper = styled.div<{$isMobile: boolean}>`
 export type CourseBoxProps = Course & {
     link: string,
     delay?: string,
-    heroImage: string
+    heroImage: string,
+    AdditionalButtons?: FC<{ courseId: string, initialDelay: string }>
 };
 
 export const CourseBox = ({
@@ -82,7 +82,8 @@ export const CourseBox = ({
     category,
     details,
     delay,
-    heroImage
+    heroImage,
+    AdditionalButtons
 }: CourseBoxProps): ReactElement => {
     const location: Location = useLocation();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
@@ -131,10 +132,11 @@ export const CourseBox = ({
                         delay={sumStringDelays(innerDelay, "600ms")}
                     /> }
 
-                    {isLoggedIn && isAdminPage && isAdmin && courseId && <UpdateDeleteCourseButtons 
+                    {isLoggedIn && isAdmin && AdditionalButtons && <AdditionalButtons 
                         courseId={courseId}
                         initialDelay={sumStringDelays(innerDelay, "600ms")}
                     />}
+
                 </div>
             </InnerWrapper>
         </StyledBox>

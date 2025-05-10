@@ -34,6 +34,7 @@ type CoursesLoop = {
   categoriesFilter?: boolean,
   resetIncrementalDelay?: boolean,
   setResetIncrementalDelay?: Dispatch<SetStateAction<boolean>>,
+  AdditionalButtons?: FC
 }
 
 export const CoursesLoop: FC<CoursesLoop> = ({
@@ -42,7 +43,8 @@ export const CoursesLoop: FC<CoursesLoop> = ({
   category, 
   purchasedProducts, 
   setProductsNumber, 
-  categoriesFilter
+  categoriesFilter,
+  AdditionalButtons
 }: CoursesLoop): ReactElement => {
   const { isMobile, isTablet}: UseMediaQuery = useMediaQuery();
   const { backgroundColor }: ThemeColors = useThemeColors();
@@ -98,6 +100,7 @@ export const CoursesLoop: FC<CoursesLoop> = ({
             heroImage={`https://res.cloudinary.com/dqwoo44z8/image/upload/web-courses/products/${course.category}/${course._id}/hero-image-${course._id}.webp`}
             details={course.details}
             delay={incrementalDelay}
+            AdditionalButtons={AdditionalButtons}
           />
 
           {/* Mobile */}

@@ -1,20 +1,20 @@
 import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, MouseEventHandler} from "react";
 import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
-import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
+import { UseAuth, useAuth } from "../../../src/hooks/auth/useAuth";
 import styled from "styled-components";
-import { StyledButton } from "../themed/StyledButton";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { StyledText } from "../themed/StyledText";
-import { StyledSpace } from "../themed/StyledSpace";
-import { colors } from "../../config/colors.config";
+import { StyledButton } from "../../../src/components/themed/StyledButton";
+import { FadeInWrapper } from "../../../src/components/animated/FadeInWrapper";
+import { StyledText } from "../../../src/components/themed/StyledText";
+import { StyledSpace } from "../../../src/components/themed/StyledSpace";
+import { colors } from "../../../src/config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
 import { useDispatch } from "react-redux";
 import { useLocation, Location } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../../admin/contexts/UpdateProductFormProvider";
-import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
+import { setDataChanged } from "../../../src/store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
+import { sumStringDelays } from "../../../src/utils/components/sum-string-delays.util";
+import { useBodyOverflow } from "../../../src/hooks/ui/useBodyOverflow";
 
 const Wrapper = styled.div`
     display: flex !important;
