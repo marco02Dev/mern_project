@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactElement, FC, useState, Dispatch as ReactStateDispatch, SetStateAction } from "react";
+import { ReactElement, FC, useState, Dispatch as ReactStateDispatch, SetStateAction, FormEventHandler } from "react";
 import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
@@ -50,6 +50,7 @@ type FormProps = {
     productImage?: boolean;
     formWidth?: string;
     updateProductFormState?: UpdateProductFormContextStateObject;
+    additionalGenerateFormServiceSubmitFunction?: Function,
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
     setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
@@ -65,6 +66,7 @@ export const GenerateForm: FC<FormProps> = ({
     service,
     formWidth,
     updateProductFormState,
+    additionalGenerateFormServiceSubmitFunction,
     setCrateProductForm,
     setProductCreated,
     setFormImage,
@@ -79,18 +81,34 @@ export const GenerateForm: FC<FormProps> = ({
     const dispatch: Dispatch = useDispatch();
     const navigateFunction = useNavigate();
     const { isMobile, isTablet } = useMediaQuery();
+    let handleSubmit: FormEventHandler<HTMLFormElement>;
 
-    const handleSubmit = generateFormServiceSubmitFunction({
-        service: service,
-        dispatch: dispatch,
-        updateProductFormState: updateProductFormState,
-        setUpdateProductFormSetState: setUpdateProductFormSetState,
-        setErrorMessage: setErrorMessage,
-        navigateFunction: navigateFunction,
-        setCrateProductForm: setCrateProductForm,
-        setProductCreated: setProductCreated,
-        setMessageSent: setMessageSent,
-    });
+    if(additionalGenerateFormServiceSubmitFunction) {
+        handleSubmit = additionalGenerateFormServiceSubmitFunction({
+            service,
+            dispatch,
+            updateProductFormState,
+            setUpdateProductFormSetState,
+            setErrorMessage,
+            navigateFunction,
+            setCrateProductForm,
+            setProductCreated,
+            setMessageSent,
+        });
+    } else {
+        handleSubmit = generateFormServiceSubmitFunction({
+            service: service,
+            dispatch: dispatch,
+            updateProductFormState: updateProductFormState,
+            setUpdateProductFormSetState: setUpdateProductFormSetState,
+            setErrorMessage: setErrorMessage,
+            navigateFunction: navigateFunction,
+            setCrateProductForm: setCrateProductForm,
+            setProductCreated: setProductCreated,
+            setMessageSent: setMessageSent,
+        });
+    }
+
 
     return (
         <Wrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>

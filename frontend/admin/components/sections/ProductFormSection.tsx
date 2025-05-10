@@ -8,6 +8,7 @@ import { GenerateForm } from "../../../src/components/forms/GenerateForm";
 import { ImageBorderedBox } from "../../../src/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "../../../src/types/service.type";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { generateAdminProductFormSubmitFunction } from "../../utils/generateAdminProductFormSubmitFunction";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -81,6 +82,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 setFormImage={setFormImage}
                 setUpdateProductFormSetState={setUpdateProductFormSetState}
                 updateProductFormState={updateProductFormState}
+                additionalGenerateFormServiceSubmitFunction={generateAdminProductFormSubmitFunction}
             />
         </Wrapper>
 

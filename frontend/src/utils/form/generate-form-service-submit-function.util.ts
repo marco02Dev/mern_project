@@ -2,8 +2,6 @@ import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react
 import { sendEmail } from "../../services/contact.service";
 import { loginService } from "../../services/login.service";
 import { signUpService } from "../../services/singup.service";
-import { updateCourseService } from "../../services/update-course.service";
-import { createCourseService } from "../../services/create-course.service";
 import { AllowedServices } from "../../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
@@ -25,13 +23,9 @@ type GenerateFormServiceSubmitFunction = {
 export const generateFormServiceSubmitFunction = ({
     service, 
     dispatch, 
-    setUpdateProductFormSetState, 
-    updateProductFormState,
     setErrorMessage,
     navigateFunction,
     setMessageSent,
-    setCrateProductForm,
-    setProductCreated
 }: GenerateFormServiceSubmitFunction) => {
     return (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -42,10 +36,6 @@ export const generateFormServiceSubmitFunction = ({
             loginService(event, dispatch, navigateFunction, setErrorMessage);
         } else if (service === "sign-up") {
             signUpService(event, dispatch, navigateFunction, setErrorMessage);
-        } else if(service === "create-course" && setCrateProductForm && setProductCreated && setErrorMessage) {
-            createCourseService(event, setErrorMessage, setCrateProductForm, setProductCreated, dispatch);
-        } else if(service === "update-course" && updateProductFormState) {
-            updateCourseService(event, setUpdateProductFormSetState, setErrorMessage, updateProductFormState);
-        }
+        } 
     };
 }
