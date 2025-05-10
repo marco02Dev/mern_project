@@ -6,8 +6,8 @@ import mkcert from 'vite-plugin-mkcert';
 import path from 'path';
 import dotenv from 'dotenv';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename: string = fileURLToPath(import.meta.url)
+const __dirname: string = dirname(__filename)
 dotenv.config({ path: path.resolve(__dirname, '../frontend.env') })
 
 const envVariables: Record<string, string> = Object.keys(process.env)
@@ -29,7 +29,16 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
-        admin: path.resolve(__dirname, 'admin_index.html')
+        admin: path.resolve(__dirname, 'admin/admin_index.html'),
+      },
+      output: {
+        entryFileNames: chunk => {
+          return chunk.name === 'admin'
+            ? 'admin/[name]-[hash].js'
+            : 'assets/[name]-[hash].js';
+        },
+        chunkFileNames: 'assets/chunks/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
   },
