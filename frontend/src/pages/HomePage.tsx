@@ -8,11 +8,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { User } from "../types/user.types";
 import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
+import { LoginState } from "../store/slices/login.slice";
 
 export const HomePage: FC = (): ReactElement => {
-    const login = useSelector((state: RootState) => state.login);
-    const { isLoggedIn }: { isLoggedIn: boolean } = login;
-    const name: string = (login?.user as User)?.name ?? "";
+    const login: LoginState = useSelector((state: RootState) => state.login);
+    const { isLoggedIn, user } = login;
+    const name = (user as User)?.name || "";
+    const role = (user as User)?.role || "";
+    const isAdmin: boolean = role === "admin";
 
     return <>
         <HeroSection
@@ -28,7 +31,8 @@ export const HomePage: FC = (): ReactElement => {
                     : "Join our community of learners and elevate your skills with our expertly crafted courses. Sign up today!"
             }
             buttonLabel={isLoggedIn ? "Go to account" : "Login"}
-            buttonLink={isLoggedIn ? "/account" : "/login"}
+            buttonLink={isLoggedIn ? isAdmin ? "/admin" : "/account" : "/login"}
+            reloadDocument={isAdmin}
             imageSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268064/hero-section_hbuymw.webp`}
             imageAlt="Minimalist desk setup with monitor and coding posters"
             secondaryColor

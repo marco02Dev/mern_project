@@ -38,6 +38,7 @@ type HeroSectionProps = {
     description?: string;
     buttonLabel?: string;
     buttonLink?: string;
+    reloadDocument?: boolean;
     buttonAction?: (args: { dispatch: Dispatch, navigate: NavigateFunction }) => void;
     imageSrc?: string;
     imageAlt?: string;
@@ -52,6 +53,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
     description,
     buttonLabel,
     buttonLink,
+    reloadDocument,
     imageSrc,
     imageAlt,
     secondaryColor,
@@ -59,7 +61,6 @@ export const HeroSection: FC<HeroSectionProps> = ({
     borderedImage,
     buttonAction
 }: HeroSectionProps): ReactElement => {
-
     const {isMobile, isTablet}: UseMediaQuery = useMediaQuery();
     const dispatch: Dispatch = useDispatch();
     const navigate: NavigateFunction = useNavigate();
@@ -103,6 +104,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                             content={buttonLabel} 
                             to={buttonLink} 
                             action={buttonAction ? () => buttonAction({ dispatch, navigate }) : undefined} 
+                            reloadDocument={reloadDocument}
                         />
                     </FadeInWrapper>
                 )}
