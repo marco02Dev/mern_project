@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { UseAuth, useAuth } from "../hooks/auth/useAuth";
-import { FormSection } from "../components/sections/FormSection";
 import { HeroSection } from "../components/sections/HeroSection";
+import { ContactForm } from "../components/forms/ContactForm";
 import { TextSection } from "../components/sections/TextSection";
 
 export const ContactPage = (): ReactElement => {
@@ -17,14 +17,7 @@ export const ContactPage = (): ReactElement => {
             secondaryColor
         />
 
-        <FormSection 
-            title={"Contact us"} 
-            service="send-email"
-            fields={[
-                "name",
-                "email"
-            ]}
-            textArea={"message"}
+        <ContactForm 
             imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268885/form-section_x7suz7.webp`}
         />
 
