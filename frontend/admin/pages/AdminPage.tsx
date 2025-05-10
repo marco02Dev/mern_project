@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { ReactElement } from "react";
-import { HeroSection } from "../components/sections/HeroSection";
-import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
-import { LogInPage } from "./LogInPage";
-import { TextSection } from "../components/sections/TextSection";
-import { logOutService } from "../services/log-out.service";
+import { HeroSection } from "../../src/components/sections/HeroSection";
+import { capitalizeFirstLetter } from "../../src/utils/common/capitalize-first-letter.util";
+import { LogInPage } from "../../src/pages/LogInPage";
+import { TextSection } from "../../src/components/sections/TextSection";
+import { logOutService } from "../../src/services/log-out.service";
 import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
-import { AdminProductManagement } from "../components/admin/AdminProductMenagement";
-import { useAuth, UseAuth } from "../hooks/auth/useAuth";
+import { AdminProductManagementSection } from "../components/sections/ProductMenagementSection";
+import { useAuth, UseAuth } from "../../src/hooks/auth/useAuth";
 
 export const AdminPage: FC = (): ReactElement => {
     const { isLoggedIn, userData }: UseAuth = useAuth();
@@ -26,7 +26,7 @@ export const AdminPage: FC = (): ReactElement => {
             />
 
             <UpdateProductFormContextProvider>
-                <AdminProductManagement
+                <AdminProductManagementSection
                     limit={6}
                     createProducts
                     latest

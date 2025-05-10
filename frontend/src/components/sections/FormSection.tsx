@@ -7,7 +7,7 @@ import { sizes } from "../../config/sizes.config";
 import { GenerateForm } from "../forms/GenerateForm";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "../../types/service.type";
-import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;

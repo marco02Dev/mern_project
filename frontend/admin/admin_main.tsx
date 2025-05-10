@@ -1,12 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { ResetCss } from './styles/reset-css.style.ts';
-import { FontStyles } from './styles/font.style.ts';
-import { GlobalStyles } from './styles/global.style.ts';
+import { ResetCss } from '../src/styles/reset-css.style';
+import { FontStyles } from '../src/styles/font.style';
+import { GlobalStyles } from '../src/styles/global.style';
 import { Provider } from "react-redux";
-import { store } from './store';
-import AdminPanel from './admin/AdminPanel.tsx';
+import { store } from '../src/store';
+import AdminApp from './admin_app';
 
 createRoot(document.getElementById('admin')!).render(
   <StrictMode>
@@ -15,8 +15,8 @@ createRoot(document.getElementById('admin')!).render(
     <GlobalStyles />
     <BrowserRouter>
       <Provider store={store}>
-            <AdminPanel />
+        <AdminApp />
       </Provider>
-    </ BrowserRouter>
+    </BrowserRouter>
   </StrictMode>
 );

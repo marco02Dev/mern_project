@@ -1,6 +1,6 @@
 import { Dispatch, FC, ReactElement, SetStateAction, useContext } from "react";
-import { FormSection } from "../sections/FormSection";
-import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { FormSection } from "../../../src/components/sections/FormSection";
+import { UpdateProductFormContextProps, UpdateProductFormContext, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 
 type UpdateProductFormProps = {
     setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>,

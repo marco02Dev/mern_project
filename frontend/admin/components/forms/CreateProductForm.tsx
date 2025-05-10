@@ -1,5 +1,5 @@
 import { Dispatch, FC, ReactElement, SetStateAction } from "react";
-import { FormSection } from "../sections/FormSection";
+import { FormSection } from "../../../src/components/sections/FormSection";
 
 type CreateProductFormProps = {
     setCrateProductForm: Dispatch<SetStateAction<boolean>>,

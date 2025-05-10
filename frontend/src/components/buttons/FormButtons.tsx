@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
-import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
 import { useHiddenLink } from "../../hooks/navigation/useHiddenLink";
 
 const Wrapper = styled.div`

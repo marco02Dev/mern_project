@@ -1,16 +1,16 @@
 import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
-import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
-import { CoursesLoop } from "../loops/CoursesLoop";
-import { StyledSection } from "../themed/StyledSection";
-import { sizes } from "../../config/sizes.config";
-import { StyledSpace } from "../themed/StyledSpace";
-import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
+import { UseAuth, useAuth } from "../../../src/hooks/auth/useAuth";
+import { CoursesLoop } from "../../../src/components/loops/CoursesLoop";
+import { StyledSection } from "../../../src/components/themed/StyledSection";
+import { sizes } from "../../../src/config/sizes.config";
+import { StyledSpace } from "../../../src/components/themed/StyledSpace";
+import { usePurchasedProducts } from "../../../src/hooks/data/usePurchasedProducts";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
-import { useBodyOverflow } from "../../hooks/ui/useBodyOverflow";
-import { LargeProductsPreviewButtons } from "../buttons/LargeProductsPreviewButtons";
+import { useBodyOverflow } from "../../../src/hooks/ui/useBodyOverflow";
+import { LargeProductsPreviewButtons } from "../../../src/components/buttons/LargeProductsPreviewButtons";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -22,7 +22,7 @@ type LargeProductsPreviewSectionProps = {
     latest?: boolean
 }
 
-export const AdminProductManagement: FC<LargeProductsPreviewSectionProps> = ({
+export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps> = ({
     limit,
     category,
     userProductsPurchased,

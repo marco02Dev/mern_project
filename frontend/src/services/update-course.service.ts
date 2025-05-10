@@ -1,5 +1,5 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
-import { UpdateProductFormContextStateObject } from "../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../admin/contexts/UpdateProductFormProvider";
 import { retrieveFormProductData } from "../utils/form/retrieve-form-product-data.util";
 import { endpoints } from "../config/endpoints.config";
 

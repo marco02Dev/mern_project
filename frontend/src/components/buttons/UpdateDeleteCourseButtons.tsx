@@ -1,5 +1,5 @@
 import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, MouseEventHandler} from "react";
-import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
 import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
 import styled from "styled-components";
 import { StyledButton } from "../themed/StyledButton";
@@ -10,7 +10,7 @@ import { colors } from "../../config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
 import { useDispatch } from "react-redux";
 import { useLocation, Location } from "react-router-dom";
-import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../../admin/contexts/UpdateProductFormProvider";
 import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";

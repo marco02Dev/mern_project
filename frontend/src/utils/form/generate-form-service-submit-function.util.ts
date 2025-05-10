@@ -6,7 +6,7 @@ import { updateCourseService } from "../../services/update-course.service";
 import { createCourseService } from "../../services/create-course.service";
 import { AllowedServices } from "../../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
-import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
 import { NavigateFunction } from "react-router-dom";
 
 type GenerateFormServiceSubmitFunction = {
