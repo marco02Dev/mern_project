@@ -9,16 +9,11 @@ import { SignUpPage } from "./pages/SignUpPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Productpage } from "./pages/ProductPage";
 import { AccountPage } from "./pages/AccountPage";
-import { useSelector } from "react-redux";
-import { RootState } from "./store";
 import { Navigate } from "react-router-dom";
-import { User } from "./types/user.types";
-
+import { UseAuth, useAuth } from "./hooks/auth/useAuth";
 
 export const Router = (): ReactElement => {
-    const isLoggedIn: boolean = useSelector((state: RootState) => state.login.isLoggedIn);
-    const user: User | undefined = useSelector((state: RootState) => state.login.user);
-    const role: string | undefined = user?.role;
+    const { isLoggedIn, userData}: UseAuth = useAuth()
 
     return (
         <Routes>
@@ -30,10 +25,10 @@ export const Router = (): ReactElement => {
             <Route path="/courses/:category" element={<CoursesPage />} />
             <Route path="/courses/:category/:product" element={<Productpage />} />
 
-            <Route path="/login" element={isLoggedIn ? role === "customer" ? <Navigate to="/account" /> : <Navigate to="/admin" /> : <LogInPage />} />
+            <Route path="/login" element={isLoggedIn ? userData.role === "customer" ? <Navigate to="/account" /> : <Navigate to="/admin" /> : <LogInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
 
-            {isLoggedIn && role === "customer" && (
+            {isLoggedIn && userData.role === "customer" && (
                 <Route path="/account" element={<AccountPage />} />
             )}
 

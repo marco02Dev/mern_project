@@ -1,7 +1,5 @@
 import { FC } from "react";
 import { ReactElement } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
 import { HeroSection } from "../components/sections/HeroSection";
 import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
 import { LogInPage } from "./LogInPage";
@@ -9,18 +7,16 @@ import { TextSection } from "../components/sections/TextSection";
 import { logOutService } from "../services/log-out.service";
 import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
 import { AdminProductManagement } from "../components/admin/AdminProductMenagement";
+import { useAuth, UseAuth } from "../hooks/auth/useAuth";
 
 export const AdminPage: FC = (): ReactElement => {
-    const login = useSelector((state: RootState) => state.login);
-    const { user, isLoggedIn } = login;
+    const { isLoggedIn, userData }: UseAuth = useAuth();
 
-    if( user && isLoggedIn) {
-        const { name }: {name: string} = user;
-
+    if( userData && isLoggedIn) {
         return <>
             <HeroSection
                 eyebrowText="Learn. Grow. Succeed."
-                title={`Welcome back ${capitalizeFirstLetter(name)}`}
+                title={`Welcome back ${capitalizeFirstLetter(userData.name)}`}
                 description="Access your enrolled courses and continue your learning journey today!"
                 buttonLabel="Logout"
                 buttonAction={logOutService}

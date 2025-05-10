@@ -1,14 +1,11 @@
 import { ReactElement } from "react";
+import { UseAuth, useAuth } from "../hooks/auth/useAuth";
 import { FormSection } from "../components/sections/FormSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { TextSection } from "../components/sections/TextSection";
-import { RootState } from "../store";
-import { useSelector } from "react-redux";
 
 export const ContactPage = (): ReactElement => {
-
-    const login = useSelector((state: RootState) => state.login);
-    const { isLoggedIn }: { isLoggedIn: boolean} = login;
+    const { isLoggedIn}: UseAuth = useAuth()
 
     return <>
         <HeroSection

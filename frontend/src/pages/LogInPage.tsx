@@ -7,13 +7,13 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import { setIsLoginPage } from "../store/slices/route-status.slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { LoginForm } from "../components/forms/LoginForm";
+import { useAuth, UseAuth } from "../hooks/auth/useAuth";
 
 export const LogInPage = (): ReactElement => {
     const dispatch: Dispatch = useDispatch();
-    const navigate: NavigateFunction = useNavigate()
-    const login = useSelector((state: RootState) => state.login);
+    const navigate: NavigateFunction = useNavigate();
+    const { isLoggedIn }: UseAuth = useAuth();
     const isLoginPage: boolean = useSelector((state: RootState) => state.routeStatus.isLoginPage)
-    const { isLoggedIn }: { isLoggedIn: boolean } = login;
 
     useEffect(() => {
         dispatch(setIsLoginPage(true));

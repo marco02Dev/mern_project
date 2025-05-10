@@ -1,10 +1,8 @@
 import { FC, ReactElement } from "react";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
-import { useSelector } from "react-redux";
-import { User } from "../../types/user.types";
-import { RootState } from "../../store";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useAuth } from "../../hooks/auth/useAuth";
 
 type LoginAccountAdminButtonProps = {
     delay?: string
@@ -13,16 +11,12 @@ type LoginAccountAdminButtonProps = {
 export const LoginAccountAdminButton: FC<LoginAccountAdminButtonProps> = ({
     delay
 }: LoginAccountAdminButtonProps): ReactElement => {
-
-    const { isLoggedIn }: { isLoggedIn: boolean } = useSelector((state: RootState) => state.login);
-    const user: User | undefined = useSelector((state: RootState) => state.login.user);
-    const role: string | undefined = user?.role;
-    const isAdmin: boolean = role === "admin";
+    const {isLoggedIn, isAdmin} = useAuth();
 
     return <FadeInWrapper delay={sumStringDelays(delay)}>
         <StyledButton 
-            content={isLoggedIn ? role === "customer" ? "Account" : "Admin" : "Login"} 
-            to={isLoggedIn ? role === "customer" ? "/account" : "/admin" : "/login"} 
+            content={isLoggedIn ? isAdmin ? "Admin" : "Account" : "Login"} 
+            to={isLoggedIn ?  isAdmin ? "/admin" : "/account" : "/login"} 
             unsetShadow
             reloadDocument={isAdmin}
         />
