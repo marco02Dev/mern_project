@@ -48,7 +48,7 @@ export const Header: FC = (): ReactElement => {
     const [desktopButtonsStartDelay, setDesktopButtonStartDelay] = useState<string | undefined>("");
     const location: Location = useLocation();
     const path: string = location.pathname;
-    const isAdmin: boolean = path === "/admin";
+    const isAdmin: boolean = path === "/admin/";
 
     return (
         <StyledSection 
