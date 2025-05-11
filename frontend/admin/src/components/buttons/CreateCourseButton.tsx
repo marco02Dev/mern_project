@@ -1,10 +1,10 @@
 import { FC, ReactElement, Dispatch, SetStateAction } from "react";
-import { FadeInWrapper } from "../../../../main/src/components/animated/FadeInWrapper";
-import { StyledButton } from "../../../../main/src/components/themed/StyledButton";
-import { StyledSpace } from "../../../../main/src/components/themed/StyledSpace";
-import { StyledText } from "../../../../main/src/components/themed/StyledText";
-import { useAuth, UseAuth } from "../../../../main/src/hooks/auth/useAuth";
-import { colors } from "../../../../main/src/config/colors.config";
+import { FadeInWrapper } from "../../../../client/src/components/animated/FadeInWrapper";
+import { StyledButton } from "../../../../client/src/components/themed/StyledButton";
+import { StyledSpace } from "../../../../client/src/components/themed/StyledSpace";
+import { StyledText } from "../../../../client/src/components/themed/StyledText";
+import { useAuth, UseAuth } from "../../../../client/src/hooks/auth/useAuth";
+import { colors } from "../../../../client/src/config/colors.config";
 
 type CreateCourseButtonProps = {
     setCrateProductForm: Dispatch<SetStateAction<boolean>>,

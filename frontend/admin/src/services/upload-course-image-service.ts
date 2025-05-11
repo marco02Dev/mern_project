@@ -1,4 +1,4 @@
-import { endpoints } from "../../../main/src/config/endpoints.config";
+import { endpoints } from "../../../client/src/config/endpoints.config";
 
 export const uploadCourseImagesService = async (
   prodImg: FormDataEntryValue | null,

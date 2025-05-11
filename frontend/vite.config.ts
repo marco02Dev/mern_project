@@ -28,7 +28,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'main/index.html'),
+        client: path.resolve(__dirname, 'client/index.html'),
         admin: path.resolve(__dirname, 'admin/admin_index.html'),
       },
       output: {

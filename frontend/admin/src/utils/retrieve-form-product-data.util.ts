@@ -1,6 +1,6 @@
-import { Course } from "../../../main/src/types/course.types";
+import { Course } from "../../../client/src/types/course.types";
 import { parseDetailsCourseFormData } from "./parse-details-course-form-data.util";
-import { handleErrorResponse } from "../../../main/src/utils/form/handle-error-response";
+import { handleErrorResponse } from "../../../client/src/utils/form/handle-error-response";
 import { SetStateAction, Dispatch } from "react";
 
 type RetrieveFormProductData = (params: {

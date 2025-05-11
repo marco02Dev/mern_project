@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { UpdateProductFormContextStateObject } from "../contexts/UpdateProductFormProvider";
 import { retrieveFormProductData } from "../utils/retrieve-form-product-data.util";
-import { endpoints } from "../../../main/src/config/endpoints.config";
+import { endpoints } from "../../../client/src/config/endpoints.config";
 
 export const updateCourseService = async (
     event: FormEvent<HTMLFormElement>,
