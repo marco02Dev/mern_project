@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
-import { CreateCourseButton } from "../../../admin/src/components/buttons/CreateCourseButton";
+import { CreateCourseButton } from "../../../../admin/src/components/buttons/CreateCourseButton";
 
 const Wrapper = styled.div`
     display: flex;

@@ -1,12 +1,12 @@
 import { Dispatch, FC, ReactElement, SetStateAction, useState } from "react";
-import { StyledSection } from "../../../../main/components/themed/StyledSection";
-import { StyledSpace } from "../../../../main/components/themed/StyledSpace";
+import { StyledSection } from "../../../../main/src/components/themed/StyledSection";
+import { StyledSpace } from "../../../../main/src/components/themed/StyledSpace";
 import styled from "styled-components";
-import { UseMediaQuery, useMediaQuery } from "../../../../main/hooks/ui/useMediaQuery";
-import { sizes } from "../../../../main/config/sizes.config";
-import { GenerateForm } from "../../../../main/components/forms/GenerateForm";
-import { ImageBorderedBox } from "../../../../main/components/boxes/ImageBorderedBox";
-import { AllowedServices } from "../../../../main/types/service.type";
+import { UseMediaQuery, useMediaQuery } from "../../../../main/src/hooks/ui/useMediaQuery";
+import { sizes } from "../../../../main/src/config/sizes.config";
+import { GenerateForm } from "../../../../main/src/components/forms/GenerateForm";
+import { ImageBorderedBox } from "../../../../main/src/components/boxes/ImageBorderedBox";
+import { AllowedServices } from "../../../../main/src/types/service.type";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
 

@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
-import { endpoints } from "../../../main/config/endpoints.config";
-import { checkSession } from "../../../main/utils/cookies/check-session.util";
-import { reloadLoginPage } from "../../../main/utils/browser/reload-login-page.util";
-import { errorMessages } from "../../../main/config/error-messages.config";
+import { endpoints } from "../../../main/src/config/endpoints.config";
+import { checkSession } from "../../../main/src/utils/cookies/check-session.util";
+import { reloadLoginPage } from "../../../main/src/utils/browser/reload-login-page.util";
+import { errorMessages } from "../../../main/src/config/error-messages.config";
 
 type DeleteCourseServiceProps = {
     courseId: string,

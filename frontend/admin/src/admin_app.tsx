@@ -1,5 +1,5 @@
 import { AdminPage } from './pages/AdminPage';
-import Layout from '../../main/layout';
+import Layout from '../../main/src/layout';
 
 function AdminApp() {
   return <Layout>
