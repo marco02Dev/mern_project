@@ -5,8 +5,7 @@ import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
 import { StyledSpace } from "../themed/StyledSpace";
-import { StyledText } from "../themed/StyledText";
-import { colors } from "../../config/colors.config";
+import { CreateCourseButton } from "../../../admin/components/buttons/CreateCourseButton";
 
 const Wrapper = styled.div`
     display: flex;
@@ -45,18 +44,11 @@ export const LargeProductsPreviewButtons: FC<LargeProductsPreviewButtonsProps> =
     
         {(isAdmin || thereAreProductsToShow) && <StyledSpace small horizontal />}
     
-        {isLoggedIn && isAdmin && createProducts && <FadeInWrapper>
-            <a href="#create-course-form-section" style={{textDecoration: "none"}}>
-                <StyledButton unsetShadow content="Create course" action={(): void => {
-                    setCrateProductForm(true);
-                    setProductCreated(false);
-                }} />
-            </a>
-        </FadeInWrapper> }
-    
-        {productCreated && <>
-            <StyledSpace small horizontal />
-            <StyledText tag="h6" color={colors.dark.successMessage} content="New Product created!" />
-        </>}
+        {isLoggedIn && isAdmin && createProducts && <CreateCourseButton 
+            setCrateProductForm={setCrateProductForm}
+            productCreated={productCreated}
+            setProductCreated={setProductCreated}
+            createProducts={createProducts}
+        />}
     </Wrapper>
 }
