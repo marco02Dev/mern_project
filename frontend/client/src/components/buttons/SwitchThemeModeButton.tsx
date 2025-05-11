@@ -4,6 +4,7 @@ import { UseThemeModeTransitionEffect, useThemeModeTransitionEffect } from "../.
 import styled from "styled-components";
 import { sizes } from "../../config/sizes.config";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 const Button = styled.button<{$imageSize: string}>`
     background-color: transparent;
@@ -27,10 +28,11 @@ export const SwitchThemeModeButton: FC<SwitchThemeModeButtonProps> = ({
 }: SwitchThemeModeButtonProps): ReactElement => {
     const { mode, toggleTheme }: UseThemeModeToggle = useThemeModeToggle();
     const { ThemeModeTransitionStyles }: UseThemeModeTransitionEffect = useThemeModeTransitionEffect(mode);
+    const { backgroundColorButton }: ThemeColors = useThemeColors();
 
     return (
         <>
-            <ThemeModeTransitionStyles />
+            <ThemeModeTransitionStyles $cookieYesButtonsBackgroundColor={backgroundColorButton } />
             <FadeInWrapper flex delay={delay}>
                 <Button onClick={toggleTheme} $imageSize={sizes.widths.small}>
                     <img 

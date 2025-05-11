@@ -5,7 +5,7 @@ export const useCookieYes = (): void => {
   useEffect(() => {
 
     if (!cookieYesID) {
-      console.warn('CookieYes ID non trovato in VITE_cookieYesID');
+      console.warn('CookieYes ID not found');
       return;
     }
 

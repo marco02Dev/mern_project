@@ -13,13 +13,17 @@ import { AppState } from './store/slices/app-state-slice';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { LoadingPage } from './pages/LoadingPage';
+import { isProduction } from './config/app.config';
 
 function Layout({children}: {children: ReactElement}) {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
 
-  useCookieYes();
+  if(isProduction) {
+    useCookieYes();
+  }
+  
   useRestoreSession();
   useDynamicTitle();
 
