@@ -1,16 +1,16 @@
 import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
-import { UseAuth, useAuth } from "../../../src/hooks/auth/useAuth";
-import { CoursesLoop } from "../../../src/components/loops/CoursesLoop";
-import { StyledSection } from "../../../src/components/themed/StyledSection";
-import { sizes } from "../../../src/config/sizes.config";
-import { StyledSpace } from "../../../src/components/themed/StyledSpace";
-import { usePurchasedProducts } from "../../../src/hooks/data/usePurchasedProducts";
+import { UseAuth, useAuth } from "../../../../main/hooks/auth/useAuth";
+import { CoursesLoop } from "../../../../main/components/loops/CoursesLoop";
+import { StyledSection } from "../../../../main/components/themed/StyledSection";
+import { sizes } from "../../../../main/config/sizes.config";
+import { StyledSpace } from "../../../../main/components/themed/StyledSpace";
+import { usePurchasedProducts } from "../../../../main/hooks/data/usePurchasedProducts";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { useLocation } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
-import { useBodyOverflow } from "../../../src/hooks/ui/useBodyOverflow";
-import { LargeProductsPreviewButtons } from "../../../src/components/buttons/LargeProductsPreviewButtons";
+import { useBodyOverflow } from "../../../../main/hooks/ui/useBodyOverflow";
+import { LargeProductsPreviewButtons } from "../../../../main/components/buttons/LargeProductsPreviewButtons";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 
 type LargeProductsPreviewSectionProps = {

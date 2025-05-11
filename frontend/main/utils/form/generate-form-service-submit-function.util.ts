@@ -4,7 +4,7 @@ import { loginService } from "../../services/login.service";
 import { signUpService } from "../../services/singup.service";
 import { AllowedServices } from "../../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
-import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../../admin/src/contexts/UpdateProductFormProvider";
 import { NavigateFunction } from "react-router-dom";
 
 type GenerateFormServiceSubmitFunction = {

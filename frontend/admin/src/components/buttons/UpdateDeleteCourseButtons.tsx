@@ -1,20 +1,20 @@
 import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, MouseEventHandler} from "react";
-import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
-import { UseAuth, useAuth } from "../../../src/hooks/auth/useAuth";
+import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UseAuth, useAuth } from "../../../../main/hooks/auth/useAuth";
 import styled from "styled-components";
-import { StyledButton } from "../../../src/components/themed/StyledButton";
-import { FadeInWrapper } from "../../../src/components/animated/FadeInWrapper";
-import { StyledText } from "../../../src/components/themed/StyledText";
-import { StyledSpace } from "../../../src/components/themed/StyledSpace";
-import { colors } from "../../../src/config/colors.config";
+import { StyledButton } from "../../../../main/components/themed/StyledButton";
+import { FadeInWrapper } from "../../../../main/components/animated/FadeInWrapper";
+import { StyledText } from "../../../../main/components/themed/StyledText";
+import { StyledSpace } from "../../../../main/components/themed/StyledSpace";
+import { colors } from "../../../../main/config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
 import { useDispatch } from "react-redux";
 import { useLocation, Location } from "react-router-dom";
-import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../../admin/contexts/UpdateProductFormProvider";
-import { setDataChanged } from "../../../src/store/slices/courses-data-changed.slice";
+import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
+import { setDataChanged } from "../../../../main/store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
-import { sumStringDelays } from "../../../src/utils/components/sum-string-delays.util";
-import { useBodyOverflow } from "../../../src/hooks/ui/useBodyOverflow";
+import { sumStringDelays } from "../../../../main/utils/components/sum-string-delays.util";
+import { useBodyOverflow } from "../../../../main/hooks/ui/useBodyOverflow";
 
 const Wrapper = styled.div`
     display: flex !important;

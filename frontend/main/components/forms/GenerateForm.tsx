@@ -12,7 +12,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
-import { UpdateProductFormContextStateObject } from "../../../admin/contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextStateObject } from "../../../admin/src/contexts/UpdateProductFormProvider";
 import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
 import { FormButtons } from "../buttons/FormButtons";
 import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";

@@ -1,10 +1,10 @@
 import { FC, ReactElement, Dispatch, SetStateAction } from "react";
-import { FadeInWrapper } from "../../../src/components/animated/FadeInWrapper";
-import { StyledButton } from "../../../src/components/themed/StyledButton";
-import { StyledSpace } from "../../../src/components/themed/StyledSpace";
-import { StyledText } from "../../../src/components/themed/StyledText";
-import { useAuth, UseAuth } from "../../../src/hooks/auth/useAuth";
-import { colors } from "../../../src/config/colors.config";
+import { FadeInWrapper } from "../../../../main/components/animated/FadeInWrapper";
+import { StyledButton } from "../../../../main/components/themed/StyledButton";
+import { StyledSpace } from "../../../../main/components/themed/StyledSpace";
+import { StyledText } from "../../../../main/components/themed/StyledText";
+import { useAuth, UseAuth } from "../../../../main/hooks/auth/useAuth";
+import { colors } from "../../../../main/config/colors.config";
 
 type CreateCourseButtonProps = {
     setCrateProductForm: Dispatch<SetStateAction<boolean>>,
