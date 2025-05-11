@@ -8,6 +8,7 @@ import useLocationChange from './hooks/navigation/useLocationChange';
 import { ReactElement, useEffect } from 'react';
 import { useRestoreSession } from './hooks/auth/useRestoreSession';
 import { useDynamicTitle } from './hooks/navigation/useDynamicDocumentTitle';
+import { useCookieYes } from "./hooks/theme/useCookieYes";
 import { AppState } from './store/slices/app-state-slice';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
@@ -18,6 +19,7 @@ function Layout({children}: {children: ReactElement}) {
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
 
+  useCookieYes();
   useRestoreSession();
   useDynamicTitle();
 

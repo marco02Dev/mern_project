@@ -8,6 +8,7 @@ declare module 'path';
 interface ImportMetaEnv {
     readonly VITE_ENV: string;
     readonly VITE_DEV_ENDPOINT: string;
+    readonly VITE_COOKIEYES_ID: string;
 }
   
 interface ImportMeta {
