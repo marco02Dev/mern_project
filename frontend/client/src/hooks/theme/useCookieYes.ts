@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { cookieYesID } from './../../config/app.config';
+import { CookieYesStylesType, CookieYesStyles } from '../../styles/cookie-yes.style';
 
-export const useCookieYes = (): void => {
+export const useCookieYes = (): CookieYesStylesType => {
   useEffect(() => {
 
     if (!cookieYesID) {
@@ -26,4 +27,6 @@ export const useCookieYes = (): void => {
       }
     };
   }, []);
+
+  return CookieYesStyles;
 };

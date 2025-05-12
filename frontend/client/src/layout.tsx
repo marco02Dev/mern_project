@@ -14,14 +14,19 @@ import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { LoadingPage } from './pages/LoadingPage';
 import { isProduction } from './config/app.config';
+import { CookieYesStylesType } from './styles/cookie-yes.style';
+import { ThemeColors, useThemeColors } from './hooks/theme/useThemeColors';
 
 function Layout({children}: {children: ReactElement}) {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
+  const { backgroundColorButton }: ThemeColors = useThemeColors();
+  let CookieYesStyles: null | CookieYesStylesType = null;
 
   if(isProduction) {
-    useCookieYes();
+    const CookieYesStylesObject: CookieYesStylesType = useCookieYes();
+    CookieYesStyles = CookieYesStylesObject;
   }
   
   useRestoreSession();
@@ -38,6 +43,10 @@ function Layout({children}: {children: ReactElement}) {
 
   return <>
     {(isMobile || isTablet) && <MobileMenu /> }
+    {CookieYesStyles !== null && <CookieYesStyles 
+      $buttonBackgorundColor={backgroundColorButton}
+    />}
+
     <Header />
     {children}
     <Footer />
