@@ -21,7 +21,7 @@ function Layout({children}: {children: ReactElement}) {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
-  const { backgroundColorButton, backgroundColor, textColor }: ThemeColors = useThemeColors();
+  const { backgroundColorButton, backgroundColor, textColor, borderColor }: ThemeColors = useThemeColors();
   let CookieYesStyles: null | CookieYesStylesType = null;
 
   if(isProduction) {
@@ -43,10 +43,12 @@ function Layout({children}: {children: ReactElement}) {
 
   return <>
     {(isMobile || isTablet) && <MobileMenu /> }
+    
     {CookieYesStyles !== null && <CookieYesStyles 
       $backgroundColor={backgroundColor}
       $textColor={textColor}
       $buttonBackgorundColor={backgroundColorButton}
+      $borderColor={borderColor}
     />}
 
     <Header />
