@@ -1,12 +1,8 @@
-import { Dispatch, FC, ReactElement, SetStateAction, useContext } from "react";
+import { FC, ReactElement, useContext } from "react";
 import { ProductFormSection } from "../sections/ProductFormSection";
-import { UpdateProductFormContextProps, UpdateProductFormContext, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContextProps, UpdateProductFormContext } from "../../contexts/UpdateProductFormProvider";
 
-type UpdateProductFormProps = {
-    setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>,
-}
-
-export const UpdateProductForm: FC<UpdateProductFormProps> = ({setUpdateProductFormSetState}: UpdateProductFormProps): ReactElement => {
+export const UpdateProductForm: FC = (): ReactElement => {
     const updateProductFormContext: any = useContext(UpdateProductFormContext);
     const { updateProductForm }: UpdateProductFormContextProps = updateProductFormContext;
 
@@ -17,7 +13,6 @@ export const UpdateProductForm: FC<UpdateProductFormProps> = ({setUpdateProductF
         title={"Update the course"} 
         service="update-course"
         productImage
-        setUpdateProductFormSetState={setUpdateProductFormSetState}
         textArea="details"
         textAreaPlaceholder="Write as title=…,content=…; separate sections with commas."
         updateProductFormState={updateProductForm}

@@ -1,4 +1,4 @@
-import { Dispatch, FC, ReactElement, SetStateAction, useState } from "react";
+import { Dispatch, FC, ReactElement, SetStateAction, useContext, useState } from "react";
 import { StyledSection } from "@client/components/themed/StyledSection";
 import { StyledSpace } from "@client/components/themed/StyledSpace";
 import styled from "styled-components";
@@ -7,7 +7,7 @@ import { sizes } from "@client/config/sizes.config";
 import { GenerateForm } from "@client/components/forms/GenerateForm";
 import { ImageBorderedBox } from "@client/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@client/types/service.type";
-import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
@@ -33,7 +33,6 @@ type ProductFormSectionProps = {
     updateProductFormState?: UpdateProductFormContextStateObject,
     setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
     setProductCreated?: Dispatch<SetStateAction<boolean>>,
-    setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormContextStateObject>>
 }
 
 export const ProductFormSection: FC<ProductFormSectionProps> = ({
@@ -49,11 +48,11 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
     productImage, 
     updateProductFormState,
     setCrateProductForm, 
-    setProductCreated,
-    setUpdateProductFormSetState
+    setProductCreated
 }: ProductFormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
+    const { setUpdateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext)
 
     return <StyledSection 
         id={`${service}-form-section`} 
@@ -80,7 +79,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 setCrateProductForm={setCrateProductForm}
                 setProductCreated={setProductCreated}
                 setFormImage={setFormImage}
-                setUpdateProductFormSetState={setUpdateProductFormSetState}
+                setUpdateProductFormSetState={setUpdateProductForm}
                 updateProductFormState={updateProductFormState}
                 additionalGenerateFormServiceSubmitFunction={generateAdminProductFormSubmitFunction}
             />

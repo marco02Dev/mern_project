@@ -1,4 +1,4 @@
-import { ReactElement, FC, useState, useContext, Dispatch, SetStateAction } from "react";
+import { ReactElement, FC, useState, useContext } from "react";
 import { UseAuth, useAuth } from "@client/hooks/auth/useAuth";
 import { CoursesLoop } from "@client/components/loops/CoursesLoop";
 import { StyledSection } from "@client/components/themed/StyledSection";
@@ -7,8 +7,7 @@ import { StyledSpace } from "@client/components/themed/StyledSpace";
 import { usePurchasedProducts } from "@client/hooks/data/usePurchasedProducts";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
-import { useLocation } from "react-router-dom";
-import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
+import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "@client/components/buttons/LargeProductsPreviewButtons";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
@@ -37,26 +36,8 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
     const [createProductForm, setCrateProductForm] = useState<boolean>(false);
     const [productCreated, setProductCreated] = useState<boolean>(false);
     const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
-    const {isLoggedIn, isAdmin }: UseAuth = useAuth();
-
-    const location = useLocation();
-    const isAdminPage: boolean = location.pathname.startsWith("/admin");
-
-
-    let setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> = () => {};
-    let updateProductFormState: UpdateProductFormContextStateObject = {
-        state: false,
-        courseId: ""
-    };
-
-    if(isLoggedIn && isAdminPage && isAdmin) {
-        const updateProductFormContext: any = useContext(UpdateProductFormContext);
-        if(UpdateProductFormContext !== undefined) {
-            const {setUpdateProductForm, updateProductForm}: UpdateProductFormContextProps = updateProductFormContext;
-            setUpdateProductFormSetState = setUpdateProductForm;
-            updateProductFormState = updateProductForm;
-        }
-    }
+    const { isAdmin }: UseAuth = useAuth();
+    const { updateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
 
     useBodyOverflow(createProductForm);
     
@@ -98,9 +79,7 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
             setProductCreated={setProductCreated}
         />}
 
-        { isAdmin && createProducts && updateProductFormState.state && <UpdateProductForm 
-            setUpdateProductFormSetState={setUpdateProductFormSetState}
-        />}
+        { isAdmin && createProducts && updateProductForm.state && <UpdateProductForm />}
     </>
 
 }
