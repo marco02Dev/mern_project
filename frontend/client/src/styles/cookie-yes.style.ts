@@ -16,7 +16,10 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
     .cky-btn-revisit-wrapper, .cky-btn  {
         color: ${({$backgroundColor}) => $backgroundColor} !important;
         background-color: ${({$buttonBackgorundColor}) => $buttonBackgorundColor} !important;
-        border-color: ${({$borderColor}) => $borderColor};
+        border-color: ${({$borderColor}) => $borderColor} !important;
+    }
+    .cky-btn {
+
     }
     .cky-consent-bar, .cky-preference-center {
         color: ${({$textColor}) => $textColor} !important;
