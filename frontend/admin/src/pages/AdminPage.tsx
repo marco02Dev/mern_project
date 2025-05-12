@@ -6,13 +6,14 @@ import { LogInPage } from "@client/pages/LogInPage";
 import { TextSection } from "@client/components/sections/TextSection";
 import { logOutService } from "@client/services/log-out.service";
 import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
+import { CreateProductFormContextProvider } from "../contexts/CreateProductFormContextProvider";
 import { AdminProductManagementSection } from "../components/sections/ProductMenagementSection";
 import { useAuth, UseAuth } from "@client/hooks/auth/useAuth";
 
 export const AdminPage: FC = (): ReactElement => {
-    const { isLoggedIn, userData }: UseAuth = useAuth();
+    const { isLoggedIn, userData, isAdmin }: UseAuth = useAuth();
 
-    if( userData && isLoggedIn) {
+    if( userData && isLoggedIn && isAdmin) {
         return <>
             <HeroSection
                 eyebrowText="Learn. Grow. Succeed."
@@ -25,14 +26,15 @@ export const AdminPage: FC = (): ReactElement => {
                 secondaryColor
             />
 
-            <UpdateProductFormContextProvider>
-                <AdminProductManagementSection
-                    limit={6}
-                    createProducts
-                    latest
-                />
-            </UpdateProductFormContextProvider>
-
+            <CreateProductFormContextProvider>
+                <UpdateProductFormContextProvider>
+                    <AdminProductManagementSection
+                        limit={6}
+                        createProducts
+                        latest
+                    />
+                </UpdateProductFormContextProvider>
+            </CreateProductFormContextProvider>
 
             <TextSection
                 title="Master Your Skills Today!"

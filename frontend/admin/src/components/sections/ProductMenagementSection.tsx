@@ -4,7 +4,6 @@ import { CoursesLoop } from "@client/components/loops/CoursesLoop";
 import { StyledSection } from "@client/components/themed/StyledSection";
 import { sizes } from "@client/config/sizes.config";
 import { StyledSpace } from "@client/components/themed/StyledSpace";
-import { usePurchasedProducts } from "@client/hooks/data/usePurchasedProducts";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
@@ -12,6 +11,7 @@ import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "@client/components/buttons/LargeProductsPreviewButtons";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 import { CreateCourseButton } from "../buttons/CreateCourseButton";
+import { CreateProductFormContext, CreateProductFormContextProps } from "../../contexts/CreateProductFormContextProvider";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -26,17 +26,15 @@ type LargeProductsPreviewSectionProps = {
 export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps> = ({
     limit,
     category,
-    userProductsPurchased,
     createProducts,
     categoriesFilter,
     latest
 }: LargeProductsPreviewSectionProps): ReactElement => {
     const [products, setProducts] = useState<number>(limit);
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
-    const [createProductForm, setCrateProductForm] = useState<boolean>(false);
     const [productCreated, setProductCreated] = useState<boolean>(false);
-    const { productsPurchased } = usePurchasedProducts(userProductsPurchased);
     const { isAdmin }: UseAuth = useAuth();
+    const { createProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext);
     const { updateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
 
     useBodyOverflow(createProductForm);
@@ -45,7 +43,6 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
         <StyledSection overflowVisible paddingLeft={sizes.spaces.small} paddingRight={sizes.spaces.small}>
             <StyledSpace large vertical/>
             <CoursesLoop 
-                purchasedProducts={productsPurchased} 
                 limit={products} 
                 category={category} 
                 setProductsNumber={setProductsNumber}
@@ -63,7 +60,6 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
                 setProducts={setProducts}
                 AdditionalButtons={() => (
                     <CreateCourseButton 
-                        setCrateProductForm={setCrateProductForm}
                         productCreated={productCreated}
                         setProductCreated={setProductCreated}
                         createProducts={createProducts}
@@ -75,7 +71,6 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
         </ StyledSection>  
 
         { createProductForm && isAdmin && createProducts && <CreateProductForm 
-            setCrateProductForm={setCrateProductForm}
             setProductCreated={setProductCreated}
         />}
 

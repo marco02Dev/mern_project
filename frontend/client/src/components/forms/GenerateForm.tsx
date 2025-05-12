@@ -4,13 +4,13 @@ import { sizes } from "../../config/sizes.config";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledText } from "../themed/StyledText";
 import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { InputDataFieldSetLoop } from "../loops/InputDataFieldSetLoop";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
 import { UpdateProductFormContextStateObject } from "../../../../admin/src/contexts/UpdateProductFormProvider";
 import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
@@ -79,8 +79,8 @@ export const GenerateForm: FC<FormProps> = ({
     const [errorMessage, setErrorMessage] = useState<string | undefined>();
     const [messageSent, setMessageSent] = useState< boolean | undefined>();
     const dispatch: Dispatch = useDispatch();
-    const navigateFunction = useNavigate();
-    const { isMobile, isTablet } = useMediaQuery();
+    const navigateFunction: NavigateFunction = useNavigate();
+    const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     let handleSubmit: FormEventHandler<HTMLFormElement>;
 
     if(additionalGenerateFormServiceSubmitFunction) {

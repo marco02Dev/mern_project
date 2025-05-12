@@ -9,6 +9,7 @@ import { ImageBorderedBox } from "@client/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@client/types/service.type";
 import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
+import { CreateProductFormContext, CreateProductFormContextProps } from "../../contexts/CreateProductFormContextProvider";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -31,7 +32,6 @@ type ProductFormSectionProps = {
     secondaryColor?: boolean,
     productImage?: boolean,
     updateProductFormState?: UpdateProductFormContextStateObject,
-    setCrateProductForm?: Dispatch<SetStateAction<boolean>>,
     setProductCreated?: Dispatch<SetStateAction<boolean>>,
 }
 
@@ -47,12 +47,12 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
     secondaryColor, 
     productImage, 
     updateProductFormState,
-    setCrateProductForm, 
     setProductCreated
 }: ProductFormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
-    const { setUpdateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext)
+    const { setUpdateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
+    const { setCreateProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext)
 
     return <StyledSection 
         id={`${service}-form-section`} 
@@ -76,7 +76,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 textAreaPlaceholder={textAreaPlaceholder}
                 service={service}
                 productImage={productImage}
-                setCrateProductForm={setCrateProductForm}
+                setCrateProductForm={setCreateProductForm}
                 setProductCreated={setProductCreated}
                 setFormImage={setFormImage}
                 setUpdateProductFormSetState={setUpdateProductForm}
