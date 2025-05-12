@@ -3,13 +3,14 @@ import { RootState } from "../../store";
 import { colors } from "../../config/colors.config";
 
 export type ThemeColors = {
-    mode: string,
-    textColor: string,
-    backgroundColor: string,
-    backgroundColorSecondary: string,
-    backgroundColorButton: string,
-    borderColor: string,
-    hoverColor: string
+  mode: string,
+  textColor: string,
+  backgroundColor: string,
+  backgroundColorSecondary: string,
+  backgroundColorButton: string,
+  borderColor: string,
+  hoverColor: string,
+  successMessageColor: string
 }
 
 type useThemeColorsOptions = {
@@ -41,6 +42,7 @@ export const useThemeColors = ({ invertColors = false }: useThemeColorsOptions =
       backgroundColorButton: resolveColor("backgroundColorButton", colors.light.buttonBackgroundColor, colors.dark.buttonBackgroundColor),
       borderColor: resolveColor("borderColor", colors.light.borderColor, colors.dark.borderColor),
       hoverColor: resolveColor("hoverColor", colors.light.hoverColor, colors.dark.hoverColor),
+      successMessageColor: resolveColor("successMessageColor", colors.light.successMessage, colors.dark.successMessage)
     };
 };
   

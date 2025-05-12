@@ -5,7 +5,9 @@ type CookieYesStylesProps = {
     $buttonBackgorundColor: string,
     $backgroundColor: string,
     $textColor: string,
-    $borderColor: string
+    $borderColor: string,
+    $hoverColor: string,
+    $successMessageColor: string
 }
 
 export type CookieYesStylesType = NamedExoticComponent<CookieYesStylesProps>;
@@ -20,7 +22,13 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         color: ${({$textColor}) => $textColor} !important;
         background-color: ${({$backgroundColor}) =>  $backgroundColor} !important;  
     }
-    .cky-title, .cky-notice-des, .cky-consent-bar, .cky-preference-title, .cky-accordion-btn, .cky-btn-customize::after, .cky-accordion-header-des {
+    .cky-title, .cky-notice-des, .cky-consent-bar, .cky-preference-title, .cky-accordion-btn, .cky-btn-customize::after, .cky-accordion-header-des, .cky-preference-content-wrapper p {
         color: ${({$textColor}) => $textColor} !important; 
+    }
+    .cky-show-desc-btn {
+        color: ${({$hoverColor}) => $hoverColor} !important;
+    }
+    .cky-always-active {
+        color: ${({$successMessageColor}) => $successMessageColor}
     }
 `;
