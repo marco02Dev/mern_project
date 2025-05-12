@@ -20,7 +20,7 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         color: ${({$textColor}) => $textColor} !important;
         background-color: ${({$backgroundColor}) =>  $backgroundColor} !important;  
     }
-    .cky-title, .cky-notice-des, .cky-consent-bar .cky-btn-customize::after {
+    .cky-title, .cky-notice-des, .cky-consent-bar, .cky-preference-title, .cky-accordion-btn, .cky-btn-customize::after, .cky-accordion-header-des {
         color: ${({$textColor}) => $textColor} !important; 
     }
 `;
