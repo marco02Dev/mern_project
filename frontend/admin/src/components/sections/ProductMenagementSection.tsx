@@ -12,6 +12,7 @@ import { UpdateProductFormContext, UpdateProductFormContextStateObject, UpdatePr
 import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "@client/components/buttons/LargeProductsPreviewButtons";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
+import { CreateCourseButton } from "../buttons/CreateCourseButton";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -77,12 +78,16 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
 
             <LargeProductsPreviewButtons 
                 productsNumber={productsNumber}
-                createProducts={createProducts}
                 products={products}
-                productCreated={productCreated}
-                setProductCreated={setProductCreated}
-                setCrateProductForm={setCrateProductForm}
                 setProducts={setProducts}
+                AdditionalButtons={() => (
+                    <CreateCourseButton 
+                        setCrateProductForm={setCrateProductForm}
+                        productCreated={productCreated}
+                        setProductCreated={setProductCreated}
+                        createProducts={createProducts}
+                    />
+                )}
             />
 
             <StyledSpace large vertical/>
