@@ -1,11 +1,11 @@
-import { endpoints } from "../../../client/src/config/endpoints.config";
+import { endpoints } from "@client/config/endpoints.config";
 import { FormEvent, Dispatch, SetStateAction } from "react";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
-import { setDataChanged } from "../../../client/src/store/slices/courses-data-changed.slice";
+import { setDataChanged } from "@client/store/slices/courses-data-changed.slice";
 import { uploadCourseImagesService } from "./upload-course-image-service";
-import { checkSession } from "../../../client/src/utils/cookies/check-session.util";
-import { reloadLoginPage } from "../../../client/src/utils/browser/reload-login-page.util";
-import { errorMessages } from "../../../client/src/config/error-messages.config";
+import { checkSession } from "@client/utils/cookies/check-session.util";
+import { reloadLoginPage } from "@client/utils/browser/reload-login-page.util";
+import { errorMessages } from "@client/config/error-messages.config";
 import { retrieveFormProductData } from "../utils/retrieve-form-product-data.util";
 
 export type CreateCourseService = (

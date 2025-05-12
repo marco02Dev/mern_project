@@ -1,20 +1,20 @@
 import { FC, ReactElement, Dispatch, SetStateAction, useContext, useEffect, useState, MouseEventHandler} from "react";
 import { UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
-import { UseAuth, useAuth } from "../../../../client/src/hooks/auth/useAuth";
+import { UseAuth, useAuth } from "@client/hooks/auth/useAuth";
 import styled from "styled-components";
-import { StyledButton } from "../../../../client/src/components/themed/StyledButton";
-import { FadeInWrapper } from "../../../../client/src/components/animated/FadeInWrapper";
-import { StyledText } from "../../../../client/src/components/themed/StyledText";
-import { StyledSpace } from "../../../../client/src/components/themed/StyledSpace";
-import { colors } from "../../../../client/src/config/colors.config";
+import { StyledButton } from "@client/components/themed/StyledButton";
+import { FadeInWrapper } from "@client/components/animated/FadeInWrapper";
+import { StyledText } from "@client/components/themed/StyledText";
+import { StyledSpace } from "@client/components/themed/StyledSpace";
+import { colors } from "@client/config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
 import { useDispatch } from "react-redux";
 import { useLocation, Location } from "react-router-dom";
 import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
-import { setDataChanged } from "../../../../client/src/store/slices/courses-data-changed.slice";
+import { setDataChanged } from "@client/store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
-import { sumStringDelays } from "../../../../client/src/utils/components/sum-string-delays.util";
-import { useBodyOverflow } from "../../../../client/src/hooks/ui/useBodyOverflow";
+import { sumStringDelays } from "@client/utils/components/sum-string-delays.util";
+import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
 
 const Wrapper = styled.div`
     display: flex !important;

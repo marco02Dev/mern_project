@@ -20,6 +20,11 @@ const envVariables: Record<string, string> = Object.keys(process.env)
 export default defineConfig({
   base: './', 
   plugins: [react(), mkcert()],
+  resolve: {
+  alias: {
+    '@client': path.resolve(__dirname, 'client/src'),
+  },
+  },
   server: {
     https: {},
     host: '0.0.0.0',

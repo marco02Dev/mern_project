@@ -10,7 +10,7 @@
     "typeRoots": [
       "./node_modules/@types", 
       "../node_modules/@types", 
-      "../../node_modules/@types" ,
+      "../../node_modules/@types",
       "./types"
     ],
 
@@ -28,7 +28,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Alias support */
+    "baseUrl": ".", 
+    "paths": {
+      "@client/*": ["client/src/*"]
+    }
   },
   "include": ["src", "admin", "main", "vite-env.d.ts"]
 }
+  
