@@ -156,7 +156,6 @@ export const GenerateForm: FC<FormProps> = ({
                     </> }
 
                     <FormButtons 
-                        productImage={productImage} 
                         AdditionalButtons={AdditionalFormButtons}
                         delay={sumStringDelays(
                             productImage && textArea ? fieldSetAdditionalInfoBoxLastDelay :

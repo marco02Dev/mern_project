@@ -11,13 +11,11 @@ const Wrapper = styled.div`
 `;
 
 type FormButtonsProps = {
-    productImage?: boolean;
     delay?: string;
     AdditionalButtons: FC
 }
 
 export const FormButtons: FC<FormButtonsProps> = ({
-    productImage,
     delay,
     AdditionalButtons
 }: FormButtonsProps): ReactElement => {
@@ -30,7 +28,7 @@ export const FormButtons: FC<FormButtonsProps> = ({
                 <button className="is-hidden" ref={hiddenRef as RefObject<HTMLButtonElement>} type="submit" />
             </FadeInWrapper>
 
-            {productImage && AdditionalButtons && <AdditionalButtons /> }
+            {AdditionalButtons && <AdditionalButtons /> }
         </Wrapper>
     );
 };

@@ -13,7 +13,7 @@ import { AppState } from './store/slices/app-state-slice';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { LoadingPage } from './pages/LoadingPage';
-import { isProduction } from './config/app.config';
+import { isProduction, isRender } from './config/app.config';
 import { CookieYesStylesType } from './styles/cookie-yes.style';
 import { ThemeColors, useThemeColors } from './hooks/theme/useThemeColors';
 
@@ -24,7 +24,7 @@ function Layout({children}: {children: ReactElement}) {
   const { backgroundColorButton, backgroundColor, textColor, borderColor, hoverColor, successMessageColor }: ThemeColors = useThemeColors();
   let CookieYesStyles: null | CookieYesStylesType = null;
 
-  if(isProduction) {
+  if(isProduction && isRender) {
     const CookieYesStylesObject: CookieYesStylesType = useCookieYes();
     CookieYesStyles = CookieYesStylesObject;
   }
