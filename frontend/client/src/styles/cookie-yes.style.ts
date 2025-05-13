@@ -41,11 +41,11 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         color: ${({$successMessageColor}) => $successMessageColor}
     }
     .cky-consent-bar .cky-btn-customize::after {
-        top: unset !important;
-        right: unset !important;
-        border-left: unset !important;
-        border-right: unset !important;
-        border-top: unset !important;
+        top: 0px !important;
+        right: 0px !important;
+        border-left: 0px !important;
+        border-right: 0px !important;
+        border-top: 0px !important;
         border-top-color: unset !important;
     }
 `;
