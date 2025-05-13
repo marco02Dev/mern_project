@@ -21,7 +21,7 @@ function Layout({children}: {children: ReactElement}) {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
-  const { backgroundColorButton, backgroundColor, textColor, borderColor, hoverColor, successMessageColor }: ThemeColors = useThemeColors();
+  const { backgroundColorButton, backgroundColor, backgroundColorSecondary, textColor, borderColor, hoverColor, successMessageColor }: ThemeColors = useThemeColors();
   let CookieYesStyles: null | CookieYesStylesType = null;
 
   if(isProduction && isRender) {
@@ -51,6 +51,7 @@ function Layout({children}: {children: ReactElement}) {
       $borderColor={borderColor}
       $hoverColor={hoverColor}
       $successMessageColor={successMessageColor}
+      $secondaryBackgorundColor={backgroundColorSecondary}
     />}
 
     <Header />

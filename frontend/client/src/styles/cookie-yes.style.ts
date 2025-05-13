@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 type CookieYesStylesProps = {
     $buttonBackgorundColor: string,
     $backgroundColor: string,
+    $secondaryBackgorundColor: string
     $textColor: string,
     $borderColor: string,
     $hoverColor: string,
@@ -21,9 +22,13 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
     .cky-btn {
 
     }
-    .cky-consent-bar, .cky-preference-center {
+    .cky-consent-bar, .cky-preference-content-wrapper {
         color: ${({$textColor}) => $textColor} !important;
         background-color: ${({$backgroundColor}) =>  $backgroundColor} !important;  
+    }
+    .detail-powered-by {
+        color: ${({$textColor}) => $textColor};
+        background-color: ${({$secondaryBackgorundColor}) => $secondaryBackgorundColor};
     }
     .cky-title, .cky-notice-des, .cky-consent-bar, .cky-preference-title, .cky-accordion-btn, .cky-btn-customize::after, .cky-accordion-header-des, .cky-preference-content-wrapper p {
         color: ${({$textColor}) => $textColor} !important; 
