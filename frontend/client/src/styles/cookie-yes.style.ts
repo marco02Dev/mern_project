@@ -20,6 +20,9 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         background-color: ${({$buttonBackgorundColor}) => $buttonBackgorundColor} !important;
         border-color: ${({$borderColor}) => $borderColor} !important;
     }
+    .cky-preference-center {
+        background-color: ${({$buttonBackgorundColor}) => $buttonBackgorundColor} !important;
+    }
     .cky-btn {
         position: relative;
         ${() => buttonHoverAnimation}
@@ -40,5 +43,13 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
     }
     .cky-always-active {
         color: ${({$successMessageColor}) => $successMessageColor}
+    }
+    .cky-consent-bar .cky-btn-customize::after {
+        top: unset !important;
+        right: unset !important;
+        border-left: unset !important;
+        border-right: unset !important;
+        border-top: unset !important;
+        border-top-color: unset !important;
     }
 `;

@@ -25,6 +25,7 @@ export const buttonHoverAnimation: RuleSet<buttonHoverAnimationProps> = css<butt
         display: flex;
         justify-content: center;
         align-items: center;
+        ${({$content}) => !$content && "z-index: -1;"};
     }
 
     &:hover {
