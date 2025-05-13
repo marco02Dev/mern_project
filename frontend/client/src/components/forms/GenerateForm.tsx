@@ -50,6 +50,7 @@ type FormProps = {
     productImage?: boolean;
     formWidth?: string;
     updateProductFormState?: UpdateProductFormState;
+    AdditionalFormButtons?: FC
     additionalGenerateFormServiceSubmitFunction?: Function,
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
@@ -67,6 +68,7 @@ export const GenerateForm: FC<FormProps> = ({
     formWidth,
     updateProductFormState,
     additionalGenerateFormServiceSubmitFunction,
+    AdditionalFormButtons,
     setCrateProductForm,
     setProductCreated,
     setFormImage,
@@ -157,6 +159,7 @@ export const GenerateForm: FC<FormProps> = ({
                         productImage={productImage} 
                         setCrateProductForm={setCrateProductForm}
                         setUpdateProductFormSetState={setUpdateProductFormSetState}
+                        AdditionalButtons={AdditionalFormButtons}
                         delay={sumStringDelays(
                             productImage && textArea ? fieldSetAdditionalInfoBoxLastDelay :
                             !textArea && productImage ? fileInputFieldSetLoopLoopLastDelay :

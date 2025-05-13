@@ -3,7 +3,6 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
-import { StyledSpace } from "../themed/StyledSpace";
 import { UpdateProductFormState } from "admin/src/contexts/ProductMenagementContextProvider";
 import { useHiddenLink } from "../../hooks/navigation/useHiddenLink";
 
@@ -17,13 +16,15 @@ type FormButtonsProps = {
     delay?: string;
     setCrateProductForm?: Dispatch<SetStateAction<boolean>>;
     setUpdateProductFormSetState?: Dispatch<SetStateAction<UpdateProductFormState>>;
+    AdditionalButtons: FC
 }
 
 export const FormButtons: FC<FormButtonsProps> = ({
     productImage,
     setCrateProductForm,
     setUpdateProductFormSetState,
-    delay
+    delay,
+    AdditionalButtons
 }: FormButtonsProps): ReactElement => {
     const { hiddenRef, handleHiddenClick } = useHiddenLink();
 
@@ -34,27 +35,7 @@ export const FormButtons: FC<FormButtonsProps> = ({
                 <button className="is-hidden" ref={hiddenRef as RefObject<HTMLButtonElement>} type="submit" />
             </FadeInWrapper>
 
-            {productImage && (setCrateProductForm || setUpdateProductFormSetState) && (
-                <>
-                    <StyledSpace horizontal medium />
-                    <FadeInWrapper>
-                        <StyledButton
-                            content="Undo"
-                            action={() => {
-                                if (setCrateProductForm) {
-                                    setCrateProductForm(false);
-                                } else if (setUpdateProductFormSetState) {
-                                    setUpdateProductFormSetState({
-                                        state: false,
-                                        courseId: ""
-                                    });
-                                }
-                            }}
-                            unsetShadow
-                        />
-                    </FadeInWrapper>
-                </>
-            )}
+            {productImage && (setCrateProductForm || setUpdateProductFormSetState) && <AdditionalButtons /> }
         </Wrapper>
     );
 };

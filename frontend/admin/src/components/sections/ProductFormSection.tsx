@@ -9,6 +9,7 @@ import { ImageBorderedBox } from "@client/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@client/types/service.type";
 import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
 import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
+import { UndoCreateUpdateProductButton } from "../buttons/UndoCreateUpdateProductButton";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -76,6 +77,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 setUpdateProductFormSetState={setUpdateProductForm}
                 updateProductFormState={updateProductForm}
                 additionalGenerateFormServiceSubmitFunction={generateAdminProductFormSubmitFunction}
+                AdditionalFormButtons={UndoCreateUpdateProductButton}
             />
         </Wrapper>
 
