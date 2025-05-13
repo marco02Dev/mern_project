@@ -6,13 +6,12 @@ const animationDuration: string = "0.3s";
 
 type buttonHoverAnimationProps = {
     $hoverColor: string, 
-    $content?: string, 
     $size?: string    
 }
 
 export const buttonHoverAnimation: RuleSet<buttonHoverAnimationProps> = css<buttonHoverAnimationProps>`
     &::after {
-        content: "${({ $content }) => $content ? $content : ""}";
+        content: "";
         font-size: ${() => buttonFontSize};
         width: 100%;
         height: 100%;
@@ -25,7 +24,7 @@ export const buttonHoverAnimation: RuleSet<buttonHoverAnimationProps> = css<butt
         display: flex;
         justify-content: center;
         align-items: center;
-        ${({$content}) => !$content && "z-index: -1;"};
+        z-index: -1;
     }
 
     &:hover {
