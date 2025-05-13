@@ -21,7 +21,7 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         border-color: ${({$borderColor}) => $borderColor} !important;
     }
     .cky-preference-center {
-        background-color: ${({$buttonBackgorundColor}) => $buttonBackgorundColor} !important;
+        background-color: ${({$backgroundColor}) => $backgroundColor} !important;
     }
     .cky-btn {
         position: relative;
