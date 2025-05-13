@@ -21,6 +21,7 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         border-color: ${({$borderColor}) => $borderColor} !important;
     }
     .cky-btn {
+        position: relative;
         ${() => buttonHoverAnimation}
     }
     .cky-consent-bar, .cky-preference-content-wrapper {
