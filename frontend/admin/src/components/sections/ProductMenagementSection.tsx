@@ -1,5 +1,4 @@
 import { ReactElement, FC, useState, useContext } from "react";
-import { UseAuth, useAuth } from "@client/hooks/auth/useAuth";
 import { CoursesLoop } from "@client/components/loops/CoursesLoop";
 import { StyledSection } from "@client/components/themed/StyledSection";
 import { sizes } from "@client/config/sizes.config";
@@ -30,12 +29,10 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
     categoriesFilter,
     latest
 }: LargeProductsPreviewSectionProps): ReactElement => {
-    const [products, setProducts] = useState<number>(limit);
-    const [productsNumber, setProductsNumber ] = useState<number | undefined>();
-    const [productCreated, setProductCreated] = useState<boolean>(false);
-    const { isAdmin }: UseAuth = useAuth();
     const { createProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext);
     const { updateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
+    const [products, setProducts] = useState<number>(limit);
+    const [productsNumber, setProductsNumber ] = useState<number | undefined>();
 
     useBodyOverflow(createProductForm);
     
@@ -58,23 +55,15 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
                 productsNumber={productsNumber}
                 products={products}
                 setProducts={setProducts}
-                AdditionalButtons={() => (
-                    <CreateCourseButton 
-                        productCreated={productCreated}
-                        setProductCreated={setProductCreated}
-                        createProducts={createProducts}
-                    />
-                )}
+                AdditionalButtons={CreateCourseButton}
             />
 
             <StyledSpace large vertical/>
         </ StyledSection>  
 
-        { createProductForm && isAdmin && createProducts && <CreateProductForm 
-            setProductCreated={setProductCreated}
-        />}
+        { createProductForm && createProducts && <CreateProductForm />}
 
-        { isAdmin && createProducts && updateProductForm.state && <UpdateProductForm />}
+        { createProducts && updateProductForm.state && <UpdateProductForm />}
     </>
 
 }

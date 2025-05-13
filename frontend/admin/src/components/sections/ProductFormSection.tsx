@@ -1,4 +1,4 @@
-import { Dispatch, FC, ReactElement, SetStateAction, useContext, useState } from "react";
+import { FC, ReactElement, useContext, useState } from "react";
 import { StyledSection } from "@client/components/themed/StyledSection";
 import { StyledSpace } from "@client/components/themed/StyledSpace";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import { AllowedServices } from "@client/types/service.type";
 import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
 import { CreateProductFormContext, CreateProductFormContextProps } from "../../contexts/CreateProductFormContextProvider";
+import { ProductCreatedContext, ProductCreatedContextProps } from "../../contexts/ProductCreatedContextProvider";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -32,7 +33,6 @@ type ProductFormSectionProps = {
     secondaryColor?: boolean,
     productImage?: boolean,
     updateProductFormState?: UpdateProductFormContextStateObject,
-    setProductCreated?: Dispatch<SetStateAction<boolean>>,
 }
 
 export const ProductFormSection: FC<ProductFormSectionProps> = ({
@@ -47,12 +47,12 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
     secondaryColor, 
     productImage, 
     updateProductFormState,
-    setProductCreated
 }: ProductFormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
     const { setUpdateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
-    const { setCreateProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext)
+    const { setCreateProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext);
+    const { setProductCreated }: ProductCreatedContextProps = useContext(ProductCreatedContext);
 
     return <StyledSection 
         id={`${service}-form-section`} 

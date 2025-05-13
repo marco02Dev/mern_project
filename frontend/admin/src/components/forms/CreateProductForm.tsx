@@ -1,11 +1,7 @@
-import { Dispatch, FC, ReactElement, SetStateAction } from "react";
+import { FC, ReactElement } from "react";
 import { ProductFormSection } from "../sections/ProductFormSection";
 
-type CreateProductFormProps = {
-    setProductCreated: Dispatch<SetStateAction<boolean>>
-}
-
-export const CreateProductForm: FC<CreateProductFormProps> = ({setProductCreated}: CreateProductFormProps): ReactElement => {
+export const CreateProductForm: FC = (): ReactElement => {
     return <ProductFormSection
         imgSrc={`https://res.cloudinary.com/dqwoo44z8/image/upload/v1746268491/form-section_f6y1ml.webp`}
         imageBorderedBoxWidth="40%"
@@ -13,7 +9,6 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({setProductCreated
         title={"Create a new course"} 
         service="create-course"
         productImage
-        setProductCreated={setProductCreated}
         textArea="details"
         textAreaPlaceholder="Write as title=…,content=…; separate sections with commas."
         fields={[

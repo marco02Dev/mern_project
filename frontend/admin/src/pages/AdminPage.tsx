@@ -7,6 +7,7 @@ import { TextSection } from "@client/components/sections/TextSection";
 import { logOutService } from "@client/services/log-out.service";
 import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
 import { CreateProductFormContextProvider } from "../contexts/CreateProductFormContextProvider";
+import { ProductCreatedContextProvider } from "../contexts/ProductCreatedContextProvider";
 import { AdminProductManagementSection } from "../components/sections/ProductMenagementSection";
 import { useAuth, UseAuth } from "@client/hooks/auth/useAuth";
 
@@ -27,13 +28,15 @@ export const AdminPage: FC = (): ReactElement => {
             />
 
             <CreateProductFormContextProvider>
-                <UpdateProductFormContextProvider>
-                    <AdminProductManagementSection
-                        limit={6}
-                        createProducts
-                        latest
-                    />
-                </UpdateProductFormContextProvider>
+                <ProductCreatedContextProvider>
+                    <UpdateProductFormContextProvider>
+                        <AdminProductManagementSection
+                            limit={6}
+                            createProducts
+                            latest
+                        />
+                    </UpdateProductFormContextProvider>
+                </ProductCreatedContextProvider>
             </CreateProductFormContextProvider>
 
             <TextSection
