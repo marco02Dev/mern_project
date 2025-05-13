@@ -18,18 +18,24 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
     .cky-btn-revisit-wrapper {
         display: none !important;
     }
-
     .cky-btn  {
         color: ${({$backgroundColor}) => $backgroundColor} !important;
         background-color: ${({$buttonBackgorundColor}) => $buttonBackgorundColor} !important;
         border-color: ${({$borderColor}) => $borderColor} !important;
         position: relative;
         ${() => buttonHoverAnimation}
+        &:hover {
+            opacity: 0.9999999;
+        }
     }
     .cky-preference-center {
         background-color: ${({$backgroundColor}) => $backgroundColor} !important;
     }
-    .cky-consent-bar, .cky-preference-content-wrapper, [data-cky-tag="detail-powered-by"] {
+    [data-cky-tag="detail-powered-by"] {
+        background-color: ${({$secondaryBackgorundColor}) => $secondaryBackgorundColor} !important;
+        color: ${({$textColor}) => $textColor} !important;
+    }
+    .cky-consent-bar, .cky-preference-content-wrapper {
         color: ${({$textColor}) => $textColor} !important;
         background-color: ${({$backgroundColor}) =>  $backgroundColor} !important;  
     }
@@ -49,5 +55,11 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         border-right: 0px !important;
         border-top: 0px !important;
         border-top-color: unset !important;
+    }
+    .cky-btn-customize {
+        padding: unset !important;
+    }
+    .cky-consent-container .cky-consent-bar {
+        border: unset !important;
     }
 `;
