@@ -2,13 +2,13 @@ import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react
 import { createCourseService } from "../services/create-course.service";
 import { updateCourseService } from "../services/update-course.service";
 import { Dispatch } from "@reduxjs/toolkit";
-import { UpdateProductFormContextStateObject } from "../contexts/UpdateProductFormProvider";
+import { UpdateProductFormState } from "../contexts/ProductMenagementContextProvider";
 
 type GenerateAdminProductFormSubmitFunctionProps = {
     service: "create-course" | "update-course",
     dispatch: Dispatch,
-    updateProductFormState?: UpdateProductFormContextStateObject,
-    setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormContextStateObject>>,
+    updateProductFormState?: UpdateProductFormState,
+    setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormState>>,
     setErrorMessage: ReactStateDispatch<SetStateAction<string | undefined>>,
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>,
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>

@@ -5,13 +5,11 @@ import { StyledSpace } from "@client/components/themed/StyledSpace";
 import { StyledText } from "@client/components/themed/StyledText";
 import { useAuth, UseAuth } from "@client/hooks/auth/useAuth";
 import { colors } from "@client/config/colors.config";
-import { CreateProductFormContext, CreateProductFormContextProps } from "../../contexts/CreateProductFormContextProvider";
-import { ProductCreatedContext, ProductCreatedContextProps } from "../../contexts/ProductCreatedContextProvider";
+import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
 
 export const CreateCourseButton: FC = (): ReactElement => {
     const { isLoggedIn, isAdmin }: UseAuth = useAuth();
-    const { setCreateProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext);
-    const { setProductCreated, productCreated}: ProductCreatedContextProps = useContext(ProductCreatedContext);
+    const { setCreateProductForm, setProductCreated, productCreated }: ProductManagementContextProps = useContext(ProductManagementContext);
 
     return <>
         {isLoggedIn && isAdmin && <FadeInWrapper>

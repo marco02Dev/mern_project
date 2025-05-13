@@ -5,12 +5,11 @@ import { sizes } from "@client/config/sizes.config";
 import { StyledSpace } from "@client/components/themed/StyledSpace";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
-import { UpdateProductFormContext, UpdateProductFormContextProps } from "../../contexts/UpdateProductFormProvider";
 import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "@client/components/buttons/LargeProductsPreviewButtons";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 import { CreateCourseButton } from "../buttons/CreateCourseButton";
-import { CreateProductFormContext, CreateProductFormContextProps } from "../../contexts/CreateProductFormContextProvider";
+import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,
@@ -29,8 +28,7 @@ export const AdminProductManagementSection: FC<LargeProductsPreviewSectionProps>
     categoriesFilter,
     latest
 }: LargeProductsPreviewSectionProps): ReactElement => {
-    const { createProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext);
-    const { updateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
+    const { createProductForm, updateProductForm }: ProductManagementContextProps = useContext(ProductManagementContext);
     const [products, setProducts] = useState<number>(limit);
     const [productsNumber, setProductsNumber ] = useState<number | undefined>();
 

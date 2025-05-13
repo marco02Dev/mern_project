@@ -12,7 +12,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { AllowedServices } from "../../types/service.type";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { colors } from "../../config/colors.config";
-import { UpdateProductFormContextStateObject } from "../../../../admin/src/contexts/UpdateProductFormProvider";
+import { UpdateProductFormState } from "admin/src/contexts/ProductMenagementContextProvider";
 import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
 import { FormButtons } from "../buttons/FormButtons";
 import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";
@@ -49,12 +49,12 @@ type FormProps = {
     service: AllowedServices;
     productImage?: boolean;
     formWidth?: string;
-    updateProductFormState?: UpdateProductFormContextStateObject;
+    updateProductFormState?: UpdateProductFormState;
     additionalGenerateFormServiceSubmitFunction?: Function,
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
     setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
-    setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormContextStateObject>>;
+    setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormState>>;
 };
 
 export const GenerateForm: FC<FormProps> = ({
@@ -99,12 +99,8 @@ export const GenerateForm: FC<FormProps> = ({
         handleSubmit = generateFormServiceSubmitFunction({
             service: service,
             dispatch: dispatch,
-            updateProductFormState: updateProductFormState,
-            setUpdateProductFormSetState: setUpdateProductFormSetState,
             setErrorMessage: setErrorMessage,
             navigateFunction: navigateFunction,
-            setCrateProductForm: setCrateProductForm,
-            setProductCreated: setProductCreated,
             setMessageSent: setMessageSent,
         });
     }

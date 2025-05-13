@@ -7,10 +7,8 @@ import { sizes } from "@client/config/sizes.config";
 import { GenerateForm } from "@client/components/forms/GenerateForm";
 import { ImageBorderedBox } from "@client/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@client/types/service.type";
-import { UpdateProductFormContext, UpdateProductFormContextProps, UpdateProductFormContextStateObject } from "../../contexts/UpdateProductFormProvider";
 import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
-import { CreateProductFormContext, CreateProductFormContextProps } from "../../contexts/CreateProductFormContextProvider";
-import { ProductCreatedContext, ProductCreatedContextProps } from "../../contexts/ProductCreatedContextProvider";
+import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -32,7 +30,6 @@ type ProductFormSectionProps = {
     service: AllowedServices,
     secondaryColor?: boolean,
     productImage?: boolean,
-    updateProductFormState?: UpdateProductFormContextStateObject,
 }
 
 export const ProductFormSection: FC<ProductFormSectionProps> = ({
@@ -46,13 +43,10 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
     formWidth , 
     secondaryColor, 
     productImage, 
-    updateProductFormState,
 }: ProductFormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
-    const { setUpdateProductForm }: UpdateProductFormContextProps = useContext(UpdateProductFormContext);
-    const { setCreateProductForm }: CreateProductFormContextProps = useContext(CreateProductFormContext);
-    const { setProductCreated }: ProductCreatedContextProps = useContext(ProductCreatedContext);
+    const { setUpdateProductForm, setCreateProductForm, setProductCreated, updateProductForm}: ProductManagementContextProps = useContext(ProductManagementContext);
 
     return <StyledSection 
         id={`${service}-form-section`} 
@@ -80,7 +74,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 setProductCreated={setProductCreated}
                 setFormImage={setFormImage}
                 setUpdateProductFormSetState={setUpdateProductForm}
-                updateProductFormState={updateProductFormState}
+                updateProductFormState={updateProductForm}
                 additionalGenerateFormServiceSubmitFunction={generateAdminProductFormSubmitFunction}
             />
         </Wrapper>

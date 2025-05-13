@@ -5,11 +5,9 @@ import { capitalizeFirstLetter } from "@client/utils/common/capitalize-first-let
 import { LogInPage } from "@client/pages/LogInPage";
 import { TextSection } from "@client/components/sections/TextSection";
 import { logOutService } from "@client/services/log-out.service";
-import { UpdateProductFormContextProvider } from "../contexts/UpdateProductFormProvider";
-import { CreateProductFormContextProvider } from "../contexts/CreateProductFormContextProvider";
-import { ProductCreatedContextProvider } from "../contexts/ProductCreatedContextProvider";
 import { AdminProductManagementSection } from "../components/sections/ProductMenagementSection";
 import { useAuth, UseAuth } from "@client/hooks/auth/useAuth";
+import { ProductManagementContextProvider } from "../contexts/ProductMenagementContextProvider";
 
 export const AdminPage: FC = (): ReactElement => {
     const { isLoggedIn, userData, isAdmin }: UseAuth = useAuth();
@@ -27,17 +25,13 @@ export const AdminPage: FC = (): ReactElement => {
                 secondaryColor
             />
 
-            <CreateProductFormContextProvider>
-                <ProductCreatedContextProvider>
-                    <UpdateProductFormContextProvider>
-                        <AdminProductManagementSection
-                            limit={6}
-                            createProducts
-                            latest
-                        />
-                    </UpdateProductFormContextProvider>
-                </ProductCreatedContextProvider>
-            </CreateProductFormContextProvider>
+            <ProductManagementContextProvider>
+                <AdminProductManagementSection
+                    limit={6}
+                    createProducts
+                    latest
+                />
+            </ProductManagementContextProvider>
 
             <TextSection
                 title="Master Your Skills Today!"

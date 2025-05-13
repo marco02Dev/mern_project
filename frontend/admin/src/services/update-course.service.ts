@@ -1,13 +1,13 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
-import { UpdateProductFormContextStateObject } from "../contexts/UpdateProductFormProvider";
+import { UpdateProductFormState } from "../contexts/ProductMenagementContextProvider";
 import { retrieveFormProductData } from "../utils/retrieve-form-product-data.util";
 import { endpoints } from "@client/config/endpoints.config";
 
 export const updateCourseService = async (
     event: FormEvent<HTMLFormElement>,
-    setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormContextStateObject>> | undefined,
+    setUpdateProductFormSetState: Dispatch<SetStateAction<UpdateProductFormState >> | undefined,
     setErrorMessage: Dispatch<SetStateAction<string | undefined>>,
-    updateProductFormState: UpdateProductFormContextStateObject
+    updateProductFormState: UpdateProductFormState 
 ) => {
     event.preventDefault();
 
