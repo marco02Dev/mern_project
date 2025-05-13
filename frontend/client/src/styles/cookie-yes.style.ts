@@ -15,19 +15,21 @@ type CookieYesStylesProps = {
 export type CookieYesStylesType = NamedExoticComponent<CookieYesStylesProps>;
 
 export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesStylesProps>`
-    .cky-btn-revisit-wrapper, .cky-btn  {
+    .cky-btn-revisit-wrapper {
+        display: none !important;
+    }
+
+    .cky-btn  {
         color: ${({$backgroundColor}) => $backgroundColor} !important;
         background-color: ${({$buttonBackgorundColor}) => $buttonBackgorundColor} !important;
         border-color: ${({$borderColor}) => $borderColor} !important;
+        position: relative;
+        ${() => buttonHoverAnimation}
     }
     .cky-preference-center {
         background-color: ${({$backgroundColor}) => $backgroundColor} !important;
     }
-    .cky-btn {
-        position: relative;
-        ${() => buttonHoverAnimation}
-    }
-    .cky-consent-bar, .cky-preference-content-wrapper {
+    .cky-consent-bar, .cky-preference-content-wrapper, [data-cky-tag="detail-powered-by"] {
         color: ${({$textColor}) => $textColor} !important;
         background-color: ${({$backgroundColor}) =>  $backgroundColor} !important;  
     }
