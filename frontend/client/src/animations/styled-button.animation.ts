@@ -4,9 +4,15 @@ import { buttonFontSize } from "../config/sizes.config";
 
 const animationDuration: string = "0.3s";
 
-export const buttonHoverAnimation: RuleSet<{$hoverColor: string, $content: string, $size: string}> = css<{$hoverColor: string, $content: string, $size: string}>`
+type buttonHoverAnimationProps = {
+    $hoverColor: string, 
+    $content?: string, 
+    $size?: string    
+}
+
+export const buttonHoverAnimation: RuleSet<buttonHoverAnimationProps> = css<buttonHoverAnimationProps>`
     &::after {
-        content: "${({ $content }) => $content}";
+        content: "${({ $content }) => $content ? $content : ""}";
         font-size: ${() => buttonFontSize};
         width: 100%;
         height: 100%;

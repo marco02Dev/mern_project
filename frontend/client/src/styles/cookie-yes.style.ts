@@ -1,5 +1,6 @@
 import { NamedExoticComponent } from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { buttonHoverAnimation } from '@client/animations/styled-button.animation';
 
 type CookieYesStylesProps = {
     $buttonBackgorundColor: string,
@@ -20,7 +21,7 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         border-color: ${({$borderColor}) => $borderColor} !important;
     }
     .cky-btn {
-
+        ${() => buttonHoverAnimation}
     }
     .cky-consent-bar, .cky-preference-content-wrapper {
         color: ${({$textColor}) => $textColor} !important;
