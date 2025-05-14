@@ -1,5 +1,5 @@
 import { Router } from './Router';
-import { Layout } from '@client/temp';
+import { Layout } from './layout';
 
 function App() {
 

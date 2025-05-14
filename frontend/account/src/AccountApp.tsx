@@ -1,5 +1,5 @@
 import { AccountPage } from './pages/AccountPage';
-import { Layout } from '@client/temp';
+import { Layout } from '@client/layout';
 
 function AccountApp() {
   return <Layout>
