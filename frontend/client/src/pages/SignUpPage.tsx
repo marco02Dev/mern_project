@@ -1,7 +1,7 @@
 import { ReactElement, FC } from "react";
-import { HeroSection } from "../components/sections/HeroSection";
-import { TextSection } from "../components/sections/TextSection";
-import { SignUpForm } from "../components/forms/SignUpForm";
+import { HeroSection } from "@shared/components/sections/HeroSection";
+import { TextSection } from "@shared/components/sections/TextSection";
+import { SignUpForm } from "@shared/components/forms/SignUpForm";
 
 export const SignUpPage: FC = (): ReactElement => {
     return <>

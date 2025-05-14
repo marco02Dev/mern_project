@@ -1,9 +1,9 @@
 import { FC, ReactElement } from "react";
 import { useLocation, Location } from "react-router-dom";
-import { HeroSection } from "../components/sections/HeroSection";
-import { TextSection } from "../components/sections/TextSection";
-import { TextImageSection } from "../components/sections/TextImageSection";
-import { Course } from "../types/course.types";
+import { HeroSection } from "@shared/components/sections/HeroSection";
+import { TextSection } from "@shared/components/sections/TextSection";
+import { TextImageSection } from "@shared/components/sections/TextImageSection";
+import { Course } from "@shared/types/course.types";
 import { NotFoundPage } from "./NotFoundPage";
 
 export const Productpage: FC = (): ReactElement => {

@@ -1,7 +1,7 @@
 import { ReactElement } from "react"
-import { HeroSection } from "../components/sections/HeroSection";
-import { TextSection } from "../components/sections/TextSection";
-import { TextImageSection } from "../components/sections/TextImageSection";
+import { HeroSection } from "@shared/components/sections/HeroSection";
+import { TextSection } from "@shared/components/sections/TextSection";
+import { TextImageSection } from "@shared/components/sections/TextImageSection";
 
 export const AboutPage = (): ReactElement => {
 

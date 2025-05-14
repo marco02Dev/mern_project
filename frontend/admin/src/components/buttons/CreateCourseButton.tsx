@@ -1,10 +1,10 @@
 import { FC, ReactElement, useContext } from "react";
-import { FadeInWrapper } from "@client/components/animated/FadeInWrapper";
-import { StyledButton } from "@client/components/themed/StyledButton";
-import { StyledSpace } from "@client/components/themed/StyledSpace";
-import { StyledText } from "@client/components/themed/StyledText";
-import { useAuth, UseAuth } from "@client/hooks/auth/useAuth";
-import { colors } from "@client/config/colors.config";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledButton } from "@shared/components/themed/StyledButton";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
+import { colors } from "@shared/config/colors.config";
 import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
 
 export const CreateCourseButton: FC = (): ReactElement => {

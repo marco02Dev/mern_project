@@ -1,5 +1,5 @@
 import { AdminPage } from './pages/AdminPage';
-import { AppLayout } from '@client/AppLayout';
+import { AppLayout } from '@shared/layouts/AppLayout';
 
 function AdminApp() {
   return <AppLayout>

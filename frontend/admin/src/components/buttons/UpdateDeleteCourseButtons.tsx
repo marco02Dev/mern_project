@@ -1,17 +1,17 @@
 import { FC, ReactElement, useContext, useEffect, useState, MouseEventHandler} from "react";
-import { UseAuth, useAuth } from "@client/hooks/auth/useAuth";
+import { UseAuth, useAuth } from "@shared/hooks/auth/useAuth";
 import styled from "styled-components";
-import { StyledButton } from "@client/components/themed/StyledButton";
-import { FadeInWrapper } from "@client/components/animated/FadeInWrapper";
-import { StyledText } from "@client/components/themed/StyledText";
-import { StyledSpace } from "@client/components/themed/StyledSpace";
-import { colors } from "@client/config/colors.config";
+import { StyledButton } from "@shared/components/themed/StyledButton";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { colors } from "@shared/config/colors.config";
 import { deleteCourseService } from "../../services/delete-course.service";
 import { useDispatch } from "react-redux";
-import { setDataChanged } from "@client/store/slices/courses-data-changed.slice";
+import { setDataChanged } from "@shared/store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
-import { sumStringDelays } from "@client/utils/components/sum-string-delays.util";
-import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { useBodyOverflow } from "@shared/hooks/ui/useBodyOverflow";
 import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
 
 const Wrapper = styled.div`

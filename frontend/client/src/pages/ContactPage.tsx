@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
-import { UseAuth, useAuth } from "../hooks/auth/useAuth";
-import { HeroSection } from "../components/sections/HeroSection";
-import { ContactForm } from "../components/forms/ContactForm";
-import { TextSection } from "../components/sections/TextSection";
+import { UseAuth, useAuth } from "@shared/hooks/auth/useAuth";
+import { HeroSection } from "@shared/components/sections/HeroSection";
+import { ContactForm } from "@shared/components/forms/ContactForm";
+import { TextSection } from "@shared/components/sections/TextSection";
 
 export const ContactPage = (): ReactElement => {
     const { isLoggedIn}: UseAuth = useAuth()

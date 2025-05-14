@@ -1,11 +1,11 @@
 import { FC, ReactElement } from "react";
-import { UseAuth, useAuth } from "@client/hooks/auth/useAuth";
-import { HeroSection } from "@client/components/sections/HeroSection";
-import { capitalizeFirstLetter } from "@client/utils/common/capitalize-first-letter.util";
+import { UseAuth, useAuth } from "@shared/hooks/auth/useAuth";
+import { HeroSection } from "@shared/components/sections/HeroSection";
+import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-letter.util";
 import { LogInPage } from "@client/pages/LogInPage";
-import { LargeProductsPreviewSection } from "@client/components/sections/LargeProductsPreviewSection";
-import { TextSection } from "@client/components/sections/TextSection";
-import { logOutService } from "@client/services/log-out.service";
+import { LargeProductsPreviewSection } from "@shared/components/sections/LargeProductsPreviewSection";
+import { TextSection } from "@shared/components/sections/TextSection";
+import { logOutService } from "@shared/services/log-out.service";
 
 export const AccountPage: FC = (): ReactElement => {
     const { isLoggedIn, userData }: UseAuth = useAuth();

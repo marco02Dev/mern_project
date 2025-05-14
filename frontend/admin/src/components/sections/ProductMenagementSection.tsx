@@ -1,12 +1,12 @@
 import { ReactElement, FC, useState, useContext } from "react";
-import { CoursesLoop } from "@client/components/loops/CoursesLoop";
-import { StyledSection } from "@client/components/themed/StyledSection";
-import { sizes } from "@client/config/sizes.config";
-import { StyledSpace } from "@client/components/themed/StyledSpace";
+import { CoursesLoop } from "@shared/components/loops/CoursesLoop";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import { sizes } from "@shared/config/sizes.config";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import { CreateProductForm } from "../forms/CreateProductForm";
 import { UpdateProductForm } from "../forms/UpdateProductForm";
-import { useBodyOverflow } from "@client/hooks/ui/useBodyOverflow";
-import { LargeProductsPreviewButtons } from "@client/components/buttons/LargeProductsPreviewButtons";
+import { useBodyOverflow } from "@shared/hooks/ui/useBodyOverflow";
+import { LargeProductsPreviewButtons } from "@shared/components/buttons/LargeProductsPreviewButtons";
 import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
 import { CreateCourseButton } from "../buttons/CreateCourseButton";
 import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";

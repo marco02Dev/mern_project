@@ -9,7 +9,7 @@ import { SignUpPage } from "./pages/SignUpPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Productpage } from "./pages/ProductPage";
 import { Navigate } from "react-router-dom";
-import { UseAuth, useAuth } from "./hooks/auth/useAuth";
+import { UseAuth, useAuth } from "@shared/hooks/auth/useAuth";
 
 export const Router = (): ReactElement => {
     const { isLoggedIn, userData}: UseAuth = useAuth()

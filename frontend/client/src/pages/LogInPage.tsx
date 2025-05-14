@@ -1,13 +1,13 @@
 import { ReactElement, useEffect } from "react";
-import { TextSection } from "../components/sections/TextSection";
-import { HeroSection } from "../components/sections/HeroSection";
+import { TextSection } from "@shared/components/sections/TextSection";
+import { HeroSection } from "@shared/components/sections/HeroSection";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "@shared/store";
 import { useNavigate, NavigateFunction } from "react-router-dom";
-import { setIsLoginPage } from "../store/slices/route-status.slice";
+import { setIsLoginPage } from "@shared/store/slices/route-status.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { LoginForm } from "../components/forms/LoginForm";
-import { useAuth, UseAuth } from "../hooks/auth/useAuth";
+import { LoginForm } from "@shared/components/forms/LoginForm";
+import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
 
 export const LogInPage = (): ReactElement => {
     const dispatch: Dispatch = useDispatch();

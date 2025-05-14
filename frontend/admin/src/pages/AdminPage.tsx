@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { ReactElement } from "react";
-import { HeroSection } from "@client/components/sections/HeroSection";
-import { capitalizeFirstLetter } from "@client/utils/common/capitalize-first-letter.util";
+import { HeroSection } from "@shared/components/sections/HeroSection";
+import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-letter.util";
 import { LogInPage } from "@client/pages/LogInPage";
-import { TextSection } from "@client/components/sections/TextSection";
-import { logOutService } from "@client/services/log-out.service";
+import { TextSection } from "@shared/components/sections/TextSection";
+import { logOutService } from "@shared/services/log-out.service";
 import { AdminProductManagementSection } from "../components/sections/ProductMenagementSection";
-import { useAuth, UseAuth } from "@client/hooks/auth/useAuth";
+import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
 import { ProductManagementContextProvider } from "../contexts/ProductMenagementContextProvider";
 
 export const AdminPage: FC = (): ReactElement => {

@@ -1,7 +1,7 @@
 import { ReactElement, FC, useContext } from "react";
-import { StyledSpace } from "@client/components/themed/StyledSpace";
-import { FadeInWrapper } from "@client/components/animated/FadeInWrapper";
-import { StyledButton } from "@client/components/themed/StyledButton";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledButton } from "@shared/components/themed/StyledButton";
 import { ProductManagementContext } from "../../contexts/ProductMenagementContextProvider";
 
 export const UndoCreateUpdateProductButton: FC = (): ReactElement => {

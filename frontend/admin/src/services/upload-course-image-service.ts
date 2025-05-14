@@ -1,4 +1,4 @@
-import { endpoints } from "@client/config/endpoints.config";
+import { endpoints } from "@shared/config/endpoints.config";
 
 export const uploadCourseImagesService = async (
   prodImg: FormDataEntryValue | null,

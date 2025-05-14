@@ -1,11 +1,11 @@
 import { ReactElement, FC } from "react";
-import { HeroSection } from "../components/sections/HeroSection";
-import { SmallProductsPreviewSection } from "../components/sections/SmallProductPreviewSection";
-import { TextSection } from "../components/sections/TextSection";
-import { BrowseSection } from "../components/sections/browseSection";
-import { TextImageSection } from "../components/sections/TextImageSection";
-import { capitalizeFirstLetter } from "../utils/common/capitalize-first-letter.util";
-import { UseAuth, useAuth } from "../hooks/auth/useAuth";
+import { HeroSection } from "@shared//components/sections/HeroSection";
+import { SmallProductsPreviewSection } from "@shared//components/sections/SmallProductPreviewSection";
+import { TextSection } from "@shared//components/sections/TextSection";
+import { BrowseSection } from "@shared//components/sections/browseSection";
+import { TextImageSection } from "@shared//components/sections/TextImageSection";
+import { capitalizeFirstLetter } from "@shared//utils/common/capitalize-first-letter.util";
+import { UseAuth, useAuth } from "@shared//hooks/auth/useAuth";
 
 export const HomePage: FC = (): ReactElement => {
     const { isLoggedIn, userData, isAdmin }: UseAuth = useAuth();

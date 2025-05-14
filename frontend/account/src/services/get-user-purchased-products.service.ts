@@ -1,5 +1,5 @@
-import { Endpoints, endpoints } from "@client/config/endpoints.config";
-import { User } from "@client/types/user.types";
+import { Endpoints, endpoints } from "@shared/config/endpoints.config";
+import { User } from "@shared/types/user.types";
 
 type GetuserInfoData = {
     _id: string,

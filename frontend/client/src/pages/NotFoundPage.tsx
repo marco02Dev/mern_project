@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import { HeroSection } from "../components/sections/HeroSection";
+import { HeroSection } from "@shared/components/sections/HeroSection";
 import { useEffect } from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { setIs404 } from "../store/slices/route-status.slice";
+import { setIs404 } from "@shared/store/slices/route-status.slice";
 
 export const NotFoundPage = (): ReactElement => {
     const dispatch: Dispatch = useDispatch();
