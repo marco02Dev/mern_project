@@ -1,3 +1,4 @@
+import { NamedExoticComponent } from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 /**
@@ -6,6 +7,8 @@ import { createGlobalStyle } from 'styled-components';
  * 
  * This helps ensure consistency across browsers by removing default margins, paddings,
  * borders, and other stylistic differences for HTML elements.
+ * 
+ * This component should be included once at the root of the app to ensure consistent global behavior.
  * 
  * @see http://meyerweb.com/eric/tools/css/reset/
  * @example
@@ -21,7 +24,7 @@ import { createGlobalStyle } from 'styled-components';
  * }
 */
 
-export const ResetCss = createGlobalStyle`
+export const ResetCss: NamedExoticComponent = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)

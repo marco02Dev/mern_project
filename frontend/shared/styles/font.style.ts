@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { mainFont } from '@shared/config/font.config';
+import { NamedExoticComponent } from 'react';
 
 /**
  * `FontStyles` is a global style component using `styled-components`' `createGlobalStyle`
@@ -9,6 +10,8 @@ import { mainFont } from '@shared/config/font.config';
  * adjusts font weights and letter spacing for common text elements (`h1`–`h6`, `p`, `a`, `span`, etc.).
  * 
  * This ensures a consistent typographic style aligned with the design system.
+ * 
+ * This component should be included once at the root of the app to ensure consistent global behavior.
  *
  * @example
  * import { FontStyles } from './FontStyles';
@@ -23,7 +26,7 @@ import { mainFont } from '@shared/config/font.config';
  * }
 */
 
-export const FontStyles = createGlobalStyle`
+export const FontStyles: NamedExoticComponent = createGlobalStyle`
     body {
         font-family: ${mainFont}, serif;
         font-weight: 400;
