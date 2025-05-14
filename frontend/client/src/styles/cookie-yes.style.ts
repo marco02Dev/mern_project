@@ -25,7 +25,7 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         position: relative;
         ${() => buttonHoverAnimation}
         &:hover {
-            opacity: 0.9999999;
+            opacity: 0.9999999 !important;
         }
     }
     .cky-preference-center {

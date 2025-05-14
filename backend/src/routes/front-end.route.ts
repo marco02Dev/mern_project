@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { Request, Response } from 'express';
-import { reactAppPublicAssets, reactAppIndexHtml, reactAppAdminDist,reactAppAdminIndexHtml } from '../config/system/paths.config';
+import { reactAppPublicAssets, reactAppIndexHtml, reactAppAdminDist,reactAppAdminIndexHtml, reactAppAccountDist, reactAppAccountIndexHtml } from '../config/system/paths.config';
 import { checkAthorizedIp } from '../middlewares/security/authorize-ip.middleware';
 import { isAuthenticated } from '../middlewares/security/is-authenticated.middleware';
 import { isAdmin } from '../middlewares/security/is-admin.middleware';
@@ -34,6 +34,24 @@ frontendRouter.get(
   isAdmin,
   (req: Request, res: Response) => {
     res.sendFile(reactAppAdminIndexHtml);
+  }
+);
+
+frontendRouter.use(
+  //User
+  '/account',
+  isAuthenticated,
+  express.static(reactAppAccountDist, {
+    index: false,
+  })
+);
+
+frontendRouter.get(
+  //User
+  '/account',
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    res.sendFile(reactAppAccountIndexHtml);
   }
 );
 

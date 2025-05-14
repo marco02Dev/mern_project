@@ -35,13 +35,18 @@ export default defineConfig({
       input: {
         client: path.resolve(__dirname, 'client/index.html'),
         admin: path.resolve(__dirname, 'admin/admin_index.html'),
+        account: path.resolve(__dirname, 'account/account_index.html')
       },
       output: {
-        entryFileNames: chunk => {
-          return chunk.name === 'admin'
-            ? 'admin/[name]-[hash].js'
-            : 'assets/[name]-[hash].js';
-        },
+       entryFileNames: chunk => {
+        if (chunk.name === 'admin') {
+          return 'admin/[name]-[hash].js';
+        } else if (chunk.name === 'account') {
+          return 'account/[name]-[hash].js';
+        } else {
+          return 'assets/[name]-[hash].js';
+        }
+      },
         chunkFileNames: 'assets/chunks/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash][extname]',
       },

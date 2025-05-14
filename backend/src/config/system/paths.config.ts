@@ -7,3 +7,6 @@ export const reactAppIndexHtml: string = path.join(reactAppBuildPath, "client/in
 
 export const reactAppAdminDist: string = path.join(reactAppBuildPath, "admin");
 export const reactAppAdminIndexHtml: string = path.join(reactAppAdminDist, "admin_index.html");
+
+export const reactAppAccountDist: string = path.join(reactAppBuildPath, "account");
+export const reactAppAccountIndexHtml: string = path.join(reactAppAccountDist, "account_index.html");

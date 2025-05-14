@@ -20,7 +20,6 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
     limit,
     category,
     userProductsPurchased,
-    createProducts,
     categoriesFilter,
     latest
 }: LargeProductsPreviewSectionProps): ReactElement => {
@@ -45,7 +44,6 @@ export const LargeProductsPreviewSection: FC<LargeProductsPreviewSectionProps> =
 
             <LargeProductsPreviewButtons 
                 productsNumber={productsNumber}
-                createProducts={createProducts}
                 products={products}
                 setProducts={setProducts}
             />

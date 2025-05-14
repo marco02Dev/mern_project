@@ -36,6 +36,6 @@
       "@client/*": ["client/src/*"]
     }
   },
-  "include": ["src", "admin", "main", "vite-env.d.ts"]
+  "include": ["account", "admin", "client", "vite-env.d.ts"]
 }
   
