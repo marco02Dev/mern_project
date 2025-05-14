@@ -37,11 +37,11 @@ export const MainLayout = ({children}: {children: ReactElement}) => {
     <ResetCss />
     <FontStyles />
     <GlobalStyles />
-    {isProduction && isRender && <StyledCookieYesBanner />}
 
     <BrowserRouter>
       <Provider store={store}>
-            {children}
+          {isProduction && isRender && <StyledCookieYesBanner />}
+          {children}
       </Provider>
     </BrowserRouter>
   </StrictMode>

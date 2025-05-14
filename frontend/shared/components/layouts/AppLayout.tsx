@@ -27,16 +27,12 @@ import { LoadingPage } from '@client/pages/LoadingPage';
  * - Scroll reset on route change via `useLocationChange()`.
  * - Conditional rendering of a loading screen or error message based on Redux state.
  *
- * @param {Object} props
- * @param {ReactElement} props.children - The routed page content to be displayed within the layout.
- *
- * @returns {ReactElement} The full app layout with all UI and lifecycle hooks applied.
- *
  * @example
  * <AppLayout>
  *   <HomePage />
  * </AppLayout>
 */
+
 
 export const AppLayout = ({children}: {children: ReactElement}) => {
   const hasLocationChanged: UseLocationChange = useLocationChange();
