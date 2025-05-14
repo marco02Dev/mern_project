@@ -1,5 +1,5 @@
 import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react";
-import { createCourseService } from "@admin/services/create-course.service";
+import { CreateCourseService, createCourseService } from "@admin/services/create-course.service";
 import { updateCourseService } from "@admin/services/update-course.service";
 import { Dispatch } from "@reduxjs/toolkit";
 import { UpdateProductFormState } from "@admin/contexts/ProductMenagementContextProvider";
@@ -27,7 +27,7 @@ export const generateAdminProductFormSubmitFunction = ({
     return (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (service === "create-course" && setCreateProductForm && setProductCreated) {
-            createCourseService(event, setErrorMessage, setCreateProductForm, setProductCreated, dispatch);
+            (createCourseService as CreateCourseService)(event, setErrorMessage, setCreateProductForm, setProductCreated, dispatch);
         } else if (service === "update-course" && updateProductForm && setUpdateProductForm) {
             updateCourseService(event, setUpdateProductForm, setErrorMessage, updateProductForm);
         }

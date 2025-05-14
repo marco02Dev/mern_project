@@ -8,6 +8,18 @@ import { reloadLoginPage } from "@shared/utils/navigation/reload-login-page.util
 import { errorMessages } from "@shared/config/error-messages.config";
 import { retrieveFormProductData } from "@admin/utils/retrieve-form-product-data.util";
 
+/**
+ * Represents the service function used to handle the course creation process.
+ *
+ * @param {FormEvent<HTMLFormElement>} event - The form submission event.
+ * @param {Dispatch<SetStateAction<string | undefined>>} setErrorMessage - Function from the local state of `ProductFormSection` used to set error messages during the process.
+ * @param {Dispatch<SetStateAction<boolean>>} setCreateProductForm - Function from ProductManagementContext to toggle the visibility of the course creation form.
+ * @param {Dispatch<SetStateAction<boolean>>} setProductCreated - Function from ProductManagementContext to indicate whether the course was successfully created.
+ * @param {ReduxDispatch} dispatch - Redux dispatch used to trigger state change in `coursesDataChangedSlice`, which causes `CoursesLoop` to re-render.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the course creation process is complete.
+*/
+
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,
   setErrorMessage: Dispatch<SetStateAction<string | undefined>>,
@@ -15,6 +27,21 @@ export type CreateCourseService = (
   setProductCreated: Dispatch<SetStateAction<boolean>>,
   dispatch: ReduxDispatch
 ) => Promise<void>;
+
+/**
+ * `createCourseService` is an **admin-only service** that handles the logic for creating a new course.
+ * 
+ * This includes:
+ * - Preventing the default form submission behavior
+ * - Extracting course data and images from the form
+ * - Sending a POST request to the backend API to create the course
+ * - Uploading course images after successful creation
+ * - Updating local state via ProductManagementContext and triggering a global update via `coursesDataChangedSlice`
+ *   to ensure the `CoursesLoop` component reflects the latest data
+ * - Handling session expiration and permission-related errors
+ *
+ * @see CreateCourseService for full parameter description.
+*/
 
 export const createCourseService: CreateCourseService = async (
   event,
