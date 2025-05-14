@@ -8,6 +8,7 @@ import { useUnsetActiveColor } from '../../hooks/ui/useUnsetActiveColor';
 import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
 import { ThemeColors, useThemeColors } from '../../hooks/theme/useThemeColors';
 import { UseAuth, useAuth } from '../../hooks/auth/useAuth';
+import { useIsCurrentPath, UseIsCurrentPath } from '@shared/hooks/navigation/useIsCurrentPath';
 
 type NavLinksLoopProps = {
   links: { name: string; to: string }[];
@@ -22,7 +23,8 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
 }: NavLinksLoopProps) => {
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const { isLoggedIn }: UseAuth = useAuth();
-  const { hoverColor }: ThemeColors = useThemeColors()
+  const { hoverColor }: ThemeColors = useThemeColors();
+  const isLoginPage: UseIsCurrentPath = useIsCurrentPath('/login');
   const location: Location = useLocation();
   const { unsetActiveColor, handleMouseHover, handleMouseLeave } = useUnsetActiveColor();
   let delay: string = "0ms";
@@ -62,11 +64,11 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
       {(isMobile || isTablet) && (
         <FadeInWrapper delay={sumStringDelays(lastDelay, "200ms")}>
           <StyledLink
-            content={isLoggedIn ? 'Account' : 'login'}
-            to={isLoggedIn ? '/account' : '/login'}
+            content={isLoggedIn ? 'Account' : isLoginPage ? "Signup" : "Login"}
+            to={isLoggedIn ? '/account' : isLoginPage ? "/signup" : "/login"}
             fontWeight="700"
             size={row ? 'p' : 'h3'}
-            color={location.pathname === (isLoggedIn ? '/account' : '/login') ? hoverColor : undefined}
+            reloadDocument={isLoggedIn}
           />
         </FadeInWrapper>
       )}
