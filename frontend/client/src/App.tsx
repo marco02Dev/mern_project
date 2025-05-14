@@ -1,5 +1,5 @@
 import { Router } from './Router';
-import { AppLayout } from '@shared//layouts/AppLayout';
+import { AppLayout } from '@shared/components/layouts/AppLayout';
 
 function App() {
 

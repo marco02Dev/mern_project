@@ -1,5 +1,5 @@
 import { ReactElement, FC } from "react";
-import { FormSection } from "../sections/FormSection";
+import { FormSection } from "@shared/components/sections/FormSection";
 
 type SignUpFormProps = {
     imgSrc: string

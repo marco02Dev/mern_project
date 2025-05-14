@@ -6,7 +6,7 @@ import { RootState } from "@shared/store";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import { setIsLoginPage } from "@shared/store/slices/route-status.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { LoginForm } from "@shared/components/forms/LoginForm";
+import { LoginForm } from "@client/components/forms/LoginForm";
 import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
 
 export const LogInPage = (): ReactElement => {

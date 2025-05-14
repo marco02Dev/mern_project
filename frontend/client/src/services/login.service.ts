@@ -1,12 +1,12 @@
-import { endpoints } from "../config/endpoints.config";
-import { setLoggedIn } from "../store/slices/login.slice";
-import { User } from "../types/user.types";
-import { FormService } from "../types/service.type";
+import { endpoints } from "@shared/config/endpoints.config";
+import { setLoggedIn } from "@shared/store/slices/login.slice";
+import { User } from "@shared/types/user.types";
+import { FormService } from "@shared/types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
-import { isUserDataInvalid } from "../utils/form/is-user-data-invalid.util";
-import { sendErrorWhenHoneyPotIsFilled } from "../utils/form/send-error-message-when-honey-pot-is-filled";
-import { LoggedUser } from "../types/user.types";
-import { handleErrorResponse } from "../utils/form/handle-error-response";
+import { isUserDataInvalid } from "@shared/utils/form/is-user-data-invalid.util";
+import { sendErrorWhenHoneyPotIsFilled } from "@shared/utils/form/send-error-message-when-honey-pot-is-filled";
+import { LoggedUser } from "@shared/types/user.types";
+import { handleErrorResponse } from "@shared/utils/form/handle-error-response";
 
 export const loginService: FormService = async (event, dispatch, navigateFunction, setErrorMessage): Promise<void> => {
     event?.preventDefault();

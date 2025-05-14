@@ -1,7 +1,7 @@
 import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react";
-import { sendEmail } from "../../services/contact.service";
-import { loginService } from "../../services/login.service";
-import { signUpService } from "../../services/singup.service";
+import { sendEmail } from "@client/services/contact.service";
+import { loginService } from "@client/services/login.service";
+import { signUpService } from "@client/services/singup.service";
 import { AllowedServices } from "../../types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { NavigateFunction } from "react-router-dom";

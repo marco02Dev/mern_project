@@ -6,7 +6,7 @@ import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { useParams } from "react-router-dom";
 import { categories } from "@shared/config/categories.config";
 import { NotFoundPage } from "./NotFoundPage";
-import { generateCoursesPageTexts, CoursePageTextsData } from "@shared/utils/components/generate-courses-page-text.util";
+import { generateCoursesPageTexts, CoursePageTextsData } from "@client/util/generate-courses-page-text.util";
 
 export const CoursesPage = (): ReactElement => {
   const { isMobile }: UseMediaQuery = useMediaQuery();

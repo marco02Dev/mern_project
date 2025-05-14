@@ -3,21 +3,21 @@ import styled from "styled-components";
 import { NavLinksLoop } from "../loops/NavLinksLoop";
 import { headerLinks } from "@shared/config/header-links.config";
 
-const NavLinksWrapper = styled.div<{$row?: boolean}>`
+const Wrapper = styled.div<{$row?: boolean}>`
     display: flex;
     flex-direction: ${({ $row }) => ($row ? "row" : "column")};
     align-items: center;
 `;
 
-type NavLinksProps = {
+type NavLinksLayoutProps = {
     row?: boolean;
     setDesktopButtonStartDelay?: Dispatch<SetStateAction<string | undefined>>;
 }
 
-export const NavLinks: FC<NavLinksProps> = ({row, setDesktopButtonStartDelay}: NavLinksProps): ReactElement => {
+export const NavLinksLayout: FC<NavLinksLayoutProps> = ({row, setDesktopButtonStartDelay}: NavLinksLayoutProps): ReactElement => {
     return (
-        <NavLinksWrapper $row={row}>
-        <NavLinksLoop links={headerLinks} row={row} setDesktopButtonStartDelay={setDesktopButtonStartDelay} />
-      </NavLinksWrapper>
+        <Wrapper $row={row}>
+            <NavLinksLoop links={headerLinks} row={row} setDesktopButtonStartDelay={setDesktopButtonStartDelay} />
+        </Wrapper>
     );
 };

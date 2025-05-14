@@ -1,7 +1,7 @@
 import { FC, ReactElement, useState} from "react";
 import styled from "styled-components";
 import { useHeaderVisibility } from "../../hooks/ui/useHeaderVisibility";
-import { NavLinks } from "../ui/NavLinks";
+import { NavLinksLayout } from "../layouts/NavLinksLayout";
 import { StyledSpace } from "../themed/StyledSpace";
 import { StyledSection } from "../themed/StyledSection";
 import {useMediaQuery, UseMediaQuery} from "../../hooks/ui/useMediaQuery";
@@ -87,7 +87,7 @@ export const Header: FC = (): ReactElement => {
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="60%" $middleWrapper>
-                        {!isAccount && <NavLinks row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />}
+                        {!isAccount && < NavLinksLayout row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />}
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="20%" $flexEnd>

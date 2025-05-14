@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
 import { UseAuth, useAuth } from "@shared/hooks/auth/useAuth";
 import { HeroSection } from "@shared/components/sections/HeroSection";
-import { ContactForm } from "@shared/components/forms/ContactForm";
+import { ContactForm } from "@client/components/forms/ContactForm";
 import { TextSection } from "@shared/components/sections/TextSection";
 
 export const ContactPage = (): ReactElement => {
-    const { isLoggedIn}: UseAuth = useAuth()
+    const { isLoggedIn }: UseAuth = useAuth()
 
     return <>
         <HeroSection

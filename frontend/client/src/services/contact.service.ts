@@ -1,9 +1,9 @@
-import { SendEmailService } from "../types/service.type";
-import { isString } from "../utils/form/is-string.util";
+import { SendEmailService } from "@shared/types/service.type";
+import { isString } from "@shared/utils/form/is-string.util";
 import isEmail from "validator/lib/isEmail";
-import { endpoints } from "../config/endpoints.config";
-import { ErrorMessages, errorMessages } from "../config/error-messages.config";
-import { sendErrorWhenHoneyPotIsFilled } from "../utils/form/send-error-message-when-honey-pot-is-filled";
+import { endpoints } from "@shared/config/endpoints.config";
+import { ErrorMessages, errorMessages } from "@shared/config/error-messages.config";
+import { sendErrorWhenHoneyPotIsFilled } from "@shared/utils/form/send-error-message-when-honey-pot-is-filled";
 
 export const sendEmail: SendEmailService = async (event, setErrorMessage, setMessageSent): Promise<void> => {
     

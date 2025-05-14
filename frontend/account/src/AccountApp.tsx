@@ -1,5 +1,5 @@
 import { AccountPage } from './pages/AccountPage';
-import { AppLayout } from '@shared/layouts/AppLayout';
+import { AppLayout } from '@shared/components/layouts/AppLayout';
 
 function AccountApp() {
   return <AppLayout>

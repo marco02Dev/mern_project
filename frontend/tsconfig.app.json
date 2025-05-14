@@ -34,7 +34,9 @@
     "baseUrl": ".", 
     "paths": {
       "@shared/*": ["shared/*"],
-      "@client/*": ["client/src/*"]
+      "@client/*": ["client/src/*"],
+      "@admin/*": ["admin/src/*"],
+      "@account/*": ["account/src/*"],
     }
   },
   "include": ["account", "admin", "client", "shared", "vite-env.d.ts"]

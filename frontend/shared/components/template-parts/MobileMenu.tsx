@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLinks } from "../ui/NavLinks";
+import { NavLinksLayout } from "../layouts/NavLinksLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { FC, ReactNode, useEffect } from "react";
@@ -46,7 +46,7 @@ export const MobileMenu: FC = (): ReactNode => {
   return (
     <>
       <MobileMenuWrapper $isMobileDevices={isMobile || isTablet} $isOpened={isOpened} $backgroundColor={backgroundColor}>
-        <NavLinks />
+        <NavLinksLayout />
       </MobileMenuWrapper>
     </>
   );

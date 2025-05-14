@@ -1,4 +1,4 @@
-import { MainLayout } from '@shared/layouts/MainLayout';
+import { MainLayout } from '@shared/components/layouts/MainLayout';
 import { createRoot } from 'react-dom/client';
 import AdminApp from './admin_app';
 
