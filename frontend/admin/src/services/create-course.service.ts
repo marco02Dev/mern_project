@@ -4,7 +4,7 @@ import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "@shared/store/slices/courses-data-changed.slice";
 import { uploadCourseImagesService } from "@admin/services/upload-course-image-service";
 import { checkSession } from "@shared/utils/cookies/check-session.util";
-import { reloadLoginPage } from "@shared/utils/browser/reload-login-page.util";
+import { reloadLoginPage } from "@shared/utils/navigation/reload-login-page.util";
 import { errorMessages } from "@shared/config/error-messages.config";
 import { retrieveFormProductData } from "@admin/utils/retrieve-form-product-data.util";
 

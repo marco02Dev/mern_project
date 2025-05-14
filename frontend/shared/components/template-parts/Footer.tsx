@@ -2,7 +2,7 @@ import { FC, ReactElement } from "react";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
-import { getCurrentYear } from "../../utils/browser/get-current-year.util";
+import { getCurrentYear } from "../../utils/system/get-current-year.util";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { PrivacyCookiesLinks } from "../ui/PrivacyCookieLinks";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
