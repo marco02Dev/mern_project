@@ -63,7 +63,7 @@ export const loginService: FormService = async (event, dispatch, navigateFunctio
                         if(role === "admin") {
                             window.location.href = '/admin';
                         } else {
-                            navigateFunction('/account')
+                            window.location.href = '/account';
                         }
                     }
                 }
