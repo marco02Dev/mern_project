@@ -1,9 +1,16 @@
-import { SendEmailService } from "@shared/types/service.type";
+import { FormEvent } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { isString } from "@shared/utils/form/is-string.util";
 import isEmail from "validator/lib/isEmail";
 import { endpoints } from "@shared/config/endpoints.config";
 import { ErrorMessages, errorMessages } from "@shared/config/error-messages.config";
 import { sendErrorWhenHoneyPotIsFilled } from "@shared/utils/form/send-error-message-when-honey-pot-is-filled";
+
+type SendEmailService = (
+    event: FormEvent<HTMLFormElement>, 
+    setErrorMessage: Dispatch<SetStateAction<string | undefined>>,
+    setMessageSent: Dispatch<SetStateAction< boolean | undefined>>
+) => Promise<void>
 
 export const sendEmail: SendEmailService = async (event, setErrorMessage, setMessageSent): Promise<void> => {
     

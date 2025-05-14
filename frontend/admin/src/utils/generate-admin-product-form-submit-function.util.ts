@@ -3,10 +3,9 @@ import { createCourseService } from "@admin/services/create-course.service";
 import { updateCourseService } from "@admin/services/update-course.service";
 import { Dispatch } from "@reduxjs/toolkit";
 import { UpdateProductFormState } from "@admin/contexts/ProductMenagementContextProvider";
-import { AllowedServices } from "@shared/types/service.type";
 
 type GenerateAdminProductFormSubmitFunctionProps = {
-    service: AllowedServices,
+    service: "create-course" | "update-course",
     dispatch: Dispatch,
     updateProductForm: UpdateProductFormState,
     setUpdateProductForm?: ReactStateDispatch<SetStateAction<UpdateProductFormState>>,

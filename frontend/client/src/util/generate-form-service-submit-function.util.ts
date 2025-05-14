@@ -2,12 +2,11 @@ import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react
 import { sendEmail } from "@client/services/contact.service";
 import { loginService } from "@client/services/login.service";
 import { signUpService } from "@client/services/singup.service";
-import { AllowedServices } from "../../../shared/types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { NavigateFunction } from "react-router-dom";
 
 type GenerateClientFormServiceSubmitFunction  = {
-    service: AllowedServices,
+    service: "login" | "send-email" | "sign-up" ,
     dispatch: Dispatch,
     setErrorMessage: ReactStateDispatch<SetStateAction<string | undefined>>,
     navigateFunction?: NavigateFunction,
