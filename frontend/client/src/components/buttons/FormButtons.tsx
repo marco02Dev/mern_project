@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledButton } from "../themed/StyledButton";
-import { useHiddenLink } from "../../hooks/navigation/useHiddenLink";
+import { UseHiddenLink, useHiddenLink } from "../../hooks/navigation/useHiddenLink";
 
 const Wrapper = styled.div`
     display: flex;
@@ -19,7 +19,7 @@ export const FormButtons: FC<FormButtonsProps> = ({
     delay,
     AdditionalButtons
 }: FormButtonsProps): ReactElement => {
-    const { hiddenRef, handleHiddenClick } = useHiddenLink();
+    const { hiddenRef, handleHiddenClick }: UseHiddenLink = useHiddenLink();
 
     return (
         <Wrapper>
