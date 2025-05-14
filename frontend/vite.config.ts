@@ -24,7 +24,7 @@ export default defineConfig({
   alias: {
     '@client': path.resolve(__dirname, 'client/src'),
     '@admin': path.resolve(__dirname, 'admin/src'),
-    '@account': path.resolve(__dirname, 'account/src'),
+    '@account': path.resolve(__dirname, 'user/src'),
     '@shared': path.resolve(__dirname, "shared")
   },
   },
@@ -38,14 +38,14 @@ export default defineConfig({
       input: {
         client: path.resolve(__dirname, 'client/index.html'),
         admin: path.resolve(__dirname, 'admin/admin_index.html'),
-        account: path.resolve(__dirname, 'account/account_index.html')
+        account: path.resolve(__dirname, 'user/account_index.html')
       },
       output: {
        entryFileNames: chunk => {
         if (chunk.name === 'admin') {
           return 'admin/[name]-[hash].js';
-        } else if (chunk.name === 'account') {
-          return 'account/[name]-[hash].js';
+        } else if (chunk.name === 'user') {
+          return 'user/[name]-[hash].js';
         } else {
           return 'assets/[name]-[hash].js';
         }

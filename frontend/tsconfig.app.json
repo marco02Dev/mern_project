@@ -36,9 +36,9 @@
       "@shared/*": ["shared/*"],
       "@client/*": ["client/src/*"],
       "@admin/*": ["admin/src/*"],
-      "@account/*": ["account/src/*"],
+      "@user/*": ["user/src/*"],
     }
   },
-  "include": ["account", "admin", "client", "shared", "vite-env.d.ts"]
+  "include": ["user", "admin", "client", "shared", "vite-env.d.ts"]
 }
   
