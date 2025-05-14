@@ -35,8 +35,6 @@ export const UpdateDeleteCourseButtons: FC<UpdateDeleteCourseButtonProps> = ({
     const [productDeletedErrorMessage, setProductDeletedErrorMessage] = useState<string | undefined>("");
     const {setUpdateProductForm, updateProductForm}: ProductManagementContextProps = useContext(ProductManagementContext);
 
-
-
     const handleUpdateButtonClick: MouseEventHandler = () => {
         if (setUpdateProductForm) {
             setUpdateProductForm({
