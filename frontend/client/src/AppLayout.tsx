@@ -17,7 +17,7 @@ import { isProduction, isRender } from './config/app.config';
 import { CookieYesStylesType } from './styles/cookie-yes.style';
 import { ThemeColors, useThemeColors } from './hooks/theme/useThemeColors';
 
-export const Layout = ({children}: {children: ReactElement}) => {
+export const AppLayout = ({children}: {children: ReactElement}) => {
   const hasLocationChanged: boolean = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);

@@ -1,10 +1,10 @@
 import { AdminPage } from './pages/AdminPage';
-import { Layout } from '@client/layout';
+import { AppLayout } from '@client/AppLayout';
 
 function AdminApp() {
-  return <Layout>
+  return <AppLayout>
     <AdminPage />
-  </ Layout>
+  </ AppLayout>
 }
 
 export default AdminApp;

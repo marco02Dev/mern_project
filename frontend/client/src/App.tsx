@@ -1,11 +1,11 @@
 import { Router } from './Router';
-import { Layout } from './layout';
+import { AppLayout } from './AppLayout';
 
 function App() {
 
-  return <Layout>
+  return <AppLayout>
     <Router />
-  </Layout>
+  </AppLayout>
 }
 
 export default App;

@@ -1,10 +1,10 @@
 import { AccountPage } from './pages/AccountPage';
-import { Layout } from '@client/layout';
+import { AppLayout } from '@client/AppLayout';
 
 function AccountApp() {
-  return <Layout>
+  return <AppLayout>
     <AccountPage />
-  </ Layout>
+  </ AppLayout>
 }
 
 export default AccountApp;
