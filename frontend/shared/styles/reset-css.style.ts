@@ -1,6 +1,27 @@
 // GlobalReset.js
 import { createGlobalStyle } from 'styled-components';
 
+/**
+ * `ResetCss` is a global style component using `styled-components`' `createGlobalStyle`
+ * to apply a CSS reset based on Eric Meyer's reset (v2.0).
+ * 
+ * This helps ensure consistency across browsers by removing default margins, paddings,
+ * borders, and other stylistic differences for HTML elements.
+ * 
+ * @see http://meyerweb.com/eric/tools/css/reset/
+ * @example
+ * import { ResetCss } from './GlobalReset';
+ * 
+ * function App() {
+ *   return (
+ *     <>
+ *       <ResetCss />
+ *       <YourApp />
+ *     </>
+ *   );
+ * }
+*/
+
 export const ResetCss = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126

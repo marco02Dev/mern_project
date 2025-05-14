@@ -37,7 +37,7 @@ export const NavLinksLoop: FC<NavLinksLoopProps> = ({
   return (
     <>
       {links.map((link, index) => {
-        const isActive = location.pathname === link.to;
+        const isActive: boolean = location.pathname === link.to;
         delay = sumStringDelays(delay, "200ms");
         lastDelay = delay
 
