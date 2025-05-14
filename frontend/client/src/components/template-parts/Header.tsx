@@ -91,7 +91,7 @@ export const Header: FC = (): ReactElement => {
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="20%" $flexEnd>
-                        <LoginAccountAdminButton delay={sumStringDelays(desktopButtonsStartDelay, "200ms")} />
+                        {!isAccount && <LoginAccountAdminButton delay={sumStringDelays(desktopButtonsStartDelay, "200ms")} />}
                         <StyledSpace horizontal small />
                         <SwitchThemeModeButton delay={sumStringDelays(desktopButtonsStartDelay, "400ms")} />
                     </DesktopNavInnerWrapper>
