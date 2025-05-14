@@ -4,6 +4,19 @@ import { setLoggedIn } from '../../store/slices/login.slice';
 import { AppDispatch } from '../../store';
 import { endpoints } from '../../config/endpoints.config';
 
+/**
+ * Custom hook that restores the user's session by fetching session data
+ * from the server. If the session is valid, it dispatches the user data to
+ * the Redux store to mark the user as logged in.
+ * 
+ * @returns void
+ * 
+ * @description
+ * This hook runs once on component mount. It sends a request to the session 
+ * endpoint and, if the user session is valid, stores the user data in the Redux store. 
+ * If there's an error or the session is invalid, nothing happens.
+*/
+
 export const useRestoreSession = () => {
   const dispatch = useDispatch<AppDispatch>();
 
