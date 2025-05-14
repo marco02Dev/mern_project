@@ -1,6 +1,28 @@
 import { createGlobalStyle } from 'styled-components';
 import { mainFont } from '@shared/config/font.config';
 
+/**
+ * `FontStyles` is a global style component using `styled-components`' `createGlobalStyle`
+ * to apply custom font styles throughout the application.
+ * 
+ * It sets the base `font-family` to the configured `mainFont` (from `font.config`) and 
+ * adjusts font weights and letter spacing for common text elements (`h1`–`h6`, `p`, `a`, `span`, etc.).
+ * 
+ * This ensures a consistent typographic style aligned with the design system.
+ *
+ * @example
+ * import { FontStyles } from './FontStyles';
+ * 
+ * function App() {
+ *   return (
+ *     <>
+ *       <FontStyles />
+ *       <YourApp />
+ *     </>
+ *   );
+ * }
+*/
+
 export const FontStyles = createGlobalStyle`
     body {
         font-family: ${mainFont}, serif;

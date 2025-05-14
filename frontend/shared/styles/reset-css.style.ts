@@ -1,4 +1,3 @@
-// GlobalReset.js
 import { createGlobalStyle } from 'styled-components';
 
 /**
