@@ -6,13 +6,13 @@ import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 import { StyledText } from "@shared/components/themed/StyledText";
 import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import { colors } from "@shared/config/colors.config";
-import { deleteCourseService } from "../../services/delete-course.service";
+import { deleteCourseService } from "@admin/services/delete-course.service";
 import { useDispatch } from "react-redux";
 import { setDataChanged } from "@shared/store/slices/courses-data-changed.slice";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 import { useBodyOverflow } from "@shared/hooks/ui/useBodyOverflow";
-import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
+import { ProductManagementContext, ProductManagementContextProps } from "@admin/contexts/ProductMenagementContextProvider";
 
 const Wrapper = styled.div`
     display: flex !important;

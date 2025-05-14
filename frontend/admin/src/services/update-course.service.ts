@@ -1,6 +1,6 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
-import { UpdateProductFormState } from "../contexts/ProductMenagementContextProvider";
-import { retrieveFormProductData } from "../utils/retrieve-form-product-data.util";
+import { UpdateProductFormState } from "@admin/contexts/ProductMenagementContextProvider";
+import { retrieveFormProductData } from "@admin/utils/retrieve-form-product-data.util";
 import { endpoints } from "@shared/config/endpoints.config";
 
 export const updateCourseService = async (

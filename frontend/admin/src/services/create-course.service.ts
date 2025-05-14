@@ -2,11 +2,11 @@ import { endpoints } from "@shared/config/endpoints.config";
 import { FormEvent, Dispatch, SetStateAction } from "react";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
 import { setDataChanged } from "@shared/store/slices/courses-data-changed.slice";
-import { uploadCourseImagesService } from "./upload-course-image-service";
+import { uploadCourseImagesService } from "@admin/services/upload-course-image-service";
 import { checkSession } from "@shared/utils/cookies/check-session.util";
 import { reloadLoginPage } from "@shared/utils/browser/reload-login-page.util";
 import { errorMessages } from "@shared/config/error-messages.config";
-import { retrieveFormProductData } from "../utils/retrieve-form-product-data.util";
+import { retrieveFormProductData } from "@admin/utils/retrieve-form-product-data.util";
 
 export type CreateCourseService = (
   event: FormEvent<HTMLFormElement>,

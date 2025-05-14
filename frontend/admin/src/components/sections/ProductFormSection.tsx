@@ -4,12 +4,12 @@ import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import styled from "styled-components";
 import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
-import { GenerateForm } from "@shared/components/forms/GenerateForm";
+import { GenerateForm } from "@shared/components/layouts/FormLayout";
 import { ImageBorderedBox } from "@shared/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@shared/types/service.type";
-import { generateAdminProductFormSubmitFunction } from "../../utils/generate-admin-product-form-submit-function.util";
-import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
-import { UndoCreateUpdateProductButton } from "../buttons/UndoCreateUpdateProductButton";
+import { generateAdminProductFormSubmitFunction } from "@admin/utils/generate-admin-product-form-submit-function.util";
+import { ProductManagementContext, ProductManagementContextProps } from "@admin/contexts/ProductMenagementContextProvider";
+import { UndoCreateUpdateProductButton } from "@admin/components/buttons/UndoCreateUpdateProductButton";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;

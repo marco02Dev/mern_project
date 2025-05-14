@@ -5,7 +5,7 @@ import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import { StyledText } from "@shared/components/themed/StyledText";
 import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
 import { colors } from "@shared/config/colors.config";
-import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
+import { ProductManagementContext, ProductManagementContextProps } from "@admin/contexts/ProductMenagementContextProvider";
 
 export const CreateCourseButton: FC = (): ReactElement => {
     const { isLoggedIn, isAdmin }: UseAuth = useAuth();

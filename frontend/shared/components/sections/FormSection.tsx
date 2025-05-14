@@ -4,7 +4,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
-import { GenerateForm } from "../forms/GenerateForm";
+import { GenerateForm } from "../layouts/FormLayout";
 import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
 import { AllowedServices } from "@shared/types/service.type";
 

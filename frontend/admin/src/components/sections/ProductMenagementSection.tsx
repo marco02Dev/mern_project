@@ -3,13 +3,13 @@ import { CoursesLoop } from "@shared/components/loops/CoursesLoop";
 import { StyledSection } from "@shared/components/themed/StyledSection";
 import { sizes } from "@shared/config/sizes.config";
 import { StyledSpace } from "@shared/components/themed/StyledSpace";
-import { CreateProductForm } from "../forms/CreateProductForm";
-import { UpdateProductForm } from "../forms/UpdateProductForm";
+import { CreateProductForm } from "@admin/components/forms/CreateProductForm";
+import { UpdateProductForm } from "@admin/components/forms/UpdateProductForm";
 import { useBodyOverflow } from "@shared/hooks/ui/useBodyOverflow";
 import { LargeProductsPreviewButtons } from "@shared/components/buttons/LargeProductsPreviewButtons";
-import { UpdateDeleteCourseButtons } from "../buttons/UpdateDeleteCourseButtons";
-import { CreateCourseButton } from "../buttons/CreateCourseButton";
-import { ProductManagementContext, ProductManagementContextProps } from "../../contexts/ProductMenagementContextProvider";
+import { UpdateDeleteCourseButtons } from "@admin/components/buttons/UpdateDeleteCourseButtons";
+import { CreateCourseButton } from "@admin/components/buttons/CreateCourseButton";
+import { ProductManagementContext, ProductManagementContextProps } from "@admin/contexts/ProductMenagementContextProvider";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,

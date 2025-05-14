@@ -1,4 +1,4 @@
-import { AdminPage } from './pages/AdminPage';
+import { AdminPage } from '@admin/pages/AdminPage';
 import { AppLayout } from '@shared/components/layouts/AppLayout';
 
 function AdminApp() {

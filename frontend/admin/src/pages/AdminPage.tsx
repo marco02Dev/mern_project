@@ -5,9 +5,9 @@ import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-let
 import { LogInPage } from "@client/pages/LogInPage";
 import { TextSection } from "@shared/components/sections/TextSection";
 import { logOutService } from "@shared/services/log-out.service";
-import { AdminProductManagementSection } from "../components/sections/ProductMenagementSection";
+import { AdminProductManagementSection } from "@admin/components/sections/ProductMenagementSection";
 import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
-import { ProductManagementContextProvider } from "../contexts/ProductMenagementContextProvider";
+import { ProductManagementContextProvider } from "@admin/contexts/ProductMenagementContextProvider";
 
 export const AdminPage: FC = (): ReactElement => {
     const { isLoggedIn, userData, isAdmin }: UseAuth = useAuth();

@@ -1,8 +1,8 @@
 import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react";
-import { createCourseService } from "../services/create-course.service";
-import { updateCourseService } from "../services/update-course.service";
+import { createCourseService } from "@admin/services/create-course.service";
+import { updateCourseService } from "@admin/services/update-course.service";
 import { Dispatch } from "@reduxjs/toolkit";
-import { UpdateProductFormState } from "../contexts/ProductMenagementContextProvider";
+import { UpdateProductFormState } from "@admin/contexts/ProductMenagementContextProvider";
 
 type GenerateAdminProductFormSubmitFunctionProps = {
     service: "create-course" | "update-course",

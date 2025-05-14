@@ -1,5 +1,5 @@
 import { Course } from "@shared/types/course.types";
-import { parseDetailsCourseFormData } from "./parse-details-course-form-data.util";
+import { parseDetailsCourseFormData } from "@admin/utils/parse-details-course-form-data.util";
 import { handleErrorResponse } from "@shared/utils/form/handle-error-response";
 import { SetStateAction, Dispatch } from "react";
 
