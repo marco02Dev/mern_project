@@ -8,27 +8,18 @@ import useLocationChange, { UseLocationChange } from './hooks/navigation/useLoca
 import { ReactElement, useEffect } from 'react';
 import { useRestoreSession } from './hooks/auth/useRestoreSession';
 import { useDynamicTitle } from './hooks/navigation/useDynamicDocumentTitle';
-import { useCookieYes } from "./hooks/theme/useCookieYes";
 import { AppState } from './store/slices/app-state-slice';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { LoadingPage } from './pages/LoadingPage';
 import { isProduction, isRender } from './config/app.config';
-import { CookieYesStylesType } from './styles/cookie-yes.style';
-import { ThemeColors, useThemeColors } from './hooks/theme/useThemeColors';
+import { StyledCookieYesBanner } from './components/themed/StyledCookieYesBanner';
 
 export const AppLayout = ({children}: {children: ReactElement}) => {
   const hasLocationChanged: UseLocationChange = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
-  const { backgroundColorButton, backgroundColor, backgroundColorSecondary, textColor, borderColor, hoverColor, successMessageColor }: ThemeColors = useThemeColors();
-  let CookieYesStyles: null | CookieYesStylesType = null;
 
-  if(isProduction && isRender) {
-    const CookieYesStylesObject: CookieYesStylesType = useCookieYes();
-    CookieYesStyles = CookieYesStylesObject;
-  }
-  
   useRestoreSession();
   useDynamicTitle();
 
@@ -44,15 +35,7 @@ export const AppLayout = ({children}: {children: ReactElement}) => {
   return <>
     {(isMobile || isTablet) && <MobileMenu /> }
 
-    {CookieYesStyles !== null && <CookieYesStyles 
-      $backgroundColor={backgroundColor}
-      $textColor={textColor}
-      $buttonBackgorundColor={backgroundColorButton}
-      $borderColor={borderColor}
-      $hoverColor={hoverColor}
-      $successMessageColor={successMessageColor}
-      $secondaryBackgorundColor={backgroundColorSecondary}
-    />}
+    {isProduction && isRender && <StyledCookieYesBanner />}
 
     <Header />
     {children}

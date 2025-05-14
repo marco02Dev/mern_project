@@ -2,6 +2,20 @@ import { NamedExoticComponent } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { buttonHoverAnimation } from '@client/animations/styled-button.animation';
 
+/**
+ * Props for the `CookieYesStyles` component that controls the dynamic styling of the CookieYes banner.
+ * These props must be passed from the parent component using the `useThemeColors` hook,
+ * which provides the appropriate colors based on the current theme (light or dark mode).
+ * 
+ * @property $buttonBackgorundColor Background color for `.cky-btn`, used for the main consent button.
+ * @property $backgroundColor General background color used across multiple selectors such as `.cky-preference-center`, `.cky-consent-bar`, and `.cky-preference-content-wrapper`.
+ * @property $secondaryBackgorundColor Applied to `[data-cky-tag="detail-powered-by"]` as a secondary visual layer or highlight.
+ * @property $textColor Primary text color used in selectors like `.cky-title`, `.cky-notice-des`, `.cky-accordion-btn`, and others.
+ * @property $borderColor Border color for `.cky-btn`.
+ * @property $hoverColor Hover color used in `.cky-show-desc-btn`.
+ * @property $successMessageColor Text color applied to `.cky-always-active`, typically used for confirmed or persistent consent indicators.
+*/
+
 type CookieYesStylesProps = {
     $buttonBackgorundColor: string,
     $backgroundColor: string,
@@ -12,7 +26,33 @@ type CookieYesStylesProps = {
     $successMessageColor: string
 }
 
+/**
+ * `CookieYesStyles` is a styled-component that applies global styles to the CookieYes banner.
+ * The component uses colors passed as props, which should come from the `useThemeColors` hook in the parent component.
+ * The appearance of the banner is dynamically adjusted based on the current theme (light or dark mode).
+ * 
+ * @note The colors must be explicitly passed to this component from the `useThemeColors` hook in the parent component.
+ * For more details on the props, refer to the `CookieYesStylesProps`.
+ * 
+ * @example
+ * const { backgroundColorButton, backgroundColor, backgroundColorSecondary, textColor, borderColor, hoverColor, successMessageColor }: ThemeColors = useThemeColors();
+ * <CookieYesStyles 
+ *   $buttonBackgorundColor={backgroundColorButton} 
+ *   $backgroundColor={backgroundColor} 
+ *   $secondaryBackgorundColor={backgroundColorSecondary}
+ *   $textColor={textColor}
+ *   $borderColor={borderColor}
+ *   $hoverColor={hoverColor}
+ *   $successMessageColor={successMessageColor}
+ * />
+*/
+
 export type CookieYesStylesType = NamedExoticComponent<CookieYesStylesProps>;
+
+/**
+ * The `CookieYesStyles` component applies global styles to the CookieYes banner based on dynamic props, 
+ * which are passed from the parent component. For more details on the props, refer to the `CookieYesStylesType`.
+*/
 
 export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesStylesProps>`
     .cky-btn-revisit-wrapper {

@@ -2,6 +2,31 @@ import { useEffect } from 'react';
 import { cookieYesID } from './../../config/app.config';
 import { CookieYesStylesType, CookieYesStyles } from '../../styles/cookie-yes.style';
 
+/**
+ * Custom hook that dynamically loads the CookieYes script.
+ * 
+ * This hook adds a script tag to the document's head to load the CookieYes client script
+ * if the `cookieYesID` is provided. It also ensures the script is removed when the component is unmounted.
+ * 
+ * @returns The `CookieYesStyles` component, which applies global styles to the CookieYes banner. 
+ * See the `CookieYesStylesType` for more details on the component's props and how the styles are dynamically applied based on the theme.
+ * 
+ * @example
+ * const CookieYesStyles: CookieYesStylesType = useCookieYes();
+ * 
+ * return <CookieYesStyles 
+    $backgroundColor={backgroundColor}
+    $textColor={textColor}
+    $buttonBackgorundColor={backgroundColorButton}
+    $borderColor={borderColor}
+    $hoverColor={hoverColor}
+    $successMessageColor={successMessageColor}
+    $secondaryBackgorundColor={backgroundColorSecondary}
+  />}
+ * 
+ * @note If the `cookieYesID` is not found, a warning is logged in the console.
+*/
+
 export const useCookieYes = (): CookieYesStylesType => {
   useEffect(() => {
 
