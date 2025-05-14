@@ -70,7 +70,6 @@ export const ClientFormSection: FC<ClientFormSectionProps> = ({
                 fields={fields}
                 textArea={textArea}
                 textAreaPlaceholder={textAreaPlaceholder}
-                service={service}
                 removeForm={messageSent}
                 errorMessage={errorMessage}
                 handleSubmitFunction={generateClientFormServiceSubmitFunction({

@@ -7,13 +7,7 @@ import { TextRevealWrapper } from "../animated/TextRevealWrapper";
 import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
 import { InputDataFieldSetLoop } from "../loops/InputDataFieldSetLoop";
 import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
-import { useDispatch } from "react-redux";
-import { Dispatch } from "@reduxjs/toolkit";
-import { AllowedServices } from "@shared/types/service.type";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 import { colors } from "@shared/config/colors.config";
-import { UpdateProductFormState } from "admin/src/contexts/ProductMenagementContextProvider";
-import { generateClientFormServiceSubmitFunction } from "@client/util/generate-form-service-submit-function.util";
 import { FormButtons } from "../buttons/FormButtons";
 import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
@@ -46,19 +40,13 @@ type FormLayoutProps = {
     fields: string[];
     textArea?: string;
     textAreaPlaceholder?: string;
-    service: AllowedServices;
     productImage?: boolean;
     formWidth?: string;
-    updateProductFormState?: UpdateProductFormState;
     AdditionalFormButtons?: FC,
     handleSubmitFunction: FormEventHandler<HTMLFormElement>,
     removeForm?: boolean,
     errorMessage?: string,
-    additionalGenerateFormServiceSubmitFunction?: Function,
-    setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
-    setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
     setFormImage?: ReactStateDispatch<SetStateAction<string | null>>;
-    setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormState>>;
 };
 
 export const FormLayout: FC<FormLayoutProps> = ({
@@ -67,56 +55,17 @@ export const FormLayout: FC<FormLayoutProps> = ({
     textArea,
     textAreaPlaceholder,
     productImage,
-    service,
     formWidth,
-    updateProductFormState,
-    additionalGenerateFormServiceSubmitFunction,
     AdditionalFormButtons,
     handleSubmitFunction,
     removeForm,
     errorMessage,
-    setCrateProductForm,
-    setProductCreated,
     setFormImage,
-    setUpdateProductFormSetState
 }: FormLayoutProps ): ReactElement => {
     const [inputDataFieldSetLoopLastDelay, setInputDataFieldSetLoopLastDelay] = useState<string>("0ms");
     const [fileInputFieldSetLoopLoopLastDelay, setFileInputFieldSetLoopLastDelay] = useState<string>("0ms");
     const [fieldSetAdditionalInfoBoxLastDelay, setFieldSetAdditionalInfoBoxLastDelay] = useState<string>("0ms");
-
-    const [formErrorMessage, setErrorMessage] = useState<string | undefined>();
-    const [messageSent, setMessageSent] = useState< boolean | undefined>();
-    const dispatch: Dispatch = useDispatch();
-    const navigateFunction: NavigateFunction = useNavigate();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
-    let handleSubmit: FormEventHandler<HTMLFormElement>;
-
-    console.log(formErrorMessage, messageSent);
-
-    if(additionalGenerateFormServiceSubmitFunction) {
-        handleSubmit = additionalGenerateFormServiceSubmitFunction({
-            service,
-            dispatch,
-            updateProductFormState,
-            setUpdateProductFormSetState,
-            setErrorMessage,
-            navigateFunction,
-            setCrateProductForm,
-            setProductCreated,
-            setMessageSent,
-        });
-    } else {
-        handleSubmit = generateClientFormServiceSubmitFunction({
-            service: service,
-            dispatch: dispatch,
-            setErrorMessage: setErrorMessage,
-            navigateFunction: navigateFunction,
-            setMessageSent: setMessageSent,
-        });
-    }
-
-    console.log(handleSubmit)
-
 
     return (
         <Wrapper $formWidth={formWidth} $isTablet={isTablet} $isMobile={isMobile} $paddingLeft={sizes.spaces.medium} $paddingRight={sizes.spaces.medium}>

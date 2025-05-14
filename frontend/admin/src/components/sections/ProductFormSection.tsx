@@ -73,7 +73,6 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 fields={fields}
                 textArea={textArea}
                 textAreaPlaceholder={textAreaPlaceholder}
-                service={service}
                 productImage={productImage}
                 handleSubmitFunction={generateAdminProductFormSubmitFunction({
                     service,
@@ -85,14 +84,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                     setProductCreated,
                 })}
                 errorMessage={errorMessage}
-
-
-                setCrateProductForm={setCreateProductForm}
-                setProductCreated={setProductCreated}
                 setFormImage={setFormImage}
-                setUpdateProductFormSetState={setUpdateProductForm}
-                updateProductFormState={updateProductForm}
-                additionalGenerateFormServiceSubmitFunction={generateAdminProductFormSubmitFunction}
                 AdditionalFormButtons={UndoCreateUpdateProductButton}
             />
         </Wrapper>
