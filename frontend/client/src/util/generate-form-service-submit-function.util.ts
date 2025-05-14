@@ -4,9 +4,10 @@ import { loginService } from "@client/services/login.service";
 import { signUpService } from "@client/services/singup.service";
 import { Dispatch } from "@reduxjs/toolkit";
 import { NavigateFunction } from "react-router-dom";
+import { ClientServices } from "@client/types/client-services.type";
 
 type GenerateClientFormServiceSubmitFunction  = {
-    service: "login" | "send-email" | "sign-up" ,
+    service: ClientServices ,
     dispatch: Dispatch,
     setErrorMessage: ReactStateDispatch<SetStateAction<string | undefined>>,
     navigateFunction?: NavigateFunction,

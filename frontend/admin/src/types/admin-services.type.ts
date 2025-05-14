@@ -1,0 +1,1 @@
+export type AdminServices = "create-course" | "update-course";

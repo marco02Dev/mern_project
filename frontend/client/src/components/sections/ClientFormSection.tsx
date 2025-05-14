@@ -6,11 +6,11 @@ import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
 import { FormLayout } from "@shared/components/layouts/FormLayout";
 import { ImageBorderedBox } from "@shared/components/boxes/ImageBorderedBox";
-import { AllowedServices } from "@shared/types/service.type";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { generateClientFormServiceSubmitFunction } from "@client/util/generate-form-service-submit-function.util";
+import { ClientServices } from "@client/types/client-services.type";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -29,7 +29,7 @@ type ClientFormSectionProps = {
     fields: string[],
     textArea?: string,
     textAreaPlaceholder?: string,
-    service: AllowedServices,
+    service: ClientServices,
     secondaryColor?: boolean,
 }
 

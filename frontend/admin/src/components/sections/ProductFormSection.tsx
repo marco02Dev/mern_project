@@ -6,12 +6,12 @@ import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
 import { FormLayout } from "@shared/components/layouts/FormLayout";
 import { ImageBorderedBox } from "@shared/components/boxes/ImageBorderedBox";
-import { AllowedServices } from "@shared/types/service.type";
 import { generateAdminProductFormSubmitFunction } from "@admin/utils/generate-admin-product-form-submit-function.util";
 import { ProductManagementContext, ProductManagementContextProps } from "@admin/contexts/ProductMenagementContextProvider";
 import { UndoCreateUpdateProductButton } from "@admin/components/buttons/UndoCreateUpdateProductButton";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
+import { AdminServices } from "@admin/types/admin-services.type";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -30,7 +30,7 @@ type ProductFormSectionProps = {
     fields: string[],
     textArea?: string,
     textAreaPlaceholder?: string,
-    service: AllowedServices,
+    service: AdminServices,
     secondaryColor?: boolean,
     productImage?: boolean,
 }

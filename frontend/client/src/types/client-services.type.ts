@@ -1,0 +1,1 @@
+export type ClientServices = "login" | "send-email" | "sign-up";
