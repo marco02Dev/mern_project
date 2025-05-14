@@ -33,9 +33,10 @@
     /* Alias support */
     "baseUrl": ".", 
     "paths": {
+      "@shared/*": ["shared/*"],
       "@client/*": ["client/src/*"]
     }
   },
-  "include": ["account", "admin", "client", "vite-env.d.ts"]
+  "include": ["account", "admin", "client", "shared", "vite-env.d.ts"]
 }
   
