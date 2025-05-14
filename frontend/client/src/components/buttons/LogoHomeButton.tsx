@@ -9,7 +9,7 @@ import { css } from "styled-components";
 export const LogoHomeButton: FC = (): ReactElement => {
   const location: Location = useLocation();
   const isInactive: boolean = location.pathname == "/";
-  const { isLoggedIn, isAdmin }: UseAuth = useAuth();
+  const { isLoggedIn }: UseAuth = useAuth();
 
   return (
     <FadeInWrapper additionalAnimation={!isInactive ? logoHover : css``}> 
@@ -21,7 +21,7 @@ export const LogoHomeButton: FC = (): ReactElement => {
         fontWeight={'900'}
         logo
         inactive={isInactive}
-        reloadDocument={isAdmin}
+        reloadDocument={isLoggedIn}
       />
 
       {!isInactive && <StyledLink 
@@ -33,7 +33,7 @@ export const LogoHomeButton: FC = (): ReactElement => {
         logo
         absolute
         inactive={isInactive}
-        reloadDocument={isLoggedIn && isAdmin}
+        reloadDocument={isLoggedIn}
       /> }
      
     </FadeInWrapper>

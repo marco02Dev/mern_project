@@ -25,6 +25,8 @@ export const Footer: FC = (): ReactElement => {
 
         <PrivacyCookiesLinks />
 
+        <StyledSpace small vertical />
+
         <FadeInWrapper>
             <StyledText
                 tag="p" 
