@@ -1,5 +1,5 @@
-import { devolopmentApiEndpoint } from "./app.config";
-import { isProduction } from "./app.config";
+import { devolopmentApiEndpoint } from "./env.config";
+import { isProduction } from "./env.config";
 
 export type Endpoints = {
     usersEndpoint: string,
