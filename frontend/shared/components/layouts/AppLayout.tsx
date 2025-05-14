@@ -12,8 +12,6 @@ import { AppState } from '@shared/store/slices/app-state-slice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@shared/store';
 import { LoadingPage } from '@client/pages/LoadingPage';
-import { isProduction, isRender } from '@shared/config/app.config';
-import { StyledCookieYesBanner } from '@shared/components/themed/StyledCookieYesBanner';
 
 export const AppLayout = ({children}: {children: ReactElement}) => {
   const hasLocationChanged: UseLocationChange = useLocationChange();
@@ -34,9 +32,6 @@ export const AppLayout = ({children}: {children: ReactElement}) => {
 
   return <>
     {(isMobile || isTablet) && <MobileMenu /> }
-
-    {isProduction && isRender && <StyledCookieYesBanner />}
-
     <Header />
     {children}
     <Footer />
