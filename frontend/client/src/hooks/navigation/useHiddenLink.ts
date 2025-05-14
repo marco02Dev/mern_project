@@ -12,6 +12,18 @@ export type UseHiddenLink = {
     handleHiddenClick: MouseEventHandler
 }
 
+/**
+ * Custom hook that provides a way to simulate a click on a hidden link or button.
+ * 
+ * @returns An object containing:
+ * - `hiddenRef`: A reference to a hidden link or button element
+ * - `handleHiddenClick`: A function that triggers a click on the referenced element
+ * 
+ * @description
+ * This hook is useful for scenarios where you need to trigger a hidden link or button
+ * (for example, using a programmatic click) without directly interacting with it.
+*/
+
 export const useHiddenLink = (): UseHiddenLink => {
     const hiddenRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null);
 
