@@ -24,6 +24,15 @@ export type UseAuth = {
  * - `isLoggedIn`: boolean indicating whether the user is authenticated
  * - `userData`: normalized user data with empty string values used as defaults if fields are undefined
  * - `isAdmin`: boolean indicating whether the user has admin privileges
+ * 
+ * @example
+ * const { isLoggedIn, userData, isAdmin }: UseAuth = useAuth();
+ * 
+ * if (isLoggedIn && userData.name) {
+ *   console.log(`Welcome ${userData.name}`);
+ * } else {
+ *   console.log("User is not logged in.");
+ * }
 */
 
 export const useAuth = (): UseAuth => {
