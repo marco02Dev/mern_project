@@ -18,7 +18,7 @@ export const LoginAccountAdminButton: FC<LoginAccountAdminButtonProps> = ({
             content={isLoggedIn ? isAdmin ? "Admin" : "Account" : "Login"} 
             to={isLoggedIn ?  isAdmin ? "/admin" : "/account" : "/login"} 
             unsetShadow
-            reloadDocument={isAdmin}
+            reloadDocument={isLoggedIn}
         />
     </FadeInWrapper>
 }

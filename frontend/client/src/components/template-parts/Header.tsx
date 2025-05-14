@@ -48,7 +48,7 @@ export const Header: FC = (): ReactElement => {
     const [desktopButtonsStartDelay, setDesktopButtonStartDelay] = useState<string | undefined>("");
     const location: Location = useLocation();
     const path: string = location.pathname;
-    const isAdmin: boolean = path === "/admin/";
+    const isAccount: boolean = path === "/admin/" || path === "/account/";
 
     return (
         <StyledSection 
@@ -73,7 +73,7 @@ export const Header: FC = (): ReactElement => {
                     <MobileNavInnerWrapper $justifyEnd> 
                         <SwitchThemeModeButton delay={"200ms"}/>
 
-                        {!isAdmin && <>
+                        {!isAccount && <>
                             <StyledSpace horizontal small />
                             <StyledMobileMenu delay={"400ms"} />
                         </>}
@@ -87,7 +87,7 @@ export const Header: FC = (): ReactElement => {
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="60%" $middleWrapper>
-                        {!isAdmin && <NavLinks row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />}
+                        {!isAccount && <NavLinks row setDesktopButtonStartDelay={setDesktopButtonStartDelay} />}
                     </DesktopNavInnerWrapper>
 
                     <DesktopNavInnerWrapper $width="20%" $flexEnd>
