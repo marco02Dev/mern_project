@@ -3,7 +3,7 @@ import { NavLinks } from "../ui/NavLinks";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { FC, ReactNode, useEffect } from "react";
-import useLocationChange from "../../hooks/navigation/useLocationChange";
+import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
 import { closeMenu } from "../../store/slices/menu.slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
@@ -33,7 +33,7 @@ const MobileMenuWrapper = styled.section<MobileMenuWrapperProps>`
 `;
 
 export const MobileMenu: FC = (): ReactNode => {
-  const hasLocationChanged: boolean = useLocationChange();
+  const hasLocationChanged: UseLocationChange = useLocationChange();
   const { isTablet, isMobile }: UseMediaQuery = useMediaQuery();
   const isOpened: boolean = useSelector(({menu}: RootState) => menu.isOpened);
   const { backgroundColor }: ThemeColors = useThemeColors();

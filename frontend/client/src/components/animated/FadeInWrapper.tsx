@@ -2,7 +2,7 @@ import styled, { RuleSet, css } from "styled-components";
 import { fadeInWrapperAnimation } from "../../animations/fade-in-wrapper.animation";
 import { ReactElement, ReactNode } from "react";
 import { useInView } from "../../hooks/ui/useViewIn";
-import useLocationChange from "../../hooks/navigation/useLocationChange";
+import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
 import { FC } from "react";
 
 const Wrapper = styled.div<{$absolute?: string, $addiniotalAnimation?: RuleSet, $width?: string, $height?: string, $flex?: boolean, $delayed?: string}>`
@@ -31,7 +31,7 @@ type FadeInWrapperProps = {
 }
 
 export const FadeInWrapper: FC<FadeInWrapperProps> = ({children, absolute, additionalAnimation, width, height, flex, delay}: FadeInWrapperProps): ReactElement => {
-    const hasLocationChanged: boolean = useLocationChange(); 
+    const hasLocationChanged: UseLocationChange = useLocationChange(); 
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
     
     const combinedDelay = (() => {

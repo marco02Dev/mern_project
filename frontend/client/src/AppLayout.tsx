@@ -4,7 +4,7 @@ import { MobileMenu } from './components/template-parts/MobileMenu';
 import { PageTransitionElement } from './components/animated/PageTransitionElement';
 import { PageTransitionTitle } from './components/animated/PageTransitionTitle';
 import { useMediaQuery, UseMediaQuery } from './hooks/ui/useMediaQuery';
-import useLocationChange from './hooks/navigation/useLocationChange';
+import useLocationChange, { UseLocationChange } from './hooks/navigation/useLocationChange';
 import { ReactElement, useEffect } from 'react';
 import { useRestoreSession } from './hooks/auth/useRestoreSession';
 import { useDynamicTitle } from './hooks/navigation/useDynamicDocumentTitle';
@@ -18,7 +18,7 @@ import { CookieYesStylesType } from './styles/cookie-yes.style';
 import { ThemeColors, useThemeColors } from './hooks/theme/useThemeColors';
 
 export const AppLayout = ({children}: {children: ReactElement}) => {
-  const hasLocationChanged: boolean = useLocationChange();
+  const hasLocationChanged: UseLocationChange = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
   const { backgroundColorButton, backgroundColor, backgroundColorSecondary, textColor, borderColor, hoverColor, successMessageColor }: ThemeColors = useThemeColors();

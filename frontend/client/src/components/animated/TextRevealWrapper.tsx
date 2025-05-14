@@ -2,7 +2,7 @@ import styled, { RuleSet } from "styled-components";
 import { TextReaveal } from "../../animations/text-reveal-wrapper.animation";
 import { ReactElement } from "react";
 import { useInView } from "../../hooks/ui/useViewIn";
-import useLocationChange from "../../hooks/navigation/useLocationChange";
+import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
 import { FC } from "react";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
 
@@ -31,7 +31,7 @@ type TextRevealWrapperProps = {
 export const TextRevealWrapper: FC<TextRevealWrapperProps> = ({children, absolute, additionalAnimation, width, height, left, textCenter, delay }: TextRevealWrapperProps): ReactElement => {
 
     const [ref, isInView] = useInView({ threshold: 0.5 }); 
-    const hasLocationChanged: boolean = useLocationChange();
+    const hasLocationChanged: UseLocationChange = useLocationChange();
 
     const combinedDelay = hasLocationChanged
         ? sumStringDelays(delay, '1000ms')

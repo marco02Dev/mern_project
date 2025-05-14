@@ -4,7 +4,7 @@ import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
 import { useLocation, Location } from "react-router-dom";
 import { StyledText } from "../themed/StyledText";
-import useLocationChange from "../../hooks/navigation/useLocationChange";
+import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
 import { SlideUpDownPageTransitionTitleAnimation } from "../../animations/page-transition-title.animation";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -38,7 +38,7 @@ const RevealWrapper = styled.div<{$hasLocationChanged: boolean}>`
 export const PageTransitionTitle: FC = (): ReactNode => {
     const is404: boolean = useSelector((state: RootState) => state.routeStatus.is404);
     const { isMobile }: UseMediaQuery = useMediaQuery();
-    const hasLocationChanged: boolean = useLocationChange();
+    const hasLocationChanged: UseLocationChange = useLocationChange();
     const { isLoggedIn, userData }: UseAuth = useAuth();
     const { backgroundColor }: ThemeColors = useThemeColors();
     const location: Location = useLocation();

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { moveWholeContainerOutAnimation } from "../../animations/page-transition-element.animation";
 import { revealLinesAnimation, revealLinesAnimationDelayedFirst, revealLinesAnimationDelayedSecond } from "../../animations/page-transition-element.animation";
 import { revealHiddenElements } from "../../animations/page-transition-element.animation";
-import useLocationChange from "../../hooks/navigation/useLocationChange";
+import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
 import { FC } from "react";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
@@ -42,7 +42,7 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 export const PageTransitionElement: FC = (): ReactNode => {
-    const hasLocationChanged: boolean = useLocationChange();
+    const hasLocationChanged: UseLocationChange = useLocationChange();
     useBodyOverflow(hasLocationChanged);
     const { backgroundColor, backgroundColorSecondary }: ThemeColors = useThemeColors({ invertColors: true });
     const currentColor: string = useColorToggle(hasLocationChanged, backgroundColor, backgroundColorSecondary);

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Location } from 'react-router-dom';
 
-const useLocationChange = (): boolean => {
+export type UseLocationChange = boolean; 
+
+const useLocationChange = (): UseLocationChange => {
   const location: Location = useLocation(); 
   const [hasLocationChanged, setHasLocationChanged] = useState<boolean>(false);
 
