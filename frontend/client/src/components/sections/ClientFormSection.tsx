@@ -1,12 +1,16 @@
-import { FC, ReactElement } from "react";
-import { StyledSection } from "../themed/StyledSection";
-import { StyledSpace } from "../themed/StyledSpace";
+import { FC, ReactElement, useState } from "react";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import styled from "styled-components";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
-import { GenerateForm } from "../layouts/FormLayout";
-import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
+import { FormLayout } from "@shared/components/layouts/FormLayout";
+import { ImageBorderedBox } from "@shared/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@shared/types/service.type";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { generateClientFormServiceSubmitFunction } from "@client/util/generate-form-service-submit-function.util";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -17,7 +21,7 @@ const Wrapper = styled.div<{$isTablet: boolean}>`
     justify-content: center;
 `;
 
-type FormSectionProps = {
+type ClientFormSectionProps = {
     imgSrc: string,
     imageBorderedBoxWidth?: string,
     formWidth?: string,
@@ -29,7 +33,7 @@ type FormSectionProps = {
     secondaryColor?: boolean,
 }
 
-export const FormSection: FC<FormSectionProps> = ({
+export const ClientFormSection: FC<ClientFormSectionProps> = ({
     title, 
     fields, 
     imgSrc, 
@@ -39,8 +43,12 @@ export const FormSection: FC<FormSectionProps> = ({
     service, 
     formWidth , 
     secondaryColor
-}: FormSectionProps): ReactElement => {
+}: ClientFormSectionProps): ReactElement => {
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
+    const dispatch: Dispatch = useDispatch();
+    const navigateFunction: NavigateFunction = useNavigate();
+    const [errorMessage, setErrorMessage] = useState<string | undefined>();
+    const [messageSent, setMessageSent] = useState< boolean | undefined>();
 
     return <StyledSection 
         id={`${service}-form-section`} 
@@ -56,13 +64,22 @@ export const FormSection: FC<FormSectionProps> = ({
 
             {isMobile && <StyledSpace large vertical />}
 
-            <GenerateForm 
+            <FormLayout  
                 formWidth={formWidth}
                 title={title}
                 fields={fields}
                 textArea={textArea}
                 textAreaPlaceholder={textAreaPlaceholder}
                 service={service}
+                removeForm={messageSent}
+                errorMessage={errorMessage}
+                handleSubmitFunction={generateClientFormServiceSubmitFunction({
+                    service: service,
+                    dispatch: dispatch,
+                    setErrorMessage: setErrorMessage,
+                    navigateFunction: navigateFunction,
+                    setMessageSent: setMessageSent,
+                })}
             />
         </Wrapper>
 

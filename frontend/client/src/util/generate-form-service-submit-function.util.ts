@@ -2,11 +2,11 @@ import { FormEvent, SetStateAction, Dispatch as ReactStateDispatch } from "react
 import { sendEmail } from "@client/services/contact.service";
 import { loginService } from "@client/services/login.service";
 import { signUpService } from "@client/services/singup.service";
-import { AllowedServices } from "../../types/service.type";
+import { AllowedServices } from "../../../shared/types/service.type";
 import { Dispatch } from "@reduxjs/toolkit";
 import { NavigateFunction } from "react-router-dom";
 
-type GenerateFormServiceSubmitFunction = {
+type GenerateClientFormServiceSubmitFunction  = {
     service: AllowedServices,
     dispatch: Dispatch,
     setErrorMessage: ReactStateDispatch<SetStateAction<string | undefined>>,
@@ -15,13 +15,13 @@ type GenerateFormServiceSubmitFunction = {
 
 }
 
-export const generateFormServiceSubmitFunction = ({
+export const generateClientFormServiceSubmitFunction = ({
     service, 
     dispatch, 
     setErrorMessage,
     navigateFunction,
     setMessageSent,
-}: GenerateFormServiceSubmitFunction) => {
+}: GenerateClientFormServiceSubmitFunction) => {
     return (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

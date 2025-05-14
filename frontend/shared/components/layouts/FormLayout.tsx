@@ -13,7 +13,7 @@ import { AllowedServices } from "@shared/types/service.type";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { colors } from "@shared/config/colors.config";
 import { UpdateProductFormState } from "admin/src/contexts/ProductMenagementContextProvider";
-import { generateFormServiceSubmitFunction } from "../../utils/form/generate-form-service-submit-function.util";
+import { generateClientFormServiceSubmitFunction } from "@client/util/generate-form-service-submit-function.util";
 import { FormButtons } from "../buttons/FormButtons";
 import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";
 import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
@@ -41,7 +41,7 @@ const Wrapper = styled.div<{
     }
 `;
 
-type FormProps = {
+type FormLayoutProps = {
     title: string;
     fields: string[];
     textArea?: string;
@@ -50,7 +50,10 @@ type FormProps = {
     productImage?: boolean;
     formWidth?: string;
     updateProductFormState?: UpdateProductFormState;
-    AdditionalFormButtons?: FC
+    AdditionalFormButtons?: FC,
+    handleSubmitFunction: FormEventHandler<HTMLFormElement>,
+    removeForm?: boolean,
+    errorMessage?: string,
     additionalGenerateFormServiceSubmitFunction?: Function,
     setCrateProductForm?: ReactStateDispatch<SetStateAction<boolean>>;
     setProductCreated?: ReactStateDispatch<SetStateAction<boolean>>;
@@ -58,7 +61,7 @@ type FormProps = {
     setUpdateProductFormSetState?: ReactStateDispatch<SetStateAction<UpdateProductFormState>>;
 };
 
-export const GenerateForm: FC<FormProps> = ({
+export const FormLayout: FC<FormLayoutProps> = ({
     title,
     fields,
     textArea,
@@ -69,21 +72,26 @@ export const GenerateForm: FC<FormProps> = ({
     updateProductFormState,
     additionalGenerateFormServiceSubmitFunction,
     AdditionalFormButtons,
+    handleSubmitFunction,
+    removeForm,
+    errorMessage,
     setCrateProductForm,
     setProductCreated,
     setFormImage,
     setUpdateProductFormSetState
-}: FormProps ): ReactElement => {
+}: FormLayoutProps ): ReactElement => {
     const [inputDataFieldSetLoopLastDelay, setInputDataFieldSetLoopLastDelay] = useState<string>("0ms");
     const [fileInputFieldSetLoopLoopLastDelay, setFileInputFieldSetLoopLastDelay] = useState<string>("0ms");
     const [fieldSetAdditionalInfoBoxLastDelay, setFieldSetAdditionalInfoBoxLastDelay] = useState<string>("0ms");
 
-    const [errorMessage, setErrorMessage] = useState<string | undefined>();
+    const [formErrorMessage, setErrorMessage] = useState<string | undefined>();
     const [messageSent, setMessageSent] = useState< boolean | undefined>();
     const dispatch: Dispatch = useDispatch();
     const navigateFunction: NavigateFunction = useNavigate();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     let handleSubmit: FormEventHandler<HTMLFormElement>;
+
+    console.log(formErrorMessage, messageSent);
 
     if(additionalGenerateFormServiceSubmitFunction) {
         handleSubmit = additionalGenerateFormServiceSubmitFunction({
@@ -98,7 +106,7 @@ export const GenerateForm: FC<FormProps> = ({
             setMessageSent,
         });
     } else {
-        handleSubmit = generateFormServiceSubmitFunction({
+        handleSubmit = generateClientFormServiceSubmitFunction({
             service: service,
             dispatch: dispatch,
             setErrorMessage: setErrorMessage,
@@ -106,6 +114,8 @@ export const GenerateForm: FC<FormProps> = ({
             setMessageSent: setMessageSent,
         });
     }
+
+    console.log(handleSubmit)
 
 
     return (
@@ -119,8 +129,8 @@ export const GenerateForm: FC<FormProps> = ({
 
             <StyledSpace medium vertical />
 
-            {!messageSent && <>
-                <form onSubmit={handleSubmit}>
+            {!removeForm && <>
+                <form onSubmit={handleSubmitFunction}>
                     <input type="text" name="website" style={{ display: 'none' }} autoComplete="off" />
                     
                     <InputDataFieldSetLoop 
@@ -171,7 +181,7 @@ export const GenerateForm: FC<FormProps> = ({
                 </form>
             </>}
 
-            {messageSent && <StyledText color={colors.dark.successMessage} tag="h5" content="Message sent successfully. Thank you!" />}
+            {removeForm && <StyledText color={colors.dark.successMessage} tag="h5" content="Message sent successfully. Thank you!" />}
 
         </Wrapper>
     );

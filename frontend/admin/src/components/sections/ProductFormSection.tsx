@@ -4,12 +4,14 @@ import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import styled from "styled-components";
 import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
-import { GenerateForm } from "@shared/components/layouts/FormLayout";
+import { FormLayout } from "@shared/components/layouts/FormLayout";
 import { ImageBorderedBox } from "@shared/components/boxes/ImageBorderedBox";
 import { AllowedServices } from "@shared/types/service.type";
 import { generateAdminProductFormSubmitFunction } from "@admin/utils/generate-admin-product-form-submit-function.util";
 import { ProductManagementContext, ProductManagementContextProps } from "@admin/contexts/ProductMenagementContextProvider";
 import { UndoCreateUpdateProductButton } from "@admin/components/buttons/UndoCreateUpdateProductButton";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const Wrapper = styled.div<{$isTablet: boolean}>`
     display: flex;
@@ -45,9 +47,11 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
     secondaryColor, 
     productImage, 
 }: ProductFormSectionProps): ReactElement => {
+    const dispatch: Dispatch = useDispatch();
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const [ formImage, setFormImage ] = useState<string | null>(null);
     const { setUpdateProductForm, setCreateProductForm, setProductCreated, updateProductForm}: ProductManagementContextProps = useContext(ProductManagementContext);
+    const [errorMessage, setErrorMessage] = useState<string | undefined>();
 
     return <StyledSection 
         id={`${service}-form-section`} 
@@ -63,7 +67,7 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
 
             {isMobile && <StyledSpace large vertical />}
 
-            <GenerateForm 
+            <FormLayout 
                 formWidth={formWidth}
                 title={title}
                 fields={fields}
@@ -71,6 +75,18 @@ export const ProductFormSection: FC<ProductFormSectionProps> = ({
                 textAreaPlaceholder={textAreaPlaceholder}
                 service={service}
                 productImage={productImage}
+                handleSubmitFunction={generateAdminProductFormSubmitFunction({
+                    service,
+                    dispatch,
+                    updateProductForm,
+                    setUpdateProductForm,
+                    setErrorMessage,
+                    setCreateProductForm,
+                    setProductCreated,
+                })}
+                errorMessage={errorMessage}
+
+
                 setCrateProductForm={setCreateProductForm}
                 setProductCreated={setProductCreated}
                 setFormImage={setFormImage}

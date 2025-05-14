@@ -1,12 +1,12 @@
 import { FC, ReactElement } from "react";
-import { FormSection } from "@shared/components/sections/FormSection";
+import { ClientFormSection} from "../sections/ClientFormSection";
 
 type LoginFormProps = {
     imgSrc: string
 }
 
 export const LoginForm: FC<LoginFormProps> = ({imgSrc}: LoginFormProps): ReactElement => {
-    return <FormSection 
+    return <ClientFormSection 
         title={"Welcome back!"} 
         fields={[
             "name",

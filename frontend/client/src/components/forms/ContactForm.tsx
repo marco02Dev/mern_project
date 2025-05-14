@@ -1,5 +1,5 @@
 import { ReactElement, FC } from "react";
-import { FormSection } from "@shared/components/sections/FormSection";
+import { ClientFormSection } from "../sections/ClientFormSection";
 
 type ContactFormProps = {
     imgSrc: string
@@ -8,7 +8,7 @@ type ContactFormProps = {
 export const ContactForm: FC<ContactFormProps> = ({
     imgSrc
 }): ReactElement => {
-    return <FormSection 
+    return <ClientFormSection 
         title={"Contact us"} 
         service="send-email"
         fields={[
