@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledLink } from "../themed/StyledLink";
 import { StyledText } from "../themed/StyledText";
-
+import { StyledSpace } from "../themed/StyledSpace";
 
 const Wrapper = styled.div`
     display: flex;
@@ -15,30 +15,33 @@ const Wrapper = styled.div`
 export const PrivacyCookiesLinks: FC = (): ReactElement => {
     return <FadeInWrapper>
         <Wrapper>
-            <a href="#" className="cky-banner-element">
-                <StyledLink 
-                    content="Privacy Policy" 
-                    onClickFunction={(event) => {
-                        event.preventDefault();
-                    }}
-                />
-            </a>
+            <StyledLink 
+                tag="span"
+                content="Privacy Policy" 
+                to="/privacy-policy"
+            />
+
+            <StyledSpace verySmall horizontal />
 
             <StyledText content="|" tag="span" />
 
-            <a href="#" className="cky-banner-element">
-                <StyledLink 
-                    content="Cookie Policy" 
-                    onClickFunction={(event) => {
-                        event.preventDefault();
-                    }}
-                />
-            </a>
+            <StyledSpace verySmall horizontal />
+
+            <StyledLink 
+                tag="span"
+                content="Cookie Policy" 
+                to="/cookie-policy"
+            />
+
+            <StyledSpace verySmall horizontal />
 
             <StyledText content="|" tag="span" />
 
+            <StyledSpace verySmall horizontal />
+
             <a href="#" className="cky-banner-element">
                 <StyledLink 
+                    tag="span"
                     content="Cookie Preferences" 
                     onClickFunction={(event) => {
                         event.preventDefault();
