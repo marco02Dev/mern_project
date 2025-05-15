@@ -18,7 +18,6 @@ export const deleteDocumentByModel: DeleteDocumentByModel = async ({request, res
     if(id) {
         try {
             await Model.findByIdAndDelete(id);
-            console.log("Deleting user");
             sendSuccessMessage({response: response, statusCode: 200, resource: resourceName, deleteResource: true});
             return;
         } catch {
