@@ -9,7 +9,7 @@ This folder contains **shared resources** used across the three entry points of 
 * **Config**: Centralized configuration files containing constants derived from environment variables, color palettes, sizes, and other application-wide settings.
 * **Services**: Functions that handle API interactions or other shared business logic.
 * **Hooks**: Custom React hooks that encapsulate shared logic.
-* **store**: Shared Redux slices that define global state accessible from any entry point.
+* **Store**: Shared Redux slices that define global state accessible from any entry point.
 * **Utils**: General-purpose utility functions for common tasks.
 * **Styles**: Global styles applied across all entry points, typically imported in the main `layout.tsx` component.
 * **Types**: TypeScript type definitions shared across the application for consistency and type safety.
