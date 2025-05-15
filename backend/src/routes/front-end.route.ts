@@ -18,7 +18,6 @@ frontendRouter.use(
 frontendRouter.use(
   //Admin
   '/admin',
-  checkAthorizedIp,
   isAuthenticated,
   isAdmin,
   express.static(reactAppAdminDist, {
@@ -29,7 +28,6 @@ frontendRouter.use(
 frontendRouter.get(
   //Admin
   '/admin',
-  checkAthorizedIp,
   isAuthenticated,
   isAdmin,
   (req: Request, res: Response) => {
