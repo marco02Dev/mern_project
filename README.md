@@ -24,4 +24,6 @@ Web app to manage online courses — a **Full Stack TypeScript SPA portfolio pro
 - Use `npm run build` to install all dependencies and compile the source code. 
 - Then run:
   - `npm run start` to launch the backend in production mode  
-  - `npm run dev` to start the Vite development server and the Node.js application server concurrently  
+  - `npm run dev` to start the Vite development server and the Node.js application server concurrently 
+
+--- 
