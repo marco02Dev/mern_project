@@ -1,6 +1,5 @@
 import express from "express";
 import { isProduction, isRender } from "./config/system/env.config";
-import { memoryLogger } from "./middlewares/performance/memory-logger.middleware";
 import cors from 'cors';
 import { corsOptions } from "./config/libraries/cors-options.config";
 import cookieParser from "cookie-parser";
@@ -21,7 +20,6 @@ if(isProduction && isRender) {
 }
 
 if(!isProduction) {
-  app.use(memoryLogger);
   app.use(cors(corsOptions));
 }
 
