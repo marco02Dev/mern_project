@@ -1,12 +1,27 @@
-import fs, { PathOrFileDescriptor } from "fs";
+import fs from "fs";
 import path from "path";
+import { isProduction, isRender } from "./env.config";
+import logger from "../libraries/winston.config";
 
-const privateKeyPath: string = path.resolve(process.cwd(), '../ssl-key.pem');
-const certificatePath: string = path.join(process.cwd(), '../ssl-cert.pem');
+export type SSLCredentials = {
+    key: string; 
+    cert: string   
+}
 
-const privateKey: PathOrFileDescriptor = fs.readFileSync(privateKeyPath, 'utf8');
-const certificate: PathOrFileDescriptor = fs.readFileSync(certificatePath, 'utf8');
-export const sslCredentials: {
-    key: string,
-    cert: string
-} = { key: privateKey, cert: certificate };
+let sslCredentials: SSLCredentials | undefined = undefined;
+
+if (!(isProduction && isRender)) {
+  try {
+    const privateKeyPath = path.resolve(process.cwd(), "../ssl-key.pem");
+    const certificatePath = path.resolve(process.cwd(), "../ssl-cert.pem");
+
+    const privateKey = fs.readFileSync(privateKeyPath, "utf8");
+    const certificate = fs.readFileSync(certificatePath, "utf8");
+
+    sslCredentials = { key: privateKey, cert: certificate };
+  } catch (error) {
+    logger.error("SSL certificates not found or failed to read:", error);
+  }
+}
+
+export { sslCredentials };

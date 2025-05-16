@@ -17,6 +17,7 @@ frontend/.env
 backend/dist/
 frontend/dist/
 
+backend/logs
 
 **/node_modules/
 **/.env
