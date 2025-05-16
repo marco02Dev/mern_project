@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import { Request, Response } from 'express';
 import { reactAppPublicAssets, reactAppIndexHtml, reactAppAdminDist,reactAppAdminIndexHtml, reactAppAccountDist, reactAppAccountIndexHtml } from '../config/system/paths.config';
-import { checkAthorizedIp } from '../middlewares/security/authorize-ip.middleware';
+import { checkAuthorizedIp } from '../middlewares/security/check-authorize-ip.middleware';
 import { isAuthenticated } from '../middlewares/security/is-authenticated.middleware';
 import { isAdmin } from '../middlewares/security/is-admin.middleware';
 
@@ -18,7 +18,7 @@ frontendRouter.use(
 frontendRouter.use(
   //Admin
   '/admin',
-  checkAthorizedIp,
+  checkAuthorizedIp,
   isAuthenticated,
   isAdmin,
   express.static(reactAppAdminDist, {
@@ -29,7 +29,7 @@ frontendRouter.use(
 frontendRouter.get(
   //Admin
   '/admin',
-  checkAthorizedIp,
+  checkAuthorizedIp,
   isAuthenticated,
   isAdmin,
   (req: Request, res: Response) => {

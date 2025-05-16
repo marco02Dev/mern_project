@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createProduct, getAllProducts, deleteProduct, updateProduct, getProductsByCategory, getProductsByCategoryAndName } from "../controller/product.controller";
 import { productsEndpointName } from "../config/system/endpoints.config";
-import { checkAthorizedIp } from "../middlewares/security/authorize-ip.middleware";
+import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
 import { uploadImageController } from "../controller/product.controller";
 import { isAdmin } from "../middlewares/security/is-admin.middleware";
 import { RequestHandler } from "express";
@@ -41,7 +41,7 @@ productsRouter.post(
     rejectRequestIfHoneyPotIsFilled, 
     isAuthenticated, 
     isAdmin, 
-    checkAthorizedIp, 
+    checkAuthorizedIp, 
     createProduct
 );
 
@@ -51,7 +51,7 @@ productsRouter.post(
     rejectRequestIfHoneyPotIsFilled, 
     isAuthenticated, 
     isAdmin, 
-    checkAthorizedIp, 
+    checkAuthorizedIp, 
     uploadProductImagesInRam, 
     uploadConvertedImagesToCloudinary, 
     uploadImageController
@@ -63,7 +63,7 @@ productsRouter.put(
     rejectRequestIfHoneyPotIsFilled, 
     isAuthenticated, 
     isAdmin, 
-    checkAthorizedIp, 
+    checkAuthorizedIp, 
     updateProduct as unknown as RequestHandler
 );
 
@@ -72,7 +72,7 @@ productsRouter.delete(
     endpointWithId, 
     isAuthenticated, 
     isAdmin, 
-    checkAthorizedIp, 
+    checkAuthorizedIp, 
     deleteProduct as unknown as RequestHandler
 );
 

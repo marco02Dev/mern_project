@@ -4,7 +4,7 @@ import { createUser } from "../controller/user.controller";
 import { usersEndpointName } from "../config/system/endpoints.config";
 import { deleteUser } from "../controller/user.controller";
 import { getUserById } from "../controller/user.controller";
-import { checkAthorizedIp } from "../middlewares/security/authorize-ip.middleware";
+import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
 import { isAdmin } from "../middlewares/security/is-admin.middleware";
 import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
 import { logUserOut } from "../controller/user.controller";
@@ -26,7 +26,7 @@ if(!isProduction) {
         defaultEndpoint, 
         isAuthenticated, 
         isAdmin, 
-        checkAthorizedIp, 
+        checkAuthorizedIp, 
         getAllUsers
     );
 }
@@ -65,7 +65,7 @@ usersRouter.delete(
     endpointWithId, 
     isAuthenticated, 
     isAdmin, 
-    checkAthorizedIp, 
+    checkAuthorizedIp, 
     deleteUser as unknown as RequestHandler
 );
 
