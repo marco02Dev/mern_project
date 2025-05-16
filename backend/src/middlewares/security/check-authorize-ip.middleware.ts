@@ -2,6 +2,7 @@ import { getAuthorizedIps } from "../../utils/get-authorized-ips.util";
 import { NextFunction, Response, Request } from "express";
 import { sendErrorMessage } from "../../utils/send-error-massage.util";
 import { RequestHandler } from "express";
+import logger from "../../config/libraries/winston.config";
 
 /**
  * `checkAuthorizedIp` is an **admin-only middleware** used to enhance security
@@ -27,10 +28,10 @@ export const checkAuthorizedIp: RequestHandler = (request: Request<any>, respons
   const authorizedIps = getAuthorizedIps();
 
   if (clientIp && authorizedIps.includes(clientIp)) {
-    console.log("Authorized IP:", clientIp);
+    logger.info(`Authorized IP ${clientIp} accessed ${request.method} ${request.originalUrl}`);
     next();
   } else {
-    console.warn("Unauthorized IP:", clientIp);
+    logger.error(`Unauthorized IP ${clientIp || 'unknown'} attempted to access ${request.method} ${request.originalUrl}`);
     sendErrorMessage({
       response: response,
       statusCode: 403

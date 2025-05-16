@@ -1,5 +1,6 @@
 import nodemailer, { SendMailOptions, Transporter } from "nodemailer";
 import { transporterData } from "../system/env.config";
+import logger from "./winston.config";
 
 type SendEmailServiceData = {
     to: string,
@@ -49,8 +50,9 @@ export const sendEmailService = async ({to, subject, message}: SendEmailServiceD
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log("Email sent")
+        logger.info(`A new email has been sent to ${to} with the subject: "${subject}"`);
     } catch(error) {
+        logger.error(`Failed to send email to ${to} with subject: "${subject}". Error: ${error instanceof Error ? error.message : String(error)}`);
         throw error;
     }
 }
