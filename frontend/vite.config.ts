@@ -19,7 +19,65 @@ const envVariables: Record<string, string> = Object.keys(process.env)
 
 export default defineConfig({
   base: './', 
-  plugins: [react(), mkcert()],
+  plugins: [
+  react(),
+  mkcert(),
+  {
+    name: 'redirect-root-to-client-index',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url === '/') {
+          req.url = '/client/index.html'
+        }
+        next()
+      })
+    }
+  },
+
+  {
+    name: 'redirect-root-to-admin-index',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url === '/admin') {
+          req.url = '/admin/admin_index.html'
+        }
+        next()
+      })
+    }
+  },
+
+  {
+    name: 'redirect-root-to-user-index',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url === '/user') {
+          req.url = '/user/account_index.html'
+        }
+        next()
+      })
+    }
+  },
+
+  {
+    name: 'rewrite-src-paths',
+    configureServer(server) {
+    server.middlewares.use((req, _res, next) => {
+      if (req.url === '/src/admin_main.tsx') {
+        req.url = '/admin/src/admin_main.tsx';
+      } else if (req.url === '/src/user_main.tsx') {
+        req.url = '/user/src/user_main.tsx';
+      } else if (req.url?.startsWith('/src/')) {
+        req.url = req.url.replace(/^\/src\//, '/client/src/');
+      } else if (req.url?.startsWith('/admin/src/')) {
+        req.url = req.url.replace(/^\/admin\/src\//, '/admin/src/');
+      } else if (req.url?.startsWith('/user/src/')) {
+        req.url = req.url.replace(/^\/user\/src\//, '/user/src/');
+      }
+      next();
+      });
+    }
+  }
+  ],
   resolve: {
   alias: {
     '@client': path.resolve(__dirname, 'client/src'),

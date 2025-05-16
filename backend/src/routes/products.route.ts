@@ -10,6 +10,21 @@ import { uploadConvertedImagesToCloudinary } from "../middlewares/files/upload-p
 import { uploadProductImagesInRam } from "../middlewares/files/upload-product-image-to-cloudinary";
 import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
 
+/**
+ * Router for product-related endpoints.
+ * 
+ * Public endpoints:
+ * - GET all products
+ * - GET products by category
+ * - GET products by category and product name (ID)
+ * 
+ * Admin endpoints (secured by authentication, admin role, IP check, and honeypot middleware):
+ * - POST create a new product
+ * - POST upload product images
+ * - PUT update existing product by ID
+ * - DELETE remove product by ID
+*/
+
 const productsRouter: Router = Router();
 const defaultEndpoint: string = `/${productsEndpointName}`;
 const endpointWithId: string = `/${productsEndpointName}/:id`;

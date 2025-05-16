@@ -5,6 +5,18 @@ import { checkAuthorizedIp } from '../middlewares/security/check-authorize-ip.mi
 import { isAuthenticated } from '../middlewares/security/is-authenticated.middleware';
 import { isAdmin } from '../middlewares/security/is-admin.middleware';
 
+/**
+ * Router to serve the React frontend application assets and HTML files.
+ * 
+ * This router handles:
+ * - Public assets and main React app (available to all users)
+ * - Admin panel (protected by IP authorization, authentication, and admin role middleware)
+ * - User account area (protected by authentication middleware)
+ * 
+ * The router serves static files from the appropriate build directories and
+ * sends the main index.html files for client-side routing support.
+*/
+
 const frontendRouter: Router = express.Router();
 
 frontendRouter.use(

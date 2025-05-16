@@ -12,6 +12,23 @@ import { blockRoleField } from "../middlewares/security/block-role-field";
 import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
 import { isProduction } from "../config/system/env.config";
 
+/**
+ * Users Router
+ *
+ * This router handles user-related operations including:
+ * - Public routes for signing up and logging in
+ * - Authenticated routes for retrieving user data and logging out
+ * - Admin routes for managing users (limited to non-production)
+ *
+ * Endpoints:
+ * - POST /users/signup          → Create a new user account (honeypot + role block)
+ * - POST /users/login           → Log in a user (honeypot check)
+ * - POST /users/logout          → Log out the currently authenticated user
+ * - GET  /users/:id             → Get a user's data by ID (authenticated)
+ * - DELETE /users/:id          → Admin-only user deletion (not implemented yet)
+ * - GET /users                  → Admin-only list of all users (only in development)
+*/
+
 const usersRouter: Router = Router();
 const defaultEndpoint: string = `/${usersEndpointName}`;
 const endpointWithId: string = `${defaultEndpoint}/:id`;
