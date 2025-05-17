@@ -3,29 +3,37 @@ import { sendSuccessMessage } from "../../utils/send-success-message.util";
 import { sendErrorMessage } from "../../utils/send-error-massage.util";
 import { LoggedUser } from "../../types/logged-user.type";
 import logger from "../../config/libraries/winston.config";
+import { Controller } from "../../types/controller.type";
 
 /**
- * `checkUserSessionController` is a session controller used to verify if the current user is authenticated.
+ * **User Session Controller**
  * 
- * This route is connected to `sessionRoute` and is typically called during the **initial render**
- * of the React application to restore the user's session and populate the Redux store with
- * authenticated user data (e.g., after a page reload or returning to the app).
+ * Controller for checking if the current user session is authenticated.
+ *
+ * This controller performs the following steps:
+ *  - Verifies if the user is authenticated via the session.
+ *  - If authenticated, returns basic user info (id, name, email, role, etc.).
+ *  - If not authenticated, responds with a 401 Unauthorized status.
+ *  - Logs each session validation attempt and its result using Winston.
+ *
+ * Requires Passport.js to be configured and active in the Express app.
+ *
+ * @function checkUserSessionController
+ * @async
+ * @param {Request} req - Express request object which may contain the authenticated user.
+ * @param {Response} res - Express response object to send success or error messages.
+ * @returns {Promise<void>} - No direct return; response is sent via helper utilities.
  * 
- * If the session is valid, it returns basic user info (id, name, email, etc.).
- * Otherwise, it responds with a 401 Unauthorized status.
+ * For more details on Passport.js configuration, see: `config/libraries/passport.config.ts`
  * 
- * @param {Request} req - Express HTTP request object (with potential session info).
- * @param {Response} res - Express HTTP response object.
- * 
- * @returns JSON response indicating the session status and user data if authenticated.
-*/
+ */
 
-export const checkUserSessionController = (req: Request, res: Response): any => {
+export const checkUserSessionController: Controller = async (req: Request, res: Response): Promise<void> => {
   if (req.isAuthenticated && req.isAuthenticated()) {
     const user = req.user as LoggedUser;
     logger.info(`Session validated for user ${user.email} (ID: ${user._id})`)
 
-    return sendSuccessMessage({
+    sendSuccessMessage({
       response: res,
       statusCode: 200,
       data: {
@@ -36,11 +44,14 @@ export const checkUserSessionController = (req: Request, res: Response): any => 
         role: user.role,
       }
     });
+
+    return;
   } else {
     logger.error(`Unauthorized session check attempt on ${req.method} ${req.originalUrl}`);
-    return sendErrorMessage({
+    sendErrorMessage({
       response: res,
       statusCode: 401,
     });
+    return;
   }
 };

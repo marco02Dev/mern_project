@@ -61,7 +61,7 @@ export const sendSuccessMessage = ({response, statusCode, resource, data, delete
         break;
 
         default:
-            message = 'Success';
+            message = 'Operation completed successfully.';
         break;
 
     }

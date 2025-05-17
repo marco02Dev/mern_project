@@ -6,6 +6,8 @@ import { sendErrorMessage } from "../../utils/send-error-massage.util"
 import { PassportController } from "../../types/controller.type";
 
 /**
+ * **User Login Controller**
+ * 
  * Controller for logging in a user using Passport.js with the 'local' strategy.
  *
  * This controller is designed to authenticate users via credentials (e.g., email and password)

@@ -32,7 +32,7 @@ type SendEmailServiceData = {
  * });
 */
 
-export const sendEmailService = async ({to, subject, message}: SendEmailServiceData) => {
+export const sendEmailService = async ({to, subject, message}: SendEmailServiceData): Promise<void> => {
     const transporter: Transporter = nodemailer.createTransport({
         service: transporterData.service, 
             auth: {

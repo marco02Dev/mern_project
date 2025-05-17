@@ -14,20 +14,33 @@ import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-
 import { isProduction } from "../config/system/env.config";
 
 /**
- * Users Router
+ * **Users Router**
  *
- * This router handles user-related operations including:
- * - Public routes for signing up and logging in
- * - Authenticated routes for retrieving user data and logging out
- * - Admin routes for managing users (limited to non-production)
+ * This router handles all operations related to user authentication and administration.
+ * It includes public routes (login/signup), authenticated routes (get user info, logout),
+ * and admin-only routes (get all users, delete user).
  *
- * Endpoints:
- * - POST /users/signup          → Create a new user account (honeypot + role block)
- * - POST /users/login           → Log in a user (honeypot check)
- * - POST /users/logout          → Log out the currently authenticated user
- * - GET  /users/:id             → Get a user's data by ID (authenticated)
- * - DELETE /users/:id          → Admin-only user deletion (not implemented yet)
- * - GET /users                  → Admin-only list of all users (only in development)
+ * **IMPORTANT**:  
+ * All endpoint paths are **defined dynamically** using values from the configuration file:  
+ * `config/system/endpoints.config.ts`  
+ * Specifically, this uses the `usersEndpointName` value to form all routes.
+ * This approach ensures centralized route naming and easier updates.
+ *
+ * Defined Endpoints:
+ * - POST   /[usersEndpointName]/signup     → Create a new user account  
+ * - POST   /[usersEndpointName]/login      → Log in a user  
+ * - POST   /[usersEndpointName]/logout     → Log out the currently authenticated user  
+ * - GET    /[usersEndpointName]/:id        → Retrieve user data by ID (requires authentication)  
+ * - DELETE /[usersEndpointName]/:id        → Delete a user (admin-only, restricted to development)  
+ * - GET    /[usersEndpointName]            → Get all users (admin-only, only in development)
+ *
+ * Middleware protection:
+ * - Honeypot check for bot protection
+ * - Role field block during signup
+ * - Authentication and admin checks for protected routes
+ * - IP-based restriction for sensitive admin routes
+ *
+ * @module usersRouter
 */
 
 const usersRouter: Router = Router();
@@ -37,6 +50,7 @@ const endpointWithId: string = `${defaultEndpoint}/:id`;
 const signInEndpoint: string = `${defaultEndpoint}/signup`;
 const loginEndpoint: string = `${defaultEndpoint}/login`;
 const logOutEndpoint: string = `${defaultEndpoint}/logout`;
+const sessionEndpoint: string = `${defaultEndpoint}/session`;
 
 if(!isProduction) {
     usersRouter.get(

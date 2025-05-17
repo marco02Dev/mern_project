@@ -6,6 +6,8 @@ import { sendSuccessMessage } from "../../utils/send-success-message.util";
 import { Controller } from "../../types/controller.type";
 
 /**
+ * **User Logout Controller**
+ * 
  * Controller for logging out an authenticated user using Passport.js.
  *
  * This controller is designed for authenticated users and is used across all routes that require logout functionality.
