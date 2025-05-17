@@ -1,13 +1,13 @@
 import { RequestHandler, Router } from "express";
-import { getAllUsers } from "../controller/user.controller";
 import { usersEndpointName } from "../config/system/endpoints.config";
-import { getUserById } from "../controller/user.controller";
 import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
 import { isAdmin } from "../middlewares/security/is-admin.middleware";
+import { getAllUsersController } from "../controller/user/get-all-users.controller";
 import { createUserController } from "../controller/user/create-user.controller";
 import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
 import { logUserOutController } from "../controller/user/log-user-out.controller";
 import { logUserInController } from "../controller/user/log-user-in.controller";
+import { getUserByIdController } from "../controller/user/get-user-by-id.controller";
 import { deleteUserController } from "../controller/user/delete-user.controller";
 import { blockRoleField } from "../middlewares/security/block-role-field";
 import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
@@ -45,7 +45,7 @@ if(!isProduction) {
         isAuthenticated, 
         isAdmin, 
         checkAuthorizedIp, 
-        getAllUsers
+        getAllUsersController
     );
 }
 
@@ -68,7 +68,7 @@ usersRouter.get(
     //User
     endpointWithId, 
     isAuthenticated, 
-    getUserById
+    getUserByIdController
 );
 
 usersRouter.post(

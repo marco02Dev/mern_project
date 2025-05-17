@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { createProduct, getAllProducts, deleteProduct, updateProduct, getProductsByCategory, getProductsByCategoryAndName } from "../controller/product.controller";
+import { getAllProductsController } from "../controller/product/get-all-products.controller";
+import { getProductsByCategoryController } from "../controller/product/get-product-by-category.controller";
+import { deleteProductController } from "../controller/product/delete-product.controller";
+import { createProductController } from "../controller/product/create-product.controller";
+import { updateProductController } from "../controller/product/update-product.controller";
+import { getProductsByCategoryAndNameController } from "../controller/product/get-products-by-category-and-name.controller";
 import { productsEndpointName } from "../config/system/endpoints.config";
 import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
 import { uploadImageController } from "../controller/product.controller";
@@ -35,19 +40,19 @@ const endpointPostImage: string = `/${productsEndpointName}/image/:category/:id`
 productsRouter.get(
     //Public
     defaultEndpoint, 
-    getAllProducts
+    getAllProductsController
 );
 
 productsRouter.get(
     //Public
     endpointWithCategory, 
-    getProductsByCategory
+    getProductsByCategoryController
 );
 
 productsRouter.get(
     //Public
     endpointWithCategoryAndName, 
-    getProductsByCategoryAndName
+    getProductsByCategoryAndNameController
 );
 
 productsRouter.post(
@@ -57,7 +62,7 @@ productsRouter.post(
     isAuthenticated, 
     isAdmin, 
     checkAuthorizedIp, 
-    createProduct
+    createProductController 
 );
 
 productsRouter.post(
@@ -79,7 +84,7 @@ productsRouter.put(
     isAuthenticated, 
     isAdmin, 
     checkAuthorizedIp, 
-    updateProduct as unknown as RequestHandler
+    updateProductController as unknown as RequestHandler
 );
 
 productsRouter.delete(
@@ -88,7 +93,7 @@ productsRouter.delete(
     isAuthenticated, 
     isAdmin, 
     checkAuthorizedIp, 
-    deleteProduct as unknown as RequestHandler
+    deleteProductController as unknown as RequestHandler
 );
 
 export default productsRouter;

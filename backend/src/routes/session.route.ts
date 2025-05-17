@@ -12,7 +12,7 @@ import { sessionEndpointName } from "../config/system/endpoints.config";
  *   - Used primarily to restore the Redux store on the frontend by verifying active session.
 */
 
-const sessionRouter = Router();
+const sessionRouter: Router = Router();
 
 sessionRouter.get(
     //User
