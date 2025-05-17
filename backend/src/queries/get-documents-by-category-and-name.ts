@@ -18,7 +18,6 @@ export const getDocumentsByCategoryAndId = async <T>({
 }: GetDocumentsByCategory<T>) => {
     const params = request.params;
     const { category, _id }: { category: string, _id: string } = params;
-    console.log(_id);
 
     try {
         if (category && _id) {

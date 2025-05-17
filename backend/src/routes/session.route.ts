@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { checkUserSession } from "../controller/session.controller";
+import { checkUserSessionController } from "../controller/session/check-user-session.controller";
 import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
 import { sessionEndpointName } from "../config/system/endpoints.config";
 
@@ -18,7 +18,7 @@ sessionRouter.get(
     //User
     `/${sessionEndpointName}`, 
     isAuthenticated, 
-    checkUserSession
+    checkUserSessionController
 );
 
 export default sessionRouter;

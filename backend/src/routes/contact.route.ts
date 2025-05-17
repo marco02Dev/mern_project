@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sendEmail } from "../controller/contact.controller";
+import { sendEmailController } from "../controller/contact/send-email.controller";
 import { contactEndpointName } from "../config/system/endpoints.config";
 import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
 
@@ -13,6 +13,6 @@ import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-
 const contactRouter: Router = Router();
 const defaultEndpoint: string = `/${contactEndpointName}`;
 
-contactRouter.post(defaultEndpoint, rejectRequestIfHoneyPotIsFilled, sendEmail);
+contactRouter.post(defaultEndpoint, rejectRequestIfHoneyPotIsFilled, sendEmailController);
 
 export default contactRouter;

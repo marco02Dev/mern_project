@@ -1,13 +1,13 @@
-import { Controller } from "../types/controller.type";
+import { Controller } from "../../types/controller.type";
 import { Request, Response } from "express";
-import { sendSuccessMessage } from "../utils/send-success-message.util";
-import { validateEmail } from "../utils/validate-email.util";
-import { isString } from "../utils/is-string.util";
-import { sendErrorMessage } from "../utils/send-error-massage.util";
-import { sendEmailService } from "../config/libraries/transporter.config";
-import { transporterData } from "../config/system/env.config";
+import { sendSuccessMessage } from "../../utils/send-success-message.util";
+import { validateEmail } from "../../utils/validate-email.util";
+import { isString } from "../../utils/is-string.util";
+import { sendErrorMessage } from "../../utils/send-error-massage.util";
+import { sendEmailService } from "../../config/libraries/transporter.config";
+import { transporterData } from "../../config/system/env.config";
 
-export const sendEmail: Controller = async (req: Request, res: Response) => {
+export const sendEmailController: Controller = async (req: Request, res: Response) => {
 
     type EmailData = {
         name: string,

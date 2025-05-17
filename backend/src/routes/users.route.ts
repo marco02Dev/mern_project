@@ -1,13 +1,14 @@
 import { RequestHandler, Router } from "express";
-import { getAllUsers, logUserIntoAccount } from "../controller/user.controller";
-import { createUser } from "../controller/user.controller";
+import { getAllUsers } from "../controller/user.controller";
 import { usersEndpointName } from "../config/system/endpoints.config";
-import { deleteUser } from "../controller/user.controller";
 import { getUserById } from "../controller/user.controller";
 import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
 import { isAdmin } from "../middlewares/security/is-admin.middleware";
+import { createUserController } from "../controller/user/create-user.controller";
 import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
-import { logUserOut } from "../controller/user.controller";
+import { logUserOutController } from "../controller/user/log-user-out.controller";
+import { logUserInController } from "../controller/user/log-user-in.controller";
+import { deleteUserController } from "../controller/user/delete-user.controller";
 import { blockRoleField } from "../middlewares/security/block-role-field";
 import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
 import { isProduction } from "../config/system/env.config";
@@ -53,14 +54,14 @@ usersRouter.post(
     signInEndpoint, 
     rejectRequestIfHoneyPotIsFilled, 
     blockRoleField, 
-    createUser
+    createUserController
 );
 
 usersRouter.post(
     //Public (Form)
     loginEndpoint, 
     rejectRequestIfHoneyPotIsFilled, 
-    logUserIntoAccount
+    logUserInController
 );
 
 usersRouter.get(
@@ -74,7 +75,7 @@ usersRouter.post(
     //User
     logOutEndpoint, 
     isAuthenticated, 
-    logUserOut
+    logUserOutController
 );
 
 usersRouter.delete(
@@ -83,7 +84,7 @@ usersRouter.delete(
     isAuthenticated, 
     isAdmin, 
     checkAuthorizedIp, 
-    deleteUser as unknown as RequestHandler
+    deleteUserController as unknown as RequestHandler
 );
 
 
