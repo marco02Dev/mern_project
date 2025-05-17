@@ -7,7 +7,7 @@ import { updateProductController } from "../controller/product/update-product.co
 import { getProductsByCategoryAndNameController } from "../controller/product/get-products-by-category-and-name.controller";
 import { productsEndpointName } from "../config/system/endpoints.config";
 import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
-import { uploadImageController } from "../controller/product.controller";
+import { uploadImageController } from "../controller/product/upload-image.controller";
 import { isAdmin } from "../middlewares/security/is-admin.middleware";
 import { RequestHandler } from "express";
 import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";

@@ -3,8 +3,30 @@ import { LoggedUser } from "../../types/logged-user.type";
 import { Request, Response } from "express";
 import { sendErrorMessage } from "../../utils/send-error-massage.util";
 import { sendSuccessMessage } from "../../utils/send-success-message.util";
+import { Controller } from "../../types/controller.type";
 
-export const logUserOutController = (req: Request, res: Response) => {
+/**
+ * Controller for logging out an authenticated user using Passport.js.
+ *
+ * This controller is designed for authenticated users and is used across all routes that require logout functionality.
+ * It performs the following steps:
+ *  - Validates if a user is currently authenticated
+ *  - Logs out the user using Passport's `req.logout` method
+ *  - Destroys the user session via `req.session.destroy`
+ *  - Logs each action using Winston for auditing
+ *
+ * Requires Passport.js to be configured and active in the Express app.
+ *
+ * @function logUserOutController
+ * @async
+ * @param {Request} req - Express request object.
+ * @param {Response} res - Express response object.
+ * @returns {Promise<void>} - No response is returned directly; success or error is sent via helper utilities.
+ *
+ * For more details on Passport.js configuration, see: `config/libraries/passport.config.ts`
+*/
+
+export const logUserOutController: Controller = async (req: Request, res: Response): Promise<void> => {
     const user = req.user as LoggedUser;
 
     if (!user) {
