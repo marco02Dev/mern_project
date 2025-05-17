@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { checkUserSessionController } from "../controller/session/check-user-session.controller";
-import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
-import { sessionEndpointName } from "../config/system/endpoints.config";
+import { checkUserSessionController } from "@controller/session/check-user-session.controller";
+import { isAuthenticated } from "@middlewares/security/is-authenticated.middleware";
+import { sessionEndpointName } from "@config/system/endpoints.config";
 
 /**
  * Route to check and restore user session.

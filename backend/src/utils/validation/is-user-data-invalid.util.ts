@@ -1,7 +1,7 @@
-import { UsersSchema } from "../models/users.model";
-import { validateEmail } from "./validate-email.util";
-import { validatePassword } from "./validate-password.util";
-import { isString } from "./is-string.util";
+import { UsersSchema } from "@models/users.model";
+import { validateEmail } from "@utils/validation/validate-email.util";
+import { validatePassword } from "@utils/validation/validate-password.util";
+import { isString } from "@utils/validation/is-string.util";
 
 /**
  * Utility function mainly designed for controllers related to user login and creation.

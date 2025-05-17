@@ -35,6 +35,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
     "helmet": "^8.1.0",
+    "module-alias": "^2.2.3",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.1",
     "mongose": "^0.0.2-security",
@@ -53,5 +54,15 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+
+  "_moduleAliases": {
+  "@config": "dist/config",
+  "@controller": "dist/controller",
+  "@utils": "dist/utils",
+  "@models": "dist/models",
+  "@routes": "dist/routes",
+  "@middlewares": "dist/middlewares",
+  "@core-types": "dist/types"
   }
 }

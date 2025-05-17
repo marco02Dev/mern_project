@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
 import { Request, Response } from 'express';
-import { reactAppPublicAssets, reactAppIndexHtml, reactAppAdminDist,reactAppAdminIndexHtml, reactAppAccountDist, reactAppAccountIndexHtml } from '../config/system/paths.config';
-import { checkAuthorizedIp } from '../middlewares/security/check-authorize-ip.middleware';
-import { isAuthenticated } from '../middlewares/security/is-authenticated.middleware';
-import { isAdmin } from '../middlewares/security/is-admin.middleware';
+import { reactAppPublicAssets, reactAppIndexHtml, reactAppAdminDist,reactAppAdminIndexHtml, reactAppAccountDist, reactAppAccountIndexHtml } from '@config/system/paths.config';
+import { checkAuthorizedIp } from '@middlewares/security/check-authorize-ip.middleware';
+import { isAuthenticated } from '@middlewares/security/is-authenticated.middleware';
+import { isAdmin } from '@middlewares/security/is-admin.middleware';
 
 /**
  * Router to serve the React frontend application assets and HTML files.

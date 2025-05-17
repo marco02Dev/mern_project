@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
-import { sendErrorMessage } from "../utils/send-error-massage.util";
-import { sendSuccessMessage } from "../utils/send-success-message.util";
-import { ModelsAllowed } from "../types/models-allowed.type";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
+import { sendSuccessMessage } from "@utils/response/send-success-message.util";
+import { ModelsAllowed } from "@custom-types/models-allowed.type";
 import { Response, Request } from "express";
 
 type GetAllDocumentsData<T> = {

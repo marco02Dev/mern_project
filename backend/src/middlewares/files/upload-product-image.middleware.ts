@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { NextFunction, Request, Response } from "express";
 import sharp from "sharp";
-import { sendErrorMessage } from "../../utils/send-error-massage.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
 
 const storage = multer.diskStorage({
   destination(req: Request, file, cb) {

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { sendSuccessMessage } from "../../utils/send-success-message.util";
-import { sendErrorMessage } from "../../utils/send-error-massage.util";
-import { LoggedUser } from "../../types/logged-user.type";
-import logger from "../../config/libraries/winston.config";
-import { Controller } from "../../types/controller.type";
+import { sendSuccessMessage } from "@utils/response/send-success-message.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
+import { LoggedUser } from "@custom-types/logged-user.type";
+import logger from "@config/libraries/winston.config";
+import { Controller } from "@custom-types/controller.type";
 
 /**
  * **User Session Controller**
@@ -28,30 +28,38 @@ import { Controller } from "../../types/controller.type";
  * 
  */
 
-export const checkUserSessionController: Controller = async (req: Request, res: Response): Promise<void> => {
-  if (req.isAuthenticated && req.isAuthenticated()) {
-    const user = req.user as LoggedUser;
-    logger.info(`Session validated for user ${user.email} (ID: ${user._id})`)
+export const checkUserSessionController: Controller = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    if (req.isAuthenticated && req.isAuthenticated()) {
+      const user = req.user as LoggedUser;
+      logger.info(`Session validated for user ${user.email} (ID: ${user._id})`);
 
-    sendSuccessMessage({
-      response: res,
-      statusCode: 200,
-      data: {
-        _id: user._id,
-        name: user.name,
-        surname: user.surname,
-        email: user.email,
-        role: user.role,
-      }
-    });
-
-    return;
-  } else {
-    logger.error(`Unauthorized session check attempt on ${req.method} ${req.originalUrl}`);
+      sendSuccessMessage({
+        response: res,
+        statusCode: 200,
+        data: {
+          _id: user._id,
+          name: user.name,
+          surname: user.surname,
+          email: user.email,
+          role: user.role,
+        },
+      });
+    } else {
+      logger.error(`Unauthorized session check attempt on ${req.method} ${req.originalUrl}`);
+      sendErrorMessage({
+        response: res,
+        statusCode: 401,
+      });
+    }
+  } catch (error) {
+    logger.error("Error in checkUserSessionController:", error);
     sendErrorMessage({
       response: res,
-      statusCode: 401,
+      statusCode: 500,
     });
-    return;
   }
 };

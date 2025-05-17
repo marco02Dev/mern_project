@@ -3,8 +3,8 @@ import { v2 as cloudinary } from "cloudinary";
 import { Request, Response, NextFunction } from "express";
 import sharp from "sharp";
 import streamifier from "streamifier";
-import { sendErrorMessage } from "../../utils/send-error-massage.util";
-import { cloudinaryData } from "../../config/system/env.config";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
+import { cloudinaryData } from "@config/system/env.config";
 
 cloudinary.config(cloudinaryData);
 

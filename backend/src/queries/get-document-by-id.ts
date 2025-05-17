@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { Request, Response } from "express";
-import { sendSuccessMessage } from "../utils/send-success-message.util";
-import { sendErrorMessage } from "../utils/send-error-massage.util";
+import { sendSuccessMessage } from "@utils/response/send-success-message.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
 
 type GetDocumentById<T> = {
     Model: Model<T>; 

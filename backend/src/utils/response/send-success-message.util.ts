@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { ModelsAllowed } from "../types/models-allowed.type";
-import { LoggedUser } from "../types/logged-user.type";
+import { ModelsAllowed } from "@custom-types/models-allowed.type";
+import { LoggedUser } from "@custom-types/logged-user.type";
 
 export type SendSuccessMessageData = {
     response: Response,

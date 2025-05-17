@@ -1,12 +1,12 @@
-import { Controller } from "../../types/controller.type";
+import { Controller } from "@custom-types/controller.type";
 import { Request, Response } from "express";
-import { sendSuccessMessage } from "../../utils/send-success-message.util";
-import { validateEmail } from "../../utils/validate-email.util";
-import { isString } from "../../utils/is-string.util";
-import { sendErrorMessage } from "../../utils/send-error-massage.util";
-import { sendEmailService } from "../../config/libraries/transporter.config";
-import { transporterData } from "../../config/system/env.config";
-import logger from "../../config/libraries/winston.config";
+import { sendSuccessMessage } from "@utils/response/send-success-message.util";
+import { validateEmail } from "@utils/validation/validate-email.util";
+import { isString } from "@utils/validation/is-string.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
+import { sendEmailService } from "@config/libraries/transporter.config";
+import { transporterData } from "@config/system/env.config";
+import logger from "@config/libraries/winston.config";
 
 /**
  * Controller for handling contact form submissions.

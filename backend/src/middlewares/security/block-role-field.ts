@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { sendErrorMessage } from '../../utils/send-error-massage.util';
+import { sendErrorMessage } from '@utils/response/send-error-massage.util';
 
 /**
  * `blockRoleField` is a **middleware designed for registration forms** to enhance security.

@@ -1,7 +1,7 @@
-import { secret, databaseUri } from "../system/env.config";
+import { secret, databaseUri } from "@config/system/env.config";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { isProduction } from "../system/env.config";
+import { isProduction } from "@config/system/env.config";
 
 const maxAge: number = isProduction 
   ? 1000 * 60 * 60 * 24 * 30

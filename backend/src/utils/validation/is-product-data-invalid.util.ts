@@ -1,6 +1,6 @@
-import { ProductSchema } from "../models/product.model";
-import { isNumber } from "./is-number.util";
-import { isString } from "./is-string.util";
+import { ProductSchema } from "@models/product.model";
+import { isNumber } from "@utils/validation/is-number.util";
+import { isString } from "@utils/validation/is-string.util";
 
 /**
  * Utility function mainly designed for controllers related to courses/products.

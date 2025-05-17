@@ -1,8 +1,8 @@
-import { getAuthorizedIps } from "../../utils/get-authorized-ips.util";
+import { getAuthorizedIps } from "@utils/config/get-authorized-ips.util";
 import { NextFunction, Response, Request } from "express";
-import { sendErrorMessage } from "../../utils/send-error-massage.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
 import { RequestHandler } from "express";
-import logger from "../../config/libraries/winston.config";
+import logger from "@config/libraries/winston.config";
 
 /**
  * `checkAuthorizedIp` is an **admin-only middleware** used to enhance security

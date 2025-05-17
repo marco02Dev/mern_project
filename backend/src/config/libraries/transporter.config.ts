@@ -1,6 +1,6 @@
 import nodemailer, { SendMailOptions, Transporter } from "nodemailer";
-import { transporterData } from "../system/env.config";
-import logger from "./winston.config";
+import { transporterData } from "@config/system/env.config";
+import logger from "@config/libraries/winston.config";
 
 type SendEmailServiceData = {
     to: string,

@@ -1,12 +1,12 @@
-import { isUserDataInvalid } from "../utils/is-user-data-invalid.util";
-import { isProductDataInvalid } from "../utils/is-product-data-invalid.util";
-import { sendErrorMessage } from "../utils/send-error-massage.util";
-import { sendSuccessMessage } from "../utils/send-success-message.util";
+import { isUserDataInvalid } from "@utils/validation/is-user-data-invalid.util";
+import { isProductDataInvalid } from "@utils/validation/is-product-data-invalid.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util";
+import { sendSuccessMessage } from "@utils/response/send-success-message.util";
 import { Request, Response } from "express";
 import { Model } from "mongoose";
-import { UsersSchema } from "../models/users.model";
-import { ProductSchema } from "../models/product.model";
-import { ModelsAllowed } from "../types/models-allowed.type";
+import { UsersSchema } from "@models/users.model";
+import { ProductSchema } from "@models/product.model";
+import { ModelsAllowed } from "@custom-types/models-allowed.type";
 
 type UpdateDocumentByModelData<T> = {
     Model: Model<T>,

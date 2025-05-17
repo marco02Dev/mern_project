@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import logger from "../../config/libraries/winston.config";
+import logger from "@config/libraries/winston.config";
 import passport from "passport";
-import { sendSuccessMessage } from "../../utils/send-success-message.util";
-import { sendErrorMessage } from "../../utils/send-error-massage.util"
-import { PassportController } from "../../types/controller.type";
+import { sendSuccessMessage } from "@utils/response/send-success-message.util";
+import { sendErrorMessage } from "@utils/response/send-error-massage.util"
+import { PassportController } from "@custom-types/controller.type";
 
 /**
  * **User Login Controller**

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { isProduction, isRender } from "./env.config";
-import logger from "../libraries/winston.config";
+import { isProduction, isRender } from "@config/system/env.config";
+import logger from "@config/libraries/winston.config";
 
 export type SSLCredentials = {
     key: string; 

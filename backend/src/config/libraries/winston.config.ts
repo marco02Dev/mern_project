@@ -1,6 +1,6 @@
 import winston, { Logger } from 'winston';
 import 'winston-mongodb';
-import { databaseUri } from '../system/env.config';
+import { databaseUri } from '@config/system/env.config';
 
 /**
  * Winston logger configuration.

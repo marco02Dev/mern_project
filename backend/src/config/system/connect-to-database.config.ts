@@ -1,6 +1,6 @@
 import mongoose, { Mongoose } from "mongoose";
-import { databaseUri } from "../system/env.config";
-import logger from "../libraries/winston.config";
+import { databaseUri } from "@config/system/env.config";
+import logger from "@config/libraries/winston.config";
 
 export const connectToDatabase = async (): Promise<Mongoose | undefined> => {
     try {

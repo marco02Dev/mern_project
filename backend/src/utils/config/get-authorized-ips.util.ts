@@ -1,4 +1,4 @@
-import { authorizedIp } from "../config/system/env.config";
+import { authorizedIp } from "@config/system/env.config";
 
 /**
  * Utility function primarily used by the `checkAuthorizedIp` middleware.

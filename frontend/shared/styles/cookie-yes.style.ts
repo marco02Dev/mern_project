@@ -1,6 +1,6 @@
 import { NamedExoticComponent } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { buttonHoverAnimation } from '@shared//animations/styled-button.animation';
+import { buttonHoverAnimation } from '@shared/animations/styled-button.animation';
 
 /**
  * Props for the `CookieYesStyles` component that controls the dynamic styling of the CookieYes banner.

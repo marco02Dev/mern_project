@@ -1,5 +1,5 @@
-import { Controller } from "../../types/controller.type";
-import User, { UsersSchema } from "../../models/users.model";
+import { Controller } from "@custom-types/controller.type";
+import User, { UsersSchema } from "@models/users.model";
 import { getAllDocumentsByModel } from "../../queries/get-all-documents-by-model";
 import { Request } from "express";
 

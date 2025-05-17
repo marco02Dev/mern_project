@@ -1,8 +1,8 @@
 import { PassportStatic } from "passport";
 import { Strategy as LocalStrategy, IStrategyOptionsWithRequest, VerifyFunctionWithRequest } from 'passport-local';
 import bcrypt from 'bcrypt';
-import User from '../../models/users.model';
-import logger from "./winston.config";
+import User from '@models/users.model';
+import logger from "@config/libraries/winston.config";
 
 /**
  * Configures Passport.js with local authentication strategy.

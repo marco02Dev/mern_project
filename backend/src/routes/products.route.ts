@@ -1,19 +1,19 @@
 import { Router } from "express";
-import { getAllProductsController } from "../controller/product/get-all-products.controller";
-import { getProductsByCategoryController } from "../controller/product/get-product-by-category.controller";
-import { deleteProductController } from "../controller/product/delete-product.controller";
-import { createProductController } from "../controller/product/create-product.controller";
-import { updateProductController } from "../controller/product/update-product.controller";
-import { getProductsByCategoryAndNameController } from "../controller/product/get-products-by-category-and-name.controller";
-import { productsEndpointName } from "../config/system/endpoints.config";
-import { checkAuthorizedIp } from "../middlewares/security/check-authorize-ip.middleware";
-import { uploadImageController } from "../controller/product/upload-image.controller";
-import { isAdmin } from "../middlewares/security/is-admin.middleware";
+import { getAllProductsController } from "@controller/product/get-all-products.controller";
+import { getProductsByCategoryController } from "@controller/product/get-product-by-category.controller";
+import { deleteProductController } from "@controller/product/delete-product.controller";
+import { createProductController } from "@controller/product/create-product.controller";
+import { updateProductController } from "@controller/product/update-product.controller";
+import { getProductsByCategoryAndNameController } from "@controller/product/get-products-by-category-and-name.controller";
+import { productsEndpointName } from "@config/system/endpoints.config";
+import { checkAuthorizedIp } from "@middlewares/security/check-authorize-ip.middleware";
+import { uploadImageController } from "@controller/product/upload-image.controller";
+import { isAdmin } from "@middlewares/security/is-admin.middleware";
 import { RequestHandler } from "express";
-import { isAuthenticated } from "../middlewares/security/is-authenticated.middleware";
-import { uploadConvertedImagesToCloudinary } from "../middlewares/files/upload-product-image-to-cloudinary";
-import { uploadProductImagesInRam } from "../middlewares/files/upload-product-image-to-cloudinary";
-import { rejectRequestIfHoneyPotIsFilled } from "../middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
+import { isAuthenticated } from "@middlewares/security/is-authenticated.middleware";
+import { uploadConvertedImagesToCloudinary } from "@middlewares/files/upload-product-image-to-cloudinary";
+import { uploadProductImagesInRam } from "@middlewares/files/upload-product-image-to-cloudinary";
+import { rejectRequestIfHoneyPotIsFilled } from "@middlewares/security/reject-request-if-honey-pot-is-filled.middleware";
 
 /**
  * Router for product-related endpoints.
