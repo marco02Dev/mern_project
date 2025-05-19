@@ -1,5 +1,5 @@
 import { Controller } from "@custom-types/controller.type";
-import { getDocumentsByCategoryAndId } from "../../queries/get-documents-by-category-and-name";
+import { getDocumentsByCategoryAndId } from "@utils/queries/get-documents-by-category-and-name";
 import { ProductSchema } from "@models/product.model";
 import Product from "@models/product.model";
 import { Request } from "express";

@@ -1,6 +1,6 @@
 import { Controller } from "@custom-types/controller.type";
 import User, { UsersSchema } from "@models/users.model";
-import { getAllDocumentsByModel } from "../../queries/get-all-documents-by-model";
+import { getAllDocumentsByModel } from "@utils/queries/get-all-documents-by-model";
 import { Request } from "express";
 
 export const getAllUsersController: Controller = async (req, res) => {

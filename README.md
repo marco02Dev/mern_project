@@ -26,4 +26,18 @@ Web app to manage online courses — a **Full Stack TypeScript SPA portfolio pro
   - `npm run start` to launch the backend in production mode  
   - `npm run dev` to start the Vite development server and the Node.js application server concurrently 
 
+## License
+
+This project is intended solely as a **personal portfolio** to demonstrate development skills.  
+**It is not permitted to copy, modify, redistribute, or use this project or its components** for commercial or non-commercial purposes.  
+
+By viewing or downloading this project, you agree to respect its intended purpose as a personal showcase only.
+
+[![Creative Commons License](https://mirrors.creativecommons.org/presskit/icons/cc.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![BY](https://mirrors.creativecommons.org/presskit/icons/by.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![NC](https://mirrors.creativecommons.org/presskit/icons/nc.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![ND](https://mirrors.creativecommons.org/presskit/icons/nd.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+**MERN Project Web Courses Portfolio** © 2025 by [Marco Sacco](https://github.com/marco02Dev) is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
 --- 

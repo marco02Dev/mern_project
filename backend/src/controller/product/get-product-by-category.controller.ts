@@ -1,6 +1,6 @@
 import { Controller } from "@custom-types/controller.type";
 import { Request, Response } from "express";
-import { getDocumentsByCategory } from "../../queries/get-documents-by-category";
+import { getDocumentsByCategory } from "@utils/queries/get-documents-by-category";
 import { ProductSchema } from "@models/product.model";
 import Product from "@models/product.model";
 

@@ -1,7 +1,7 @@
 import { Controller } from "@custom-types/controller.type";
 import { isProductDataInvalid } from "@utils/validation/is-product-data-invalid.util";
 import { sendErrorMessage } from "@utils/response/send-error-massage.util";
-import { updateDocumentByModel } from "../../queries/update-document-by-model";
+import { updateDocumentByModel } from "./update-document-by-model";
 import { ProductParams } from "@custom-types/controller.type";
 import { ProductSchema } from "@models/product.model";
 import Product from "@models/product.model";

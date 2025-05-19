@@ -1,6 +1,6 @@
 import { Controller } from "@custom-types/controller.type";
 import { ProductParams } from "@custom-types/controller.type";
-import { deleteDocumentByModel } from "../../queries/delete-document-by-model";
+import { deleteDocumentByModel } from "@utils/queries/delete-document-by-model";
 import { ProductSchema } from "@models/product.model";
 import Product from "@models/product.model";
 

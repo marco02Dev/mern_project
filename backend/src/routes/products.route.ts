@@ -3,7 +3,7 @@ import { getAllProductsController } from "@controller/product/get-all-products.c
 import { getProductsByCategoryController } from "@controller/product/get-product-by-category.controller";
 import { deleteProductController } from "@controller/product/delete-product.controller";
 import { createProductController } from "@controller/product/create-product.controller";
-import { updateProductController } from "@controller/product/update-product.controller";
+import { updateProductController } from "@utils/queries/update-product.controller";
 import { getProductsByCategoryAndNameController } from "@controller/product/get-products-by-category-and-name.controller";
 import { productsEndpointName } from "@config/system/endpoints.config";
 import { checkAuthorizedIp } from "@middlewares/security/check-authorize-ip.middleware";
