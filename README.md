@@ -29,7 +29,8 @@ Web app to manage online courses — a **Full Stack TypeScript SPA portfolio pro
 ## License
 
 This project is intended solely as a **personal portfolio** to demonstrate development skills.  
-**It is not permitted to copy, modify, redistribute, or use this project or its components** for commercial or non-commercial purposes.  
+**It is allowed to download and modify this project only for private, personal use.**  
+**Copying, redistributing, publishing, or using this project or its components** for commercial or non-commercial purposes is not permitted.
 
 By viewing or downloading this project, you agree to respect its intended purpose as a personal showcase only.
 
