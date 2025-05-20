@@ -13,13 +13,29 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
+const IubendaLinks = styled.a`
+    background-image: unset !important;
+    background-color: unset !important;
+    background-repeat: unset !important; 
+    background-size: unset !important;
+    background-position: unset !important;
+    padding-left: unset !important;
+    padding: unset !important;
+    border: unset !important;
+    &:hover {
+        -webkit-box-shadow: unset !important;
+        box-shadow: unset !important;
+        background-color: unset !important;
+    }
+`;
+
 export const PrivacyCookiesLinks: FC = (): ReactElement => {
     const { privacyPolicyUrl, cookiePolicyUrl }: UseIubendaPolicy = useIubendaPolicy();
 
     return (
         <FadeInWrapper>
             <Wrapper>
-                <a 
+                <IubendaLinks 
                     href={privacyPolicyUrl}
                     className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
                     title="Privacy Policy"
@@ -31,7 +47,7 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
                         event.preventDefault();
                     }} 
                     />
-                </a>
+                </IubendaLinks>
 
                 <StyledSpace verySmall horizontal />
 
@@ -39,7 +55,7 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
 
                 <StyledSpace verySmall horizontal />
 
-                <a 
+                <IubendaLinks
                     href={cookiePolicyUrl}
                     className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
                     title="Cookie Policy"
@@ -51,7 +67,7 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
                             event.preventDefault();
                         }} 
                     />
-                </a>
+                </IubendaLinks>
 
                 <StyledSpace verySmall horizontal />
 
