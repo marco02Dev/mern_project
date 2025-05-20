@@ -25,7 +25,13 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
                     rel="noopener noreferrer"
                     title="Privacy Policy"
                 >
-                    <StyledLink tag="span" content="Privacy Policy" />
+                    <StyledLink 
+                        tag="span" 
+                        content="Privacy Policy"
+                        onClickFunction={(event): void => {
+                            event.preventDefault();
+                        }}
+                    />
                 </a>
 
                 <StyledSpace verySmall horizontal />
@@ -40,7 +46,13 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
                     rel="noopener noreferrer"
                     title="Cookie Policy"
                 >
-                    <StyledLink tag="span" content="Cookie Policy" />
+                    <StyledLink 
+                        tag="span" 
+                        content="Cookie Policy" 
+                        onClickFunction={(event): void => {
+                            event.preventDefault();
+                        }}
+                    />
                 </a>
 
                 <StyledSpace verySmall horizontal />
@@ -53,7 +65,7 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
                     <StyledLink 
                         tag="span"
                         content="Cookie Preferences"
-                        onClickFunction={(event) => {
+                        onClickFunction={(event): void => {
                             event.preventDefault();
                         }}
                     />
