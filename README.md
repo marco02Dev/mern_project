@@ -4,7 +4,7 @@ Web app to manage online courses — a **Full Stack TypeScript SPA portfolio pro
 
 ## Key Features
 
-- **Responsive user interface** optimized for both desktop and mobile devices without CSS media queries, using custom React hooks, advanced **CSS4** techniques from CSS Values and Units Module Level 4
+- **Responsive user interface** optimized for both desktop and mobile devices without CSS media queries, using custom React hooks, and advanced **CSS4** techniques
 - **Global state management** with **Redux** for greater data efficiency and control  
 - **Light/dark theme** implemented using **styled-components** and **CSS-in-JS** techniques, enabling flexible UI customization  
 - **Real-time database integration** with **MongoDB Atlas** to display available courses  

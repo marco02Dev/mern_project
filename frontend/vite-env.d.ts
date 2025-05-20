@@ -9,6 +9,7 @@ interface ImportMetaEnv {
     readonly VITE_ENV: string;
     readonly VITE_DEV_ENDPOINT: string;
     readonly VITE_COOKIEYES_ID: string;
+    VITE_IUBENDA_POLICY_ID: string;
     readonly VITE_RENDER: string;
 }
   

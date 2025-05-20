@@ -4,6 +4,7 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledLink } from "../themed/StyledLink";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
+import { useIubendaPolicy } from "@shared/hooks/theme/useIubendaPolicy";
 
 const Wrapper = styled.div`
     display: flex;
@@ -13,41 +14,49 @@ const Wrapper = styled.div`
 `;
 
 export const PrivacyCookiesLinks: FC = (): ReactElement => {
-    return <FadeInWrapper>
-        <Wrapper>
-            <StyledLink 
-                tag="span"
-                content="Privacy Policy" 
-                to="/privacy-policy"
-            />
+    const { privacyPolicyUrl, cookiePolicyUrl } = useIubendaPolicy();
 
-            <StyledSpace verySmall horizontal />
+    return (
+        <FadeInWrapper>
+            <Wrapper>
+                <a 
+                    href={privacyPolicyUrl}
+                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
+                    title="Privacy Policy"
+                >
+                    <StyledLink tag="span" content="Privacy Policy" />
+                </a>
 
-            <StyledText content="|" tag="span" />
+                <StyledSpace verySmall horizontal />
 
-            <StyledSpace verySmall horizontal />
+                <StyledText content="|" tag="span" />
 
-            <StyledLink 
-                tag="span"
-                content="Cookie Policy" 
-                to="/cookie-policy"
-            />
+                <StyledSpace verySmall horizontal />
 
-            <StyledSpace verySmall horizontal />
+                <a 
+                    href={cookiePolicyUrl}
+                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
+                    title="Cookie Policy"
+                >
+                    <StyledLink tag="span" content="Cookie Policy" />
+                </a>
 
-            <StyledText content="|" tag="span" />
+                <StyledSpace verySmall horizontal />
 
-            <StyledSpace verySmall horizontal />
+                <StyledText content="|" tag="span" />
 
-            <a href="#" className="cky-banner-element">
-                <StyledLink 
-                    tag="span"
-                    content="Cookie Preferences" 
-                    onClickFunction={(event) => {
-                        event.preventDefault();
-                    }}
-                />
-            </a>
-        </Wrapper>
-    </FadeInWrapper>
-}
+                <StyledSpace verySmall horizontal />
+
+                <a href="#" className="cky-banner-element">
+                    <StyledLink 
+                        tag="span"
+                        content="Cookie Preferences"
+                        onClickFunction={(event) => {
+                            event.preventDefault();
+                        }}
+                    />
+                </a>
+            </Wrapper>
+        </FadeInWrapper>
+    );
+};
