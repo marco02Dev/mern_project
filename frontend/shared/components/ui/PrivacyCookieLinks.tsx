@@ -4,7 +4,7 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledLink } from "../themed/StyledLink";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
-import { useIubendaPolicy, UseIubendaPolicy } from "@shared/hooks/theme/useIubendaPolicy";
+import { UseIubendaPolicy, useIubendaPolicy } from "@shared/hooks/theme/useIubendaPolicy";
 
 const Wrapper = styled.div`
     display: flex;
@@ -21,16 +21,15 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
             <Wrapper>
                 <a 
                     href={privacyPolicyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
                     title="Privacy Policy"
                 >
                     <StyledLink 
-                        tag="span" 
-                        content="Privacy Policy"
-                        onClickFunction={(event): void => {
-                            event.preventDefault();
-                        }}
+                    tag="span" 
+                    content="Privacy Policy"
+                    onClickFunction={(event) => {
+                        event.preventDefault();
+                    }} 
                     />
                 </a>
 
@@ -42,16 +41,15 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
 
                 <a 
                     href={cookiePolicyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
                     title="Cookie Policy"
                 >
                     <StyledLink 
                         tag="span" 
                         content="Cookie Policy" 
-                        onClickFunction={(event): void => {
+                        onClickFunction={(event) => {
                             event.preventDefault();
-                        }}
+                        }} 
                     />
                 </a>
 
@@ -65,7 +63,7 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
                     <StyledLink 
                         tag="span"
                         content="Cookie Preferences"
-                        onClickFunction={(event): void => {
+                        onClickFunction={(event) => {
                             event.preventDefault();
                         }}
                     />
