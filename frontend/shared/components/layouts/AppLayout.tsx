@@ -1,3 +1,5 @@
+import { StyledCookieYesBanner } from "@shared/components/themed/StyledCookieYesBanner";
+import { isProduction, isRender } from "@shared/config/env.config";
 import { Header } from '@shared/components/template-parts/Header';
 import { Footer } from '@shared/components/template-parts/Footer';
 import { MobileMenu } from '@shared/components/template-parts/MobileMenu';
@@ -5,7 +7,7 @@ import { PageTransitionElement } from '@shared/components/animated/PageTransitio
 import { PageTransitionTitle } from '@shared/components/animated/PageTransitionTitle';
 import { useMediaQuery, UseMediaQuery } from '@shared/hooks/ui/useMediaQuery';
 import useLocationChange, { UseLocationChange } from '@shared/hooks/navigation/useLocationChange';
-import { ReactElement, useEffect } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import { useRestoreSession } from '@shared/hooks/auth/useRestoreSession';
 import { useDynamicTitle } from '@shared/hooks/navigation/useDynamicDocumentTitle';
 import { AppState } from '@shared/store/slices/app-state-slice';
@@ -34,7 +36,7 @@ import { LoadingPage } from '@client/pages/LoadingPage';
 */
 
 
-export const AppLayout = ({children}: {children: ReactElement}) => {
+export const AppLayout: FC = ({children}: {children: ReactElement}) => {
   const hasLocationChanged: UseLocationChange = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
@@ -52,6 +54,7 @@ export const AppLayout = ({children}: {children: ReactElement}) => {
   if (error) return <div>Error: {error}</div>;
 
   return <>
+    {isProduction && isRender && <StyledCookieYesBanner />}
     {(isMobile || isTablet) && <MobileMenu /> }
     <Header />
     {children}

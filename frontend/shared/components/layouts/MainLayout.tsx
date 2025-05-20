@@ -2,8 +2,6 @@ import { ReactElement, StrictMode } from "react";
 import { ResetCss } from "@shared/styles/reset-css.style";
 import { FontStyles } from "@shared/styles/font.style";
 import { GlobalStyles } from "@shared/styles/global.style";
-import { StyledCookieYesBanner } from "@shared/components/themed/StyledCookieYesBanner";
-import { isProduction, isRender } from "@shared/config/env.config";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "@shared/store";
@@ -40,7 +38,7 @@ export const MainLayout = ({children}: {children: ReactElement}) => {
 
     <BrowserRouter>
       <Provider store={store}>
-          {isProduction && isRender && <StyledCookieYesBanner />}
+
           {children}
       </Provider>
     </BrowserRouter>
