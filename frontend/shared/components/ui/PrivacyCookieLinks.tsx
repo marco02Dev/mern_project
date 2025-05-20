@@ -4,7 +4,7 @@ import { FadeInWrapper } from "../animated/FadeInWrapper";
 import { StyledLink } from "../themed/StyledLink";
 import { StyledText } from "../themed/StyledText";
 import { StyledSpace } from "../themed/StyledSpace";
-import { useIubendaPolicy } from "@shared/hooks/theme/useIubendaPolicy";
+import { useIubendaPolicy, UseIubendaPolicy } from "@shared/hooks/theme/useIubendaPolicy";
 
 const Wrapper = styled.div`
     display: flex;
@@ -14,14 +14,15 @@ const Wrapper = styled.div`
 `;
 
 export const PrivacyCookiesLinks: FC = (): ReactElement => {
-    const { privacyPolicyUrl, cookiePolicyUrl } = useIubendaPolicy();
+    const { privacyPolicyUrl, cookiePolicyUrl }: UseIubendaPolicy = useIubendaPolicy();
 
     return (
         <FadeInWrapper>
             <Wrapper>
                 <a 
                     href={privacyPolicyUrl}
-                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     title="Privacy Policy"
                 >
                     <StyledLink tag="span" content="Privacy Policy" />
@@ -35,7 +36,8 @@ export const PrivacyCookiesLinks: FC = (): ReactElement => {
 
                 <a 
                     href={cookiePolicyUrl}
-                    className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     title="Cookie Policy"
                 >
                     <StyledLink tag="span" content="Cookie Policy" />
