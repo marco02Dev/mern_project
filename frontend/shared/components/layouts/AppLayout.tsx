@@ -36,7 +36,7 @@ import { LoadingPage } from '@client/pages/LoadingPage';
 */
 
 
-export const AppLayout: FC = ({children}: {children: ReactElement}) => {
+export const AppLayout: FC<{children: ReactElement}> = ({children}: {children: ReactElement}) => {
   const hasLocationChanged: UseLocationChange = useLocationChange();
   const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
   const {loading, error}: AppState = useSelector((state: RootState) => state.appState);
