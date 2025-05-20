@@ -4,7 +4,7 @@ import { StyledSpace } from "../themed/StyledSpace";
 import styled from "styled-components";
 import { getCurrentYear } from "../../utils/system/get-current-year.util";
 import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { PrivacyCookiesLinks } from "../ui/PrivacyCookieLinks";
+import { FooterLinksLoop } from "../loops/FooterLinksLoop";
 import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
 
 const FooterWrapper = styled.footer<{$backgroundColor: string}>`
@@ -23,7 +23,7 @@ export const Footer: FC = (): ReactElement => {
 
         <StyledSpace small vertical />
 
-        <PrivacyCookiesLinks />
+        <FooterLinksLoop />
 
         <StyledSpace verySmall vertical />
 
