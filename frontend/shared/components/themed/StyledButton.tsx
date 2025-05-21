@@ -1,4 +1,4 @@
-import { ReactElement, FC } from "react";
+import { ReactElement, FC, MouseEventHandler } from "react";
 import styled, { css, RuleSet } from "styled-components";
 import { StyledLink } from "./StyledLink";
 import { StyledShadow } from "./StyledShadow";
@@ -74,7 +74,7 @@ type StyledButtonProps = {
     content: string,
     to?: string,
     unsetShadow?: boolean,
-    action?: Function,
+    action?: MouseEventHandler,
     courseId?: string,
     type?: string,
     isInactive?: boolean,
@@ -91,8 +91,8 @@ export const StyledButton: FC<StyledButtonProps> = ({
 }: StyledButtonProps): ReactElement => {
     const { textColor, backgroundColorButton }: ThemeColors = useThemeColors({invertColors: {textColor: true}});
 
-    const handleClick = () => {
-        if (action) action();
+    const handleClick: MouseEventHandler = (event) => {
+        if (action) action(event);
     };
 
     return <Wrapper $unsetShadow={unsetShadow} onClick={handleClick} >

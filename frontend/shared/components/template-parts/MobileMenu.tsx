@@ -39,9 +39,9 @@ export const MobileMenu: FC = (): ReactNode => {
   const { backgroundColor }: ThemeColors = useThemeColors();
   const dispatch: Dispatch = useDispatch();
 
-  useEffect(():void => {
+  useEffect((): void => {
     dispatch(closeMenu())
-  }, [hasLocationChanged])
+  }, [hasLocationChanged, dispatch])
 
   return (
     <>

@@ -18,8 +18,8 @@ import { checkSession } from '@shared/utils/cookies/check-session.util';
  * If the server confirms a valid session and returns user data, the user is marked as 
  * logged in by dispatching `setLoggedIn()` with the retrieved user information.
  * 
- * This hook does not handle UI-level errors — it fails silently if the session is 
- * invalid or if any network error occurs.
+ * If an error occurs during the request (e.g. network failure or invalid response),
+ * it is caught and printed to the browser console using `console.error()`.
  *
  * @example
  * useRestoreSession(); // Call inside a top-level component to auto-login returning users
@@ -46,6 +46,7 @@ export const useRestoreSession = (): void => {
           }));
         }
       } catch (error) {
+          console.error(error);
           return;
       }
     };

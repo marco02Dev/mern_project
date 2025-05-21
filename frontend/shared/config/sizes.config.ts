@@ -33,7 +33,7 @@ type Sizes = {
     heights: SizeCategory;
 };
 
-export let sizes: Sizes = {
+export const sizes: Sizes = {
     fontSizes: {
         h1: "clamp(7vh, 2vh + 5vw, 100vw)", 
         h2: "clamp(5vh, 1.8vh + 3vw, 100vw)",

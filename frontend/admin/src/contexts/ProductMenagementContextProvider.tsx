@@ -1,4 +1,5 @@
-import { createContext, useState, ReactElement, Dispatch, SetStateAction } from "react";
+import { createContext, useState, ReactElement, Dispatch, SetStateAction, FC, Context } from "react";
+
 
 export type UpdateProductFormState = {
   state: boolean;
@@ -14,9 +15,9 @@ export type ProductManagementContextProps = {
   setUpdateProductForm: Dispatch<SetStateAction<UpdateProductFormState>>;
 };
 
-export const ProductManagementContext = createContext<ProductManagementContextProps | undefined>(undefined);
+export const ProductManagementContext: Context<ProductManagementContextProps> = createContext<ProductManagementContextProps | undefined>(undefined);
 
-export const ProductManagementContextProvider = ({ children }: { children: ReactElement }) => {
+export const ProductManagementContextProvider: FC<{ children: ReactElement }> = ({ children }: { children: ReactElement }) => {
   const [createProductForm, setCreateProductForm] = useState<boolean>(false);
   const [productCreated, setProductCreated] = useState<boolean>(false);
   const [updateProductForm, setUpdateProductForm] = useState<UpdateProductFormState>({

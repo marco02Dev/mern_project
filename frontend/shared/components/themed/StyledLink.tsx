@@ -115,7 +115,7 @@ export const StyledLink: FC<StyledLinkProps> = ({
     const { textColor, borderColor, hoverColor }: ThemeColors = useThemeColors();
     const defaultTag: AllowedTextTags = tag ? tag : "span";
     const colorMode: string = color ? color : textColor;
-    let islogoHover: string = logo && absolute ? hoverColor : "";
+    const islogoHover: string = logo && absolute ? hoverColor : "";
 
     const commonProps: LinkWrapperProps & ButtonInnerStylesProps = {
         $color: colorMode,

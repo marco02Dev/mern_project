@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, FC } from "react";
+import { ReactElement, useCallback, useEffect, FC, MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux"; 
 import { toggleMenu, closeMenu } from "@shared/store/slices/menu.slice";
@@ -57,7 +57,7 @@ export const StyledMobileMenu: FC<StyledMobileMenuProps> = ({delay}: StyledMobil
     const { isMobile, isTablet }: UseMediaQuery = useMediaQuery();
     const lineHeight: string = '14%';
 
-    const toggleMenuHandler = useCallback(() => {
+    const toggleMenuHandler: MouseEventHandler = useCallback((): void => {
         dispatch(toggleMenu()); 
     }, [dispatch]);
 
@@ -65,7 +65,7 @@ export const StyledMobileMenu: FC<StyledMobileMenuProps> = ({delay}: StyledMobil
         if (!isMobile || !isTablet) {
             dispatch(closeMenu()); 
         }
-    }, [isMobile, isTablet]);
+    }, [isMobile, isTablet, dispatch]);
 
     return (
         <FadeInWrapper delay={delay}>
