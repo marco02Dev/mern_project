@@ -2,21 +2,27 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoggedIn } from '@shared/store/slices/login.slice';
 import { AppDispatch } from '@shared/store';
-import { endpoints } from '../../config/endpoints.config';
+import { endpoints } from '@shared/config/endpoints.config';
 import { LoggedUser } from '@shared/types/user.types';
 import { checkSession } from '@shared/utils/cookies/check-session.util';
 
 /**
- * Custom hook that restores the user's session by fetching session data
- * from the server. If the session is valid, it dispatches the user data to
- * the Redux store to mark the user as logged in.
- * 
- * @returns void
- * 
+ * Custom React hook that attempts to restore the user's session on component mount.
+ *
+ * @function useRestoreSession
+ * @returns {void}
+ *
  * @description
- * This hook runs once on component mount. It sends a request to the session 
- * endpoint and, if the user session is valid, stores the user data in the Redux store. 
- * If there's an error or the session is invalid, nothing happens.
+ * On initial render, this hook checks if a session cookie exists using `checkSession()`. 
+ * If a session is present, it sends a request to the configured session endpoint. 
+ * If the server confirms a valid session and returns user data, the user is marked as 
+ * logged in by dispatching `setLoggedIn()` with the retrieved user information.
+ * 
+ * This hook does not handle UI-level errors — it fails silently if the session is 
+ * invalid or if any network error occurs.
+ *
+ * @example
+ * useRestoreSession(); // Call inside a top-level component to auto-login returning users
 */
 
 export const useRestoreSession = (): void => {

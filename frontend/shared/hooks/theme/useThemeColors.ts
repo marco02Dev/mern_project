@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/store";
-import { colors } from "../../config/colors.config";
+import { colors } from "@shared/config/colors.config";
 
 /**
  * ThemeColors defines the set of color properties used throughout the app's theming system.

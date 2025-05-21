@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { errorMessages } from '../../config/error-messages.config';
+import { errorMessages } from '@shared/config/error-messages.config';
 
 /**
  * Type definition for the handleErrorResponse function.

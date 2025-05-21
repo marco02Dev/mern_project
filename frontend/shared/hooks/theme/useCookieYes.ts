@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { cookieYesID } from '../../config/env.config';
+import { cookieYesID } from '@shared/config/env.config';
 import { CookieYesStylesType, CookieYesStyles } from '@shared/styles/cookie-yes.style';
 
 /**

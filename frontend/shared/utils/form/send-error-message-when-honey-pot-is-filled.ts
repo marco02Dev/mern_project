@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { ErrorMessages, errorMessages } from "../../config/error-messages.config";
+import { ErrorMessages, errorMessages } from "@shared/config/error-messages.config";
 
 export const sendErrorWhenHoneyPotIsFilled = ({
     formData,

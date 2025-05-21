@@ -1,5 +1,5 @@
-import { sizes } from "../../config/sizes.config";
-import { FontSizes } from "../../config/sizes.config";
+import { sizes } from "@shared/config/sizes.config";
+import { FontSizes } from "@shared/config/sizes.config";
 
 type DetermineTextFontSizeAndLineHeightData = {
     tag: string,
