@@ -4,7 +4,7 @@ import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 import { StyledFooterLink } from "@shared/components/themed/StyledFooterLink";
 import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import { StyledText } from "@shared/components/themed/StyledText";
-import { footerLinks } from "@shared/config/footer-links.config";
+import { FooterLinkItem, footerLinks } from "@shared/config/footer-links.config";
 
 const Wrapper = styled.div`
     display: flex;
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 export const FooterLinksLoop: FC = (): ReactElement => (
     <FadeInWrapper>
         <Wrapper>
-            {footerLinks.map((link, index) => (
+            {footerLinks.map((link: FooterLinkItem, index: number): ReactElement => (
                 <Fragment key={index}> 
                     <StyledFooterLink
                         href={link.href}
@@ -31,7 +31,7 @@ export const FooterLinksLoop: FC = (): ReactElement => (
                                 content="|"
                                 tag="p"
                                 size="p"
-                                smallParagraph
+                                verySmallParagraph
                             />
                             <StyledSpace verySmall horizontal />
                         </>
