@@ -1,6 +1,6 @@
 import { ReactElement, FC } from "react";
 import styled from "styled-components";
-import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
+import { useThemeColors, ThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 const Wrapper = styled.div<{$color: string}>`
     position: absolute;

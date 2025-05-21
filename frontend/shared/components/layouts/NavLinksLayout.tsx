@@ -1,6 +1,6 @@
 import { ReactElement, FC, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
-import { NavLinksLoop } from "../loops/NavLinksLoop";
+import { NavLinksLoop } from "@shared/components/loops/NavLinksLoop";
 import { headerLinks } from "@shared/config/header-links.config";
 
 const Wrapper = styled.div<{$row?: boolean}>`

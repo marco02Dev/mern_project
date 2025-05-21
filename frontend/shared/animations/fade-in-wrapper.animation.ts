@@ -1,4 +1,3 @@
-// animations/fadeIn.ts
 import { css, RuleSet } from 'styled-components';
 
 export const fadeInWrapperAnimation: RuleSet<{$delayed?: string}> = css<{$delayed?: string}>`

@@ -1,10 +1,10 @@
 import { ReactElement, FC, useState } from "react";
-import { CoursesLoop } from "../loops/CoursesLoop";
-import { StyledSection } from "../themed/StyledSection";
+import { CoursesLoop } from "@shared/components/loops/CoursesLoop";
+import { StyledSection } from "@shared/components/themed/StyledSection";
 import { sizes } from "@shared/config/sizes.config";
-import { StyledSpace } from "../themed/StyledSpace";
-import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
-import { LargeProductsPreviewButtons } from "../buttons/LargeProductsPreviewButtons";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { usePurchasedProducts } from "@shared/hooks/data/usePurchasedProducts";
+import { LargeProductsPreviewButtons } from "@shared/components/buttons/LargeProductsPreviewButtons";
 
 type LargeProductsPreviewSectionProps = {
     category?: string,

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { css, RuleSet } from "styled-components";
 import { useScrollY, UseScrollY } from "./useScrollY";
 import useLocationChange, { UseLocationChange } from "../navigation/useLocationChange";
-import { HideHeaderAnimation, RevealHeaderAnimation } from "../../animations/header.animation";
+import { HideHeaderAnimation, RevealHeaderAnimation } from "@shared/animations/header.animation";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { MenuState } from "../../store/slices/menu.slice";
+import { RootState } from "@shared/store";
+import { MenuState } from "@shared/store/slices/menu.slice";
 
 export const useHeaderVisibility = (): { headerHidden: boolean, animation: RuleSet } => {
     const isLocationChanged: UseLocationChange = useLocationChange();

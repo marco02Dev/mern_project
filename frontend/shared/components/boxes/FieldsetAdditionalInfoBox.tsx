@@ -1,5 +1,5 @@
 import { FC, ReactElement, Dispatch, SetStateAction, useRef, useEffect } from "react";
-import { StyledTextArea } from "../themed/StyledTextArea";
+import { StyledTextArea } from "@shared/components/themed/StyledTextArea";
 import styled from "styled-components";
 
 const Wrapper = styled.fieldset`

@@ -1,15 +1,15 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { StyledText } from "../themed/StyledText";
-import { StyledButton } from "../themed/StyledButton";
-import { StyledSpace } from "../themed/StyledSpace";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { StyledButton } from "@shared/components/themed/StyledButton";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import { FC } from "react";
-import { StyledBox } from "../themed/StyledBox";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { StyledBox } from "@shared/components/themed/StyledBox";
+import { useMediaQuery, UseMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 const Wrapper = styled.div`
     width: 100%;

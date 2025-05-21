@@ -1,9 +1,9 @@
 import { FC, ReactElement, SetStateAction, Dispatch} from "react";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import styled from "styled-components";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { StyledButton } from "../themed/StyledButton";
-import { StyledSpace } from "../themed/StyledSpace";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledButton } from "@shared/components/themed/StyledButton";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 
 const Wrapper = styled.div`
     display: flex;

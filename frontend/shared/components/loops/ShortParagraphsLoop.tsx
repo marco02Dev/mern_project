@@ -1,9 +1,9 @@
 import { FC, ReactElement, Fragment } from "react";
 import { ContentSection } from "../sections/TextImageSection";
-import { StyledText } from "../themed/StyledText";
-import { StyledSpace } from "../themed/StyledSpace";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 type ShortParagraphsLoopProps = {
     contentSections: ContentSection[],

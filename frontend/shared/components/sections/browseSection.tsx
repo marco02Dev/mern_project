@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import { FC } from "react";
-import { StyledSection } from "../themed/StyledSection";
-import { StyledSpace } from "../themed/StyledSpace";
-import { StyledText } from "../themed/StyledText";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledText } from "@shared/components/themed/StyledText";
 import styled from "styled-components";
 import { sizes } from "@shared/config/sizes.config";
-import { CategoriesLoop } from "../loops/CategoriesLoop";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { CategoriesLoop } from "@shared/components/loops/CategoriesLoop";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
 
 const TitleWrapper = styled.div`
     display: flex;

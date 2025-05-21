@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, Location } from "react-router-dom";
-import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
+import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-letter.util";
 
 /**
  * Custom hook that dynamically sets the document title based on the current path.

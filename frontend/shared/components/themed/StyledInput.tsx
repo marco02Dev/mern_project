@@ -1,19 +1,19 @@
 import { FC, ReactElement, ChangeEventHandler, useState, MouseEventHandler } from "react";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
 import { StyledText } from "./StyledText";
 import { StyledSpace } from "./StyledSpace";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-letter.util";
 import styled from "styled-components";
 import { sizes } from "@shared/config/sizes.config";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { getInputType } from "../../utils/form/get-input-type.util";
-import { EyeIconButton } from "../buttons/EyeIconButton";
-import { getPasswordPatternAttrs } from "../../utils/form/get-password-pattern-atts";
-import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
-import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { getInputType } from "@shared/utils/form/get-input-type.util";
+import { EyeIconButton } from "@shared/components/buttons/EyeIconButton";
+import { getPasswordPatternAttrs } from "@shared/utils/form/get-password-pattern-atts";
+import { InputBorderStyles } from "@shared/animations/styled-input-text-area.animation";
+import { styledInpuTextAreaFocusAnimation } from "@shared/animations/styled-input-text-area.animation";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 const Wrapper = styled.div<{
         $isMobile: boolean, 

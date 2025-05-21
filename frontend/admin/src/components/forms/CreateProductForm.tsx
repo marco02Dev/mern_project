@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { ProductFormSection } from "../sections/ProductFormSection";
+import { ProductFormSection } from "@admin/components/sections/ProductFormSection";
 
 /**
  * `CreateProductForm` is an **admin-only component** that renders a section for creating a new course.

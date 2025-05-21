@@ -1,6 +1,6 @@
 import { ReactElement, FC } from "react";
 import styled from "styled-components";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 type WrapperProps = {
     $backgroundColor: string,

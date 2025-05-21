@@ -1,17 +1,17 @@
 import { categories } from "@shared/config/categories.config";
-import { StyledLink } from "../themed/StyledLink";
-import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
+import { StyledLink } from "@shared/components/themed/StyledLink";
+import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-letter.util";
 import { FC, ReactElement, SetStateAction, Dispatch, useEffect } from "react";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 import styled from "styled-components";
-import { StyledSpace } from "../themed/StyledSpace";
-import { useUnsetActiveColor } from "../../hooks/ui/useUnsetActiveColor";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { useUnsetActiveColor } from "@shared/hooks/ui/useUnsetActiveColor";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 import { useDispatch } from "react-redux";
 import { Dispatch as ReduxDispatch } from "@reduxjs/toolkit";
-import { setDataChanged } from "../../store/slices/courses-data-changed.slice";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { setDataChanged } from "@shared/store/slices/courses-data-changed.slice";
+import { useMediaQuery, UseMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 
 type WrapperProps = {
     $isMobile: boolean

@@ -1,9 +1,9 @@
 import { ReactElement, FC } from "react";
-import { UseThemeModeToggle, useThemeModeToggle } from "../../hooks/theme/useThemeModeToggle";
-import { UseThemeModeTransitionEffect, useThemeModeTransitionEffect } from "../../hooks/theme/useThemeModeTransitionEffect";
+import { UseThemeModeToggle, useThemeModeToggle } from "@shared/hooks/theme/useThemeModeToggle";
+import { UseThemeModeTransitionEffect, useThemeModeTransitionEffect } from "@shared/hooks/theme/useThemeModeTransitionEffect";
 import styled from "styled-components";
 import { sizes } from "@shared/config/sizes.config";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 
 const Button = styled.button<{$imageSize: string}>`
     background-color: transparent;

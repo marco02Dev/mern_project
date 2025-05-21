@@ -1,13 +1,13 @@
 import React, { SetStateAction, Dispatch, FC, useEffect } from 'react';
-import { StyledLink } from '../themed/StyledLink';
-import { StyledSpace } from '../themed/StyledSpace';
-import { FadeInWrapper } from '../animated/FadeInWrapper';
-import { UseMediaQuery, useMediaQuery } from '../../hooks/ui/useMediaQuery';
+import { StyledLink } from '@shared/components/themed/StyledLink';
+import { StyledSpace } from '@shared/components/themed/StyledSpace';
+import { FadeInWrapper } from '@shared/components/animated/FadeInWrapper';
+import { UseMediaQuery, useMediaQuery } from '@shared/hooks/ui/useMediaQuery';
 import { useLocation, Location } from 'react-router-dom';
-import { useUnsetActiveColor } from '../../hooks/ui/useUnsetActiveColor';
-import { sumStringDelays } from '../../utils/components/sum-string-delays.util';
-import { ThemeColors, useThemeColors } from '../../hooks/theme/useThemeColors';
-import { UseAuth, useAuth } from '../../hooks/auth/useAuth';
+import { useUnsetActiveColor } from '@shared/hooks/ui/useUnsetActiveColor';
+import { sumStringDelays } from '@shared/utils/components/sum-string-delays.util';
+import { ThemeColors, useThemeColors } from '@shared/hooks/theme/useThemeColors';
+import { UseAuth, useAuth } from '@shared/hooks/auth/useAuth';
 import { useIsCurrentPath, UseIsCurrentPath } from '@shared/hooks/navigation/useIsCurrentPath';
 
 type NavLinksLoopProps = {

@@ -1,9 +1,9 @@
 import { FC, Fragment, ReactElement } from "react";
 import styled from "styled-components";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { StyledFooterLink } from "../themed/StyledFooterLink";
-import { StyledSpace } from "../themed/StyledSpace";
-import { StyledText } from "../themed/StyledText";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledFooterLink } from "@shared/components/themed/StyledFooterLink";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledText } from "@shared/components/themed/StyledText";
 import { footerLinks } from "@shared/config/footer-links.config";
 
 const Wrapper = styled.div`

@@ -1,5 +1,5 @@
 import { ReactElement, FC } from "react";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 import styled from "styled-components";
 
 const Wrapper = styled.div<{$imageLeft?: boolean}>`

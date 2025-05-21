@@ -1,13 +1,13 @@
 import { ReactElement, FC } from "react";
-import { StyledSection } from "../themed/StyledSection";
-import { StyledSpace } from "../themed/StyledSpace";
-import { StyledText } from "../themed/StyledText";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledText } from "@shared/components/themed/StyledText";
 import { sizes } from "@shared/config/sizes.config";
 import styled from "styled-components";
-import { CoursesLoop } from "../loops/CoursesLoop";
-import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { usePurchasedProducts } from "../../hooks/data/usePurchasedProducts";
+import { CoursesLoop } from "@shared/components/loops/CoursesLoop";
+import { useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { usePurchasedProducts } from "@shared/hooks/data/usePurchasedProducts";
 
 const TitleWrapper = styled.div`
   display: flex;

@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { ReactElement, useState, FC } from "react";
-import { useAutoResizingTextArea, UseAutoResizingTextArea } from "../../hooks/ui/useAutoResizingTextArea";
-import { StyledText } from "./StyledText";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { StyledSpace } from "./StyledSpace";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { useAutoResizingTextArea, UseAutoResizingTextArea } from "@shared/hooks/ui/useAutoResizingTextArea";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 import { sizes } from "@shared/config/sizes.config";
-import { capitalizeFirstLetter } from "../../utils/common/capitalize-first-letter.util";
-import { InputBorderStyles } from "../../animations/styled-input-text-area.animation";
-import { styledInpuTextAreaFocusAnimation } from "../../animations/styled-input-text-area.animation";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
+import { capitalizeFirstLetter } from "@shared/utils/common/capitalize-first-letter.util";
+import { InputBorderStyles } from "@shared/animations/styled-input-text-area.animation";
+import { styledInpuTextAreaFocusAnimation } from "@shared/animations/styled-input-text-area.animation";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { useThemeColors, ThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 const linesLimit: number = 5;
 

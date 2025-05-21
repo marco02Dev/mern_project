@@ -1,21 +1,21 @@
 import { Dispatch, Fragment, ReactElement, SetStateAction, useState } from "react";
 import { FC } from "react";
-import { StyledText } from "../themed/StyledText";
-import { useFetchGet } from "../../hooks/data/useFetchGet";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { useFetchGet } from "@shared/hooks/data/useFetchGet";
 import { Course } from "@shared/types/course.types";
-import { CourseBox } from "../boxes/CourseBox";
-import { determineUseFetchGetEndpoint } from "../../utils/components/determine-use-fetch-get-endpoint.util";
+import { CourseBox } from "@shared/components/boxes/CourseBox";
+import { determineUseFetchGetEndpoint } from "@shared/utils/components/determine-use-fetch-get-endpoint.util";
 import { Endpoints, endpoints } from "@shared/config/endpoints.config";
-import { StyledSpace } from "../themed/StyledSpace";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import styled from "styled-components";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@shared/store";
 import { CategoriesFilterLoop } from "./CategoriesFilterLoop";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
-import { CoursesDataChangedState } from "../../store/slices/courses-data-changed.slice";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { useThemeColors, ThemeColors } from "@shared/hooks/theme/useThemeColors";
+import { CoursesDataChangedState } from "@shared/store/slices/courses-data-changed.slice";
 
 const CoursesWrapper = styled.ul<{$backgroundColor: string}>`
   width: 100%;

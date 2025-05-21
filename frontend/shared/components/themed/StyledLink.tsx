@@ -6,8 +6,8 @@ import styled, { css } from "styled-components";
 import { AllowedTextTags } from "@shared/config/styled-text.config";
 import { buttonInnerStyles, ButtonInnerStylesProps } from "./StyledButton";
 import { sizes } from "@shared/config/sizes.config";
-import { linkHoverAnimation } from "../../animations/styled-link.animation";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { linkHoverAnimation } from "@shared/animations/styled-link.animation";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 export type LinkWrapperProps = {
     $color: string,

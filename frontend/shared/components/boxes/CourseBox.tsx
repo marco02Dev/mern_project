@@ -1,16 +1,16 @@
 import { ReactElement, FC } from "react";
-import { StyledText } from "../themed/StyledText";
-import { StyledSpace } from "../themed/StyledSpace";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { StyledBox } from "../themed/StyledBox";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { StyledBox } from "@shared/components/themed/StyledBox";
 import styled from "styled-components";
-import { useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { DiscoverCourseButton } from "../buttons/DiscoverCourseButton";
+import { useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { DiscoverCourseButton } from "@shared/components/buttons/DiscoverCourseButton";
 import { defaultDelayIncrement } from "@shared/config/animation.config";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { UseMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { useAuth, UseAuth } from "../../hooks/auth/useAuth";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { UseMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
 import { Course } from "@shared/types/course.types";
 import { UseIsCurrentPath, useIsCurrentPath } from "@shared/hooks/navigation/useIsCurrentPath";
 

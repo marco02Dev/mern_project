@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store";
-import { fetchPurchasedProducts } from "../../store/slices/purchased-products.slice";
+import { AppDispatch, RootState } from "@shared/store";
+import { fetchPurchasedProducts } from "@shared/store/slices/purchased-products.slice";
 import { UseAuth, useAuth } from "../auth/useAuth";
 
 export const usePurchasedProducts = (shouldFetch: boolean = true) => {

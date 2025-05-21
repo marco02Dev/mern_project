@@ -1,12 +1,12 @@
 import { ReactElement, FC } from "react";
-import { StyledSection } from "../themed/StyledSection";
-import { StyledText } from "../themed/StyledText";
-import { StyledSpace } from "../themed/StyledSpace";
-import { StyledButton } from "../themed/StyledButton";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledButton } from "@shared/components/themed/StyledButton";
 import { sizes } from "@shared/config/sizes.config";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 import { defaultDelayIncrement } from "@shared/config/animation.config";
 
 type TextSectionProps = {

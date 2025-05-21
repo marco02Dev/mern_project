@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { NavLinksLayout } from "../layouts/NavLinksLayout";
+import { NavLinksLayout } from "@shared/components/layouts/NavLinksLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@shared/store";
 import { FC, ReactNode, useEffect } from "react";
-import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
-import { closeMenu } from "../../store/slices/menu.slice";
+import useLocationChange, { UseLocationChange } from "@shared/hooks/navigation/useLocationChange";
+import { closeMenu } from "@shared/store/slices/menu.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { useMediaQuery, UseMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 type MobileMenuWrapperProps = {
   $isOpened: boolean;

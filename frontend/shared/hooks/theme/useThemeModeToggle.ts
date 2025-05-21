@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { setMode } from "../../store/slices/theme-mode.slice";
-import { setCookie } from "../../utils/cookies/set-cookie";
+import { RootState } from "@shared/store";
+import { setMode } from "@shared/store/slices/theme-mode.slice";
+import { setCookie } from "@shared/utils/cookies/set-cookie";
 import { MouseEventHandler } from "react";
 import { Dispatch } from "@reduxjs/toolkit";
 

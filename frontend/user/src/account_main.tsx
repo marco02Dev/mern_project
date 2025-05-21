@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import { MainLayout } from '@shared/components/layouts/MainLayout';
-import AccountApp from './AccountApp';
+import UserApp from './UserApp';
 
 createRoot(document.getElementById('account')!).render(
   <MainLayout>
-    <AccountApp />
+    <UserApp />
   </MainLayout>
 );

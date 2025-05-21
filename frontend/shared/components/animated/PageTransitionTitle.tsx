@@ -1,18 +1,18 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-import { UseAuth, useAuth } from "../../hooks/auth/useAuth";
-import { revealHiddenElements } from "../../animations/page-transition-element.animation";
+import { UseAuth, useAuth } from "@shared/hooks/auth/useAuth";
+import { revealHiddenElements } from "@shared/animations/page-transition-element.animation";
 import { useLocation, Location } from "react-router-dom";
-import { StyledText } from "../themed/StyledText";
-import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
-import { SlideUpDownPageTransitionTitleAnimation } from "../../animations/page-transition-title.animation";
+import { StyledText } from "@shared/components/themed/StyledText";
+import useLocationChange, { UseLocationChange } from "@shared/hooks/navigation/useLocationChange";
+import { SlideUpDownPageTransitionTitleAnimation } from "@shared/animations/page-transition-title.animation";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { RootState } from "@shared/store";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { FC } from "react";
-import { useFirstRender } from "../../hooks/ui/useIsFirstRender";
-import { getPageTransitionFormattedTitle } from "../../utils/components/get-formatted-title";
-import { useThemeColors, ThemeColors } from "../../hooks/theme/useThemeColors";
+import { useFirstRender } from "@shared/hooks/ui/useIsFirstRender";
+import { getPageTransitionFormattedTitle } from "@shared/utils/components/get-formatted-title";
+import { useThemeColors, ThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 const TitleWrapper = styled.div<{$hasLocationChanged: boolean}>`
     position: absolute;

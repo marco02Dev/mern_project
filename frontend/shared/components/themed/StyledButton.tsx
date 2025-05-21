@@ -2,10 +2,10 @@ import { ReactElement, FC } from "react";
 import styled, { css, RuleSet } from "styled-components";
 import { StyledLink } from "./StyledLink";
 import { StyledShadow } from "./StyledShadow";
-import { styledButtonHoverAnimation, buttonHoverAnimation } from "../../animations/styled-button.animation";
+import { styledButtonHoverAnimation, buttonHoverAnimation } from "@shared/animations/styled-button.animation";
 import { sizes } from "@shared/config/sizes.config";
 import { buttonFontSize } from "@shared/config/sizes.config";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 export type ButtonInnerStylesProps = {
     $padding?: string,

@@ -1,4 +1,4 @@
-import { ClientRouter } from './ClientRouter';
+import { ClientRouter } from '@client/ClientRouter';
 import { AppLayout } from '@shared/components/layouts/AppLayout';
 
 function ClientApp() {

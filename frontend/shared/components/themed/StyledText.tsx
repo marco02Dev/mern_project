@@ -1,7 +1,7 @@
 import { ReactElement, JSX } from "react";
 import styled from "styled-components";
-import { determineTextFontSizeAndLineHeight, StyledTextSizes } from "../../utils/components/determine-text-font-size-and-line-height.util";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { determineTextFontSizeAndLineHeight, StyledTextSizes } from "@shared/utils/components/determine-text-font-size-and-line-height.util";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 import { AllowedTextTags } from "@shared/config/styled-text.config";
 import { defaultTextTag } from "@shared/config/styled-text.config";
 import { FC } from "react";

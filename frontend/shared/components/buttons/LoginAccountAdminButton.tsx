@@ -1,9 +1,9 @@
 import { FC, ReactElement } from "react";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { StyledButton } from "../themed/StyledButton";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
-import { useAuth } from "../../hooks/auth/useAuth";
-import { UseIsCurrentPath, useIsCurrentPath } from "../../hooks/navigation/useIsCurrentPath";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledButton } from "@shared/components/themed/StyledButton";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
+import { useAuth } from "@shared/hooks/auth/useAuth";
+import { UseIsCurrentPath, useIsCurrentPath } from "@shared/hooks/navigation/useIsCurrentPath";
 
 type LoginAccountAdminButtonProps = {
     delay?: string

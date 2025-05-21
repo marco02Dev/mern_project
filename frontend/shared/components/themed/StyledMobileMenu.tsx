@@ -1,14 +1,14 @@
 import { ReactElement, useCallback, useEffect, FC } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux"; 
-import { toggleMenu, closeMenu } from "../../store/slices/menu.slice";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { RootState } from "../../store";
-import { removeMiddleLines, rotateLineDown, rotateLineUp, restoreRotatedLine } from "../../animations/styled-mobile-menu.animation";
-import { restoreMiddleLines } from "../../animations/styled-mobile-menu.animation";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { toggleMenu, closeMenu } from "@shared/store/slices/menu.slice";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { RootState } from "@shared/store";
+import { removeMiddleLines, rotateLineDown, rotateLineUp, restoreRotatedLine } from "@shared/animations/styled-mobile-menu.animation";
+import { restoreMiddleLines } from "@shared/animations/styled-mobile-menu.animation";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 import { Dispatch } from "@reduxjs/toolkit";
-import { ThemeColors, useThemeColors } from "../../hooks/theme/useThemeColors";
+import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 const Wrapper = styled.div<{$isOpened: boolean}>`
     display: flex;

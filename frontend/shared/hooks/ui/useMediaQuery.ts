@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store";
-import { setDeviceState } from "../../store/slices/device.slice";
+import { RootState } from "@shared/store";
+import { setDeviceState } from "@shared/store/slices/device.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { DeviceState } from "../../store/slices/device.slice";
+import { DeviceState } from "@shared/store/slices/device.slice";
 
 /**
  * Represents the return type of the `useMediaQuery` hook.

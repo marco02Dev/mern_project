@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { ReactElement, FC, useState, Dispatch as ReactStateDispatch, SetStateAction, FormEventHandler } from "react";
 import { sizes } from "@shared/config/sizes.config";
-import { StyledSpace } from "../themed/StyledSpace";
-import { StyledText } from "../themed/StyledText";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { InputDataFieldSetLoop } from "../loops/InputDataFieldSetLoop";
-import { FieldSetAdditionalInfoBox } from "../boxes/FieldsetAdditionalInfoBox";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { InputDataFieldSetLoop } from "@shared/components/loops/InputDataFieldSetLoop";
+import { FieldSetAdditionalInfoBox } from "@shared/components/boxes/FieldsetAdditionalInfoBox";
 import { colors } from "@shared/config/colors.config";
-import { FormButtons } from "../buttons/FormButtons";
-import { FileInputFieldSetLoop } from "../loops/FileInputFieldSetLoop";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { FormButtons } from "@shared/components/buttons/FormButtons";
+import { FileInputFieldSetLoop } from "@shared/components/loops/FileInputFieldSetLoop";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{
     $isMobile: boolean,

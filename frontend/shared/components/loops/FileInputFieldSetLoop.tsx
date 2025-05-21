@@ -1,8 +1,8 @@
 import { FC, ReactElement, ChangeEventHandler, Dispatch, SetStateAction, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { StyledInput } from "../themed/StyledInput";
-import { StyledSpace } from "../themed/StyledSpace";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { StyledInput } from "@shared/components/themed/StyledInput";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 type FileInputFieldSetLoopProps = {
     fileFields: string[];

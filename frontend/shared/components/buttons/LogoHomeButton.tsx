@@ -1,8 +1,8 @@
-import { StyledLink } from "../themed/StyledLink";
+import { StyledLink } from "@shared/components/themed/StyledLink";
 import { ReactElement, FC } from "react";
-import { useAuth, UseAuth } from "../../hooks/auth/useAuth";
-import { logoHover } from "../../animations/logo.animation";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
+import { useAuth, UseAuth } from "@shared/hooks/auth/useAuth";
+import { logoHover } from "@shared/animations/logo.animation";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
 import { useLocation, Location } from "react-router-dom";
 import { css } from "styled-components";
 

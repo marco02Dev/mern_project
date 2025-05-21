@@ -1,9 +1,9 @@
 import { FC, RefObject } from "react";
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { StyledButton } from "../themed/StyledButton";
-import { UseHiddenLink, useHiddenLink } from "../../hooks/navigation/useHiddenLink";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledButton } from "@shared/components/themed/StyledButton";
+import { UseHiddenLink, useHiddenLink } from "@shared/hooks/navigation/useHiddenLink";
 
 const Wrapper = styled.div`
     display: flex;

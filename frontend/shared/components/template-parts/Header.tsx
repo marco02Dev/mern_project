@@ -1,16 +1,16 @@
 import { FC, ReactElement, useState} from "react";
 import styled from "styled-components";
-import { useHeaderVisibility } from "../../hooks/ui/useHeaderVisibility";
-import { NavLinksLayout } from "../layouts/NavLinksLayout";
-import { StyledSpace } from "../themed/StyledSpace";
-import { StyledSection } from "../themed/StyledSection";
-import {useMediaQuery, UseMediaQuery} from "../../hooks/ui/useMediaQuery";
-import { StyledMobileMenu } from "../themed/StyledMobileMenu";
-import { LogoHomeButton } from "../buttons/LogoHomeButton";
+import { useHeaderVisibility } from "@shared/hooks/ui/useHeaderVisibility";
+import { NavLinksLayout } from "@shared/components/layouts/NavLinksLayout";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import {useMediaQuery, UseMediaQuery} from "@shared/hooks/ui/useMediaQuery";
+import { StyledMobileMenu } from "@shared/components/themed/StyledMobileMenu";
+import { LogoHomeButton } from "@shared/components/buttons/LogoHomeButton";
 import { sizes } from "@shared/config/sizes.config";
-import { SwitchThemeModeButton } from "../buttons/SwitchThemeModeButton";
-import { LoginAccountAdminButton } from "../buttons/LoginAccountAdminButton";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { SwitchThemeModeButton } from "@shared/components/buttons/SwitchThemeModeButton";
+import { LoginAccountAdminButton } from "@shared/components/buttons/LoginAccountAdminButton";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 import { useLocation, Location } from "react-router-dom";
 
 const Nav = styled.nav`

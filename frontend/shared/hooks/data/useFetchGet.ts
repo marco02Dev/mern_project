@@ -1,5 +1,5 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { setLoading, setError } from '../../store/slices/app-state-slice';
+import { setLoading, setError } from '@shared/store/slices/app-state-slice';
 
 type DataWrapper<T> = {
   data: T; 

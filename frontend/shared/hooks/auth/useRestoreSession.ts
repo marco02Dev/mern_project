@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setLoggedIn } from '../../store/slices/login.slice';
-import { AppDispatch } from '../../store';
+import { setLoggedIn } from '@shared/store/slices/login.slice';
+import { AppDispatch } from '@shared/store';
 import { endpoints } from '../../config/endpoints.config';
 
 /**

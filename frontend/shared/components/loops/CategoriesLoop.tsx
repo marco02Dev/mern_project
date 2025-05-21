@@ -1,11 +1,11 @@
 import { ReactElement, FC, Fragment } from "react";
 import { categories } from "@shared/config/categories.config";
-import { CategoryBox } from "../boxes/CategoryBox";
-import { StyledSpace } from "../themed/StyledSpace";
+import { CategoryBox } from "@shared/components/boxes/CategoryBox";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import styled from "styled-components";
 import { sizes } from "@shared/config/sizes.config";
-import { useMediaQuery, UseMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { useMediaQuery, UseMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{$isMobile: boolean}>`
   width: 100%;

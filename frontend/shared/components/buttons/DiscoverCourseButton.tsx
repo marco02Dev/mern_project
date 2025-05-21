@@ -1,6 +1,6 @@
 import { FC, MouseEventHandler, ReactElement, useRef } from "react";
-import { FadeInWrapper } from "../animated/FadeInWrapper";
-import { StyledButton } from "../themed/StyledButton";
+import { FadeInWrapper } from "@shared/components/animated/FadeInWrapper";
+import { StyledButton } from "@shared/components/themed/StyledButton";
 import { Link } from "react-router-dom";
 import { Course } from "@shared/types/course.types";
 

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@shared/store";
 import { User } from "@shared/types/user.types";
-import { LoginState } from "../../store/slices/login.slice";
+import { LoginState } from "@shared/store/slices/login.slice";
 
 /**
  * Represents the result of the useAuth hook.

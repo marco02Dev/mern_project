@@ -1,10 +1,10 @@
 import styled, { RuleSet } from "styled-components";
-import { TextReaveal } from "../../animations/text-reveal-wrapper.animation";
+import { TextReaveal } from "@shared/animations/text-reveal-wrapper.animation";
 import { ReactElement } from "react";
-import { useInView } from "../../hooks/ui/useViewIn";
-import useLocationChange, { UseLocationChange } from "../../hooks/navigation/useLocationChange";
+import { useInView } from "@shared/hooks/ui/useViewIn";
+import useLocationChange, { UseLocationChange } from "@shared/hooks/navigation/useLocationChange";
 import { FC } from "react";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 const Wrapper = styled.div<{$revealText: boolean, $absolute?: string, $addiniotalAnimation?: RuleSet, $width?: string, $height?: string, $left: boolean, $right?: boolean, $delayed: string, $textCenter?: boolean}>`
     overflow-y: hidden;

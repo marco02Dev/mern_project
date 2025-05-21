@@ -1,15 +1,15 @@
 import { ReactElement, FC } from "react";
-import { StyledSection } from "../themed/StyledSection";
-import { StyledSpace } from "../themed/StyledSpace";
-import { ImageBorderedBox } from "../boxes/ImageBorderedBox";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
+import { StyledSection } from "@shared/components/themed/StyledSection";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
+import { ImageBorderedBox } from "@shared/components/boxes/ImageBorderedBox";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
 import { sizes } from "@shared/config/sizes.config";
 import styled from "styled-components";
-import { StyledText } from "../themed/StyledText";
-import { ShortParagraphsLoop } from "../loops/ShortParagraphsLoop";
-import { TextRevealWrapper } from "../animated/TextRevealWrapper";
+import { StyledText } from "@shared/components/themed/StyledText";
+import { ShortParagraphsLoop } from "@shared/components/loops/ShortParagraphsLoop";
+import { TextRevealWrapper } from "@shared/components/animated/TextRevealWrapper";
 import { defaultDelayIncrement } from "@shared/config/animation.config";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 const MainWrapper = styled.div<{
     $isTablet: boolean

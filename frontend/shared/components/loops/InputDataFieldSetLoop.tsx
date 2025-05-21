@@ -1,9 +1,9 @@
 import { FC, ReactElement, Fragment, SetStateAction, Dispatch, useEffect, useRef } from "react";
-import { UseMediaQuery, useMediaQuery } from "../../hooks/ui/useMediaQuery";
-import { StyledInput } from "../themed/StyledInput";
-import { StyledSpace } from "../themed/StyledSpace";
+import { UseMediaQuery, useMediaQuery } from "@shared/hooks/ui/useMediaQuery";
+import { StyledInput } from "@shared/components/themed/StyledInput";
+import { StyledSpace } from "@shared/components/themed/StyledSpace";
 import styled from "styled-components";
-import { sumStringDelays } from "../../utils/components/sum-string-delays.util";
+import { sumStringDelays } from "@shared/utils/components/sum-string-delays.util";
 
 const Wrapper = styled.fieldset<{$isMobile: boolean}>`
     width: 100%;

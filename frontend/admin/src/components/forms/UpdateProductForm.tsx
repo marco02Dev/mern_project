@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { ProductFormSection } from "../sections/ProductFormSection";
+import { ProductFormSection } from "@admin/components/sections/ProductFormSection";
 
 /**
  * `UpdateProductForm` is an **admin-only component** that renders a section for updating an existing course.
