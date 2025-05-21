@@ -108,8 +108,8 @@ export default defineConfig({
           return 'assets/[name]-[hash].js';
         }
       },
-        chunkFileNames: 'assets/chunks/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/chunks/[hash].js',
+        assetFileNames: 'assets/[hash][extname]',
       },
     },
   },
