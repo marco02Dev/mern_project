@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setLoggedIn } from '@shared/store/slices/login.slice';
 import { AppDispatch } from '@shared/store';
 import { endpoints } from '../../config/endpoints.config';
+import { LoggedUser } from '@shared/types/user.types';
+import { checkSession } from '@shared/utils/cookies/check-session.util';
 
 /**
  * Custom hook that restores the user's session by fetching session data
@@ -17,18 +19,18 @@ import { endpoints } from '../../config/endpoints.config';
  * If there's an error or the session is invalid, nothing happens.
 */
 
-export const useRestoreSession = () => {
+export const useRestoreSession = (): void => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const restoreSession = async () => {
+    const restoreSession = async (): Promise<void> => {
       try {
-        const res = await fetch(endpoints.sessionEndpoint, {
+        const res: Response = await fetch(endpoints.sessionEndpoint, {
           credentials: 'include',
         });
         const json = await res.json();
 
-        if (json.success && json.data) {
+        if (json.success && json.data as LoggedUser) {
           dispatch(setLoggedIn({
             _id: json.data._id,
             name: json.data.name,
@@ -42,6 +44,8 @@ export const useRestoreSession = () => {
       }
     };
 
-    restoreSession();
+    if(checkSession()) {
+      restoreSession();
+    }
   }, [dispatch]);
 };
