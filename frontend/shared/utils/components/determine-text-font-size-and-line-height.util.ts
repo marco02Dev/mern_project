@@ -39,9 +39,6 @@ export const determineTextFontSizeAndLineHeight = ({
             fontSize = sizes.fontSizes.paragraph.medium;
             autoLineHeight = sizes.lineHeights.paragraph.medium;
         }
-    } else if (value === "button") {
-        fontSize = sizes.fontSizes.button.medium;
-        autoLineHeight = sizes.lineHeights.button.medium;
     } else {
         fontSize = sizes.fontSizes[value as Exclude<keyof FontSizes, "paragraph" | "button">] ?? fontSize;
         autoLineHeight = sizes.lineHeights[value as Exclude<keyof FontSizes, "paragraph" | "button">] ?? autoLineHeight;
