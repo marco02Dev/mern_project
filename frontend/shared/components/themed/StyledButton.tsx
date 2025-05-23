@@ -4,7 +4,6 @@ import { StyledLink } from "./StyledLink";
 import { StyledShadow } from "./StyledShadow";
 import { styledButtonHoverAnimation, buttonHoverAnimation } from "@shared/animations/styled-button.animation";
 import { sizes } from "@shared/config/sizes.config";
-import { buttonFontSize } from "@shared/config/sizes.config";
 import { ThemeColors, useThemeColors } from "@shared/hooks/theme/useThemeColors";
 
 export type ButtonInnerStylesProps = {
@@ -31,19 +30,19 @@ export const buttonInnerStyles: RuleSet<ButtonInnerStylesProps> = css<ButtonInne
               display: flex;
 
               span {
-                font-size: ${() => sizes.fontSizes.button.large};
-                padding-left: clamp(4vh, 1vh + 3vw, 4vh);
-                padding-right: clamp(4vh, 1vh + 3vw, 4vh);
-                padding-top: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
-                padding-bottom: clamp(2.5vh, 1.5vh + 0.5vw, 5vh);
+                font-size: ${() => sizes.fontSizes.button};
+                padding-left: clamp(2vh, 1vh + 3vw, 4vh);
+                padding-right: clamp(2vh, 1vh + 3vw, 4vh);
+                padding-top: clamp(1vh, 1.5vh + 0.5vw, 5vh);
+                padding-bottom: clamp(1vh, 1.5vh + 0.5vw, 5vh);
               }
             `;
           } else if ($borderColor) {
             return css`
-              padding-left: clamp(2vh, 2vh + 0.1vw, 100vw);
-              padding-right: clamp(2vh, 2vh + 0.1vw, 100vw);
-              padding-top: clamp(1vh, 1vh + 0.1vw, 100vw);
-              padding-bottom: clamp(0.5vh, 1vh + 0.1vw, 100vw);
+              padding-left: clamp(1.5vh, 1.5vh + 0.1vw, 100vw);
+              padding-right: clamp(1.5vh, 1.5vh + 0.1vw, 100vw);
+              padding-top: clamp(0.5vh, 0.8vh + 0.1vw, 100vw);
+              padding-bottom: clamp(0.5vh, 0.8vh + 0.1vw, 100vw);
 
               ${() => `
                 border: solid ${$borderColor} !important;
@@ -51,7 +50,7 @@ export const buttonInnerStyles: RuleSet<ButtonInnerStylesProps> = css<ButtonInne
               `}
 
               span {
-                font-size: ${() => sizes.fontSizes.button.large};
+                font-size: ${() => sizes.fontSizes.button};
               }
             `;
           }
@@ -104,7 +103,6 @@ export const StyledButton: FC<StyledButtonProps> = ({
         padding={unsetShadow? 'unsetShadowElement' : "default"}
         fontWeight={'700'}
         button
-        size={buttonFontSize}
         border
         action
         inactive={isInactive}

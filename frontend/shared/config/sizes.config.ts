@@ -5,13 +5,7 @@ type SizeCategory = {
     small: SizeValue;
     medium: SizeValue;
     large: SizeValue;
-};
-
-type Button = {
-    small: SizeValue,
-    medium: SizeValue,
-    large: SizeValue
-}
+}; 
 
 export type FontSizes = {
     h1: SizeValue;
@@ -22,7 +16,7 @@ export type FontSizes = {
     h6: SizeValue;
     span: SizeValue;
     paragraph: SizeCategory;
-    button: Button
+    button: SizeValue
 };
 
 type Sizes = {
@@ -46,13 +40,9 @@ export const sizes: Sizes = {
             verySmall: "clamp(1vh, 0.2vh + 1vw, 100vw)",
             small: "clamp(2.4vh, 0.5vh + 1vw, 100vw)",  
             medium: "clamp(2.8vh, 0.8vh + 1vw, 100vw)",   
-            large: "clamp(2vh, 1vh + 1.5vw, 100vw)" 
+            large: "clamp(2vh, 1vh + 1.5vw, 100vw)"
         },
-        button: {
-            small: "2vh",
-            medium: "2.2vh",
-            large: "2.5vh"
-        }
+        button: "clamp(2vh, 0.5vh + 1vw, 100vw)"
     },
     lineHeights: {
         h1: "clamp(8vh, 6.4vh + 3.2vw, 100vw)",
@@ -68,11 +58,7 @@ export const sizes: Sizes = {
             medium: "clamp(3.2vh, 1vh + 1.2vw, 100vw)",
             large: "clamp(2.6vh, 1vh + 1.8vw, 100vw)"
         },
-        button: {
-            small: "2vh",
-            medium: "2.2vh",
-            large: "2.5vh"
-        }
+        button: "clamp(2.4vh, 0.5vh + 1vw, 100vw)"
     },
     spaces: {
         verySmall: "clamp(1vh, 0.05vh + 0.01vw, 100vw)",
