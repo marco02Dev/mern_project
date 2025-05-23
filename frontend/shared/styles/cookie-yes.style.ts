@@ -97,7 +97,7 @@ export const CookieYesStyles: CookieYesStylesType = createGlobalStyle<CookieYesS
         border-top-color: unset !important;
     }
     .cky-btn-customize {
-        padding: unset !important;
+        padding: 8px 27px !important;
     }
     .cky-consent-container .cky-consent-bar {
         border: unset !important;
